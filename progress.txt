@@ -1,0 +1,51 @@
+Phase 1 - Next.js Foundation
+
+- Created the Next.js App Router project foundation.
+- Added strict TypeScript, Tailwind CSS, ESLint, and PostCSS configuration.
+- Added shadcn-compatible project aliases and component configuration.
+- Added base app layout, metadata, global CSS, and a minimal homepage placeholder using documented BracketDex copy.
+- Added shared site configuration and class name utility helpers.
+- Installed dependencies and generated `package-lock.json`.
+- Verified Phase 1 with `npm run typecheck`, `npm run lint`, and `npm run build`.
+
+Remaining approved phases:
+- Phase 2: Design system and tokens. Started after approval.
+- Phase 3: Content and data architecture.
+- Phase 4: Core reusable components.
+- Phase 5+: Homepage, pages, MDX, SEO, assets, motion, and QA.
+
+Phase 2 - Design System and Tokens
+
+- Added `docs/DESIGN_SYSTEM.md` as the implementation token contract required by the project rules.
+- Added semantic CSS variables for light and dark themes in `src/app/globals.css`.
+- Added Tailwind v4 `@theme inline` mappings for shadcn-compatible semantic classes.
+- Added shared layout helper classes for page, content, and reading widths.
+- Added accessible focus, selection, and reduced-motion behavior.
+- Updated the placeholder homepage to use semantic token classes instead of raw slate/white color utilities.
+
+Phase 3 - Content and Data Architecture
+
+- Added `src/content/marketing.ts` as the typed source for documented marketing content.
+- Added navigation, homepage hero, trust metric placeholders, services, solutions, industries, why-choose-us items, process steps, technology stack groups, FAQs, CTAs, and project/testimonial placeholders.
+- Added `src/content/marketing.contract.ts` as a compile-time content contract.
+- Verified the contract with a red/green typecheck cycle: first failed on missing `./marketing`, then passed after implementation.
+- Updated `src/lib/site.ts` and the placeholder homepage to consume the centralized content source.
+
+Phase 4 - Core Reusable Components
+
+- Added shadcn/ui primitives for button, card, accordion, input, textarea, label, field, and separator.
+- Added `src/components/marketing/components.contract.tsx` as a compile-time component API contract.
+- Verified a red/green typecheck cycle: first failed on missing `./index`, then passed after implementing the component API.
+- Added core marketing components: Navbar, Footer, HeroSection, SectionContainer, SectionHeader, CtaSection, ServiceCard, IndustryCard, ProjectCard, FaqSection, and ContactForm.
+- Updated the homepage placeholder to use Navbar, HeroSection, and Footer while keeping full homepage sections for the later approved homepage phase.
+- Added missing design tokens required by shadcn primitives: destructive colors and accordion animations.
+- Converted Navbar to a server-rendered component with a native mobile menu to avoid unnecessary client-side state.
+
+Phase 5 - Homepage Implementation
+
+- Added `src/components/home/home-page.contract.tsx` as a compile-time homepage assembly contract.
+- Verified a red/green typecheck cycle: first failed on missing `./home-page`, then passed after implementing the homepage component.
+- Added `src/components/home/home-page.tsx` and updated the root page to render the full documented homepage structure.
+- Implemented the homepage sections from `docs/# DESIGN.md`: hero, trust metrics, problems, solutions, services, why choose us, industries, featured projects, process, technology stack, testimonials, FAQ, final CTA, navbar, and footer.
+- Kept unavailable metrics, project proof, and testimonials as explicit placeholders instead of inventing company claims.
+- Used reusable marketing components and semantic design tokens for spacing, surfaces, cards, icons, and section tones.
