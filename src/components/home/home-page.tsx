@@ -34,6 +34,7 @@ import { ProjectCard } from "@/components/marketing/project-card";
 import { SectionContainer } from "@/components/marketing/section-container";
 import { SectionHeader } from "@/components/marketing/section-header";
 import { ServiceCard } from "@/components/marketing/service-card";
+import { JsonLd } from "@/components/seo/json-ld";
 import {
   Card,
   CardContent,
@@ -41,6 +42,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo";
 
 type HomePageProps = {
   content: MarketingContent;
@@ -91,14 +93,18 @@ export function HomePage({ content }: HomePageProps) {
   const testimonialPlaceholder = content.projectPlaceholders[1];
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground" id="main-content" tabIndex={-1}>
+      <JsonLd data={buildBreadcrumbJsonLd("/")} />
+      <JsonLd data={buildFaqJsonLd()} />
       <Navbar
+        activeHref="/"
         brandName={content.company.name}
         ctaHref="/contact"
         ctaLabel={hero.primaryCta}
         items={content.navigation}
       />
       <HeroSection
+        eyebrow={content.company.name}
         headline={hero.headline}
         primaryCta={{ href: "/contact", label: hero.primaryCta }}
         secondaryCta={{ href: "/projects", label: hero.secondaryCta }}
@@ -331,7 +337,7 @@ export function HomePage({ content }: HomePageProps) {
             label="FAQ"
             title="Frequently Asked Questions"
           />
-          <FaqSection items={content.faqs} />
+          <FaqSection defaultOpenFirst items={content.faqs} />
         </div>
       </SectionContainer>
 

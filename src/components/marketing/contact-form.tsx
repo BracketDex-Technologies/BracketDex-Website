@@ -42,21 +42,29 @@ export function ContactForm() {
   }
 
   return (
-    <form className="rounded-xl border border-border bg-card p-6 shadow-soft" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      aria-describedby="contact-form-description"
+      className="rounded-xl border border-border bg-card p-6 shadow-soft"
+      noValidate
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <p className="sr-only" id="contact-form-description">
+        Share your name, email, company, and project message so BracketDex can review your requirement.
+      </p>
       <FieldGroup>
         <Field data-invalid={Boolean(errors.name)}>
           <FieldLabel htmlFor="name">Name</FieldLabel>
-          <Input aria-invalid={Boolean(errors.name)} id="name" {...register("name")} />
+          <Input aria-invalid={Boolean(errors.name)} autoComplete="name" id="name" {...register("name")} />
           <FieldError errors={[errors.name]} />
         </Field>
         <Field data-invalid={Boolean(errors.email)}>
           <FieldLabel htmlFor="email">Email</FieldLabel>
-          <Input aria-invalid={Boolean(errors.email)} id="email" type="email" {...register("email")} />
+          <Input aria-invalid={Boolean(errors.email)} autoComplete="email" id="email" type="email" {...register("email")} />
           <FieldError errors={[errors.email]} />
         </Field>
         <Field>
           <FieldLabel htmlFor="company">Company</FieldLabel>
-          <Input id="company" {...register("company")} />
+          <Input autoComplete="organization" id="company" {...register("company")} />
         </Field>
         <Field data-invalid={Boolean(errors.message)}>
           <FieldLabel htmlFor="message">Message</FieldLabel>
@@ -66,7 +74,11 @@ export function ContactForm() {
         <Button disabled={isSubmitting} type="submit">
           Submit Project Details
         </Button>
-        {status ? <p className="text-sm leading-6 text-muted-foreground">{status}</p> : null}
+        {status ? (
+          <p aria-live="polite" className="text-sm leading-6 text-muted-foreground" role="status">
+            {status}
+          </p>
+        ) : null}
       </FieldGroup>
     </form>
   );

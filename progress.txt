@@ -49,3 +49,53 @@ Phase 5 - Homepage Implementation
 - Implemented the homepage sections from `docs/# DESIGN.md`: hero, trust metrics, problems, solutions, services, why choose us, industries, featured projects, process, technology stack, testimonials, FAQ, final CTA, navbar, and footer.
 - Kept unavailable metrics, project proof, and testimonials as explicit placeholders instead of inventing company claims.
 - Used reusable marketing components and semantic design tokens for spacing, surfaces, cards, icons, and section tones.
+
+Phase 6 - Top-Level Static Pages
+
+- Added `src/app/routes.contract.ts` as a compile-time route contract for documented navigation pages.
+- Verified a red/green typecheck cycle: first failed on missing documented route modules, then passed after adding the pages.
+- Added typed static page content in `src/content/pages.ts` for Services, Solutions, Industries, Why Choose Us, Projects, About, Blog, and Contact.
+- Added `src/components/pages/static-marketing-page.tsx` as a reusable server-rendered page shell for non-contact marketing pages.
+- Added documented top-level App Router pages: `/services`, `/solutions`, `/industries`, `/why-choose-us`, `/projects`, `/about`, `/blog`, and `/contact`.
+- Added page-level metadata and Open Graph title/description entries from the SEO documentation.
+- Kept unavailable case studies, testimonials, contact details, achievements, and blog posts as explicit placeholders instead of invented claims.
+
+Phase 7 - Technical SEO Infrastructure
+
+- Added `src/lib/seo.contract.ts` as a compile-time SEO API contract.
+- Verified a red/green typecheck cycle: first failed on missing `./seo`, then passed after adding the SEO module.
+- Added `src/lib/seo.ts` as the central SEO route registry for canonical URLs, page metadata, sitemap entries, Organization JSON-LD, WebSite JSON-LD, Breadcrumb JSON-LD, and FAQ JSON-LD.
+- Added generated App Router SEO artifacts: `src/app/sitemap.ts`, `src/app/robots.ts`, and `src/app/opengraph-image.tsx`.
+- Updated the root layout with shared Open Graph image metadata, Twitter card metadata, Organization JSON-LD, and WebSite JSON-LD.
+- Updated all documented routes to source metadata from `buildPageMetadata()` so titles, descriptions, canonical URLs, Open Graph, and Twitter metadata stay consistent.
+- Added breadcrumb JSON-LD to the homepage, contact page, and shared static marketing page shell.
+- Added FAQ JSON-LD to the homepage using the documented FAQ content.
+
+Phase 8 - Accessibility and Navigation Polish
+
+- Added `src/components/marketing/accessibility.contract.tsx` as a compile-time accessibility/navigation contract.
+- Verified a red/green typecheck cycle: first failed because `Navbar` and `StaticMarketingPage` lacked `activeHref`, then passed after implementing the props.
+- Added a global skip link that targets `#main-content`.
+- Added stable `id="main-content"` and `tabIndex={-1}` to the homepage, contact page, and shared static marketing page shell.
+- Added `aria-label` to primary navigation and `aria-current="page"` for active desktop and mobile nav links.
+- Kept active navigation server-rendered and data-driven without adding client-side route state.
+- Improved contact form semantics with `noValidate`, form description, autocomplete hints, and polite status announcements.
+- Confirmed the phase closeout checks that port 3000 is not left running.
+
+Phase 9 - Server-First FAQ Performance
+
+- Added `src/components/marketing/faq-section.contract.tsx` as a compile-time FAQ API contract.
+- Verified a red/green typecheck cycle: first failed because `FaqSection` lacked `defaultOpenFirst`, then passed after implementation.
+- Refactored `FaqSection` from a client Radix accordion to a server-rendered native `details` / `summary` disclosure list.
+- Preserved accessible keyboard disclosure behavior without extra client JavaScript.
+- Updated the homepage FAQ usage to open the first documented FAQ by default for scanability.
+- Left the generated shadcn accordion primitive in place because unused component files are not included in route bundles and removing generated primitives is a separate cleanup decision.
+
+Phase 10 - Rendered UI QA and Hero Refinement
+
+- Ran the local dev server for rendered QA and verified the homepage and contact page in the in-app browser.
+- Confirmed page identity, meaningful rendered content, clean console logs, mobile navigation behavior, and contact form validation/success state.
+- Found that the shared hero created too much empty first-viewport space and lacked a technology visual signal on desktop.
+- Refined `HeroSection` to remove the full viewport height lock, use documented page eyebrows, and add a lightweight token-based delivery-flow visual.
+- Kept the visual content generic and documented: Software, AI, Operations, Build, Automate, Scale.
+- Verified the updated homepage at desktop and mobile sizes, with the next section now visible on mobile and the desktop hero reading as more complete.

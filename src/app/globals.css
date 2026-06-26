@@ -133,6 +133,26 @@ a {
   outline-offset: 3px;
 }
 
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-lift);
+  transition: transform var(--motion-fast) ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 .page-shell {
   width: min(100% - 2rem, var(--container-page));
   margin-inline: auto;

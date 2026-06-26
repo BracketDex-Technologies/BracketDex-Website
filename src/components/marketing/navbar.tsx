@@ -3,19 +3,24 @@ import { MenuIcon } from "lucide-react";
 
 import type { NavigationItem } from "@/content/marketing";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type NavbarProps = {
   brandName: string;
   items: readonly NavigationItem[];
   ctaLabel: string;
   ctaHref: string;
+  activeHref?: string;
 };
 
-export function Navbar({ brandName, ctaHref, ctaLabel, items }: NavbarProps) {
+export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: NavbarProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <nav className="content-shell flex min-h-16 items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-3 font-semibold tracking-tight">
+      <nav aria-label="Primary navigation" className="content-shell flex min-h-16 items-center justify-between gap-6">
+        <Link
+          href="/"
+          className="flex items-center gap-3 font-semibold tracking-tight"
+        >
           <span className="grid size-9 place-items-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
             BD
           </span>
@@ -25,7 +30,11 @@ export function Navbar({ brandName, ctaHref, ctaLabel, items }: NavbarProps) {
         <div className="hidden items-center gap-6 lg:flex">
           {items.map((item) => (
             <Link
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              aria-current={activeHref === item.href ? "page" : undefined}
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-foreground",
+                activeHref === item.href ? "text-foreground" : "text-muted-foreground"
+              )}
               href={item.href}
               key={item.href}
             >
@@ -49,7 +58,11 @@ export function Navbar({ brandName, ctaHref, ctaLabel, items }: NavbarProps) {
             <div className="flex flex-col gap-1">
               {items.map((item) => (
                 <Link
-                  className="rounded-md px-3 py-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+                  aria-current={activeHref === item.href ? "page" : undefined}
+                  className={cn(
+                    "rounded-md px-3 py-3 text-sm font-medium hover:bg-muted hover:text-foreground",
+                    activeHref === item.href ? "bg-muted text-foreground" : "text-muted-foreground"
+                  )}
                   href={item.href}
                   key={item.href}
                 >

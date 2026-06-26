@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 
+import { JsonLd } from "@/components/seo/json-ld";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
@@ -23,6 +25,20 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     siteName: siteConfig.name,
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} brand image`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BracketDex Technologies | Engineering Solutions For Growing Businesses",
+    description: siteConfig.description,
+    images: ["/opengraph-image"],
   },
 };
 
@@ -33,8 +49,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={geistSans.variable}>{children}</body>
+      <body className={geistSans.variable}>
+        <a className="skip-link" href="#main-content">
+          Skip to main content
+        </a>
+        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={websiteJsonLd} />
+        {children}
+      </body>
     </html>
   );
 }
-
