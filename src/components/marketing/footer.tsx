@@ -10,10 +10,11 @@ type FooterProps = {
 
 export function Footer({ brandName, description, navigation }: FooterProps) {
   return (
-    <footer className="border-t border-border bg-surface text-surface-foreground">
-      <div className="content-shell grid gap-10 py-12 md:grid-cols-[1.2fr_1fr]">
+    <footer className="border-t border-border bg-background text-foreground">
+      <div className="content-shell grid gap-10 py-14 md:grid-cols-[1.2fr_1fr]">
         <div className="max-w-reading">
-          <p className="text-lg font-semibold tracking-tight">{brandName}</p>
+          <div className="bd-logo-slot rounded-md text-foreground">Logo will be here</div>
+          <p className="mt-4 text-lg font-semibold tracking-tight">{brandName}</p>
           <p className="mt-4 text-sm leading-6 text-muted-foreground">{description}</p>
         </div>
         <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -31,4 +32,3 @@ export function Footer({ brandName, description, navigation }: FooterProps) {
     </footer>
   );
 }
-

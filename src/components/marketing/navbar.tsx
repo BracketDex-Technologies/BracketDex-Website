@@ -2,7 +2,6 @@ import Link from "next/link";
 import { MenuIcon } from "lucide-react";
 
 import type { NavigationItem } from "@/content/marketing";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type NavbarProps = {
@@ -14,25 +13,45 @@ type NavbarProps = {
 };
 
 export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: NavbarProps) {
+  const primaryItems = items.filter((item) =>
+    ["/services", "/solutions", "/projects", "/industries"].includes(item.href)
+  );
+  const secondaryItems = items.filter((item) =>
+    ["/why-choose-us", "/about", "/blog"].includes(item.href)
+  );
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <nav aria-label="Primary navigation" className="content-shell flex min-h-16 items-center justify-between gap-6">
+    <header className="bd-nav-surface sticky top-0 z-40">
+      <nav aria-label="Primary navigation" className="content-shell bd-nav-inner flex items-center justify-between gap-4">
         <Link
           href="/"
           className="flex items-center gap-3 font-semibold tracking-tight"
+          aria-label={`${brandName} home`}
         >
-          <span className="grid size-9 place-items-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
-            BD
-          </span>
-          <span>{brandName}</span>
+          <span className="bd-logo-slot rounded-md">Logo will be here</span>
+          <span className="sr-only">{brandName}</span>
         </Link>
 
-        <div className="hidden items-center gap-6 lg:flex">
-          {items.map((item) => (
+        <div className="bd-desktop-menu items-center gap-3">
+          <div className="bd-nav-group flex items-center gap-1 px-4 py-2">
+            {primaryItems.map((item) => (
+              <Link
+                aria-current={activeHref === item.href ? "page" : undefined}
+                className="bd-nav-link px-3 py-1 text-sm font-medium transition-opacity hover:opacity-80"
+                data-active={activeHref === item.href}
+                href={item.href}
+                key={item.href}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {secondaryItems.map((item) => (
             <Link
               aria-current={activeHref === item.href ? "page" : undefined}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-foreground",
+                "rounded-lg border border-border bg-card/70 px-4 py-2.5 text-sm font-medium shadow-soft transition-colors hover:bg-card",
                 activeHref === item.href ? "text-foreground" : "text-muted-foreground"
               )}
               href={item.href}
@@ -41,20 +60,20 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
               {item.label}
             </Link>
           ))}
+          <Link
+            className="rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background shadow-lift transition-opacity hover:opacity-90"
+            href={ctaHref}
+          >
+            {ctaLabel}
+          </Link>
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
-          <Button asChild>
-            <Link href={ctaHref}>{ctaLabel}</Link>
-          </Button>
-        </div>
-
-        <details className="group relative lg:hidden">
-          <summary className="inline-flex size-9 cursor-pointer list-none items-center justify-center rounded-md border border-input bg-background shadow-xs transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [&::-webkit-details-marker]:hidden">
+        <details className="bd-mobile-menu group fixed right-4 top-8 z-50">
+          <summary className="inline-flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-border bg-card/80 shadow-soft transition-colors hover:bg-card focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [&::-webkit-details-marker]:hidden">
             <span className="sr-only">Toggle navigation menu</span>
             <MenuIcon aria-hidden="true" />
           </summary>
-          <div className="absolute right-0 top-12 w-[min(20rem,calc(100vw-2rem))] rounded-lg border border-border bg-background p-3 shadow-lift">
+          <div className="absolute right-0 top-12 w-[min(21rem,calc(100vw-2rem))] rounded-xl border border-border bg-card p-3 shadow-lift">
             <div className="flex flex-col gap-1">
               {items.map((item) => (
                 <Link
@@ -69,9 +88,12 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
                   {item.label}
                 </Link>
               ))}
-              <Button asChild className="mt-2">
-                <Link href={ctaHref}>{ctaLabel}</Link>
-              </Button>
+              <Link
+                className="mt-2 rounded-lg bg-foreground px-3 py-3 text-center text-sm font-medium text-background"
+                href={ctaHref}
+              >
+                {ctaLabel}
+              </Link>
             </div>
           </div>
         </details>
