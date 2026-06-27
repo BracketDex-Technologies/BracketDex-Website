@@ -113,3 +113,11 @@ Phase 11 - Cofounder-Inspired Landing Visual System
 - Rendered QA used Chrome headless screenshots because the in-app Browser plugin repeatedly timed out on localhost despite the dev server returning HTTP 200.
 - Captured desktop and mobile screenshots under `C:\tmp` and fixed observed hero contrast and mobile headline clipping.
 - Stopped the dev server before phase closeout.
+
+Hero + Navbar Real UI Refinement
+
+- Stopped treating the next homepage work as a numbered phase per user direction.
+- Refined only the shared navbar and homepage hero first viewport.
+- Replaced the temporary pixel-scene hero and laptop mockup placeholder with an asset-ready animated background slot, animated SVG hero asset slot, and motion-layer slot.
+- Consolidated desktop navigation into a calmer floating pill with one CTA and kept the mobile menu native/server-rendered.
+- Preserved documented BracketDex hero copy, navigation labels, CTA labels, and routes without inventing proof points or company facts.

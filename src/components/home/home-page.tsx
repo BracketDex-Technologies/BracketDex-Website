@@ -82,8 +82,9 @@ export function HomePage({ content }: HomePageProps) {
       <JsonLd data={buildFaqJsonLd()} />
 
       <div className="bd-hero">
-        <div aria-hidden="true" className="bd-pixel-noise" />
-        <div aria-hidden="true" className="bd-tree" />
+        <div aria-hidden="true" className="bd-hero-bg-slot">
+          <span>Animated hero background will be here</span>
+        </div>
         <Navbar
           activeHref="/"
           brandName={content.company.name}
@@ -92,23 +93,19 @@ export function HomePage({ content }: HomePageProps) {
           items={content.navigation}
         />
 
-        <section className="content-shell relative z-10 grid min-h-[calc(100svh-5.75rem)] gap-8 pb-0 pt-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div className="max-w-[21rem] sm:max-w-[42rem]">
-            <h1 className="text-[1.95rem] font-normal leading-[1.08] tracking-tight text-white sm:text-[3.1rem]">
-              {hero.headline}
-            </h1>
-            <p className="mt-6 max-w-[34rem] text-base font-medium leading-7 text-white/82">
-              {hero.subheadline}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <section className="content-shell bd-hero-layout">
+          <div className="bd-hero-copy">
+            <h1 className="bd-hero-title">{hero.headline}</h1>
+            <p className="bd-hero-subtitle">{hero.subheadline}</p>
+            <div className="bd-hero-actions">
               <Link
-                className="bd-primary-cta rounded-lg px-5 py-3 text-sm font-medium shadow-lift transition-transform hover:-translate-y-0.5"
+                className="bd-primary-cta rounded-full px-6 py-3 text-sm font-medium shadow-lift transition-transform hover:-translate-y-0.5"
                 href="/contact"
               >
                 {hero.primaryCta}
               </Link>
               <Link
-                className="bd-secondary-cta rounded-lg px-5 py-3 text-sm font-medium shadow-soft transition-transform hover:-translate-y-0.5"
+                className="bd-secondary-cta rounded-full px-6 py-3 text-sm font-medium shadow-soft transition-transform hover:-translate-y-0.5"
                 href="/projects"
               >
                 {hero.secondaryCta}

@@ -133,23 +133,19 @@ export function AssetSlot({ className = "", label }: AssetSlotProps) {
 
 export function HeroVisual({ chips }: { chips: readonly StatusChip[] }) {
   return (
-    <div aria-label="Hero visual placeholder" className="relative z-10 h-[26rem] min-h-[20rem] w-full md:h-[34rem]">
-      <div className="absolute bottom-12 right-[8%] w-[min(26rem,72vw)]">
-        <div className="bd-panel p-3">
-          <AssetSlot className="min-h-[12rem] bg-white/30" label="Laptop product image will be here" />
+    <div aria-label="Hero asset placeholders" className="bd-hero-visual">
+      <div className="bd-hero-visual-frame">
+        <div aria-hidden="true" className="bd-hero-visual-line" />
+        <div className="bd-hero-main-slot">Animated SVG hero asset will be here</div>
+        <div className="bd-hero-motion-slot">Motion layer will be here</div>
+        <div className="bd-hero-chip-stack">
+          {chips.map((chip) => (
+            <div className="bd-hero-chip" key={chip.label}>
+              <span>{chip.label}</span>
+              <strong>{chip.value}</strong>
+            </div>
+          ))}
         </div>
-      </div>
-      <div className="absolute right-[12%] top-8 grid gap-3">
-        {chips.map((chip) => (
-          <div className="bd-panel flex min-w-56 items-center gap-2 px-4 py-3 text-sm text-foreground" key={chip.label}>
-            <span className="size-2 rounded-full bg-primary" />
-            <span className="text-muted-foreground">{chip.label}</span>
-            <span className="font-semibold">{chip.value}</span>
-          </div>
-        ))}
-      </div>
-      <div className="absolute bottom-8 left-[8%] hidden w-28 rounded-lg border border-white/20 bg-white/15 p-3 text-center text-[0.62rem] uppercase tracking-[0.08em] text-white backdrop-blur md:block">
-        Hero image will be here
       </div>
     </div>
   );
