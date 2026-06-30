@@ -137,3 +137,8 @@ Header Navigation Reference Replacement
 - Added `src/components/marketing/navbar.contract.tsx` to enforce the BracketDex wordmark and 8px control-radius contract.
 - Added an explicit App Router viewport export so mobile layout uses device-width rendering.
 - Verified desktop header rendering with a local Chrome headless screenshot after the in-app browser timed out.
+
+Header Glass Scroll Treatment
+
+- Added a subtle always-on glass and grain backdrop to the sticky navigation so page content no longer visually mixes with the logo, tabs, or consultation CTA.
+- Added CSS scroll-driven animation that smoothly increases blur, tint, border, shadow, and grain over the first scroll distance where supported, with a static fallback and reduced-motion opt-out.

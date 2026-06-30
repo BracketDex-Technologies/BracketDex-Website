@@ -312,14 +312,46 @@ a {
 }
 
 .bd-nav-surface {
-  border-bottom: 1px solid rgb(232 231 230 / 0);
-  background: transparent;
+  isolation: isolate;
+  border-bottom: 1px solid rgb(232 231 230 / 0.2);
+  background: rgb(251 251 248 / 0.18);
   color: var(--ink);
+  box-shadow: 0 1px 0 rgb(23 23 23 / 0.04);
+  -webkit-backdrop-filter: blur(2px) saturate(1.04);
+  backdrop-filter: blur(2px) saturate(1.04);
   transition:
-    border-color 20ms ease-in-out,
-    box-shadow 20ms ease-in-out,
-    background-color 120ms ease-out 30ms,
+    border-color var(--motion-base) ease-out,
+    box-shadow var(--motion-base) ease-out,
+    background-color var(--motion-base) ease-out,
+    backdrop-filter var(--motion-base) ease-out,
     color 160ms ease-out;
+}
+
+.bd-nav-surface::before,
+.bd-nav-surface::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+}
+
+.bd-nav-surface::before {
+  background:
+    linear-gradient(180deg, rgb(251 251 248 / 0.72), rgb(251 251 248 / 0.38)),
+    linear-gradient(90deg, rgb(33 105 255 / 0.06), rgb(255 116 51 / 0.045));
+  opacity: 0.28;
+  -webkit-backdrop-filter: blur(6px) saturate(1.08);
+  backdrop-filter: blur(6px) saturate(1.08);
+}
+
+.bd-nav-surface::after {
+  background-image:
+    radial-gradient(circle at 25% 35%, rgb(23 23 23 / 0.14) 0 0.45px, transparent 0.65px),
+    radial-gradient(circle at 75% 65%, rgb(255 255 255 / 0.62) 0 0.45px, transparent 0.7px);
+  background-size: 3px 3px, 4px 4px;
+  opacity: 0.045;
+  mix-blend-mode: soft-light;
 }
 
 .bd-nav-inner {
@@ -531,15 +563,31 @@ a {
 }
 
 .bd-hero .bd-nav-surface {
+  border-bottom-color: rgb(255 255 255 / 0.1);
+  background: rgb(8 34 94 / 0.12);
   color: white;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+.bd-hero .bd-nav-surface::before {
+  background:
+    linear-gradient(180deg, rgb(7 31 84 / 0.44), rgb(7 31 84 / 0.18)),
+    linear-gradient(90deg, rgb(255 255 255 / 0.08), rgb(255 116 51 / 0.06));
+  opacity: 0.32;
+}
+
+.bd-hero .bd-nav-surface::after {
+  opacity: 0.06;
 }
 
 .bd-hero .bd-glass-pill,
 .bd-hero .bd-mobile-toggle,
 .bd-hero .bd-mobile-panel {
-  border-color: rgb(255 255 255 / 0.1);
-  background: rgb(251 251 248 / 0.12);
-  box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+  border-color: rgb(255 255 255 / 0.16);
+  background: rgb(251 251 248 / 0.2);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.12);
+  -webkit-backdrop-filter: blur(12px) saturate(1.16);
+  backdrop-filter: blur(12px) saturate(1.16);
 }
 
 .bd-hero .bd-nav-link,
@@ -568,6 +616,78 @@ a {
 .bd-hero .bd-mobile-cta {
   background: #fbfbf8;
   color: #1a1a1a;
+}
+
+@supports (animation-timeline: scroll()) {
+  .bd-nav-surface {
+    animation: bd-nav-glass-scroll linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 180px;
+  }
+
+  .bd-nav-surface::before {
+    animation: bd-nav-glass-panel-scroll linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 180px;
+  }
+
+  .bd-nav-surface::after {
+    animation: bd-nav-grain-scroll linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 180px;
+  }
+}
+
+@keyframes bd-nav-glass-scroll {
+  from {
+    border-bottom-color: rgb(232 231 230 / 0.16);
+    background: rgb(251 251 248 / 0.14);
+    box-shadow: 0 1px 0 rgb(23 23 23 / 0.03);
+    -webkit-backdrop-filter: blur(2px) saturate(1.04);
+    backdrop-filter: blur(2px) saturate(1.04);
+  }
+
+  to {
+    border-bottom-color: rgb(232 231 230 / 0.58);
+    background: rgb(251 251 248 / 0.44);
+    box-shadow: 0 1rem 2.5rem rgb(23 23 23 / 0.08);
+    -webkit-backdrop-filter: blur(18px) saturate(1.24);
+    backdrop-filter: blur(18px) saturate(1.24);
+  }
+}
+
+@keyframes bd-nav-glass-panel-scroll {
+  from {
+    opacity: 0.24;
+    -webkit-backdrop-filter: blur(6px) saturate(1.08);
+    backdrop-filter: blur(6px) saturate(1.08);
+  }
+
+  to {
+    opacity: 0.78;
+    -webkit-backdrop-filter: blur(18px) saturate(1.28);
+    backdrop-filter: blur(18px) saturate(1.28);
+  }
+}
+
+@keyframes bd-nav-grain-scroll {
+  from {
+    opacity: 0.035;
+    transform: translateY(-1px);
+  }
+
+  to {
+    opacity: 0.13;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-nav-surface,
+  .bd-nav-surface::before,
+  .bd-nav-surface::after {
+    animation: none;
+  }
 }
 
 @media (min-width: 1000px) {
