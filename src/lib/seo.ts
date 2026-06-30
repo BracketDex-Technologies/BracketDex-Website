@@ -52,27 +52,11 @@ export const seoRoutes = [
     priority: 0.75,
   },
   {
-    path: "/why-choose-us",
-    title: "Why Choose BracketDex Technologies",
-    description:
-      "Business-focused technology work with practical pricing, transparent communication, scalable architecture, and long-term support.",
-    changeFrequency: "monthly",
-    priority: 0.75,
-  },
-  {
     path: "/about",
     title: "About BracketDex Technologies",
     description:
       "Learn about BracketDex Technologies, our mission, vision, and commitment to helping businesses grow through technology.",
     changeFrequency: "monthly",
-    priority: 0.7,
-  },
-  {
-    path: "/blog",
-    title: "Blog | BracketDex Technologies",
-    description:
-      "Helpful writing on software development, AI, automation, cloud, product development, technology trends, and industry insights.",
-    changeFrequency: "weekly",
     priority: 0.7,
   },
   {

@@ -70,9 +70,7 @@ export const marketingContent = {
     { label: "Solutions", href: "/solutions" },
     { label: "Projects", href: "/projects" },
     { label: "Industries", href: "/industries" },
-    { label: "Why Choose Us", href: "/why-choose-us" },
     { label: "About", href: "/about" },
-    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
   ] satisfies readonly NavigationItem[],
   homepage: {

@@ -98,6 +98,29 @@ export const pageContent = {
           "Case studies will be added only after real project names, industries, problems, solutions, technologies, outcomes, and screenshots are available.",
         cards: projectPlaceholderCards,
       },
+      {
+        label: "Why BracketDex",
+        title: "Why Choose BracketDex",
+        description:
+          "The solution model favors business-first thinking, transparent communication, scalable architecture, and long-term value.",
+        cards: marketingContent.whyChooseUs,
+      },
+      {
+        label: "Partnership",
+        title: "Outcome-Focused Partnership",
+        description:
+          "The documented positioning is not feature vending. BracketDex should read as a strategic technology partner.",
+        cards: [
+          {
+            title: "Traditional Agency",
+            description: "Feature-focused, limited support, short-term engagement.",
+          },
+          {
+            title: "BracketDex Technologies",
+            description: "Outcome-focused, strategic partnership, long-term collaboration.",
+          },
+        ],
+      },
     ],
   },
   industries: {
@@ -130,45 +153,6 @@ export const pageContent = {
         title: "Industry Case Studies",
         description:
           "Industry case studies will remain placeholders until real project details and permission to publish are available.",
-        cards: projectPlaceholderCards,
-      },
-    ],
-  },
-  whyChooseUs: {
-    title: "Why Choose BracketDex",
-    description:
-      "Business-focused technology work with practical pricing, transparent communication, scalable architecture, and long-term support.",
-    eyebrow: "Why Choose Us",
-    primaryCta: "Book Consultation",
-    secondaryCta: "View Projects",
-    sections: [
-      {
-        label: "Principles",
-        title: "Core Principles",
-        description: "The working model favors clarity, simplicity, practical technology, and long-term value.",
-        cards: marketingContent.whyChooseUs,
-      },
-      {
-        label: "Comparison",
-        title: "Outcome-Focused Partnership",
-        description:
-          "The documented positioning is not feature vending. BracketDex should read as a strategic technology partner.",
-        cards: [
-          {
-            title: "Traditional Agency",
-            description: "Feature-focused, limited support, short-term engagement.",
-          },
-          {
-            title: "BracketDex Technologies",
-            description: "Outcome-focused, strategic partnership, long-term collaboration.",
-          },
-        ],
-      },
-      {
-        label: "Client Stories",
-        title: "Client Stories Require Permission",
-        description:
-          "Testimonials, client names, companies, feedback, and measurable results must be supplied before this page presents them as proof.",
         cards: projectPlaceholderCards,
       },
     ],
@@ -249,50 +233,6 @@ export const pageContent = {
       },
     ],
   },
-  blog: {
-    title: "Blog",
-    description:
-      "Helpful writing on software development, AI, automation, cloud, product development, technology trends, and industry insights.",
-    eyebrow: "Blog",
-    primaryCta: contactCta,
-    secondaryCta: "View Services",
-    sections: [
-      {
-        label: "Topics",
-        title: "Content Categories",
-        description: "Blog content should educate visitors, demonstrate expertise, and generate qualified organic traffic.",
-        list: [
-          "Software Development",
-          "AI & Automation",
-          "Business Technology",
-          "Cloud & DevOps",
-          "Case Studies",
-          "Startup Growth",
-          "Industry Insights",
-        ],
-      },
-      {
-        label: "Upcoming",
-        title: "Article Placeholders",
-        description:
-          "Articles will be added through the approved MDX content phase. Until then, this page avoids thin placeholder posts.",
-        cards: [
-          {
-            title: "How Custom Software Helps Businesses Scale",
-            description: "Planned SEO topic from the documented blog strategy.",
-          },
-          {
-            title: "AI Automation for Small Businesses",
-            description: "Planned SEO topic from the documented blog strategy.",
-          },
-          {
-            title: "Choosing the Right Technology Stack",
-            description: "Planned SEO topic from the documented blog strategy.",
-          },
-        ],
-      },
-    ],
-  },
   contact: {
     title: "Contact BracketDex Technologies",
     description:
@@ -313,4 +253,4 @@ export const pageContent = {
       },
     ],
   },
-} satisfies Record<string, StaticPageContent>;
+} as const satisfies Record<string, StaticPageContent>;

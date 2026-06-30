@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { MenuIcon } from "lucide-react";
 
 import type { NavigationItem } from "@/content/marketing";
 import { cn } from "@/lib/utils";
+
+export const NAVBAR_LOGO_TEXT = "BracketDex";
+export const NAVBAR_CONTROL_RADIUS_PX = 8;
 
 type NavbarProps = {
   brandName: string;
@@ -16,53 +18,68 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
   const navigationItems = items.filter((item) => item.href !== ctaHref);
 
   return (
-    <header className="bd-nav-surface sticky top-0 z-40">
-      <nav aria-label="Primary navigation" className="content-shell bd-nav-inner flex items-center justify-between gap-4">
+    <header className="bd-nav-surface sticky top-0 z-40 flex justify-center">
+      <nav aria-label="Primary navigation" className="bd-nav-inner flex items-center justify-between">
         <Link
           href="/"
-          className="bd-brand-link flex items-center gap-3 font-semibold"
+          className="bd-brand-link shrink-0"
           aria-label={`${brandName} home`}
         >
-          <span className="bd-logo-slot rounded-md">Logo will be here</span>
+          <span aria-hidden="true" className="bd-wordmark">
+            {NAVBAR_LOGO_TEXT}
+          </span>
           <span className="sr-only">{brandName}</span>
         </Link>
 
         <div className="bd-desktop-menu items-center gap-3">
-          <div className="bd-nav-group flex items-center gap-1 px-4 py-2">
-            {navigationItems.map((item) => (
-              <Link
-                aria-current={activeHref === item.href ? "page" : undefined}
-                className="bd-nav-link px-3 py-1 text-sm font-medium transition-opacity hover:opacity-80"
-                data-active={activeHref === item.href}
-                href={item.href}
-                key={item.href}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div className="bd-nav-group relative flex h-[41px] items-center px-[10px] pl-[14px]">
+            <span aria-hidden="true" className="bd-glass-pill absolute inset-0" />
+            <div className="relative z-10 flex items-center">
+              {navigationItems.map((item, index) => (
+                <span className="contents" key={item.href}>
+                  {index > 0 ? <span aria-hidden="true" className="bd-nav-divider" /> : null}
+                  <span className="group relative inline-flex items-center justify-center rounded-[4px] px-[5px] py-[2px]">
+                    <span aria-hidden="true" className="bd-nav-hover absolute inset-0 opacity-0 group-hover:opacity-100" />
+                    <Link
+                      aria-current={activeHref === item.href ? "page" : undefined}
+                      className="bd-nav-link relative z-10"
+                      data-active={activeHref === item.href}
+                      href={item.href}
+                    >
+                      {item.label}
+                    </Link>
+                  </span>
+                </span>
+              ))}
+            </div>
           </div>
 
           <Link
-            className="bd-nav-cta rounded-full px-5 py-3 text-sm font-medium transition-opacity hover:opacity-90"
+            className="bd-nav-cta group relative inline-flex h-[41px] items-center justify-center px-3"
             href={ctaHref}
           >
-            {ctaLabel}
+            <span aria-hidden="true" className="bd-nav-cta-surface absolute inset-0" />
+            <span className="relative z-10">{ctaLabel}</span>
           </Link>
         </div>
 
-        <details className="bd-mobile-menu group relative">
-          <summary className="inline-flex size-10 cursor-pointer list-none items-center justify-center rounded-lg border border-border bg-card/80 shadow-soft transition-colors hover:bg-card focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 [&::-webkit-details-marker]:hidden">
+        <details className="bd-mobile-menu group">
+          <summary className="bd-mobile-toggle">
             <span className="sr-only">Toggle navigation menu</span>
-            <MenuIcon aria-hidden="true" />
+            <span aria-hidden="true" className="bd-mobile-toggle-lines">
+              <span />
+              <span />
+              <span />
+            </span>
           </summary>
-          <div className="bd-mobile-panel absolute right-0 top-12 w-[min(21rem,calc(100vw-2rem))] rounded-xl border border-border bg-card p-3 shadow-lift">
+          <div className="bd-mobile-panel absolute right-0 top-12 w-[min(21rem,calc(100vw-2rem))] p-3">
             <div className="flex flex-col gap-1">
               {navigationItems.map((item) => (
                 <Link
                   aria-current={activeHref === item.href ? "page" : undefined}
                   className={cn(
-                    "rounded-md px-3 py-3 text-sm font-medium hover:bg-muted hover:text-foreground",
-                    activeHref === item.href ? "bg-muted text-foreground" : "text-muted-foreground"
+                    "bd-mobile-link",
+                    activeHref === item.href ? "bd-mobile-link-active" : undefined
                   )}
                   href={item.href}
                   key={item.href}
@@ -71,7 +88,7 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
                 </Link>
               ))}
               <Link
-                className="bd-mobile-cta mt-2 rounded-lg px-3 py-3 text-center text-sm font-medium"
+                className="bd-mobile-cta mt-2 px-3 py-3 text-center"
                 href={ctaHref}
               >
                 {ctaLabel}

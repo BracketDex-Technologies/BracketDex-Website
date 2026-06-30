@@ -121,3 +121,19 @@ Hero + Navbar Real UI Refinement
 - Replaced the temporary pixel-scene hero and laptop mockup placeholder with an asset-ready animated background slot, animated SVG hero asset slot, and motion-layer slot.
 - Consolidated desktop navigation into a calmer floating pill with one CTA and kept the mobile menu native/server-rendered.
 - Preserved documented BracketDex hero copy, navigation labels, CTA labels, and routes without inventing proof points or company facts.
+
+Navigation IA Cleanup
+
+- Removed Blog as a public page, navigation item, static content entry, route contract entry, and SEO route.
+- Removed the standalone Why Choose Us page and folded its decision-making content into the Solutions page.
+- Kept the reusable `marketingContent.whyChooseUs` data as the source for the Solutions page advantages section.
+- Updated `docs/# DESIGN.md` and `docs/SEO.md` so documented page structure no longer asks future work to recreate Blog or a standalone Why Choose Us page.
+- Added `src/content/navigation.contract.ts` to enforce the simplified IA in typecheck.
+
+Header Navigation Reference Replacement
+
+- Replaced the shared Navbar with a DemoHeader-inspired structure: text-based BracketDex logo, thin underline, one glass navigation pill, compact 8px controls, 4px nav hover targets, and a single Book Consultation CTA.
+- Kept the navbar server-rendered with native mobile `details` navigation and no new dependency.
+- Added `src/components/marketing/navbar.contract.tsx` to enforce the BracketDex wordmark and 8px control-radius contract.
+- Added an explicit App Router viewport export so mobile layout uses device-width rendering.
+- Verified desktop header rendering with a local Chrome headless screenshot after the in-app browser timed out.

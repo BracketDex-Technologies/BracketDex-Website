@@ -1,0 +1,46 @@
+
+> bracketdex-site@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.101:3000
+
+ ✓ Starting...
+ ✓ Ready in 24.6s
+ ○ Compiling / ...
+ ✓ Compiled / in 49.9s (647 modules)
+ GET / 200 in 63554ms
+ GET / 200 in 23229ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 43.9s (642 modules)
+ GET /sw.js 404 in 52825ms
+ GET / 200 in 51440ms
+ GET /sw.js 404 in 307ms
+ GET /sw.js 404 in 1353ms
+ ✓ Compiled in 7.1s (642 modules)
+ GET / 200 in 4310ms
+ GET / 200 in 9099ms
+ GET /sw.js 404 in 4473ms
+ ✓ Compiled in 4.7s (637 modules)
+ ✓ Compiled in 13.7s (637 modules)
+ GET / 200 in 9994ms
+ GET / 200 in 1761ms
+ GET / 200 in 17953ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 29.4s (628 modules)
+ GET /sw.js 404 in 42172ms
+ GET /sw.js 404 in 1368ms
+ GET / 200 in 3270ms
+ ✓ Compiled in 19.4s (642 modules)
+ GET /sw.js 404 in 9684ms
+ GET / 200 in 16216ms
+ GET / 200 in 11723ms
+ GET /sw.js 404 in 853ms
+ ✓ Compiled in 24.9s (637 modules)
+ GET / 200 in 2289ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 7s (628 modules)
+ GET /sw.js 404 in 22409ms
+ GET / 200 in 14369ms
+ GET /sw.js 404 in 200ms

@@ -28,3 +28,12 @@ Thumbs.db
 docs/
 LESSONS.md
 AGENTS.md
+
+skills/
+.gitignore
+AnimatedIcon.txt
+CodeEditor.txt
+progress.txt
+MockOfIndusties.txt
+DemoHeader.txt
+CardsAnimations.txt
