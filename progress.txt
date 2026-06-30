@@ -140,5 +140,5 @@ Header Navigation Reference Replacement
 
 Header Glass Scroll Treatment
 
-- Added a subtle always-on glass and grain backdrop to the sticky navigation so page content no longer visually mixes with the logo, tabs, or consultation CTA.
-- Added CSS scroll-driven animation that smoothly increases blur, tint, border, shadow, and grain over the first scroll distance where supported, with a static fallback and reduced-motion opt-out.
+- Added a scroll-only thin glass and grain backdrop to the sticky navigation so page content separates from the logo, tabs, and consultation CTA only after scrolling.
+- Added CSS scroll-driven animation that softly eases blur, tint, border, shadow, and grain over the first scroll distance where supported, with a transparent top state and reduced-motion opt-out.
