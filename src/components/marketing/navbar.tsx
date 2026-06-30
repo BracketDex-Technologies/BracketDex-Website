@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 export const NAVBAR_LOGO_TEXT = "BracketDex";
 export const NAVBAR_CONTROL_RADIUS_PX = 8;
+const PRIMARY_NAVIGATION_HREFS = new Set(["/services", "/solutions", "/projects", "/about"]);
 
 type NavbarProps = {
   brandName: string;
@@ -15,7 +16,7 @@ type NavbarProps = {
 };
 
 export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: NavbarProps) {
-  const navigationItems = items.filter((item) => item.href !== ctaHref);
+  const navigationItems = items.filter((item) => PRIMARY_NAVIGATION_HREFS.has(item.href));
 
   return (
     <header className="bd-nav-surface sticky top-0 z-40 flex justify-center">
