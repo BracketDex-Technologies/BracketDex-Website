@@ -9,6 +9,7 @@ import { SectionHeader } from "@/components/marketing/section-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { buildBreadcrumbJsonLd } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 type StaticMarketingPageProps = {
   activeHref?: string;
@@ -48,7 +49,9 @@ export function StaticMarketingPage({
               {section.cards.map((card) => (
                 <Card className="h-full shadow-none transition-shadow hover:shadow-soft" key={card.title}>
                   <CardHeader>
-                    <CardTitle>{card.title}</CardTitle>
+                    <CardTitle className={cn(card.title.includes("BracketDex") && "bd-brand-font")}>
+                      {card.title}
+                    </CardTitle>
                     <CardDescription>{card.description}</CardDescription>
                   </CardHeader>
                 </Card>

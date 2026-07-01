@@ -15,6 +15,9 @@ export function SectionHeader({
   label,
   title,
 }: SectionHeaderProps) {
+  const labelUsesBrandFont = label?.includes("BracketDex");
+  const titleUsesBrandFont = title.includes("BracketDex");
+
   return (
     <div
       className={cn(
@@ -24,11 +27,11 @@ export function SectionHeader({
       )}
     >
       {label ? (
-        <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-primary">
+        <p className={cn("mb-3 text-sm font-medium uppercase tracking-[0.18em] text-primary", labelUsesBrandFont && "bd-brand-font")}>
           {label}
         </p>
       ) : null}
-      <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
+      <h2 className={cn("text-3xl font-semibold tracking-tight text-foreground sm:text-5xl", titleUsesBrandFont && "bd-brand-font")}>
         {title}
       </h2>
       {description ? (
@@ -39,4 +42,3 @@ export function SectionHeader({
     </div>
   );
 }
-

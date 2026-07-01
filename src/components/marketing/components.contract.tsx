@@ -20,7 +20,7 @@ export const componentContract = (
     <Navbar brandName="BracketDex Technologies" items={navigation} ctaLabel="Book Consultation" ctaHref="/contact" />
     <HeroSection
       headline="Engineering Solutions For Growing Businesses."
-      subheadline="We help startups and businesses build software, automation systems, and AI-powered solutions that improve efficiency and accelerate growth."
+      subheadline="We build software, automation, and AI systems that help growing businesses operate faster, work smarter, and scale with confidence."
       primaryCta={{ label: "Book Consultation", href: "/contact" }}
       secondaryCta={{ label: "View Projects", href: "/projects" }}
     />

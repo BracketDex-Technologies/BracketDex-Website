@@ -142,3 +142,28 @@ Header Glass Scroll Treatment
 
 - Added a scroll-only thin glass and grain backdrop to the sticky navigation so page content separates from the logo, tabs, and consultation CTA only after scrolling.
 - Added CSS scroll-driven animation that softly eases blur, tint, border, shadow, and grain over the first scroll distance where supported, with a transparent top state and reduced-motion opt-out.
+
+Hero Background Reset
+
+- Removed the previous hero visual composition, CTA row, placeholder graphics, technical overlays, and WebM background attempt.
+- Added the supplied `Basic Model-1782897844000.mp4` as `public/media/hero-background.mp4` for the homepage hero background.
+- Rebuilt the hero as a clean video-backed section with only the documented headline and subheadline, positioned lower-left on desktop and centered near the bottom on mobile for readability.
+- Reduced the hero headline scale, restored the CTA button row, aligned hero content to the same full-width container as the navbar logo, and strengthened the bottom video shadow.
+- Capped the hero headline at 46px, reduced the subheadline proportionally, and shifted the desktop logo/header content right to match the hero text line.
+- Locked hero typography and rhythm to exact requested values: 46px headline, 16px subheadline, 15px CTA text, and 20px gaps between headline, subheadline, and CTA row.
+- Moved the hero value block from bottom placement to the top of the hero, starting 20px after the navbar.
+- Tightened header and hero CTA/button box sizing by reducing padding, fixed CTA width, and button gaps without changing font sizes.
+- Replaced the hero background video with the newer supplied `Basic Model-1782921245000.mp4` asset while keeping the public path unchanged.
+- Updated the always-on header glass backdrop to the latest spec: light tint, 2px blur, 125% saturation, 70% brightness, 0px radius, and a 10% white border.
+- Slightly reduced the header/navbar vertical height by tightening top and bottom nav padding while keeping text sizes unchanged.
+- Inspected the added Pally and Khand font packages in `docs/`, then replaced the app-wide Geist font setup with local Khand Regular via `next/font/local`.
+- Swapped the experimental app-wide font from Khand to local Pally Variable via `next/font/local` so existing 400-700 font weights resolve cleanly.
+- Kept Pally as the app-wide font and reintroduced Khand only for visible brand text, including the larger text-based header logo and brand-name headings.
+
+Dev UI Annotation Tooling
+
+- Installed `agentation` as a development dependency after approval.
+- Added a client-only `AgentationToolbar` wrapper that renders only when `NODE_ENV` is `development`.
+- Rendered the toolbar from the App Router root layout without converting the layout to a client component.
+- Added a compile-time contract for the toolbar wrapper and verified the expected red/green typecheck cycle.
+- Verified the integration with `npm run typecheck` and `npm run build`.

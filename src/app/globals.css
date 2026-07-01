@@ -130,7 +130,7 @@ body {
   overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-pally), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -138,6 +138,10 @@ body {
 ::selection {
   background: rgb(20 85 217 / 0.18);
   color: var(--foreground);
+}
+
+.bd-brand-font {
+  font-family: var(--font-khand), var(--font-pally), ui-sans-serif, system-ui, sans-serif;
 }
 
 a {
@@ -195,10 +199,7 @@ a {
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  background:
-    radial-gradient(circle at 78% 18%, rgb(255 243 228 / 0.74), transparent 14rem),
-    radial-gradient(circle at 72% 62%, rgb(139 199 255 / 0.38), transparent 22rem),
-    linear-gradient(135deg, var(--hero-blue-deep) 0%, var(--hero-blue) 52%, var(--hero-blue-light) 100%);
+  background: #061328;
   color: white;
 }
 
@@ -214,72 +215,33 @@ a {
 .bd-hero::before {
   inset: 0;
   background:
-    linear-gradient(120deg, transparent 0 34%, rgb(255 255 255 / 0.13) 34% 35%, transparent 35% 100%),
-    linear-gradient(155deg, transparent 0 48%, rgb(255 255 255 / 0.1) 48% 49%, transparent 49% 100%),
-    linear-gradient(90deg, rgb(255 255 255 / 0.08) 1px, transparent 1px),
-    linear-gradient(0deg, rgb(255 255 255 / 0.07) 1px, transparent 1px);
-  background-size: auto, auto, 5rem 5rem, 5rem 5rem;
-  opacity: 0.7;
+    linear-gradient(90deg, rgb(3 16 46 / 0.84) 0%, rgb(3 16 46 / 0.62) 36%, rgb(3 16 46 / 0.24) 68%, rgb(3 16 46 / 0.12) 100%),
+    linear-gradient(180deg, rgb(3 16 46 / 0.16) 0%, rgb(3 16 46 / 0.12) 46%, rgb(3 16 46 / 0.56) 100%);
 }
 
 .bd-hero::after {
   bottom: 0;
-  height: 34%;
+  height: 42%;
   background:
-    linear-gradient(180deg, transparent, rgb(6 42 118 / 0.64)),
-    linear-gradient(90deg, rgb(255 243 228 / 0.12), transparent 34%, rgb(249 115 22 / 0.12));
+    linear-gradient(180deg, transparent 0%, rgb(3 16 46 / 0.2) 38%, rgb(3 16 46 / 0.74) 100%),
+    radial-gradient(ellipse at 50% 100%, rgb(0 0 0 / 0.34), transparent 58%);
 }
 
 .bd-hero-bg-slot {
   position: absolute;
   inset: 0;
   z-index: 0;
-  display: grid;
-  place-items: center;
   overflow: hidden;
   pointer-events: none;
 }
 
-.bd-hero-bg-slot::before {
-  content: "";
+.bd-hero-video {
   position: absolute;
-  inset: 8% 4% 2%;
-  border: 1px solid var(--hero-line);
-  border-radius: 2rem;
-  background:
-    radial-gradient(circle at 30% 40%, rgb(255 255 255 / 0.14), transparent 9rem),
-    radial-gradient(circle at 68% 28%, rgb(255 243 228 / 0.2), transparent 13rem);
-  transform: skewY(-4deg);
-}
-
-.bd-hero-bg-slot::after {
-  content: "";
-  position: absolute;
-  width: min(58rem, 88vw);
-  height: min(58rem, 88vw);
-  border: 1px solid rgb(255 255 255 / 0.14);
-  border-radius: 999px;
-  background: radial-gradient(circle, transparent 0 55%, rgb(255 255 255 / 0.13) 56%, transparent 57%);
-  animation: bd-hero-drift 18s ease-in-out infinite alternate;
-}
-
-.bd-hero-bg-slot span {
-  position: absolute;
-  top: 6.75rem;
-  right: clamp(1rem, 4vw, 3rem);
-  z-index: 1;
-  width: min(24rem, calc(100% - 2rem));
-  border: 1px dashed rgb(255 255 255 / 0.38);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.11);
-  color: rgb(255 255 255 / 0.72);
-  padding: 0.85rem 1.25rem;
-  text-align: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  backdrop-filter: blur(14px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
 }
 
 .bd-pixel-noise {
@@ -313,12 +275,13 @@ a {
 
 .bd-nav-surface {
   isolation: isolate;
-  border-bottom: 1px solid rgb(232 231 230 / 0);
-  background: transparent;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0;
+  background: rgb(255 255 255 / 0.05);
   color: var(--ink);
-  box-shadow: none;
-  -webkit-backdrop-filter: blur(0) saturate(1);
-  backdrop-filter: blur(0) saturate(1);
+  box-shadow: 0 0.35rem 1.25rem rgb(23 23 23 / 0.035);
+  -webkit-backdrop-filter: blur(2px) saturate(125%) brightness(70%);
+  backdrop-filter: blur(2px) saturate(125%) brightness(70%);
   transition:
     border-color var(--motion-base) ease-out,
     box-shadow var(--motion-base) ease-out,
@@ -358,15 +321,16 @@ a {
   width: min(100% - 2rem, var(--container-page));
   max-width: var(--container-page);
   margin-inline: auto;
-  padding-block: 1.125rem;
+  padding-block: 0.9rem;
 }
 
 .bd-wordmark {
   position: relative;
   display: inline-flex;
+  font-family: var(--font-khand), var(--font-pally), ui-sans-serif, system-ui, sans-serif;
   color: currentColor;
-  font-size: 1.22rem;
-  font-weight: 560;
+  font-size: 1.48rem;
+  font-weight: 400;
   letter-spacing: 0;
   line-height: 1;
 }
@@ -421,8 +385,8 @@ a {
 .bd-nav-link {
   display: inline-flex;
   align-items: center;
-  min-height: 1.45rem;
-  padding-inline: 0.38rem;
+  min-height: 1.35rem;
+  padding-inline: 0.3rem;
   color: rgb(23 23 23 / 0.66);
   font-size: 0.9375rem;
   font-weight: 410;
@@ -454,14 +418,14 @@ a {
   align-self: center;
   width: 1px;
   height: 1rem;
-  margin-inline: 0.43rem;
+  margin-inline: 0.28rem;
   background: currentColor;
   opacity: 0.16;
   transform: translateY(4px);
 }
 
 .bd-nav-cta {
-  min-width: 9.25rem;
+  min-width: 8.15rem;
   border-radius: 8px;
   color: var(--paper-strong);
   font-size: 0.9375rem;
@@ -543,7 +507,7 @@ a {
 
 .bd-mobile-link {
   border-radius: 4px;
-  padding: 0.72rem 0.75rem;
+  padding: 0.58rem 0.65rem;
   color: rgb(23 23 23 / 0.66);
   font-size: 0.9375rem;
   font-weight: 430;
@@ -564,10 +528,12 @@ a {
 }
 
 .bd-hero .bd-nav-surface {
-  border-bottom-color: rgb(255 255 255 / 0);
-  background: transparent;
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.05);
   color: white;
-  box-shadow: none;
+  box-shadow: 0 0.35rem 1.25rem rgb(0 0 0 / 0.08);
+  -webkit-backdrop-filter: blur(2px) saturate(125%) brightness(70%);
+  backdrop-filter: blur(2px) saturate(125%) brightness(70%);
 }
 
 .bd-hero .bd-nav-surface::before {
@@ -621,21 +587,15 @@ a {
 
 @supports (animation-timeline: scroll()) {
   .bd-nav-surface {
-    animation: bd-nav-glass-scroll ease-in-out both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 220px;
+    animation: none;
   }
 
   .bd-nav-surface::before {
-    animation: bd-nav-glass-panel-scroll ease-in-out both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 220px;
+    animation: none;
   }
 
   .bd-nav-surface::after {
-    animation: bd-nav-grain-scroll ease-in-out both;
-    animation-timeline: scroll(root block);
-    animation-range: 0 220px;
+    animation: none;
   }
 }
 
@@ -693,11 +653,12 @@ a {
 
 @media (min-width: 1000px) {
   .bd-nav-inner {
-    padding-block: 1.625rem 1.4375rem;
+    padding-left: clamp(0rem, 3vw, 2rem);
+    padding-block: 1.25rem 1.125rem;
   }
 
   .bd-wordmark {
-    font-size: 1.5rem;
+    font-size: 1.82rem;
   }
 
   .bd-desktop-menu {
@@ -780,184 +741,100 @@ a {
   letter-spacing: 0.06em;
 }
 
-.bd-primary-cta {
-  background: var(--paper-strong);
-  color: var(--ink);
-}
-
-.bd-secondary-cta {
-  border: 1px solid rgb(255 255 255 / 0.25);
-  background: rgb(255 255 255 / 0.14);
-  color: white;
-  backdrop-filter: blur(12px);
-}
-
 .bd-hero-layout {
   position: relative;
   z-index: 1;
-  display: grid;
+  display: flex;
+  width: min(100% - 2rem, var(--container-page));
+  max-width: var(--container-page);
   min-height: calc(100svh - 6.25rem);
-  align-items: center;
-  gap: 2.5rem;
-  padding-block: 2rem 5rem;
+  align-items: flex-start;
+  margin-inline: auto;
+  padding-block: 20px clamp(4rem, 12vh, 8rem);
 }
 
 .bd-hero-copy {
-  max-width: 43rem;
+  max-width: 48rem;
   min-width: 0;
+  text-align: left;
 }
 
 .bd-hero-title {
   max-width: 100%;
   margin: 0;
   color: white;
-  font-size: 2.65rem;
+  font-size: 46px;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 0.98;
+  line-height: 1;
   text-wrap: balance;
 }
 
 .bd-hero-subtitle {
-  max-width: 35rem;
-  margin-top: 1.5rem;
-  color: rgb(255 255 255 / 0.82);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.75;
+  max-width: 32rem;
+  margin-top: 20px;
+  color: rgb(255 255 255 / 0.78);
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 1.7;
 }
 
 .bd-hero-actions {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.75rem;
-  margin-top: 2rem;
-}
-
-.bd-hero-visual {
-  position: relative;
-  min-height: 24rem;
-  width: 100%;
-}
-
-.bd-hero-visual-frame {
-  position: relative;
-  min-height: 24rem;
-  overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 0.26);
-  border-radius: 2rem;
-  background:
-    linear-gradient(135deg, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0.06)),
-    radial-gradient(circle at 72% 24%, rgb(255 243 228 / 0.22), transparent 12rem);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), 0 2rem 4.5rem rgb(4 20 58 / 0.24);
-  backdrop-filter: blur(16px);
-}
-
-.bd-hero-visual-line {
-  position: absolute;
-  inset: 10%;
-  border: 1px solid rgb(255 255 255 / 0.18);
-  border-radius: 999px;
-  transform: rotate(-16deg);
-}
-
-.bd-hero-main-slot,
-.bd-hero-motion-slot {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  border: 1px dashed rgb(255 255 255 / 0.44);
-  background: rgb(255 255 255 / 0.12);
-  color: rgb(255 255 255 / 0.78);
-  text-align: center;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  line-height: 1.5;
-  text-transform: uppercase;
-}
-
-.bd-hero-main-slot {
-  inset: 13% 12% 25%;
-  border-radius: 1.5rem;
-}
-
-.bd-hero-motion-slot {
-  right: 8%;
-  bottom: 8%;
-  min-height: 5.75rem;
-  width: min(17rem, 58%);
-  border-radius: 999px;
-}
-
-.bd-hero-chip-stack {
-  position: absolute;
-  left: 8%;
-  bottom: 8%;
-  display: grid;
-  gap: 0.6rem;
-  width: min(15rem, 52%);
-}
-
-.bd-hero-chip {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  border: 1px solid rgb(255 255 255 / 0.2);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.16);
-  color: rgb(255 255 255 / 0.72);
-  padding: 0.65rem 0.85rem;
-  font-size: 0.78rem;
-  backdrop-filter: blur(14px);
+  gap: 0.55rem;
+  margin-top: 20px;
 }
 
-.bd-hero-chip strong {
+.bd-hero-primary-cta,
+.bd-hero-secondary-cta {
+  display: inline-flex;
+  min-height: 2.35rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding-inline: 0.9rem;
+  font-size: 15px;
+  font-weight: 520;
+  transition:
+    transform 160ms ease-out,
+    background-color 160ms ease-out,
+    border-color 160ms ease-out;
+}
+
+.bd-hero-primary-cta {
+  background: var(--paper-strong);
+  color: var(--ink);
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.18);
+}
+
+.bd-hero-secondary-cta {
+  border: 1px solid rgb(255 255 255 / 0.24);
+  background: rgb(255 255 255 / 0.12);
   color: white;
-  font-weight: 600;
+  backdrop-filter: blur(6px);
 }
 
-@keyframes bd-hero-drift {
-  from {
-    transform: translate3d(-4%, -2%, 0) rotate(0deg);
-  }
-  to {
-    transform: translate3d(5%, 3%, 0) rotate(10deg);
-  }
+.bd-hero-primary-cta:hover,
+.bd-hero-secondary-cta:hover {
+  transform: translateY(-1px);
 }
 
-@media (min-width: 640px) {
-  .bd-hero-title {
-    font-size: 3.85rem;
-  }
-
-  .bd-hero-actions {
-    flex-direction: row;
+@media (prefers-reduced-motion: reduce) {
+  .bd-hero-video {
+    display: none;
   }
 }
 
 @media (min-width: 1024px) {
   .bd-hero-layout {
-    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-    gap: 4rem;
-    padding-block: 3rem 6rem;
-  }
-
-  .bd-hero-title {
-    font-size: 4.75rem;
-  }
-
-  .bd-hero-visual,
-  .bd-hero-visual-frame {
-    min-height: 31rem;
+    padding-left: clamp(0rem, 3vw, 2rem);
   }
 }
 
 @media (max-width: 639px) {
   .bd-nav-inner {
-    min-height: 5rem;
+    min-height: 4.35rem;
   }
 
   .bd-logo-slot {
@@ -965,40 +842,23 @@ a {
   }
 
   .bd-wordmark {
-    font-size: 1.2rem;
+    font-size: 1.42rem;
   }
 
   .bd-hero-layout {
     min-height: calc(100svh - 5rem);
-    padding-block: 1rem 3.5rem;
+    align-items: flex-start;
+    padding-block: 20px 4rem;
   }
 
-  .bd-hero-bg-slot span {
-    display: none;
-  }
-
+  .bd-hero-copy,
   .bd-hero-subtitle {
     max-width: 100%;
-    font-size: 0.95rem;
+    text-align: center;
   }
 
-  .bd-hero-visual,
-  .bd-hero-visual-frame {
-    min-height: 21rem;
-  }
-
-  .bd-hero-main-slot {
-    inset: 10% 8% 34%;
-  }
-
-  .bd-hero-motion-slot {
-    right: 7%;
-    bottom: 7%;
-    width: 42%;
-  }
-
-  .bd-hero-chip-stack {
-    display: none;
+  .bd-hero-actions {
+    justify-content: center;
   }
 
   .bd-sky-section .bd-tree {
@@ -1008,8 +868,17 @@ a {
 
 @media (max-width: 479px) {
   .bd-hero-title {
-    font-size: clamp(2rem, 8vw, 2.35rem);
-    line-height: 1.06;
+    font-size: 46px;
+    line-height: 1.04;
+  }
+
+  .bd-hero-subtitle {
+    font-size: 16px;
+  }
+
+  .bd-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 

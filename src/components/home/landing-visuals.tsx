@@ -5,11 +5,6 @@ type AssetSlotProps = {
   className?: string;
 };
 
-type StatusChip = {
-  label: string;
-  value: string;
-};
-
 type MapNode = {
   label: string;
   x: string;
@@ -131,31 +126,11 @@ export function AssetSlot({ className = "", label }: AssetSlotProps) {
   return <div className={`bd-image-slot ${className}`}>{label}</div>;
 }
 
-export function HeroVisual({ chips }: { chips: readonly StatusChip[] }) {
-  return (
-    <div aria-label="Hero asset placeholders" className="bd-hero-visual">
-      <div className="bd-hero-visual-frame">
-        <div aria-hidden="true" className="bd-hero-visual-line" />
-        <div className="bd-hero-main-slot">Animated SVG hero asset will be here</div>
-        <div className="bd-hero-motion-slot">Motion layer will be here</div>
-        <div className="bd-hero-chip-stack">
-          {chips.map((chip) => (
-            <div className="bd-hero-chip" key={chip.label}>
-              <span>{chip.label}</span>
-              <strong>{chip.value}</strong>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function OperatingMap({ nodes }: { nodes: readonly MapNode[] }) {
   return (
     <div className="bd-panel relative min-h-[28rem] overflow-hidden p-5">
       <div className="absolute inset-5 rounded-xl border border-dashed border-border bg-white/35" />
-      <div className="absolute left-1/2 top-1/2 grid size-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-xl border border-border bg-card text-center text-xs font-semibold text-foreground shadow-soft">
+      <div className="bd-brand-font absolute left-1/2 top-1/2 grid size-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-xl border border-border bg-card text-center text-xs font-semibold text-foreground shadow-soft">
         BracketDex
       </div>
       {nodes.map((node) => (

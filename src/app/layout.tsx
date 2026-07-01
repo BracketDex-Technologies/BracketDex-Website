@@ -1,15 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import localFont from "next/font/local";
 
+import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
+const pally = localFont({
+  src: "../../docs/Pally_Complete/Fonts/WEB/fonts/Pally-Variable.woff2",
+  variable: "--font-pally",
+  display: "swap",
+});
+
+const khand = localFont({
+  src: "../../docs/FontshareKit-2607000102/Khand/Fonts/WEB/fonts/Khand-Regular.woff2",
+  variable: "--font-khand",
   display: "swap",
 });
 
@@ -54,13 +61,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={geistSans.variable}>
+      <body className={`${pally.variable} ${khand.variable}`}>
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={websiteJsonLd} />
         {children}
+        <AgentationToolbar />
       </body>
     </html>
   );

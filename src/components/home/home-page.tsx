@@ -9,7 +9,6 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo";
 import {
   AssetSlot,
   GuideCard,
-  HeroVisual,
   InterfaceRow,
   OperatingMap,
   ProductPanel,
@@ -83,7 +82,9 @@ export function HomePage({ content }: HomePageProps) {
 
       <div className="bd-hero">
         <div aria-hidden="true" className="bd-hero-bg-slot">
-          <span>Animated hero background will be here</span>
+          <video autoPlay className="bd-hero-video" loop muted playsInline preload="metadata">
+            <source src="/media/hero-background.mp4" type="video/mp4" />
+          </video>
         </div>
         <Navbar
           activeHref="/"
@@ -98,28 +99,14 @@ export function HomePage({ content }: HomePageProps) {
             <h1 className="bd-hero-title">{hero.headline}</h1>
             <p className="bd-hero-subtitle">{hero.subheadline}</p>
             <div className="bd-hero-actions">
-              <Link
-                className="bd-primary-cta rounded-full px-6 py-3 text-sm font-medium shadow-lift transition-transform hover:-translate-y-0.5"
-                href="/contact"
-              >
+              <Link className="bd-hero-primary-cta" href="/contact">
                 {hero.primaryCta}
               </Link>
-              <Link
-                className="bd-secondary-cta rounded-full px-6 py-3 text-sm font-medium shadow-soft transition-transform hover:-translate-y-0.5"
-                href="/projects"
-              >
+              <Link className="bd-hero-secondary-cta" href="/projects">
                 {hero.secondaryCta}
               </Link>
             </div>
           </div>
-
-          <HeroVisual
-            chips={[
-              { label: "Build", value: "Software" },
-              { label: "Automate", value: "AI" },
-              { label: "Scale", value: "Operations" },
-            ]}
-          />
         </section>
       </div>
 

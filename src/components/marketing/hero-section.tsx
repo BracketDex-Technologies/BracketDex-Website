@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon, BrainCircuitIcon, Code2Icon, WorkflowIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type CtaLink = {
   label: string;
@@ -23,11 +24,18 @@ export function HeroSection({
   secondaryCta,
   subheadline,
 }: HeroSectionProps) {
+  const eyebrowUsesBrandFont = eyebrow.includes("BracketDex");
+  const headlineUsesBrandFont = headline.includes("BracketDex");
+
   return (
     <section className="content-shell grid gap-10 py-14 sm:py-20 lg:grid-cols-[minmax(0,0.95fr)_minmax(22rem,0.65fr)] lg:items-center lg:py-24">
       <div className="max-w-reading">
-        <p className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-primary">{eyebrow}</p>
-        <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">{headline}</h1>
+        <p className={cn("mb-4 text-sm font-medium uppercase tracking-[0.18em] text-primary", eyebrowUsesBrandFont && "bd-brand-font")}>
+          {eyebrow}
+        </p>
+        <h1 className={cn("text-4xl font-semibold tracking-tight text-foreground sm:text-6xl", headlineUsesBrandFont && "bd-brand-font")}>
+          {headline}
+        </h1>
         <p className="mt-6 text-lg leading-8 text-muted-foreground">{subheadline}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button asChild size="lg">
