@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 export const NAVBAR_LOGO_TEXT = "BracketDex";
 export const NAVBAR_CONTROL_RADIUS_PX = 8;
+export const NAVBAR_IS_STICKY = true;
 const PRIMARY_NAVIGATION_HREFS = new Set(["/services", "/solutions", "/projects", "/about"]);
 
 type NavbarProps = {

@@ -167,3 +167,12 @@ Dev UI Annotation Tooling
 - Rendered the toolbar from the App Router root layout without converting the layout to a client component.
 - Added a compile-time contract for the toolbar wrapper and verified the expected red/green typecheck cycle.
 - Verified the integration with `npm run typecheck` and `npm run build`.
+
+Agentation Hero Feedback Batch
+
+- Applied the first Agentation feedback batch for the homepage hero and header only.
+- Moved the hero copy block 40px lower than the annotated desktop baseline while accounting for the now-fixed header.
+- Changed the header surface to stay fixed at the viewport top through page scroll instead of being bounded by the hero container.
+- Added smooth charcoal text shadows to the hero headline and subheadline for better lift over the video background.
+- Added smooth charcoal button shadows to the hero CTA buttons and a subtle bottom-only hero section shadow.
+- Added compile-time contracts for the approved hero offset and persistent header behavior.

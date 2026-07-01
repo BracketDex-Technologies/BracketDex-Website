@@ -19,6 +19,8 @@ type HomePageProps = {
   content: MarketingContent;
 };
 
+export const HOMEPAGE_HERO_COPY_OFFSET_PX = 40;
+
 const operatingNodes = [
   { label: "Software", x: "42%", y: "12%" },
   { label: "AI", x: "70%", y: "25%" },
