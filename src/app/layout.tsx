@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
+import { SiteLoader } from "@/components/marketing/site-loader";
+import { SITE_LOADER_SESSION_KEY } from "@/components/marketing/site-loader-config";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
@@ -60,13 +62,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${pally.variable} ${khand.variable}`}>
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={websiteJsonLd} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(window.sessionStorage.getItem("${SITE_LOADER_SESSION_KEY}")==="true"){document.documentElement.classList.add("bd-site-loader-skip")}}catch(e){}`,
+          }}
+        />
+        <SiteLoader />
         {children}
         <AgentationToolbar />
       </body>
