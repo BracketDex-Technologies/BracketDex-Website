@@ -19,7 +19,7 @@ type HomePageProps = {
   content: MarketingContent;
 };
 
-export const HOMEPAGE_HERO_COPY_OFFSET_PX = 40;
+export const HOMEPAGE_HERO_PLACEMENT = "bottom-left";
 
 const operatingNodes = [
   { label: "Software", x: "42%", y: "12%" },

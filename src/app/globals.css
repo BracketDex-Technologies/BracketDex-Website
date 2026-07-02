@@ -177,6 +177,86 @@ a {
   transform: translateY(0);
 }
 
+html.bd-site-loader-active,
+html.bd-site-loader-active body {
+  overflow: hidden;
+}
+
+.bd-site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  background: #10100e;
+  color: var(--paper-strong);
+  pointer-events: auto;
+}
+
+.bd-site-loader-skip .bd-site-loader {
+  display: none;
+}
+
+.bd-site-loader-mark {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.08em;
+  color: inherit;
+  font-family: var(--font-khand), var(--font-pally), ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.bd-site-loader-bracket {
+  display: inline-flex;
+  color: rgb(245 245 242 / 0.86);
+  font-size: 17px;
+  line-height: 1;
+  will-change: transform, opacity;
+}
+
+.bd-site-loader-word {
+  position: relative;
+  display: inline-flex;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.bd-site-loader-text {
+  position: relative;
+  display: inline-flex;
+  color: rgb(245 245 242 / 0.9);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.bd-site-loader-letter {
+  display: inline-block;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.bd-site-loader-underline {
+  position: absolute;
+  right: 0.02em;
+  bottom: -0.18em;
+  left: 0.02em;
+  height: 1px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+
 .page-shell {
   width: min(100% - 2rem, var(--container-page));
   margin-inline: auto;
@@ -754,10 +834,10 @@ a {
   display: flex;
   width: min(100% - 2rem, var(--container-page));
   max-width: var(--container-page);
-  min-height: calc(100svh - 6.25rem);
-  align-items: flex-start;
+  min-height: 100svh;
+  align-items: flex-end;
   margin-inline: auto;
-  padding-block: 140px clamp(4rem, 12vh, 8rem);
+  padding-block: 6.25rem clamp(3rem, 10vh, 5.5rem);
 }
 
 .bd-hero-copy {
@@ -856,9 +936,9 @@ a {
   }
 
   .bd-hero-layout {
-    min-height: calc(100svh - 5rem);
-    align-items: flex-start;
-    padding-block: 120px 4rem;
+    min-height: 100svh;
+    align-items: flex-end;
+    padding-block: 7.5rem 3rem;
   }
 
   .bd-hero-copy,
