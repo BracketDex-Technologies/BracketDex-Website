@@ -14,6 +14,18 @@ Remaining approved phases:
 - Phase 4: Core reusable components.
 - Phase 5+: Homepage, pages, MDX, SEO, assets, motion, and QA.
 
+Approved Loader Motion Phase
+
+- Added a once-per-browser-session charcoal site loader for the approved BracketDex opening sequence.
+- Installed `gsap` and `@gsap/react` for the advanced text timeline.
+- Added a scoped `SiteLoader` client component mounted from the root layout.
+- Sequenced `{}` to `{ BracketDex }`, typed/revealed the wordmark, faded the brackets, transitioned the text into the navbar wordmark treatment, moved/scaled it toward the real navbar logo, then faded the overlay to reveal the page.
+- Added reduced-motion behavior that bypasses the long timeline and reveals the page quickly.
+- Added a pre-hydration session check so repeat visits do not flash the loader before React removes it.
+- Added hydration suppression on the root HTML element because the pre-hydration session check intentionally mutates the root class before React hydrates.
+- Added a stable navbar docking selector and compile-time contracts for loader timing, charcoal background, session key, and navbar docking target.
+- Refined the loader sequence so the first visible frame starts as `{}`, reduced bracket/text sizes to 17px/16px, and retuned the GSAP timeline with elastic/back easing for a softer physics-like reveal and smoother docking.
+
 Phase 2 - Design System and Tokens
 
 - Added `docs/DESIGN_SYSTEM.md` as the implementation token contract required by the project rules.
@@ -154,6 +166,7 @@ Hero Background Reset
 - Moved the hero value block from bottom placement to the top of the hero, starting 20px after the navbar.
 - Tightened header and hero CTA/button box sizing by reducing padding, fixed CTA width, and button gaps without changing font sizes.
 - Replaced the hero background video with the newer supplied `Basic Model-1782921245000.mp4` asset while keeping the public path unchanged.
+- Replaced the hero background video with the supplied `Hero_Updated_01.mp4` asset while keeping the public path unchanged.
 - Updated the always-on header glass backdrop to the latest spec: light tint, 2px blur, 125% saturation, 70% brightness, 0px radius, and a 10% white border.
 - Slightly reduced the header/navbar vertical height by tightening top and bottom nav padding while keeping text sizes unchanged.
 - Inspected the added Pally and Khand font packages in `docs/`, then replaced the app-wide Geist font setup with local Khand Regular via `next/font/local`.
@@ -176,3 +189,11 @@ Agentation Hero Feedback Batch
 - Added smooth charcoal text shadows to the hero headline and subheadline for better lift over the video background.
 - Added smooth charcoal button shadows to the hero CTA buttons and a subtle bottom-only hero section shadow.
 - Added compile-time contracts for the approved hero offset and persistent header behavior.
+
+Agentation Hero Placement + Nav Control Batch
+
+- Applied the next Agentation feedback batch for the homepage hero and desktop navigation controls.
+- Moved the hero copy, subtitle, and CTA group to the bottom-left of the hero while keeping it inside the content shell.
+- Reduced the desktop navigation glass group and consultation CTA button height from 41px to 36px without reducing font sizes.
+- Replaced the previous hero offset contract with a bottom-left placement contract and added a 36px nav control height contract.
+- Verified desktop and mobile rendered positioning through fallback browser QA after the in-app browser timed out on localhost navigation.
