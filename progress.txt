@@ -197,3 +197,18 @@ Agentation Hero Placement + Nav Control Batch
 - Reduced the desktop navigation glass group and consultation CTA button height from 41px to 36px without reducing font sizes.
 - Replaced the previous hero offset contract with a bottom-left placement contract and added a 36px nav control height contract.
 - Verified desktop and mobile rendered positioning through fallback browser QA after the in-app browser timed out on localhost navigation.
+
+Agentation Transparent Header + Centered Hero Batch
+
+- Applied the approved homepage feedback for the first viewport header and hero copy only.
+- Made the hero-top navigation fully transparent by removing the hero-state nav backdrop, border, blur, and shadow.
+- Added a small scroll-state client helper so the otherwise server-rendered navbar switches to a light glass surface with dark text and controls after scrolling.
+- Tightened header vertical sizing and reduced navigation control height from 36px to 32px without changing navbar font sizes.
+- Centered the homepage hero headline, subheadline, and CTA row in the hero section on desktop and mobile.
+
+Agentation Top-Centered Black Hero Copy Batch
+
+- Applied the approved homepage hero copy feedback only.
+- Moved the centered hero copy group upward into a top-centered first-viewport position.
+- Switched hero title, subtitle, and secondary CTA text from white-on-video to black/dark ink.
+- Increased the hero title to 64px bold on desktop and raised the subtitle to 19px for a stronger hierarchy.

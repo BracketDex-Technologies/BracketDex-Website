@@ -2,11 +2,12 @@ import Link from "next/link";
 
 import type { NavigationItem } from "@/content/marketing";
 import { cn } from "@/lib/utils";
+import { NavbarScrollState } from "./navbar-scroll-state";
 
 export const NAVBAR_LOGO_TEXT = "BracketDex";
 export const NAVBAR_WORDMARK_DOCK_SELECTOR = "[data-site-wordmark]";
 export const NAVBAR_CONTROL_RADIUS_PX = 8;
-export const NAVBAR_CONTROL_HEIGHT_PX = 36;
+export const NAVBAR_CONTROL_HEIGHT_PX = 32;
 export const NAVBAR_IS_STICKY = true;
 const PRIMARY_NAVIGATION_HREFS = new Set(["/services", "/solutions", "/projects", "/about"]);
 
@@ -23,6 +24,7 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
 
   return (
     <header className="bd-nav-surface sticky top-0 z-40 flex justify-center">
+      <NavbarScrollState />
       <nav aria-label="Primary navigation" className="bd-nav-inner flex items-center justify-between">
         <Link
           href="/"
@@ -36,7 +38,7 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
         </Link>
 
         <div className="bd-desktop-menu items-center gap-3">
-          <div className="bd-nav-group relative flex h-[36px] items-center px-[10px] pl-[14px]">
+          <div className="bd-nav-group relative flex h-[32px] items-center px-[9px] pl-[12px]">
             <span aria-hidden="true" className="bd-glass-pill absolute inset-0" />
             <div className="relative z-10 flex items-center">
               {navigationItems.map((item, index) => (
@@ -59,7 +61,7 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
           </div>
 
           <Link
-            className="bd-nav-cta group relative inline-flex h-[36px] items-center justify-center px-3"
+            className="bd-nav-cta group relative inline-flex h-[32px] items-center justify-center px-3"
             href={ctaHref}
           >
             <span aria-hidden="true" className="bd-nav-cta-surface absolute inset-0" />
