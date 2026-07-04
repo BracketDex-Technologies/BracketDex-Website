@@ -212,3 +212,26 @@ Agentation Top-Centered Black Hero Copy Batch
 - Moved the centered hero copy group upward into a top-centered first-viewport position.
 - Switched hero title, subtitle, and secondary CTA text from white-on-video to black/dark ink.
 - Increased the hero title to 64px bold on desktop and raised the subtitle to 19px for a stronger hierarchy.
+
+Agentation Hero Readability + Navbar Contrast Batch
+
+- Applied the approved homepage hero and navbar feedback only.
+- Added a feathered translucent light plate behind the hero copy so black text remains readable over the video frame.
+- Tightened desktop nav tab spacing without changing nav font sizes and centered the nav tab pill in the header.
+- Increased nav tab contrast and restored the consultation CTA to charcoal black in the hero-top state.
+- Added a feathered glass blur behind the BracketDex wordmark and a thin light bottom border to the transparent hero header.
+
+Agentation Blur Removal Cleanup Batch
+
+- Applied the approved homepage cleanup feedback only.
+- Removed the background blur/pseudo-element behind the hero copy group.
+- Removed the background blur/pseudo-element behind the BracketDex wordmark link.
+- Set hero-state nav tab text to black while keeping the tightened tab spacing and centered nav pill.
+
+Motion Primitives Progressive Text Effect
+
+- Added the requested Motion Primitives `text-effect` component through `npx motion-primitives@latest add text-effect`.
+- Moved the generated component into `src/components/motion-primitives` so the existing `@/*` path alias can import it.
+- Added a site-wide `ProgressiveTextReveal` client controller mounted from the root layout.
+- Added a 500ms blur-to-clear text reveal for navbar, page, section, link, FAQ, and footer text on refresh and as text enters the viewport.
+- Made each text element reveal once per page load/scroll visit, with reduced-motion users receiving visible text without animation.

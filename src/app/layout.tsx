@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { SiteLoader } from "@/components/marketing/site-loader";
 import { SITE_LOADER_SESSION_KEY } from "@/components/marketing/site-loader-config";
+import { ProgressiveTextReveal } from "@/components/motion-primitives/progressive-text-reveal";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
@@ -74,7 +75,13 @@ export default function RootLayout({
             __html: `try{if(window.sessionStorage.getItem("${SITE_LOADER_SESSION_KEY}")==="true"){document.documentElement.classList.add("bd-site-loader-skip")}}catch(e){}`,
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{document.documentElement.classList.add("bd-progressive-text-active")}catch(e){}`,
+          }}
+        />
         <SiteLoader />
+        <ProgressiveTextReveal />
         {children}
         <AgentationToolbar />
       </body>

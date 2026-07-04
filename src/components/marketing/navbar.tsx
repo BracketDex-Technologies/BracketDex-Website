@@ -37,14 +37,14 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
           <span className="sr-only">{brandName}</span>
         </Link>
 
-        <div className="bd-desktop-menu items-center gap-3">
-          <div className="bd-nav-group relative flex h-[32px] items-center px-[9px] pl-[12px]">
+        <div className="bd-desktop-menu items-center gap-2">
+          <div className="bd-nav-group relative flex h-[32px] items-center px-[7px] pl-[9px]">
             <span aria-hidden="true" className="bd-glass-pill absolute inset-0" />
             <div className="relative z-10 flex items-center">
               {navigationItems.map((item, index) => (
                 <span className="contents" key={item.href}>
                   {index > 0 ? <span aria-hidden="true" className="bd-nav-divider" /> : null}
-                  <span className="group relative inline-flex items-center justify-center rounded-[4px] px-[5px] py-[2px]">
+                  <span className="group relative inline-flex items-center justify-center rounded-[4px] px-[3px] py-[2px]">
                     <span aria-hidden="true" className="bd-nav-hover absolute inset-0 opacity-0 group-hover:opacity-100" />
                     <Link
                       aria-current={activeHref === item.href ? "page" : undefined}
