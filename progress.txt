@@ -254,3 +254,12 @@ Wordmark Typography Refinement
 - Changed the BracketDex wordmark from the separate Khand brand font to the global site Pally font stack.
 - Increased wordmark size, made it bold, and kept the existing underline treatment.
 - Set the hero-top wordmark color to white with a subtle dark lift shadow while keeping the scrolled glass state dark.
+2026-07-04 - Navbar wordmark edge polish
+- Reduced the text-based BracketDex wordmark by roughly 2px across desktop/base/mobile breakpoints.
+- Added a thin black text stroke to the white hero-state wordmark for better edge definition, and removed it again in the scrolled glass state.
+- Tuned the hero-state Book Consultation offset so the CTA right margin visually matches the logo's left margin.
+
+2026-07-04 - Hero text and scrolled navbar readability polish
+- Removed the visible period from the homepage hero headline while leaving SEO titles unchanged.
+- Increased the hero-state wordmark border and added a fallback outline shadow so the text-based logo reads against the video.
+- Added a white text border to the hero title, simplified the subtitle to plain dark text, and made the scrolled navbar surface nearly opaque so page content does not show through it.

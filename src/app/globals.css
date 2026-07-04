@@ -406,6 +406,7 @@ html.bd-site-loader-active body {
 
 .bd-nav-inner {
   position: relative;
+  z-index: 2;
   width: min(100% - 2rem, var(--container-page));
   max-width: var(--container-page);
   margin-inline: auto;
@@ -430,10 +431,12 @@ html.bd-site-loader-active body {
   display: inline-flex;
   font-family: var(--font-pally), ui-sans-serif, system-ui, sans-serif;
   color: currentColor;
-  font-size: 1.68rem;
+  font-size: 1.56rem;
   font-weight: 720;
   letter-spacing: 0;
   line-height: 1;
+  -webkit-text-stroke: 0;
+  paint-order: stroke fill;
 }
 
 .bd-wordmark::after {
@@ -646,6 +649,16 @@ html.bd-site-loader-active body {
   transform: translateX(80px);
 }
 
+.bd-hero .bd-wordmark {
+  -webkit-text-stroke: 1.35px rgb(8 8 7 / 0.9);
+  text-shadow:
+    0.8px 0 rgb(8 8 7 / 0.9),
+    -0.8px 0 rgb(8 8 7 / 0.9),
+    0 0.8px rgb(8 8 7 / 0.9),
+    0 -0.8px rgb(8 8 7 / 0.9),
+    0 0.55rem 1.4rem rgb(8 8 7 / 0.34);
+}
+
 .bd-hero .bd-nav-surface::before {
   opacity: 0;
 }
@@ -684,7 +697,7 @@ html.bd-site-loader-active body {
 
 .bd-hero .bd-nav-cta {
   color: var(--paper-strong);
-  transform: translateX(-80px);
+  transform: translateX(-107px);
 }
 
 .bd-hero .bd-nav-cta-surface,
@@ -696,11 +709,11 @@ html.bd-site-loader-active body {
 
 html[data-nav-glass] .bd-hero .bd-nav-surface {
   border-color: rgb(23 23 23 / 0.08);
-  background: rgb(251 251 248 / 0.78);
+  background: rgb(251 251 248 / 0.98);
   color: var(--ink);
-  box-shadow: 0 0.5rem 1.5rem rgb(23 23 23 / 0.075);
-  -webkit-backdrop-filter: blur(12px) saturate(125%);
-  backdrop-filter: blur(12px) saturate(125%);
+  box-shadow: 0 0.5rem 1.5rem rgb(23 23 23 / 0.08);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
 }
 
 html[data-nav-glass] .bd-hero .bd-brand-link {
@@ -709,8 +722,16 @@ html[data-nav-glass] .bd-hero .bd-brand-link {
   transform: translateX(0);
 }
 
+html[data-nav-glass] .bd-hero .bd-wordmark {
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+
 html[data-nav-glass] .bd-hero .bd-nav-surface::before {
   opacity: 1;
+  background:
+    linear-gradient(180deg, rgb(251 251 248 / 0.98), rgb(251 251 248 / 0.96)),
+    linear-gradient(90deg, rgb(33 105 255 / 0.035), rgb(255 116 51 / 0.03));
 }
 
 html[data-nav-glass] .bd-hero .bd-nav-surface::after {
@@ -791,7 +812,7 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
   }
 
   .bd-wordmark {
-    font-size: 2.08rem;
+    font-size: 1.96rem;
   }
 
   .bd-desktop-menu {
@@ -903,7 +924,13 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
   font-weight: 700;
   letter-spacing: 0;
   line-height: 0.98;
-  text-shadow: none;
+  -webkit-text-stroke: 1.1px rgb(251 251 248 / 0.92);
+  paint-order: stroke fill;
+  text-shadow:
+    1px 0 rgb(251 251 248 / 0.88),
+    -1px 0 rgb(251 251 248 / 0.88),
+    0 1px rgb(251 251 248 / 0.88),
+    0 -1px rgb(251 251 248 / 0.88);
   text-wrap: balance;
 }
 
@@ -911,13 +938,16 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
   max-width: 32rem;
   margin-inline: auto;
   margin-top: 20px;
-  color: rgb(8 8 7 / 0.94);
+  color: #080807;
   font-size: 19px;
   font-weight: 560;
   line-height: 1.6;
-  text-shadow:
-    0 1px 0 rgb(255 255 255 / 0.72),
-    0 0.35rem 1rem rgb(251 251 248 / 0.62);
+  -webkit-text-stroke: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  filter: none;
+  text-shadow: none;
 }
 
 .bd-hero-actions {
@@ -985,7 +1015,7 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
   }
 
   .bd-wordmark {
-    font-size: 1.58rem;
+    font-size: 1.46rem;
   }
 
   .bd-hero-layout {
