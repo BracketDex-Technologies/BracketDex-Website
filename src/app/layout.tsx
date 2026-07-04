@@ -12,13 +12,13 @@ import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const pally = localFont({
-  src: "../../docs/Pally_Complete/Fonts/WEB/fonts/Pally-Variable.woff2",
+  src: "../assets/fonts/Pally-Variable.woff2",
   variable: "--font-pally",
   display: "swap",
 });
 
 const khand = localFont({
-  src: "../../docs/FontshareKit-2607000102/Khand/Fonts/WEB/fonts/Khand-Regular.woff2",
+  src: "../assets/fonts/Khand-Regular.woff2",
   variable: "--font-khand",
   display: "swap",
 });
