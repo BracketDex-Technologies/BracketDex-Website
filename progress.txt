@@ -235,3 +235,22 @@ Motion Primitives Progressive Text Effect
 - Added a site-wide `ProgressiveTextReveal` client controller mounted from the root layout.
 - Added a 500ms blur-to-clear text reveal for navbar, page, section, link, FAQ, and footer text on refresh and as text enters the viewport.
 - Made each text element reveal once per page load/scroll visit, with reduced-motion users receiving visible text without animation.
+
+Agentation Hero Subtitle + Header Offset Batch
+
+- Applied the approved homepage hero/header feedback only.
+- Increased the hero subtitle contrast with darker ink, stronger weight, and a controlled light text-shadow for readability over the video.
+- Made the hero-top wordmark use dark ink with a light lift shadow and shifted it 80px to the right.
+- Shifted the hero-top consultation CTA 80px left.
+- Used the existing scroll-state attribute so the logo and CTA smoothly return to their normal positions when the header becomes glass on scroll, and shift back when returning to the hero top.
+
+Logo Visibility Fix
+
+- Removed the aria-hidden BracketDex wordmark from the global progressive text reveal target so the logo is not hidden by reveal CSS.
+- Kept nav links and CTA label in the text reveal effect while leaving the logo immediately visible.
+
+Wordmark Typography Refinement
+
+- Changed the BracketDex wordmark from the separate Khand brand font to the global site Pally font stack.
+- Increased wordmark size, made it bold, and kept the existing underline treatment.
+- Set the hero-top wordmark color to white with a subtle dark lift shadow while keeping the scrolled glass state dark.

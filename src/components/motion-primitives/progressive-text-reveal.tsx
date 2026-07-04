@@ -7,7 +7,6 @@ export const PROGRESSIVE_TEXT_REVEAL_ROOT_CLASS = "bd-progressive-text-active";
 export const PROGRESSIVE_TEXT_REVEAL_VISIBLE_CLASS = "bd-text-effect-visible";
 
 const TEXT_REVEAL_SELECTOR = [
-  ".bd-nav-surface .bd-wordmark",
   ".bd-nav-surface .bd-nav-link",
   ".bd-nav-surface .bd-nav-cta > span:last-child",
   "main h1",

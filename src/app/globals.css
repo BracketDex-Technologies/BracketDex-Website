@@ -419,15 +419,19 @@ html.bd-site-loader-active body {
   align-items: center;
   padding: 0.28rem 0.62rem;
   color: inherit;
+  transition:
+    color var(--motion-base) ease-out,
+    text-shadow var(--motion-base) ease-out,
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bd-wordmark {
   position: relative;
   display: inline-flex;
-  font-family: var(--font-khand), var(--font-pally), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-pally), ui-sans-serif, system-ui, sans-serif;
   color: currentColor;
-  font-size: 1.48rem;
-  font-weight: 400;
+  font-size: 1.68rem;
+  font-weight: 720;
   letter-spacing: 0;
   line-height: 1;
 }
@@ -531,7 +535,7 @@ html.bd-site-loader-active body {
   line-height: 1.5;
   transition:
     color 120ms ease-in-out,
-    transform 160ms ease-out;
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bd-nav-cta:hover {
@@ -634,6 +638,14 @@ html.bd-site-loader-active body {
   backdrop-filter: none;
 }
 
+.bd-hero .bd-brand-link {
+  color: #ffffff;
+  text-shadow:
+    0 1px 0 rgb(0 0 0 / 0.18),
+    0 0.55rem 1.4rem rgb(8 8 7 / 0.36);
+  transform: translateX(80px);
+}
+
 .bd-hero .bd-nav-surface::before {
   opacity: 0;
 }
@@ -672,6 +684,7 @@ html.bd-site-loader-active body {
 
 .bd-hero .bd-nav-cta {
   color: var(--paper-strong);
+  transform: translateX(-80px);
 }
 
 .bd-hero .bd-nav-cta-surface,
@@ -688,6 +701,12 @@ html[data-nav-glass] .bd-hero .bd-nav-surface {
   box-shadow: 0 0.5rem 1.5rem rgb(23 23 23 / 0.075);
   -webkit-backdrop-filter: blur(12px) saturate(125%);
   backdrop-filter: blur(12px) saturate(125%);
+}
+
+html[data-nav-glass] .bd-hero .bd-brand-link {
+  color: var(--ink);
+  text-shadow: none;
+  transform: translateX(0);
 }
 
 html[data-nav-glass] .bd-hero .bd-nav-surface::before {
@@ -728,6 +747,7 @@ html[data-nav-glass] .bd-hero .bd-mobile-link-active {
 
 html[data-nav-glass] .bd-hero .bd-nav-cta {
   color: var(--paper-strong);
+  transform: translateX(0);
 }
 
 html[data-nav-glass] .bd-hero .bd-nav-cta-surface,
@@ -771,7 +791,7 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
   }
 
   .bd-wordmark {
-    font-size: 1.82rem;
+    font-size: 2.08rem;
   }
 
   .bd-desktop-menu {
@@ -891,11 +911,13 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
   max-width: 32rem;
   margin-inline: auto;
   margin-top: 20px;
-  color: rgb(23 23 23 / 0.76);
+  color: rgb(8 8 7 / 0.94);
   font-size: 19px;
-  font-weight: 450;
+  font-weight: 560;
   line-height: 1.6;
-  text-shadow: none;
+  text-shadow:
+    0 1px 0 rgb(255 255 255 / 0.72),
+    0 0.35rem 1rem rgb(251 251 248 / 0.62);
 }
 
 .bd-hero-actions {
@@ -963,7 +985,7 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
   }
 
   .bd-wordmark {
-    font-size: 1.42rem;
+    font-size: 1.58rem;
   }
 
   .bd-hero-layout {
@@ -1065,14 +1087,13 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
 }
 
 html.bd-progressive-text-active :is(
-  .bd-nav-surface .bd-wordmark,
   .bd-nav-surface .bd-nav-link,
   .bd-nav-surface .bd-nav-cta > span:last-child,
   main h1,
   main h2,
   main h3,
   main p,
-  main a,
+  main a:not(.bd-brand-link):not(.bd-nav-cta),
   main li,
   main summary,
   footer p,
@@ -1089,14 +1110,13 @@ html.bd-progressive-text-active :is(
 }
 
 html.bd-progressive-text-active :is(
-  .bd-nav-surface .bd-wordmark,
   .bd-nav-surface .bd-nav-link,
   .bd-nav-surface .bd-nav-cta > span:last-child,
   main h1,
   main h2,
   main h3,
   main p,
-  main a,
+  main a:not(.bd-brand-link):not(.bd-nav-cta),
   main li,
   main summary,
   footer p,
@@ -1117,14 +1137,13 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
 
 @media (prefers-reduced-motion: reduce) {
   html.bd-progressive-text-active :is(
-    .bd-nav-surface .bd-wordmark,
     .bd-nav-surface .bd-nav-link,
     .bd-nav-surface .bd-nav-cta > span:last-child,
     main h1,
     main h2,
     main h3,
     main p,
-    main a,
+    main a:not(.bd-brand-link):not(.bd-nav-cta),
     main li,
     main summary,
     footer p,
