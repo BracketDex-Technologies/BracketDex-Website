@@ -204,9 +204,9 @@ html.bd-site-loader-active body {
   justify-content: center;
   gap: 0.08em;
   color: inherit;
-  font-family: var(--font-khand), var(--font-pally), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-pally), ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 720;
   letter-spacing: 0;
   line-height: 1;
   transform-origin: center center;
@@ -361,6 +361,7 @@ html.bd-site-loader-active body {
   position: fixed;
   top: 0;
   inset-inline: 0;
+  z-index: 70;
   isolation: isolate;
   border: 1px solid rgb(23 23 23 / 0.08);
   border-radius: 0;
@@ -381,12 +382,12 @@ html.bd-site-loader-active body {
 .bd-nav-surface::after {
   position: absolute;
   inset: 0;
-  z-index: -1;
   pointer-events: none;
   content: "";
 }
 
 .bd-nav-surface::before {
+  z-index: 0;
   background:
     linear-gradient(180deg, rgb(251 251 248 / 0.76), rgb(251 251 248 / 0.46)),
     linear-gradient(90deg, rgb(33 105 255 / 0.06), rgb(255 116 51 / 0.045));
@@ -396,6 +397,7 @@ html.bd-site-loader-active body {
 }
 
 .bd-nav-surface::after {
+  z-index: 1;
   background-image:
     radial-gradient(circle at 25% 35%, rgb(23 23 23 / 0.14) 0 0.45px, transparent 0.65px),
     radial-gradient(circle at 75% 65%, rgb(255 255 255 / 0.62) 0 0.45px, transparent 0.7px);
@@ -411,6 +413,10 @@ html.bd-site-loader-active body {
   max-width: var(--container-page);
   margin-inline: auto;
   padding-block: 0.55rem;
+  transition:
+    width 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    max-width 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    padding 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .bd-brand-link {
@@ -520,12 +526,13 @@ html.bd-site-loader-active body {
 
 .bd-nav-divider {
   align-self: center;
+  flex: 0 0 1px;
   width: 1px;
-  height: 1rem;
-  margin-inline: 0.16rem;
-  background: currentColor;
-  opacity: 0.16;
-  transform: translateY(4px);
+  height: 0.72rem;
+  margin-inline: 0.18rem;
+  background: rgb(23 23 23 / 0.22);
+  opacity: 1;
+  transform: none;
 }
 
 .bd-nav-cta {
@@ -641,12 +648,18 @@ html.bd-site-loader-active body {
   backdrop-filter: none;
 }
 
+.bd-hero .bd-nav-inner {
+  width: calc(100% - 2rem);
+  max-width: calc(100% - 2rem);
+  padding-inline: 0;
+}
+
 .bd-hero .bd-brand-link {
   color: #ffffff;
   text-shadow:
     0 1px 0 rgb(0 0 0 / 0.18),
     0 0.55rem 1.4rem rgb(8 8 7 / 0.36);
-  transform: translateX(80px);
+  transform: translateX(0);
 }
 
 .bd-hero .bd-wordmark {
@@ -697,7 +710,7 @@ html.bd-site-loader-active body {
 
 .bd-hero .bd-nav-cta {
   color: var(--paper-strong);
-  transform: translateX(-107px);
+  transform: translateX(0);
 }
 
 .bd-hero .bd-nav-cta-surface,
@@ -709,11 +722,16 @@ html.bd-site-loader-active body {
 
 html[data-nav-glass] .bd-hero .bd-nav-surface {
   border-color: rgb(23 23 23 / 0.08);
-  background: rgb(251 251 248 / 0.98);
+  background: var(--paper-strong);
   color: var(--ink);
   box-shadow: 0 0.5rem 1.5rem rgb(23 23 23 / 0.08);
   -webkit-backdrop-filter: blur(18px) saturate(135%);
   backdrop-filter: blur(18px) saturate(135%);
+}
+
+html[data-nav-glass] .bd-hero .bd-nav-inner {
+  width: min(100% - 2rem, var(--container-content));
+  max-width: var(--container-content);
 }
 
 html[data-nav-glass] .bd-hero .bd-brand-link {
@@ -730,19 +748,19 @@ html[data-nav-glass] .bd-hero .bd-wordmark {
 html[data-nav-glass] .bd-hero .bd-nav-surface::before {
   opacity: 1;
   background:
-    linear-gradient(180deg, rgb(251 251 248 / 0.98), rgb(251 251 248 / 0.96)),
+    linear-gradient(180deg, rgb(251 251 248 / 1), rgb(251 251 248 / 0.99)),
     linear-gradient(90deg, rgb(33 105 255 / 0.035), rgb(255 116 51 / 0.03));
 }
 
 html[data-nav-glass] .bd-hero .bd-nav-surface::after {
-  opacity: 0.05;
+  opacity: 0.025;
 }
 
 html[data-nav-glass] .bd-hero .bd-glass-pill,
 html[data-nav-glass] .bd-hero .bd-mobile-toggle,
 html[data-nav-glass] .bd-hero .bd-mobile-panel {
   border-color: rgb(23 23 23 / 0.1);
-  background: rgb(251 251 248 / 0.62);
+  background: rgb(251 251 248 / 0.88);
   box-shadow: 0 2px 4px rgb(23 23 23 / 0.08);
   -webkit-backdrop-filter: blur(3px) saturate(1.04);
   backdrop-filter: blur(3px) saturate(1.04);
@@ -801,7 +819,6 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
 
 @media (min-width: 1000px) {
   .bd-nav-inner {
-    padding-left: clamp(0rem, 3vw, 2rem);
     padding-block: 0.72rem 0.62rem;
   }
 

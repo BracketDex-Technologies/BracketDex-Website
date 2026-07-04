@@ -25,7 +25,7 @@ dev.log
 .DS_Store
 Thumbs.db
 
-docs/
+
 LESSONS.md
 AGENTS.md
 progress.txt
@@ -42,3 +42,13 @@ dev-agentation-3001.err.log
 dev-agentation-3001.out.log
 dev-agentation-3002.err.log
 dev-agentation-3002.out.log
+docs/TECHSTACK.md
+docs/SEO.md 
+docs/DESIGN.md 
+docs/DESIGN_SYSTEM.md 
+docs/PROJECTS.md 
+docs/CONTENT.md 
+docs/COMPONENTS.md
+docs/BRAND.md 
+docs/ASSETS.md 
+docs/AGENT_RULES.md

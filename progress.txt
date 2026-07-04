@@ -263,3 +263,12 @@ Wordmark Typography Refinement
 - Removed the visible period from the homepage hero headline while leaving SEO titles unchanged.
 - Increased the hero-state wordmark border and added a fallback outline shadow so the text-based logo reads against the video.
 - Added a white text border to the hero title, simplified the subtitle to plain dark text, and made the scrolled navbar surface nearly opaque so page content does not show through it.
+
+2026-07-05 - Navbar docking and masking refinement
+- Normalized desktop nav tab dividers with explicit 1px sizing, fixed height, and explicit color so each separator renders with the same visual weight.
+- Moved navbar background layers into the header stacking context and raised the header z-index so scrolled page content is masked under the navbar.
+- Let the hero-top navbar span the viewport width, then shrink back to the centered container on scroll so the logo and Book Consultation button dock inward evenly.
+
+2026-07-05 - Loader typography alignment
+- Changed the site loader mark from the separate brand font stack to the global Pally site font stack.
+- Matched the loader mark weight to the current wordmark treatment so the typed BracketDex loader feels consistent with the site typography.
