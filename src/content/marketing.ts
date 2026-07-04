@@ -75,7 +75,7 @@ export const marketingContent = {
   ] satisfies readonly NavigationItem[],
   homepage: {
     hero: {
-      headline: "Engineering Solutions For Growing Businesses.",
+      headline: "Engineering Solutions For Growing Businesses",
       subheadline:
         "We build software, automation, and AI systems that help growing businesses operate faster, work smarter, and scale with confidence.",
       primaryCta: "Book Consultation",
