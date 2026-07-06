@@ -4,10 +4,10 @@ import { marketingContent } from "@/content/marketing";
 
 type Expect<T extends true> = T;
 
-type HeroPlacementIsTopCenter = typeof HOMEPAGE_HERO_PLACEMENT extends "top-center" ? true : false;
+type HeroPlacementIsCentered = typeof HOMEPAGE_HERO_PLACEMENT extends "centered" ? true : false;
 
 export type HomePageHeroFeedbackContract = [
-  Expect<HeroPlacementIsTopCenter>,
+  Expect<HeroPlacementIsCentered>,
 ];
 
 export const homePageContract = <HomePage content={marketingContent} />;

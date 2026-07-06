@@ -19,7 +19,7 @@ type HomePageProps = {
   content: MarketingContent;
 };
 
-export const HOMEPAGE_HERO_PLACEMENT = "top-center";
+export const HOMEPAGE_HERO_PLACEMENT = "centered";
 
 const operatingNodes = [
   { label: "Software", x: "42%", y: "12%" },
@@ -83,11 +83,7 @@ export function HomePage({ content }: HomePageProps) {
       <JsonLd data={buildFaqJsonLd()} />
 
       <div className="bd-hero">
-        <div aria-hidden="true" className="bd-hero-bg-slot">
-          <video autoPlay className="bd-hero-video" loop muted playsInline preload="metadata">
-            <source src="/media/hero-background.mp4" type="video/mp4" />
-          </video>
-        </div>
+        <div aria-hidden="true" className="bd-hero-bg-slot" />
         <Navbar
           activeHref="/"
           brandName={content.company.name}

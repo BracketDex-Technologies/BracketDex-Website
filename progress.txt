@@ -272,3 +272,21 @@ Wordmark Typography Refinement
 2026-07-05 - Loader typography alignment
 - Changed the site loader mark from the separate brand font stack to the global Pally site font stack.
 - Matched the loader mark weight to the current wordmark treatment so the typed BracketDex loader feels consistent with the site typography.
+
+2026-07-05 - Hero secondary CTA simplification
+- Remade the homepage View Projects CTA as a plain text link with a static arrow suffix.
+- Removed the secondary CTA box, border, blur, shadow, and hover lift so it reads as a simple text action beside the primary button.
+- Increased the secondary CTA contrast with bold white text and a larger, heavier static arrow.
+
+2026-07-06 - Image-backed centered hero
+- Replaced the homepage hero video background with the supplied `Herobg.webp` image as `public/media/hero-background.webp`.
+- Removed the old `public/media/hero-background.mp4` asset and removed the video element from the homepage hero markup.
+- Recentered the homepage hero copy over the new background image with a soft feathered readability layer.
+- Retuned the hero-top navbar to use a light frosted treatment over the bright sky/field image while preserving the existing wordmark, nav labels, CTA, and routes.
+- Updated the homepage hero placement contract and design-system note from video/top-centered language to centered image-backed hero language.
+
+2026-07-06 - Hero mask and typography refinement
+- Removed the soft feathered readability layer behind the centered homepage hero copy.
+- Added a bottom horizontal image mask that fades from transparent into grey and then black at the bottom edge.
+- Simplified the hero title and subtitle styling to regular SaaS-style text by removing stroke, shadow, and extra color effects.
+- Left the hero CTA styling unchanged.
