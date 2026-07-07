@@ -302,3 +302,6 @@ Wordmark Typography Refinement
 - Used Framer Motion for the strip reveal and smooth hover/tap node interactions.
 - Used GSAP for a restrained repeating connector pulse across the workflow lines.
 - Preserved reduced-motion behavior by skipping the GSAP pulse and Framer interaction offsets when users prefer reduced motion.
+2026-07-07 - Homepage sky band cleanup
+- Removed the decorative tree foreground from the technology/why-choose-us band.
+- Replaced the blue sky background treatment with the neutral page surface while preserving the section content and technology stack panel.

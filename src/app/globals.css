@@ -339,23 +339,6 @@ html.bd-site-loader-active body {
   mix-blend-mode: soft-light;
 }
 
-.bd-tree {
-  position: absolute;
-  right: -2rem;
-  top: -1rem;
-  z-index: 1;
-  width: min(29rem, 40vw);
-  height: min(44rem, 84vh);
-  border-radius: 0 0 0 42%;
-  background:
-    linear-gradient(90deg, transparent 0 56%, rgb(76 55 41 / 0.94) 56% 76%, rgb(48 34 27 / 0.96) 76%),
-    radial-gradient(circle at 20% 6%, var(--visual-forest) 0 4rem, transparent 4.1rem),
-    radial-gradient(circle at 38% 13%, #2b714d 0 5.5rem, transparent 5.6rem),
-    radial-gradient(circle at 68% 10%, #214d39 0 6.25rem, transparent 6.35rem);
-  image-rendering: pixelated;
-  opacity: 0.95;
-}
-
 .bd-nav-surface {
   position: fixed;
   top: 0;
@@ -896,13 +879,6 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
   background-size: 4rem 4rem;
 }
 
-.bd-sky-section {
-  position: relative;
-  overflow: hidden;
-  background: var(--visual-sky);
-  color: white;
-}
-
 .bd-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   letter-spacing: 0.06em;
@@ -1163,9 +1139,6 @@ html[data-nav-glass] .bd-hero .bd-mobile-cta {
     display: none;
   }
 
-  .bd-sky-section .bd-tree {
-    right: 0;
-  }
 }
 
 @media (max-width: 479px) {

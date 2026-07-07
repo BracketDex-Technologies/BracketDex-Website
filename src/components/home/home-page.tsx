@@ -196,22 +196,20 @@ export function HomePage({ content }: HomePageProps) {
         ))}
       </section>
 
-      <section className="bd-sky-section py-28 sm:py-36">
-        <div aria-hidden="true" className="absolute -top-8 left-0 right-0 h-20 bg-background" />
-        <div aria-hidden="true" className="bd-tree opacity-70" />
-        <div className="content-shell relative z-10 text-center">
-          <h2 className="mx-auto max-w-2xl text-4xl font-normal leading-tight tracking-tight sm:text-5xl">
+      <section className="content-shell py-28 text-center sm:py-36">
+        <div>
+          <h2 className="mx-auto max-w-2xl text-4xl font-normal leading-tight tracking-tight text-foreground sm:text-5xl">
             All the tools and systems your business needs
           </h2>
-          <div className="mx-auto mt-10 grid max-w-3xl gap-3 md:grid-cols-3">
+          <div className="mx-auto mt-10 grid max-w-3xl gap-6 md:grid-cols-3">
             {content.whyChooseUs.slice(0, 3).map((item) => (
-              <div className="border-l border-white/35 px-5 text-left" key={item.title}>
-                <p className="text-sm font-semibold">{item.title}</p>
-                <p className="mt-2 text-sm leading-6 text-white/68">{item.description}</p>
+              <div className="border-l border-border px-5 text-left" key={item.title}>
+                <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
               </div>
             ))}
           </div>
-          <div className="mx-auto mt-16 max-w-4xl rounded-2xl border border-white/28 bg-white/72 p-4 shadow-lift backdrop-blur">
+          <div className="mx-auto mt-16 max-w-4xl rounded-2xl border border-border bg-card/80 p-4 shadow-soft">
             <ProductPanel
               tasks={[
                 { label: "Frontend", state: "React / Next.js / TypeScript" },
