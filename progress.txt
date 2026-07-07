@@ -296,3 +296,9 @@ Wordmark Typography Refinement
 - Added a subtle glass workflow strip below the existing hero CTA row: Business Need, Software, AI Automation, Cloud, Growth.
 - Highlighted AI Automation as the quiet technical signal while keeping the meadow image, centered copy, bottom mask, and CTA styling unchanged.
 - Updated `docs/CONTENT.md` and the marketing content contract so the approved hero copy and workflow strip remain source-backed.
+
+2026-07-07 - Animated hero workflow interaction
+- Converted the hero workflow strip into a small client component while keeping the rest of the homepage hero server-rendered.
+- Used Framer Motion for the strip reveal and smooth hover/tap node interactions.
+- Used GSAP for a restrained repeating connector pulse across the workflow lines.
+- Preserved reduced-motion behavior by skipping the GSAP pulse and Framer interaction offsets when users prefer reduced motion.
