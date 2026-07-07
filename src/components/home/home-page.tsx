@@ -14,6 +14,7 @@ import {
   ProductPanel,
   WordGrid,
 } from "./landing-visuals";
+import { HeroWorkflow } from "./hero-workflow";
 
 type HomePageProps = {
   content: MarketingContent;
@@ -104,18 +105,7 @@ export function HomePage({ content }: HomePageProps) {
                 {hero.secondaryCta}
               </Link>
             </div>
-            <ol className="bd-hero-workflow" aria-label="Business automation workflow">
-              {content.homepage.heroWorkflow.map((step) => (
-                <li className="bd-hero-workflow-step" key={step.label}>
-                  <span
-                    className="bd-hero-workflow-label"
-                    data-active={step.label === "AI Automation" ? "true" : undefined}
-                  >
-                    {step.label}
-                  </span>
-                </li>
-              ))}
-            </ol>
+            <HeroWorkflow activeLabel="AI Automation" steps={content.homepage.heroWorkflow} />
           </div>
         </section>
       </div>
