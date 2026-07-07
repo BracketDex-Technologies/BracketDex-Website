@@ -49,6 +49,10 @@ export type ProblemGroup = {
   challenges: readonly string[];
 };
 
+export type HeroWorkflowStep = {
+  label: string;
+};
+
 export const marketingContent = {
   company: {
     name: "BracketDex Technologies",
@@ -77,10 +81,17 @@ export const marketingContent = {
     hero: {
       headline: "Engineering Solutions For Growing Businesses",
       subheadline:
-        "We build software, automation, and AI systems that help growing businesses operate faster, work smarter, and scale with confidence.",
+        "We help growing businesses design, build, and automate modern software systems that improve operations and scale with confidence.",
       primaryCta: "Book Consultation",
       secondaryCta: "View Projects",
     },
+    heroWorkflow: [
+      { label: "Business Need" },
+      { label: "Software" },
+      { label: "AI Automation" },
+      { label: "Cloud" },
+      { label: "Growth" },
+    ] satisfies readonly HeroWorkflowStep[],
     trustMetricPlaceholders: [
       {
         label: "Projects Delivered",

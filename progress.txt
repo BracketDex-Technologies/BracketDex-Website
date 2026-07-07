@@ -290,3 +290,9 @@ Wordmark Typography Refinement
 - Added a bottom horizontal image mask that fades from transparent into grey and then black at the bottom edge.
 - Simplified the hero title and subtitle styling to regular SaaS-style text by removing stroke, shadow, and extra color effects.
 - Left the hero CTA styling unchanged.
+
+2026-07-07 - Calm premium software hero workflow
+- Kept the homepage hero headline unchanged and refined only the subheadline to emphasize designing, building, and automating modern software systems.
+- Added a subtle glass workflow strip below the existing hero CTA row: Business Need, Software, AI Automation, Cloud, Growth.
+- Highlighted AI Automation as the quiet technical signal while keeping the meadow image, centered copy, bottom mask, and CTA styling unchanged.
+- Updated `docs/CONTENT.md` and the marketing content contract so the approved hero copy and workflow strip remain source-backed.
