@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 
+import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { SiteLoader } from "@/components/marketing/site-loader";
 import { SITE_LOADER_SESSION_KEY } from "@/components/marketing/site-loader-config";
 import { ProgressiveTextReveal } from "@/components/motion-primitives/progressive-text-reveal";
@@ -82,6 +83,7 @@ export default function RootLayout({
         <SiteLoader />
         <ProgressiveTextReveal />
         {children}
+        <AgentationToolbar />
       </body>
     </html>
   );
