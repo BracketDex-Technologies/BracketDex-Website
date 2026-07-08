@@ -11,15 +11,15 @@ import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
 
-const pally = localFont({
-  src: "../assets/fonts/Pally-Variable.woff2",
-  variable: "--font-pally",
+const array = localFont({
+  src: "../assets/fonts/Array-Regular.woff2",
+  variable: "--font-array",
   display: "swap",
 });
 
-const khand = localFont({
-  src: "../assets/fonts/Khand-Regular.woff2",
-  variable: "--font-khand",
+const alpino = localFont({
+  src: "../assets/fonts/Alpino-Variable.woff2",
+  variable: "--font-alpino",
   display: "swap",
 });
 
@@ -64,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${pally.variable} ${khand.variable}`}>
+      <body className={`${alpino.variable} ${array.variable}`}>
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>
