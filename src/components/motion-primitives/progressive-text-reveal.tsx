@@ -25,8 +25,6 @@ const EXCLUDED_TEXT_REVEAL_SELECTOR = [
   "[aria-hidden='true']",
   ".bd-site-loader",
   ".bd-site-loader *",
-  ".agentation-toolbar",
-  ".agentation-toolbar *",
   "script",
   "style",
   "svg",
