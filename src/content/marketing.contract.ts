@@ -17,9 +17,6 @@ type RequiredMarketingContent = {
       primaryCta: string;
       secondaryCta: string;
     };
-    heroWorkflow: readonly {
-      label: string;
-    }[];
     trustMetricPlaceholders: readonly {
       label: string;
       placeholder: string;

@@ -14,7 +14,6 @@ import {
   ProductPanel,
   WordGrid,
 } from "./landing-visuals";
-import { HeroWorkflow } from "./hero-workflow";
 
 type HomePageProps = {
   content: MarketingContent;
@@ -105,7 +104,6 @@ export function HomePage({ content }: HomePageProps) {
                 {hero.secondaryCta}
               </Link>
             </div>
-            <HeroWorkflow activeLabel="AI Automation" steps={content.homepage.heroWorkflow} />
           </div>
         </section>
       </div>

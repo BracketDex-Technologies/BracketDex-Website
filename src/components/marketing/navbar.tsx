@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import type { NavigationItem } from "@/content/marketing";
 import { cn } from "@/lib/utils";
-import { NavbarScrollState } from "./navbar-scroll-state";
 
 export const NAVBAR_LOGO_TEXT = "BracketDex";
 export const NAVBAR_WORDMARK_DOCK_SELECTOR = "[data-site-wordmark]";
@@ -24,8 +23,7 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
 
   return (
     <header className="bd-nav-surface sticky top-0 z-40 flex justify-center">
-      <NavbarScrollState />
-      <nav aria-label="Primary navigation" className="bd-nav-inner flex items-center justify-between">
+      <nav aria-label="Primary navigation" className="bd-nav-inner">
         <Link
           href="/"
           className="bd-brand-link shrink-0"
@@ -37,14 +35,13 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
           <span className="sr-only">{brandName}</span>
         </Link>
 
-        <div className="bd-desktop-menu items-center gap-2">
-          <div className="bd-nav-group relative flex h-[32px] items-center px-[7px] pl-[9px]">
-            <span aria-hidden="true" className="bd-glass-pill absolute inset-0" />
-            <div className="relative z-10 flex items-center">
+        <div className="bd-desktop-menu">
+          <div className="bd-nav-group">
+            <div className="flex items-center">
               {navigationItems.map((item, index) => (
                 <span className="contents" key={item.href}>
                   {index > 0 ? <span aria-hidden="true" className="bd-nav-divider" /> : null}
-                  <span className="group relative inline-flex items-center justify-center rounded-[4px] px-[3px] py-[2px]">
+                  <span className="group relative inline-flex items-center justify-center">
                     <span aria-hidden="true" className="bd-nav-hover absolute inset-0 opacity-0 group-hover:opacity-100" />
                     <Link
                       aria-current={activeHref === item.href ? "page" : undefined}
@@ -61,7 +58,7 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
           </div>
 
           <Link
-            className="bd-nav-cta group relative inline-flex h-[32px] items-center justify-center px-3"
+            className="bd-nav-cta group relative inline-flex items-center justify-center"
             href={ctaHref}
           >
             <span aria-hidden="true" className="bd-nav-cta-surface absolute inset-0" />
