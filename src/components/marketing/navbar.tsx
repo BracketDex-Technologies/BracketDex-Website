@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import type { NavigationItem } from "@/content/marketing";
 import { cn } from "@/lib/utils";
+import { NavbarScrollState } from "./navbar-scroll-state";
 
 export const NAVBAR_LOGO_TEXT = "BracketDex";
 export const NAVBAR_WORDMARK_DOCK_SELECTOR = "[data-site-wordmark]";
@@ -23,6 +24,7 @@ export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: Navb
 
   return (
     <header className="bd-nav-surface sticky top-0 z-40 flex justify-center">
+      <NavbarScrollState />
       <nav aria-label="Primary navigation" className="bd-nav-inner">
         <Link
           href="/"
