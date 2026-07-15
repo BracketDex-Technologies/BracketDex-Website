@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  ArrowRightIcon,
   ArrowUpRightIcon,
   BellIcon,
   CheckCircle2Icon,
@@ -183,7 +184,7 @@ export function OperatingMap({ steps }: { steps: readonly WorkflowStep[] }) {
                   aria-hidden="true"
                   className="absolute -right-2 top-1/2 z-10 hidden size-4 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background text-[0.65rem] text-muted-foreground xl:flex"
                 >
-                  +
+                  <ArrowRightIcon className="size-2.5" strokeWidth={1.8} />
                 </span>
               ) : null}
             </li>
