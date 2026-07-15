@@ -12,6 +12,7 @@ import {
   InterfaceRow,
   OperatingMap,
   ProductPanel,
+  ProductWorkspacePreview,
   WordGrid,
 } from "./landing-visuals";
 
@@ -21,12 +22,12 @@ type HomePageProps = {
 
 export const HOMEPAGE_HERO_PLACEMENT = "centered";
 
-const operatingNodes = [
-  { label: "Software", x: "42%", y: "12%" },
-  { label: "AI", x: "70%", y: "25%" },
-  { label: "Automation", x: "13%", y: "42%" },
-  { label: "Cloud", x: "70%", y: "61%" },
-  { label: "Growth", x: "35%", y: "76%" },
+const workflowSteps = [
+  { step: "01", title: "Discover", detail: "Goals, users, constraints" },
+  { step: "02", title: "Plan", detail: "Scope, architecture, milestones" },
+  { step: "03", title: "Design", detail: "Journeys, interface, system flows" },
+  { step: "04", title: "Build", detail: "Software, AI, and automation" },
+  { step: "05", title: "Launch", detail: "Test, deploy, and improve" },
 ] as const;
 
 const proofTasks = [
@@ -118,17 +119,9 @@ export function HomePage({ content }: HomePageProps) {
       </section>
 
       <section className="content-shell pb-24">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <OperatingMap nodes={operatingNodes} />
-          <ProductPanel
-            tasks={[
-              { label: "Software development", state: "Service" },
-              { label: "AI solutions", state: "Service" },
-              { label: "Business automation", state: "Service" },
-              { label: "Cloud and DevOps", state: "Service" },
-            ]}
-            title="Technology partner workspace"
-          />
+        <div className="grid gap-8 xl:grid-cols-[1.08fr_0.92fr] xl:items-stretch">
+          <OperatingMap steps={workflowSteps} />
+          <ProductWorkspacePreview imageSrc="/media/hero-background.webp" />
         </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-3">
