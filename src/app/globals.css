@@ -741,7 +741,7 @@ html.bd-site-loader-active body {
   text-wrap: balance;
 }
 
-.bd-hero .bd-nav-inner {
+.bd-nav-surface[data-hero-nav] .bd-nav-inner {
   border-color: transparent;
   background: transparent;
   box-shadow: none;
@@ -749,7 +749,7 @@ html.bd-site-loader-active body {
   backdrop-filter: none;
 }
 
-html[data-nav-glass] .bd-hero .bd-nav-inner {
+html[data-nav-glass] .bd-nav-surface[data-hero-nav] .bd-nav-inner {
   border-color: rgb(255 255 255 / 0.62);
   background: rgb(251 251 248 / 0.58);
   box-shadow:

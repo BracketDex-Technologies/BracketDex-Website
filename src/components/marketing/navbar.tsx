@@ -17,14 +17,25 @@ type NavbarProps = {
   ctaLabel: string;
   ctaHref: string;
   activeHref?: string;
+  transparentOnHero?: boolean;
 };
 
-export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: NavbarProps) {
+export function Navbar({
+  activeHref,
+  brandName,
+  ctaHref,
+  ctaLabel,
+  items,
+  transparentOnHero = false,
+}: NavbarProps) {
   const navigationItems = items.filter((item) => PRIMARY_NAVIGATION_HREFS.has(item.href));
 
   return (
-    <header className="bd-nav-surface sticky top-0 z-40 flex justify-center">
-      <NavbarScrollState />
+    <header
+      className="bd-nav-surface sticky top-0 z-40 flex justify-center"
+      data-hero-nav={transparentOnHero || undefined}
+    >
+      <NavbarScrollState transparentOnHero={transparentOnHero} />
       <nav aria-label="Primary navigation" className="bd-nav-inner">
         <Link
           href="/"

@@ -83,15 +83,17 @@ export function HomePage({ content }: HomePageProps) {
       <JsonLd data={buildBreadcrumbJsonLd("/")} />
       <JsonLd data={buildFaqJsonLd()} />
 
+      <Navbar
+        activeHref="/"
+        brandName={content.company.name}
+        ctaHref="/contact"
+        ctaLabel={hero.primaryCta}
+        items={content.navigation}
+        transparentOnHero
+      />
+
       <div className="bd-hero">
         <div aria-hidden="true" className="bd-hero-bg-slot" />
-        <Navbar
-          activeHref="/"
-          brandName={content.company.name}
-          ctaHref="/contact"
-          ctaLabel={hero.primaryCta}
-          items={content.navigation}
-        />
 
         <section className="content-shell bd-hero-layout">
           <div className="bd-hero-copy">

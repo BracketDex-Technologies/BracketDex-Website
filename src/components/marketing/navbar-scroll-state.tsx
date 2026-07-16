@@ -4,14 +4,17 @@ import { useEffect } from "react";
 
 const NAVBAR_GLASS_SCROLL_THRESHOLD_PX = 40;
 
-export function NavbarScrollState() {
+type NavbarScrollStateProps = {
+  transparentOnHero: boolean;
+};
+
+export function NavbarScrollState({ transparentOnHero }: NavbarScrollStateProps) {
   useEffect(() => {
     const root = document.documentElement;
-    const hasHeroNavbar = Boolean(document.querySelector(".bd-hero .bd-nav-surface"));
     let animationFrame = 0;
 
     const updateNavbarState = () => {
-      const shouldUseSolidNav = hasHeroNavbar && window.scrollY > NAVBAR_GLASS_SCROLL_THRESHOLD_PX;
+      const shouldUseSolidNav = transparentOnHero && window.scrollY > NAVBAR_GLASS_SCROLL_THRESHOLD_PX;
       root.toggleAttribute("data-nav-glass", shouldUseSolidNav);
     };
 
@@ -30,7 +33,7 @@ export function NavbarScrollState() {
       window.removeEventListener("resize", requestNavbarUpdate);
       root.removeAttribute("data-nav-glass");
     };
-  }, []);
+  }, [transparentOnHero]);
 
   return null;
 }
