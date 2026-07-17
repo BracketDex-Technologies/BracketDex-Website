@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useId, useState } from "react";
 
 import type { FaqItem } from "@/content/marketing";
 
@@ -10,24 +10,20 @@ type FaqSectionProps = {
 };
 
 export const FAQ_INTERACTION = "button-panels" as const;
+export const FAQ_PROGRESSIVE_FALLBACK = "noscript-static" as const;
 
 export function FaqSection({ defaultOpenFirst = false, items }: FaqSectionProps) {
   const id = useId();
-  const [enhanced, setEnhanced] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(
     defaultOpenFirst && items.length > 0 ? 0 : null,
   );
-
-  useEffect(() => {
-    setEnhanced(true);
-  }, []);
 
   return (
     <div className="bd-faq-list flex flex-col gap-3">
       {items.map((item, index) => {
         const controlId = `${id}-faq-control-${index}`;
         const panelId = `${id}-faq-panel-${index}`;
-        const expanded = !enhanced || openIndex === index;
+        const expanded = openIndex === index;
 
         return (
           <div
@@ -52,7 +48,7 @@ export function FaqSection({ defaultOpenFirst = false, items }: FaqSectionProps)
             <div
               aria-labelledby={controlId}
               className="bd-faq-panel"
-              hidden={enhanced && !expanded}
+              hidden={!expanded}
               id={panelId}
               role="region"
             >
@@ -61,6 +57,19 @@ export function FaqSection({ defaultOpenFirst = false, items }: FaqSectionProps)
           </div>
         );
       })}
+      <noscript suppressHydrationWarning>
+        <div className="bd-faq-noscript flex flex-col gap-3">
+          {items.map((item) => (
+            <div
+              className="bd-faq-item rounded-xl border border-border bg-card p-5 text-card-foreground"
+              key={item.question}
+            >
+              <h3 className="text-base font-semibold tracking-tight">{item.question}</h3>
+              <p className="mt-4 leading-7 text-muted-foreground">{item.answer}</p>
+            </div>
+          ))}
+        </div>
+      </noscript>
     </div>
   );
 }

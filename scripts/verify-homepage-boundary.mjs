@@ -1,24 +1,28 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = process.cwd();
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const homePagePath = resolve(root, "src/components/home/home-page.tsx");
 const navbarPath = resolve(root, "src/components/marketing/navbar.tsx");
 const cssPath = resolve(root, "src/app/globals.css");
 const heroAssetPath = resolve(root, "public/media/hero-bg-01.webp");
 
-const homePage = readFileSync(homePagePath, "utf8");
-const navbar = readFileSync(navbarPath);
-const css = readFileSync(cssPath, "utf8");
+function normalizeText(value) {
+  return value.replace(/\r\n?/g, "\n");
+}
+
+const homePage = normalizeText(readFileSync(homePagePath, "utf8"));
+const navbar = normalizeText(readFileSync(navbarPath, "utf8"));
+const css = normalizeText(readFileSync(cssPath, "utf8"));
 const heroAsset = readFileSync(heroAssetPath);
 
 const expectedDigests = {
   navbar: "ae9b1521575f92790fd213032f649725754766113f3a5dc3c3ac8d2b23306264",
   heroAsset: "6b5527ce4704bc31a6fa89ccd497e3099696172dc3317450b2c579250f42be79",
   homeHeroSlice: "ab29b97a1e02eabf1bec905e0257bb959a3f67c8e1dd4056e228b2f5f53642e1",
-  heroCssRange: "4cf96d47f66db4ec879f2fe2580aac1c5f32931a67ed4661b5207e9ef560f1d9",
-  heroLayoutCssRange: "567f475c6b4e2496a211727793a2cdfe42902d5d5a2dc11d46ccb38364d20eef",
+  frozenLandingCssRange: "3351add2bb9bbdbd7627c68bfecdec5b2e9b0355fe06e2a5ceda9347f802848b",
 };
 
 function fail(message) {
@@ -36,7 +40,7 @@ function findMarker(source, marker, label) {
   return index;
 }
 
-function sliceThrough(source, startMarker, endMarker, label) {
+function sliceBefore(source, startMarker, endMarker, label) {
   const start = findMarker(source, startMarker, `${label} start`);
   const end = source.indexOf(endMarker, start);
 
@@ -44,7 +48,7 @@ function sliceThrough(source, startMarker, endMarker, label) {
     fail(`missing ${label} end marker ${JSON.stringify(endMarker)}`);
   }
 
-  return source.slice(start, end + endMarker.length);
+  return source.slice(start, end);
 }
 
 function sha256(value) {
@@ -76,9 +80,8 @@ const actualDigests = {
   navbar: sha256(navbar),
   heroAsset: sha256(heroAsset),
   homeHeroSlice: sha256(homePage.slice(navbarIndex, heroClosingEnd)),
-  heroCssRange: sha256(sliceThrough(css, ".bd-hero {", ".bd-logo-slot,", "hero CSS range")),
-  heroLayoutCssRange: sha256(
-    sliceThrough(css, ".bd-hero-layout {", ".bd-word-grid {", "hero layout CSS range"),
+  frozenLandingCssRange: sha256(
+    sliceBefore(css, ".bd-hero {", ".bd-post-hero {", "frozen landing CSS range"),
   ),
 };
 
