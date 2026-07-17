@@ -1043,7 +1043,7 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
 .bd-post-intro h2 { max-width: 13ch; margin-top: 1rem; font-size: clamp(3rem, 6vw, 5.75rem); line-height: .94; letter-spacing: -.045em; }
 .bd-post-intro__grid > p { max-width: 34rem; color: var(--post-muted); font-size: clamp(1rem, 1.4vw, 1.2rem); line-height: 1.65; }
 
-.bd-post-dark { position: relative; overflow: clip; padding-block: 1px clamp(5rem, 9vw, 8rem); background-color: var(--post-dark); background-image: linear-gradient(rgb(255 255 255 / .025) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .025) 1px, transparent 1px); background-size: 64px 64px; color: var(--post-dark-text); }
+.bd-post-dark { position: relative; overflow: clip; padding-block: 1px clamp(5rem, 9vw, 8rem); background-color: var(--post-dark); color: var(--post-dark-text); }
 .bd-service-chapter { display: grid; gap: clamp(2.5rem, 6vw, 6rem); padding-block: clamp(5rem, 9vw, 8rem); border-bottom: 1px solid var(--post-dark-border); }
 .bd-service-chapter__copy { align-self: center; }
 .bd-chapter-index { display: inline-block; color: var(--post-blue); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: .8rem; font-weight: 700; }
@@ -1146,5 +1146,5 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bd-post-hero [data-motion-section], .bd-post-hero [data-motion-visual], .bd-post-hero [data-flow-step] { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  .bd-post-hero [data-motion-section], .bd-post-hero [data-motion-visual], .bd-post-hero [data-flow-step] > .bd-system-node__icon { opacity: 1 !important; transform: none !important; clip-path: none !important; }
 }
