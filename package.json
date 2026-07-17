@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "npm run verify:home-boundary && tsc --noEmit",
+    "verify:home-boundary": "node scripts/verify-homepage-boundary.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

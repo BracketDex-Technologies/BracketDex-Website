@@ -1109,7 +1109,8 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
 .bd-post-faq__grid { display: grid; gap: 3rem; }
 .bd-post-faq h2 { max-width: 12ch; margin-top: 1rem; font-size: clamp(2.6rem, 5vw, 4.5rem); line-height: .98; }
 .bd-post-faq__grid > div:first-child > p:last-child { max-width: 30rem; margin-top: 1.25rem; color: var(--post-muted); line-height: 1.65; }
-.bd-post-faq details { border-color: var(--post-border); border-radius: 6px; background: var(--post-surface); }
+.bd-post-faq .bd-faq-item { border-color: var(--post-border); border-radius: 6px; background: var(--post-surface); }
+.bd-post-faq .bd-faq-trigger[aria-expanded="true"] .bd-faq-icon { transform: rotate(45deg); }
 .bd-post-cta { padding-block: clamp(3rem, 6vw, 5rem); background: var(--post-blue); color: white; }
 .bd-post-cta__grid { display: grid; gap: 2rem; align-items: center; }
 .bd-post-cta h2 { max-width: 16ch; margin-top: .7rem; font-size: clamp(2.3rem, 5vw, 4.4rem); line-height: .96; }

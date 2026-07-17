@@ -45,7 +45,7 @@ export function SystemVisual({ variant }: { variant: PostHeroVisual }) {
   } as const;
 
   return (
-    <div aria-label={labels[variant]} className="bd-system-visual" data-visual={variant}>
+    <div aria-label={labels[variant]} className="bd-system-visual" data-visual={variant} role="group">
       <div className="bd-system-visual__bar">
         <span>{labels[variant]}</span>
         <span>Configured workflow</span>
@@ -87,7 +87,7 @@ export function CloudDevOpsVisual() {
   ] as const;
 
   return (
-    <div aria-label="Cloud and DevOps capability architecture" className="bd-cloud-visual">
+    <div aria-label="Cloud and DevOps capability architecture" className="bd-cloud-visual" role="group">
       {nodes.map(({ label, Icon }) => (
         <span className="bd-cloud-node" key={label}>
           <Icon aria-hidden="true" />

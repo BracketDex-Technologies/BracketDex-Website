@@ -32,7 +32,7 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
       <section className="bd-post-intro" aria-labelledby="post-hero-intro-title">
         <div className="content-shell bd-post-intro__grid">
           <div>
-            <p className="bd-post-kicker">Our approach</p>
+            <p className="bd-post-kicker">HOW WE WORK</p>
             <h2 id="post-hero-intro-title">From business need to working system.</h2>
           </div>
           <p>
