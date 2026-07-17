@@ -11,7 +11,7 @@ type Equal<A, B> =
 
 export type PostHeroMotionContract = [
   Expect<Equal<typeof POST_HERO_MOTION_SCOPE, "[data-post-hero-design]">>,
-  Expect<Equal<typeof POST_HERO_FLOW_TARGET, "[data-flow-step] > .bd-system-node__icon">>,
+  Expect<Equal<typeof POST_HERO_FLOW_TARGET, "[data-diagram-node]">>,
 ];
 
 export const postHeroMotionContract = <PostHeroMotion />;

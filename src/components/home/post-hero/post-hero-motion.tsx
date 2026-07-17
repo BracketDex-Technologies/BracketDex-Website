@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export const POST_HERO_MOTION_SCOPE = "[data-post-hero-design]" as const;
-export const POST_HERO_FLOW_TARGET = "[data-flow-step] > .bd-system-node__icon" as const;
+export const POST_HERO_FLOW_TARGET = "[data-diagram-node]" as const;
 
 export function PostHeroMotion() {
   useGSAP(() => {
@@ -20,8 +20,8 @@ export function PostHeroMotion() {
       gsap.utils.toArray<HTMLElement>("[data-motion-visual]").forEach((visual) => {
         gsap.fromTo(visual, { clipPath: "inset(0 0 14% 0)" }, { clipPath: "inset(0 0 0% 0)", duration: 0.9, ease: "power2.out", scrollTrigger: { trigger: visual, start: "top 78%", once: true } });
       });
-      gsap.utils.toArray<HTMLElement>(POST_HERO_FLOW_TARGET).forEach((icon, index) => {
-        gsap.fromTo(icon, { opacity: 0.35 }, { opacity: 1, duration: 0.35, delay: index * 0.06, scrollTrigger: { trigger: icon.closest(".bd-system-visual"), start: "top 75%", once: true } });
+      gsap.utils.toArray<HTMLElement>(POST_HERO_FLOW_TARGET).forEach((node, index) => {
+        gsap.fromTo(node, { opacity: 0.45 }, { opacity: 1, duration: 0.35, delay: (index % 6) * 0.05, scrollTrigger: { trigger: node.closest(".bd-system-visual, .bd-cloud-visual"), start: "top 75%", once: true } });
       });
     }, root);
     return () => context.revert();
