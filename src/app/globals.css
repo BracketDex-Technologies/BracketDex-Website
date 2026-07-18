@@ -384,7 +384,7 @@ html.bd-site-loader-active body {
   display: inline-flex;
   align-items: center;
   min-height: 2.4rem;
-  padding-inline: 0.25rem 0.55rem;
+  padding-inline: 0.75rem;
   color: inherit;
 }
 
@@ -1199,6 +1199,7 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
 
 @media (min-width: 1024px) {
   .bd-service-chapter { grid-template-columns: minmax(18rem, .66fr) minmax(0, 1.34fr); align-items: center; }
+  .bd-service-chapter:nth-of-type(even) { grid-template-columns: minmax(0, 1.34fr) minmax(18rem, .66fr); }
   .bd-service-chapter:nth-of-type(even) .bd-service-chapter__copy { order: 2; }
   .bd-service-chapter:nth-of-type(even) .bd-service-chapter__visual { order: 1; }
   .bd-delivery-rail { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .75rem; }
