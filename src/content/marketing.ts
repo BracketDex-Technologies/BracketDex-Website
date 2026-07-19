@@ -278,7 +278,7 @@ export const marketingContent = {
     },
     {
       category: "Backend",
-      items: ["Node.js", "NestJS", "Python"],
+      items: ["Node.js", "NestJS", "Python", "Java", "Spring Boot"],
     },
     {
       category: "Mobile",
