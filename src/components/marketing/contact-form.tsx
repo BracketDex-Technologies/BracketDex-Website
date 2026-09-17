@@ -54,13 +54,13 @@ export function ContactForm() {
       <FieldGroup>
         <Field data-invalid={Boolean(errors.name)}>
           <FieldLabel htmlFor="name">Name</FieldLabel>
-          <Input aria-invalid={Boolean(errors.name)} autoComplete="name" id="name" {...register("name")} />
-          <FieldError errors={[errors.name]} />
+          <Input aria-describedby={errors.name ? "name-error" : undefined} aria-invalid={Boolean(errors.name)} autoComplete="name" id="name" {...register("name")} />
+          <FieldError errors={[errors.name]} id="name-error" />
         </Field>
         <Field data-invalid={Boolean(errors.email)}>
           <FieldLabel htmlFor="email">Email</FieldLabel>
-          <Input aria-invalid={Boolean(errors.email)} autoComplete="email" id="email" type="email" {...register("email")} />
-          <FieldError errors={[errors.email]} />
+          <Input aria-describedby={errors.email ? "email-error" : undefined} aria-invalid={Boolean(errors.email)} autoComplete="email" id="email" type="email" {...register("email")} />
+          <FieldError errors={[errors.email]} id="email-error" />
         </Field>
         <Field>
           <FieldLabel htmlFor="company">Company</FieldLabel>
@@ -68,11 +68,11 @@ export function ContactForm() {
         </Field>
         <Field data-invalid={Boolean(errors.message)}>
           <FieldLabel htmlFor="message">Message</FieldLabel>
-          <Textarea aria-invalid={Boolean(errors.message)} id="message" rows={5} {...register("message")} />
-          <FieldError errors={[errors.message]} />
+          <Textarea aria-describedby={errors.message ? "message-error" : undefined} aria-invalid={Boolean(errors.message)} id="message" rows={5} {...register("message")} />
+          <FieldError errors={[errors.message]} id="message-error" />
         </Field>
-        <Button disabled={isSubmitting} type="submit">
-          Submit Project Details
+        <Button aria-disabled={isSubmitting || undefined} disabled={isSubmitting} type="submit">
+          {isSubmitting ? "Submitting…" : "Submit Project Details"}
         </Button>
         {status ? (
           <p aria-live="polite" className="text-sm leading-6 text-muted-foreground" role="status">
