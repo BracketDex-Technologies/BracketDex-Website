@@ -69,7 +69,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${alpino.variable} ${array.variable}`}>
         <ThemeProvider>
-          <SmoothScroll root>
+          <SmoothScroll root lerp={0.06} duration={1.6} wheelMultiplier={0.8}>
             <a className="skip-link" href="#main-content">
               Skip to main content
             </a>
