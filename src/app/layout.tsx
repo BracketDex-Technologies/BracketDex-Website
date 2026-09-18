@@ -4,8 +4,11 @@ import localFont from "next/font/local";
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { SiteLoader } from "@/components/marketing/site-loader";
 import { SITE_LOADER_SESSION_KEY } from "@/components/marketing/site-loader-config";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { ProgressiveTextReveal } from "@/components/motion-primitives/progressive-text-reveal";
 import { JsonLd } from "@/components/seo/json-ld";
+import { ThemeHotkey } from "@/components/theme-hotkey";
+import { ThemeProvider } from "@/components/theme-provider";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -65,25 +68,30 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${alpino.variable} ${array.variable}`}>
-        <a className="skip-link" href="#main-content">
-          Skip to main content
-        </a>
-        <JsonLd data={organizationJsonLd} />
-        <JsonLd data={websiteJsonLd} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(window.sessionStorage.getItem("${SITE_LOADER_SESSION_KEY}")==="true"){document.documentElement.classList.add("bd-site-loader-skip")}}catch(e){}`,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{document.documentElement.classList.add("bd-progressive-text-active")}catch(e){}`,
-          }}
-        />
-        <SiteLoader />
-        <ProgressiveTextReveal />
-        {children}
-        <AgentationToolbar />
+        <ThemeProvider>
+          <SmoothScroll root>
+            <a className="skip-link" href="#main-content">
+              Skip to main content
+            </a>
+            <JsonLd data={organizationJsonLd} />
+            <JsonLd data={websiteJsonLd} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `try{if(window.sessionStorage.getItem("${SITE_LOADER_SESSION_KEY}")==="true"){document.documentElement.classList.add("bd-site-loader-skip")}}catch(e){}`,
+              }}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `try{document.documentElement.classList.add("bd-progressive-text-active")}catch(e){}`,
+              }}
+            />
+            <SiteLoader />
+            <ProgressiveTextReveal />
+            <ThemeHotkey />
+            {children}
+            <AgentationToolbar />
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
