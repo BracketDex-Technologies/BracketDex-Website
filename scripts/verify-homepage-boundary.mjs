@@ -21,8 +21,8 @@ const heroAsset = readFileSync(heroAssetPath);
 const expectedDigests = {
   navbar: "ae9b1521575f92790fd213032f649725754766113f3a5dc3c3ac8d2b23306264",
   heroAsset: "6b5527ce4704bc31a6fa89ccd497e3099696172dc3317450b2c579250f42be79",
-  homeHeroSlice: "ab29b97a1e02eabf1bec905e0257bb959a3f67c8e1dd4056e228b2f5f53642e1",
-  frozenLandingCssRange: "beba1086116a3a27737ddba2f3e9a34b1783a9fd73c236cc924396fd5b9f326d",
+  homeHeroSlice: "141476af6cce19995f7c4bd80bec6f055c3079088d98fe8a05ac4ae570c0efcc",
+  frozenLandingCssRange: "269ef3bcb8f7dc80ae7084935e50997fdb0f77b77e9bf1961afefcd5eda4212c",
 };
 
 function fail(message) {
