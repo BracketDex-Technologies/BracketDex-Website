@@ -75,11 +75,13 @@ export const marketingContent = {
   ] satisfies readonly NavigationItem[],
   homepage: {
     hero: {
-      headline: "Engineering Solutions For Growing Businesses",
+      eyebrow: "Software · AI · Automation",
+      headline: "Software that grows your business",
+      headlineAccent: "grows",
       subheadline:
-        "We help growing businesses design, build, and automate modern software systems that improve operations and scale with confidence.",
-      primaryCta: "Book Consultation",
-      secondaryCta: "View Projects",
+        "BracketDex designs, builds, and automates custom software, AI, and cloud systems — so growing businesses run leaner and move faster.",
+      primaryCta: "Book a consultation",
+      secondaryCta: "Explore services",
     },
     trustMetricPlaceholders: [
       {
