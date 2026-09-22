@@ -23,6 +23,8 @@ const TEXT_REVEAL_SELECTOR = [
 const EXCLUDED_TEXT_REVEAL_SELECTOR = [
   ".sr-only",
   "[aria-hidden='true']",
+  ".bd-hero-copy",
+  ".bd-hero-copy *",
   ".bd-site-loader",
   ".bd-site-loader *",
   ".agentation-toolbar",
