@@ -10,6 +10,9 @@ import {
 
 import type { MarketingContent } from "@/content/marketing";
 import { FaqSection } from "@/components/marketing/faq-section";
+import { ProblemSection } from "@/components/home/fresh/problem-section";
+import { ServicesSection } from "@/components/home/fresh/services-section";
+import { TrustStrip } from "@/components/home/fresh/trust-strip";
 import { buildPostHeroContent } from "./post-hero-content";
 import { PostHeroMotion } from "./post-hero-motion";
 import { CloudDevOpsVisual, SystemVisual } from "./system-visuals";
@@ -29,18 +32,9 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
   return (
     <div className="bd-post-hero" data-post-hero-design={POST_HERO_DESIGN}>
       <PostHeroMotion />
-      <section className="bd-post-intro" aria-labelledby="post-hero-intro-title">
-        <div className="content-shell bd-post-intro__grid">
-          <div>
-            <p className="bd-post-kicker">HOW WE WORK</p>
-            <h2 id="post-hero-intro-title">From business need to working system.</h2>
-          </div>
-          <p>
-            {content.company.mission} One visible path keeps priorities, decisions, delivery,
-            and release aligned.
-          </p>
-        </div>
-      </section>
+      <TrustStrip content={content} />
+      <ProblemSection content={content} />
+      <ServicesSection content={content} />
 
       <div className="bd-post-dark">
         <div className="content-shell">
