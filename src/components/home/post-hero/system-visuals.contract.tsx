@@ -1,3 +1,4 @@
+import { marketingContent } from "@/content/marketing";
 import {
   AiOrchestrationVisual,
   AutomationPipelineVisual,
@@ -27,6 +28,6 @@ export const systemVisualsContract = (
     <SystemVisual variant="software" />
     <SystemVisual variant="ai" />
     <SystemVisual variant="automation" />
-    <CloudDevOpsVisual />
+    <CloudDevOpsVisual groups={marketingContent.technologyStack} />
   </>
 );

@@ -1,26 +1,21 @@
 import {
   BellIcon,
-  BoxIcon,
   CheckCircle2Icon,
   CircleDotIcon,
-  CloudIcon,
   Code2Icon,
   DatabaseIcon,
-  GitBranchIcon,
-  Globe2Icon,
   MailCheckIcon,
   PackageCheckIcon,
   PlayIcon,
   RefreshCwIcon,
   SearchIcon,
-  ServerIcon,
   ShieldCheckIcon,
   SparklesIcon,
-  SplitIcon,
   WebhookIcon,
   WorkflowIcon,
 } from "lucide-react";
 
+import type { TechnologyGroup } from "@/content/marketing";
 import type { PostHeroVisual } from "./post-hero-content";
 
 export const SYSTEM_VISUAL_LAYOUTS = [
@@ -238,29 +233,39 @@ export function SystemVisual({ variant }: { variant: PostHeroVisual }) {
   return <AutomationPipelineVisual />;
 }
 
-export function CloudDevOpsVisual() {
-  return (
-    <div aria-label="Illustrative deployment terminal and cloud architecture" className="bd-cloud-visual" role="group">
-      <div className="bd-deploy-terminal">
-        <div><span>bracketdev@infra:~$</span> deploy preview</div>
-        <pre>{`› Planning...\n› Building containers...\n› Pushing image...\n› Applying manifests...\n› Running migrations...\n› Health check...\n› Deployment successful ✓\n\nEnvironment: preview\nURL: preview.app.bracketdev.dev\n\nbracketdev@infra:~$ ▮`}</pre>
-      </div>
+export function CloudDevOpsVisual({ groups }: { groups: readonly TechnologyGroup[] }) {
+  const cloud = groups.find((group) => group.category === "Cloud");
+  const devOps = groups.find((group) => group.category === "DevOps");
 
+  return (
+    <div aria-hidden="true" className="bd-cloud-visual" data-motion-visual>
+      <div className="bd-cloud-terminal">
+        <div className="bd-cloud-terminal__bar">
+          <span className="bd-cloud-terminal__dots" />
+          <span>Cloud &amp; DevOps</span>
+        </div>
+        <div className="bd-cloud-terminal__lines">
+          {devOps?.items.map((item, index) => (
+            <div key={item}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item}</strong>
+              <span className="bd-cloud-terminal__status" />
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="bd-cloud-topology">
-        <div className="bd-topology-node bd-topology-users" data-diagram-node><Globe2Icon aria-hidden="true" /> Users</div>
-        <div className="bd-topology-node bd-topology-edge" data-diagram-node><CloudIcon aria-hidden="true" /> CDN / Edge</div>
-        <div className="bd-topology-node bd-topology-load" data-diagram-node><SplitIcon aria-hidden="true" /> Load Balancer</div>
-        <div className="bd-topology-services">
-          <div className="bd-topology-node" data-diagram-node><BoxIcon aria-hidden="true" /> App Service</div>
-          <div className="bd-topology-node" data-diagram-node><ServerIcon aria-hidden="true" /> API Service</div>
-          <div className="bd-topology-node" data-diagram-node><WorkflowIcon aria-hidden="true" /> Worker Service</div>
+        <div className="bd-cloud-topology__source" data-diagram-node>CI/CD</div>
+        <span className="bd-cloud-topology__connector" />
+        <div className="bd-cloud-topology__source" data-diagram-node>Docker</div>
+        <span className="bd-cloud-topology__connector" />
+        <div className="bd-cloud-topology__source" data-diagram-node>Kubernetes</div>
+        <span className="bd-cloud-topology__connector" />
+        <div className="bd-cloud-topology__providers">
+          {cloud?.items.map((item) => (
+            <div data-diagram-node key={item}>{item}</div>
+          ))}
         </div>
-        <div className="bd-topology-data">
-          <div className="bd-topology-node" data-diagram-node><DatabaseIcon aria-hidden="true" /> PostgreSQL</div>
-          <div className="bd-topology-node" data-diagram-node><DatabaseIcon aria-hidden="true" /> Redis</div>
-          <div className="bd-topology-node" data-diagram-node><CloudIcon aria-hidden="true" /> Object Storage</div>
-        </div>
-        <div className="bd-topology-node bd-topology-monitor" data-diagram-node><GitBranchIcon aria-hidden="true" /> Monitoring / Alerts</div>
       </div>
     </div>
   );

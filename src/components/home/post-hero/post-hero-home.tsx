@@ -10,12 +10,13 @@ import {
 
 import type { MarketingContent } from "@/content/marketing";
 import { FaqSection } from "@/components/marketing/faq-section";
+import { CloudPanel } from "@/components/home/fresh/cloud-panel";
 import { ProblemSection } from "@/components/home/fresh/problem-section";
 import { ServicesSection } from "@/components/home/fresh/services-section";
 import { TrustStrip } from "@/components/home/fresh/trust-strip";
 import { buildPostHeroContent } from "./post-hero-content";
 import { PostHeroMotion } from "./post-hero-motion";
-import { CloudDevOpsVisual, SystemVisual } from "./system-visuals";
+import { SystemVisual } from "./system-visuals";
 
 export const POST_HERO_DESIGN = "dark-systems-lab" as const;
 export const POST_HERO_STARTS_AFTER_HERO = true as const;
@@ -24,10 +25,6 @@ const proofIcons = [WorkflowIcon, Code2Icon, PackageCheckIcon, ShieldCheckIcon] 
 
 export function PostHeroHome({ content }: { content: MarketingContent }) {
   const postHero = buildPostHeroContent(content);
-  const cloudService = content.services[3];
-  const cloudGroups = content.technologyStack.filter(
-    (group) => group.category === "Cloud" || group.category === "DevOps",
-  );
 
   return (
     <div className="bd-post-hero" data-post-hero-design={POST_HERO_DESIGN}>
@@ -72,20 +69,7 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
             </section>
           ))}
 
-          <section className="bd-cloud-strip" data-motion-section aria-labelledby="cloud-title">
-            <div className="bd-cloud-strip__copy">
-              <p className="bd-post-kicker">Infrastructure</p>
-              <h2 id="cloud-title">{cloudService.title}</h2>
-              <p>{cloudService.description}</p>
-              {cloudGroups.map((group) => (
-                <div key={group.category}>
-                  <strong>{group.category}</strong>
-                  <span>{group.items.join(" · ")}</span>
-                </div>
-              ))}
-            </div>
-            <CloudDevOpsVisual />
-          </section>
+          <CloudPanel content={content} />
 
           <section className="bd-delivery" data-motion-section aria-labelledby="delivery-title">
             <p className="bd-post-kicker">Delivery system</p>

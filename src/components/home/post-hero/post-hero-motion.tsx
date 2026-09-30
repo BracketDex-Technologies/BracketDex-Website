@@ -14,14 +14,14 @@ export function PostHeroMotion() {
 
     gsap.registerPlugin(ScrollTrigger);
     const context = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>("[data-motion-section]").forEach((section) => {
-        gsap.fromTo(section, { opacity: 0.7, y: 28 }, { opacity: 1, y: 0, duration: 0.75, ease: "power2.out", scrollTrigger: { trigger: section, start: "top 82%", once: true } });
+      root.querySelectorAll<HTMLElement>("[data-motion-section]").forEach((section) => {
+        gsap.fromTo(section, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out", scrollTrigger: { trigger: section, start: "top 82%", once: true } });
       });
-      gsap.utils.toArray<HTMLElement>("[data-motion-visual]").forEach((visual) => {
-        gsap.fromTo(visual, { clipPath: "inset(0 0 14% 0)" }, { clipPath: "inset(0 0 0% 0)", duration: 0.9, ease: "power2.out", scrollTrigger: { trigger: visual, start: "top 78%", once: true } });
+      root.querySelectorAll<HTMLElement>(".bd-cloud-topology__connector").forEach((line, index) => {
+        gsap.fromTo(line, { scaleY: 0 }, { scaleY: 1, duration: 0.6, delay: index * 0.08, ease: "expo.out", scrollTrigger: { trigger: line.closest(".bd-cloud-visual"), start: "top 78%", once: true } });
       });
-      gsap.utils.toArray<HTMLElement>(POST_HERO_FLOW_TARGET).forEach((node, index) => {
-        gsap.fromTo(node, { opacity: 0.45 }, { opacity: 1, duration: 0.35, delay: (index % 6) * 0.05, scrollTrigger: { trigger: node.closest(".bd-system-visual, .bd-cloud-visual"), start: "top 75%", once: true } });
+      root.querySelectorAll<HTMLElement>(POST_HERO_FLOW_TARGET).forEach((node) => {
+        gsap.fromTo(node, { opacity: 0.45 }, { opacity: 1, duration: 0.6, ease: "expo.out", scrollTrigger: { trigger: node.closest(".bd-system-visual, .bd-cloud-visual"), start: "top 75%", once: true } });
       });
     }, root);
     return () => context.revert();
