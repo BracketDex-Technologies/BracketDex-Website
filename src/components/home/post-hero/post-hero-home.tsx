@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   ArrowRightIcon,
-  CheckCircle2Icon,
   Code2Icon,
   PackageCheckIcon,
   ShieldCheckIcon,
@@ -12,11 +11,11 @@ import type { MarketingContent } from "@/content/marketing";
 import { FaqSection } from "@/components/marketing/faq-section";
 import { CloudPanel } from "@/components/home/fresh/cloud-panel";
 import { ProblemSection } from "@/components/home/fresh/problem-section";
+import { ProcessRail } from "@/components/home/fresh/process-rail";
 import { ServicesSection } from "@/components/home/fresh/services-section";
 import { TrustStrip } from "@/components/home/fresh/trust-strip";
 import { buildPostHeroContent } from "./post-hero-content";
 import { PostHeroMotion } from "./post-hero-motion";
-import { SystemVisual } from "./system-visuals";
 
 export const POST_HERO_DESIGN = "dark-systems-lab" as const;
 export const POST_HERO_STARTS_AFTER_HERO = true as const;
@@ -35,55 +34,9 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
 
       <div className="bd-post-dark">
         <div className="content-shell">
-          {postHero.serviceChapters.map((chapter) => (
-            <section
-              className="bd-service-chapter"
-              data-motion-section
-              key={chapter.index}
-              aria-labelledby={`service-${chapter.index}`}
-            >
-              <div className="bd-service-chapter__copy">
-                <span className="bd-chapter-index">{chapter.index}</span>
-                <p className="bd-post-kicker">{chapter.eyebrow}</p>
-                <h2 id={`service-${chapter.index}`}>{chapter.title}</h2>
-                <p className="bd-service-chapter__description">{chapter.description}</p>
-                <ul>
-                  {chapter.capabilities.map((item) => (
-                    <li key={item.title}>
-                      <CheckCircle2Icon aria-hidden="true" />
-                      <span>
-                        <strong>{item.title}</strong>
-                        <small>{item.outcome}</small>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <Link className="bd-post-link" href={chapter.href}>
-                  {chapter.linkLabel}
-                  <ArrowRightIcon aria-hidden="true" />
-                </Link>
-              </div>
-              <div className="bd-service-chapter__visual" data-motion-visual>
-                <SystemVisual variant={chapter.visual} />
-              </div>
-            </section>
-          ))}
-
           <CloudPanel content={content} />
 
-          <section className="bd-delivery" data-motion-section aria-labelledby="delivery-title">
-            <p className="bd-post-kicker">Delivery system</p>
-            <h2 id="delivery-title">From business need to working system</h2>
-            <ol className="bd-delivery-rail">
-              {content.process.map((step) => (
-                <li data-process-step key={step.step}>
-                  <span>{step.step}</span>
-                  <strong>{step.title}</strong>
-                  <p>{step.description}</p>
-                </li>
-              ))}
-            </ol>
-          </section>
+          <ProcessRail content={content} />
 
           <section
             className="bd-capability-index"
