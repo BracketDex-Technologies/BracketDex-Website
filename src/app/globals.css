@@ -1698,3 +1698,37 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
   color: #f4f1ec;
 }
 .bd-fresh-footer__base { margin: 0; padding-block: 1.2rem; font-size: 0.76rem; color: rgb(244 241 236 / 0.45); }
+
+/* Fresh CTA — dark rounded card on light band */
+.bd-fresh-cta { background: #f7f7f4; padding-block: 0 clamp(3.5rem, 6vw, 5.5rem); }
+.bd-fresh-cta__card {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  border-radius: 24px;
+  background: #100e0d;
+  color: #f4f1ec;
+  padding: clamp(2rem, 4vw, 3.5rem);
+}
+@media (min-width: 900px) {
+  .bd-fresh-cta__card { grid-template-columns: minmax(0, 1fr) auto; }
+}
+.bd-fresh-cta__eyebrow { color: #f5b08a; }
+.bd-fresh-cta__card h2 { margin: 1rem 0 0; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.0; letter-spacing: -0.02em; }
+.bd-fresh-cta__card p { margin: 1rem 0 0; max-width: 36rem; color: rgb(244 241 236 / 0.65); line-height: 1.6; }
+.bd-fresh-cta__btn {
+  display: inline-flex;
+  gap: 0.55rem;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 3rem;
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.85rem 1.6rem;
+  color: #100e0d;
+  font-weight: 650;
+  transition: transform 180ms ease;
+}
+.bd-fresh-cta__btn:hover { transform: translateY(-2px); }
+.bd-fresh-cta__btn svg { width: 1rem; }
