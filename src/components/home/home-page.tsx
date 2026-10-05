@@ -41,7 +41,7 @@ export function HomePage({ content }: HomePageProps) {
       <Navbar
         activeHref="/"
         brandName={content.company.name}
-        ctaHref="/contact"
+        ctaHref="#contact"
         ctaLabel={hero.primaryCta}
         items={content.navigation}
         transparentOnHero
@@ -58,10 +58,10 @@ export function HomePage({ content }: HomePageProps) {
             <h1 className="bd-hero-title">{renderHeadline(hero.headline, hero.headlineAccent)}</h1>
             <p className="bd-hero-subtitle">{hero.subheadline}</p>
             <div className="bd-hero-actions">
-              <Link className="bd-hero-primary-cta" href="/contact">
+              <Link className="bd-hero-primary-cta" href="#contact">
                 {hero.primaryCta}
               </Link>
-              <Link className="bd-hero-secondary-cta" href="/services">
+              <Link className="bd-hero-secondary-cta" href="#services">
                 {hero.secondaryCta}
               </Link>
             </div>

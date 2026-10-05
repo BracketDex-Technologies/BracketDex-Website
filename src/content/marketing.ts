@@ -66,12 +66,12 @@ export const marketingContent = {
   },
   navigation: [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: "Solutions", href: "/solutions" },
-    { label: "Projects", href: "/projects" },
-    { label: "Industries", href: "/industries" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { label: "Services", href: "#services" },
+    { label: "Process", href: "#process" },
+    { label: "Industries", href: "#industries" },
+    { label: "Projects", href: "#projects" },
+    { label: "Why Us", href: "#why" },
+    { label: "Contact", href: "#contact" },
   ] satisfies readonly NavigationItem[],
   homepage: {
     hero: {

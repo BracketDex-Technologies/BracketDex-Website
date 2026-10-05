@@ -9,7 +9,7 @@ export const NAVBAR_WORDMARK_DOCK_SELECTOR = "[data-site-wordmark]";
 export const NAVBAR_CONTROL_RADIUS_PX = 8;
 export const NAVBAR_CONTROL_HEIGHT_PX = 32;
 export const NAVBAR_IS_STICKY = true;
-const PRIMARY_NAVIGATION_HREFS = new Set(["/services", "/solutions", "/projects", "/about"]);
+const PRIMARY_NAVIGATION_HREFS = new Set(["#services", "#process", "#industries", "#projects"]);
 
 type NavbarProps = {
   brandName: string;

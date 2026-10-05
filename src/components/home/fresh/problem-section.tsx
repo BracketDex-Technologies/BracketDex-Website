@@ -8,6 +8,7 @@ export function ProblemSection({ content }: { content: MarketingContent }) {
       aria-labelledby="fresh-problems-title"
       className="bd-fresh-problems"
       data-motion-section
+      id="problems"
     >
       <div className="content-shell">
         <p className="bd-fresh-eyebrow">Problems we solve</p>

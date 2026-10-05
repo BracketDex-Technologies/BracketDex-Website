@@ -26,6 +26,7 @@ export function WhySection({ content }: { content: MarketingContent }) {
       aria-labelledby="fresh-why-title"
       className="bd-fresh-why"
       data-motion-section
+      id="why"
     >
       <div className="content-shell">
         <p className="bd-fresh-eyebrow">Why BracketDex</p>

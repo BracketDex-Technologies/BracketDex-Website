@@ -6,6 +6,7 @@ export function ProcessRail({ content }: { content: MarketingContent }) {
       aria-labelledby="fresh-process-title"
       className="bd-fresh-process"
       data-motion-section
+      id="process"
     >
       <p className="bd-fresh-eyebrow bd-fresh-process__eyebrow">Delivery system</p>
       <div className="bd-fresh-process__head">

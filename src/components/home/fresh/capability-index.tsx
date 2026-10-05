@@ -6,6 +6,7 @@ export function CapabilityIndex({ content }: { content: MarketingContent }) {
       aria-labelledby="fresh-capability-title"
       className="bd-fresh-capability"
       data-motion-section
+      id="industries"
     >
       <p className="bd-fresh-eyebrow bd-fresh-capability__eyebrow">Capability index</p>
       <h2 id="fresh-capability-title">Technology depth. Industry context.</h2>

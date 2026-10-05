@@ -1732,3 +1732,18 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
 }
 .bd-fresh-cta__btn:hover { transform: translateY(-2px); }
 .bd-fresh-cta__btn svg { width: 1rem; }
+
+/* Fresh anchors — offset for sticky nav */
+.bd-post-hero section[id] { scroll-margin-top: 5.5rem; }
+
+/* Fresh contact */
+.bd-fresh-contact { background: #fff; padding-block: clamp(3.5rem, 6vw, 5.5rem); border-top: 1px solid #e8e8e2; }
+.bd-fresh-contact__grid { display: grid; gap: 2.5rem; align-items: start; }
+@media (min-width: 900px) {
+  .bd-fresh-contact__grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+}
+.bd-fresh-contact__grid h2 { margin: 1rem 0 0; font-size: clamp(2rem, 3.6vw, 3.2rem); line-height: 1.02; letter-spacing: -0.02em; color: #171717; }
+.bd-fresh-contact__grid p { margin: 1rem 0 0; max-width: 30rem; color: #666762; line-height: 1.65; }
+.bd-fresh-contact__details { display: grid; gap: 0.3rem; margin-top: 1.5rem; font-style: normal; font-size: 0.9rem; }
+.bd-fresh-contact__details a { width: fit-content; font-weight: 600; color: #1455d9; }
+.bd-fresh-contact__details span { color: #666762; }

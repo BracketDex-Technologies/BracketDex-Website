@@ -2,6 +2,7 @@ import type { MarketingContent } from "@/content/marketing";
 import { FaqSection } from "@/components/marketing/faq-section";
 import { CapabilityIndex } from "@/components/home/fresh/capability-index";
 import { CloudPanel } from "@/components/home/fresh/cloud-panel";
+import { ContactSection } from "@/components/home/fresh/contact-section";
 import { FreshCta } from "@/components/home/fresh/cta-section";
 import { ProblemSection } from "@/components/home/fresh/problem-section";
 import { ProcessRail } from "@/components/home/fresh/process-rail";
@@ -47,6 +48,7 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
       </section>
 
       <FreshCta content={content} />
+      <ContactSection />
     </div>
   );
 }

@@ -9,8 +9,8 @@ import {
 
 const navigation = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Solutions", href: "/solutions" },
+  { label: "Services", href: "#services" },
+  { label: "Process", href: "#process" },
 ] as const;
 
 type Expect<T extends true> = T;
@@ -31,9 +31,9 @@ export type NavbarContract = [
 
 export const navbarContract = (
   <Navbar
-    activeHref="/services"
+    activeHref="#services"
     brandName="BracketDex Technologies"
-    ctaHref="/contact"
+    ctaHref="#contact"
     ctaLabel="Book Consultation"
     items={navigation}
   />

@@ -11,6 +11,7 @@ export function ProjectsPlaceholder({ content }: { content: MarketingContent }) 
       aria-labelledby="fresh-projects-title"
       className="bd-fresh-projects"
       data-motion-section
+      id="projects"
     >
       <div className="content-shell">
         <p className="bd-fresh-eyebrow">Projects</p>
@@ -37,7 +38,7 @@ export function ProjectsPlaceholder({ content }: { content: MarketingContent }) 
             <p>{testimonials.reason}</p>
           </li>
         </ul>
-        <Link className="bd-fresh-projects__link" href="/contact">
+        <Link className="bd-fresh-projects__link" href="#contact">
           Start your project
           <ArrowRightIcon aria-hidden="true" />
         </Link>

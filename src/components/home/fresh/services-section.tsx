@@ -24,6 +24,7 @@ export function ServicesSection({ content }: { content: MarketingContent }) {
       aria-labelledby="fresh-services-title"
       className="bd-fresh-services"
       data-motion-section
+      id="services"
     >
       <div className="content-shell">
         <p className="bd-fresh-eyebrow bd-fresh-services__eyebrow">( Services )</p>
@@ -33,9 +34,6 @@ export function ServicesSection({ content }: { content: MarketingContent }) {
             <br />
             for growing businesses
           </h2>
-          <Link className="bd-fresh-services__all" href="/services">
-            All services
-          </Link>
         </div>
 
         <ul
@@ -52,7 +50,7 @@ export function ServicesSection({ content }: { content: MarketingContent }) {
                   aria-current={isActive ? "true" : undefined}
                   className="bd-fresh-services__row"
                   data-active={isActive}
-                  href="/services"
+                  href="#contact"
                   onBlur={() => setActive(null)}
                   onFocus={() => setActive(i)}
                   onMouseEnter={() => setActive(i)}
