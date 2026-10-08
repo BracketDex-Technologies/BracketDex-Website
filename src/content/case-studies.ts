@@ -14,6 +14,7 @@ export const caseStudies = [
   { name: "Gym Engine", category: "Fitness · Management", summary: "A shared workspace for gym administrators, trainers, and members to manage memberships and progress.", benefit: "Daily gym information organised by role." },
   { name: "Group Trek Bot", category: "Travel · Group planning", summary: "A simple group-code tool for splitting trip expenses and coordinating vehicles and meals.", benefit: "Trip planning without requiring every participant to create an account." },
   { name: "Smart Tap AI", category: "Local business · Customer feedback", summary: "A QR standee and web experience that drafts review suggestions for customers to choose from and edit.", benefit: "An easier starting point for customers who want to share feedback in their own words." },
+  { name: "Schedule Poster Studio", category: "Media · OCR automation", summary: "A local workflow that converts structured schedule documents into editable records and print-ready poster artwork for commercial teams.", benefit: "Consistent vector PDFs, combined documents, and PNG assets from one reviewed source." },
 ] as const;
 
 export const featuredCaseStudies = caseStudies.slice(0, 4);

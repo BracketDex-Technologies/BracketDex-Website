@@ -56,8 +56,8 @@ body {
 .bd-landing .bd-flow-brand { font-family: var(--font-geist-sans), sans-serif; letter-spacing: -.02em; }
 .bd-landing .bd-flow-brand small { font-family: var(--font-geist-sans), sans-serif; font-size: .8125rem; letter-spacing: .03em; }
 .bd-landing .bd-flow-label { font-size: .875rem; line-height: 1.6; }
-.bd-landing .bd-fresh-footer__word { padding-right: clamp(1.5rem, 5vw, 5rem); text-align: right; }
-.bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; max-width: 100%; padding-inline: 0; font-size: clamp(3rem, 10vw, 12rem); font-weight: 400; line-height: .9; letter-spacing: 0; white-space: nowrap; }
+.bd-landing .bd-fresh-footer__word { padding-right: clamp(1rem, 3vw, 3rem); text-align: right; }
+.bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; max-width: 100%; padding-inline: 0; font-size: clamp(1.75rem, 3.5vw, 3.5rem); font-weight: 400; line-height: .9; letter-spacing: 0; white-space: nowrap; }
 .bd-landing :is(code,pre,.bd-cloud-terminal__lines,.bd-cloud-terminal__bar) { font-family: var(--font-geist-mono), ui-monospace, monospace; }
 /* Natural document rhythm: animated titles never determine the page height. */
 .bd-landing .bd-page-hero { min-height: 0; padding-block: 9rem 3rem; }
@@ -75,8 +75,9 @@ body {
 .bd-landing .bd-chapter-rows { min-width: 0; }
 .bd-landing .bd-chapter-row { align-items: start; }
 .bd-landing .bd-chapter-row p { margin-top: .625rem; }
-.bd-landing .bd-page-outro { padding-block: clamp(4rem, 6vw, 6rem); }
-.bd-landing .bd-page-outro h2 { margin-block: 1.5rem 2rem; }
+.bd-landing .bd-page-outro { display: flex; flex-direction: column; align-items: center; gap: clamp(1.5rem, 2.5vw, 2.25rem); padding-block: clamp(4rem, 6vw, 6rem); }
+.bd-landing .bd-page-outro .bd-scene-label,
+.bd-landing .bd-page-outro h2 { margin: 0; }
 .bd-landing .bd-hero-title { font-family: var(--font-home-headline); }
 .bd-landing .bd-hero-title .bd-hero-accent {
   font-family: var(--font-home-accent);
@@ -156,8 +157,8 @@ html[data-theme-transition="circle-blur"] :is(body,.bd-landing,.bd-nav-surface,.
   .bd-landing .bd-nav-surface .bd-nav-inner { width: calc(100% - 2.5rem) !important; min-height: 4rem; }
   .bd-landing .bd-wordmark { font-size: 1.25rem; }
   .bd-landing .bd-wordmark { width: 8.75rem; }
-  .bd-landing .bd-fresh-footer__word { padding-right: 1rem; }
-  .bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; padding-inline: 0; font-size: clamp(3rem, 16vw, 6rem); }
+  .bd-landing .bd-fresh-footer__word { padding-right: .75rem; }
+  .bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; padding-inline: 0; font-size: clamp(1.625rem, 9vw, 2.5rem); }
   .bd-landing .bd-hero-layout { padding-block: 6.5rem 3rem; gap: 3rem; }
   .bd-landing .bd-hero-title { font-size: clamp(2.25rem, 9vw, 3rem); line-height: 1.15; max-width: 17ch; }
   .bd-landing .bd-hero-subtitle { font-size: 1rem; }
@@ -181,5 +182,6 @@ html[data-theme-transition="circle-blur"] :is(body,.bd-landing,.bd-nav-surface,.
   .bd-landing .bd-page-index > :last-child { border-bottom: 0; }
   .bd-landing .bd-chapter-heading { position: static; }
   .bd-landing :is(.bd-chapter-heading h2,.bd-page-outro h2) { font-size: clamp(1.75rem, 7vw, 2.25rem); line-height: 1.22; }
+  .bd-landing .bd-page-outro { gap: 1.5rem; }
   .bd-landing .bd-chapter-row h3 { font-size: 1.125rem; line-height: 1.4; }
 }
