@@ -1,5 +1,6 @@
 /** Short public descriptions. No demo credentials or private operating details. */
 export const caseStudies = [
+  { name: "Kiosk Learning Lab", category: "Education · Interactive experiences", summary: "Kiosk-based interactive learning games designed to help students explore concepts through guided, hands-on activities.", benefit: "Makes educational content more engaging, accessible, and easier to explore in shared spaces." },
   { name: "WiseMelon", category: "Education · Manufacturing", summary: "School ID-card production with online data collection, AI-assisted photo preparation, review, and batch export.", benefit: "Less repetitive preparation for teams working with 50+ schools." },
   { name: "ReManage Society", category: "Housing · SaaS", summary: "One place for society maintenance, resident communication, and visitor management at the gate.", benefit: "Helps committees, residents, and guards coordinate everyday work." },
   { name: "Samavet", category: "Community · Operations", summary: "Digital contribution receipts and event workflows for trusts, temples, mandals, and community groups.", benefit: "Clearer records and easier sharing for organisers and contributors." },
