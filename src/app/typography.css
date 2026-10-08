@@ -57,7 +57,7 @@ body {
 .bd-landing .bd-flow-brand small { font-family: var(--font-geist-sans), sans-serif; font-size: .8125rem; letter-spacing: .03em; }
 .bd-landing .bd-flow-label { font-size: .875rem; line-height: 1.6; }
 .bd-landing .bd-fresh-footer__word { padding-right: clamp(1rem, 3vw, 3rem); text-align: right; }
-.bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; max-width: 100%; padding-inline: 0; font-size: clamp(1.75rem, 3.5vw, 3.5rem); font-weight: 400; line-height: .9; letter-spacing: 0; white-space: nowrap; }
+.bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; max-width: 100%; padding-inline: 0; font-size: 1.5rem; font-weight: 400; line-height: .9; letter-spacing: 0; white-space: nowrap; }
 .bd-landing :is(code,pre,.bd-cloud-terminal__lines,.bd-cloud-terminal__bar) { font-family: var(--font-geist-mono), ui-monospace, monospace; }
 /* Natural document rhythm: animated titles never determine the page height. */
 .bd-landing .bd-page-hero { min-height: 0; padding-block: 9rem 3rem; }
@@ -158,7 +158,7 @@ html[data-theme-transition="circle-blur"] :is(body,.bd-landing,.bd-nav-surface,.
   .bd-landing .bd-wordmark { font-size: 1.25rem; }
   .bd-landing .bd-wordmark { width: 8.75rem; }
   .bd-landing .bd-fresh-footer__word { padding-right: .75rem; }
-  .bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; padding-inline: 0; font-size: clamp(1.625rem, 9vw, 2.5rem); }
+  .bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; padding-inline: 0; font-size: 1.25rem; }
   .bd-landing .bd-hero-layout { padding-block: 6.5rem 3rem; gap: 3rem; }
   .bd-landing .bd-hero-title { font-size: clamp(2.25rem, 9vw, 3rem); line-height: 1.15; max-width: 17ch; }
   .bd-landing .bd-hero-subtitle { font-size: 1rem; }
