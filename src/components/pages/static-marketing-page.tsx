@@ -13,6 +13,7 @@ import { CloudPanel } from "@/components/home/fresh/cloud-panel";
 import { CapabilityIndex } from "@/components/home/fresh/capability-index";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildBreadcrumbJsonLd } from "@/lib/seo";
+import { contactDetails } from "@/lib/site";
 
 type Props = { activeHref?: string; content: StaticPageContent; ctaHref?: string; path: string };
 
@@ -36,7 +37,7 @@ export function StaticMarketingPage({ activeHref, content, ctaHref = "/contact",
           {label.split("").map((letter, index) => <span key={index}>{letter}</span>)}
         </div>
         <div className="bd-page-index">
-          {isContact ? <><a href="mailto:bracketdex@gmail.com">bracketdex@gmail.com ↗</a><span>Pune, India</span></> : isFaq ? <><a href="#answers">Explore the answers ↓</a><Link href="/contact">Ask us a question ↗</Link></> : isProjects ? <><span>Software &amp; automation</span><span>Selected delivery examples</span></> : content.sections.map((section, index) => (
+          {isContact ? <><a href={`mailto:${contactDetails.email}`}>{contactDetails.email} ↗</a><a href={contactDetails.phoneHref}>{contactDetails.phone}</a><span>{contactDetails.location}</span></> : isFaq ? <><a href="#answers">Explore the answers ↓</a><Link href="/contact">Ask us a question ↗</Link></> : isProjects ? <><span>Software &amp; automation</span><span>Selected delivery examples</span></> : content.sections.map((section, index) => (
             <a href={`#chapter-${index + 1}`} key={section.title}><span>{String(index + 1).padStart(2, "0")}</span>{section.label}</a>
           ))}
         </div>
@@ -44,7 +45,7 @@ export function StaticMarketingPage({ activeHref, content, ctaHref = "/contact",
     </section>
     {path === "/industries" && <div className="bd-post-dark"><div className="content-shell"><CapabilityIndex content={marketingContent} /></div></div>}
     {isProjects ? <ProjectsSection all /> : isContact ? <section className="bd-page-chapter content-shell" id="contact">
-      <div className="bd-chapter-heading"><p className="bd-scene-label">Start a conversation</p><h2><ScrollWords text="Let’s discuss your project." /></h2><p>{content.sections[0]?.description}</p><a href="mailto:bracketdex@gmail.com">bracketdex@gmail.com ↗</a></div>
+      <div className="bd-chapter-heading"><p className="bd-scene-label">Start a conversation</p><h2><ScrollWords text="Let’s discuss your project." /></h2><p>{content.sections[0]?.description}</p><a href={`mailto:${contactDetails.email}`}>{contactDetails.email} ↗</a><a href={contactDetails.phoneHref}>{contactDetails.phone}</a></div>
       <div><ContactForm /></div>
     </section> : isFaq ? <section className="bd-page-chapter content-shell" id="answers">
       <div className="bd-chapter-heading"><p className="bd-scene-label">Before we begin</p><h2><ScrollWords text="The details that matter." /></h2></div>

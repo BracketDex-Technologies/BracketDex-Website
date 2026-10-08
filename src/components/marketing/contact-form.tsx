@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { contactDetails } from "@/lib/site";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -43,7 +44,7 @@ export function ContactForm() {
       return;
     }
     const body = `Name: ${values.name}\nEmail: ${values.email}\nCompany: ${values.company || "Not provided"}\n\n${values.message}`;
-    window.location.href = `mailto:bracketdex@gmail.com?subject=${encodeURIComponent("Project enquiry from " + values.name)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${contactDetails.email}?subject=${encodeURIComponent("Project enquiry from " + values.name)}&body=${encodeURIComponent(body)}`;
     window.setTimeout(() => { window.location.href = "/thank-you"; }, 500);
   }
 

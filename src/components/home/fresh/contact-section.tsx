@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/marketing/contact-form";
+import { contactDetails } from "@/lib/site";
 
 export function ContactSection() {
   return (
@@ -12,8 +13,9 @@ export function ContactSection() {
             will review your requirement.
           </p>
           <address className="bd-fresh-contact__details">
-            <a href="mailto:bracketdex@gmail.com">bracketdex@gmail.com</a>
-            <span>Pune, India</span>
+            <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+            <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
+            <span>{contactDetails.location}</span>
           </address>
         </div>
         <ContactForm />

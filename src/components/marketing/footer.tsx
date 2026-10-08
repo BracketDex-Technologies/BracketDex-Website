@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import type { NavigationItem } from "@/content/marketing";
+import { contactDetails } from "@/lib/site";
 import { logoFont } from "./logo-font";
 import { NAVBAR_LOGO_TEXT } from "./navbar";
 
@@ -23,8 +24,9 @@ export function Footer({ brandName, navigation }: FooterProps) {
           <Link className="bd-fresh-footer__link" href="/privacy">Privacy policy</Link>
         </nav>
         <address className="bd-fresh-footer__contact">
-          <a href="mailto:bracketdex@gmail.com">E-mail: bracketdex@gmail.com</a>
-          <span>Pune, India</span>
+          <a href={`mailto:${contactDetails.email}`}>E-mail: {contactDetails.email}</a>
+          <a href={contactDetails.phoneHref}>Mobile: {contactDetails.phone}</a>
+          <span>{contactDetails.location}</span>
         </address>
       </div>
       <p aria-hidden="true" className="bd-fresh-footer__word">
