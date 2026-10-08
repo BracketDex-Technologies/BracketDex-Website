@@ -15,6 +15,7 @@ const contactFormSchema = z.object({
   email: z.string().trim().email("Enter a valid email address."),
   company: z.string().trim().optional(),
   message: z.string().trim().min(10, "Share a short project or business challenge."),
+  website: z.string().max(0).optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -35,10 +36,15 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(values: ContactFormValues) {
+  async function onSubmit(values: ContactFormValues) {
+    const response = await fetch("/api/contact", { body: JSON.stringify(values), headers: { "Content-Type": "application/json" }, method: "POST" });
+    if (!response.ok) {
+      setStatus((await response.json().catch(() => null))?.error ?? "Please try again in a few minutes.");
+      return;
+    }
     const body = `Name: ${values.name}\nEmail: ${values.email}\nCompany: ${values.company || "Not provided"}\n\n${values.message}`;
     window.location.href = `mailto:bracketdex@gmail.com?subject=${encodeURIComponent("Project enquiry from " + values.name)}&body=${encodeURIComponent(body)}`;
-    setStatus("Your email app will open with a draft. Please send it there. If it does not open, email bracketdex@gmail.com directly. Your details remain here.");
+    window.setTimeout(() => { window.location.href = "/thank-you"; }, 500);
   }
 
   return (
@@ -52,6 +58,7 @@ export function ContactForm() {
         Share your requirement below. This opens a draft in your email app; nothing is sent automatically.
       </p>
       <FieldGroup>
+        <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden"><label htmlFor="website">Website</label><Input autoComplete="off" id="website" tabIndex={-1} {...register("website")} /></div>
         <Field data-invalid={Boolean(errors.name)}>
           <FieldLabel htmlFor="name">Name</FieldLabel>
           <Input aria-describedby={errors.name ? "name-error" : undefined} aria-invalid={Boolean(errors.name)} autoComplete="name" id="name" {...register("name")} />

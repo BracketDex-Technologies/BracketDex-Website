@@ -5,6 +5,7 @@ import "@fontsource-variable/manrope";
 import "@fontsource-variable/fraunces/full.css";
 
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
+import { AnalyticsConsent } from "@/components/analytics-consent";
 import { SiteLoader } from "@/components/marketing/site-loader";
 import { SITE_LOADER_SESSION_KEY } from "@/components/marketing/site-loader-config";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
@@ -86,6 +87,7 @@ export default function RootLayout({
             <SiteLoader />
             <ProgressiveTextReveal />
             <ThemeHotkey />
+            <AnalyticsConsent />
             {children}
             <AgentationToolbar />
           </SmoothScroll>

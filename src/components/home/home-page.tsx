@@ -11,6 +11,7 @@ import { buildBreadcrumbJsonLd } from "@/lib/seo";
 import { EditorialMotion } from "./editorial-motion";
 import { StructureFlow } from "./structure-flow";
 import { PostHeroHome } from "./post-hero/post-hero-home";
+import { ReviewsPlaceholder } from "@/components/marketing/reviews-placeholder";
 
 type HomePageProps = {
   content: MarketingContent;
@@ -85,6 +86,7 @@ export function HomePage({ content }: HomePageProps) {
       </div>
 
       <PostHeroHome content={content} />
+      <ReviewsPlaceholder />
 
       <Footer
         brandName={content.company.name}

@@ -12,7 +12,7 @@ import { ProjectsSection } from "@/components/home/fresh/projects-section";
 import { CloudPanel } from "@/components/home/fresh/cloud-panel";
 import { CapabilityIndex } from "@/components/home/fresh/capability-index";
 import { JsonLd } from "@/components/seo/json-ld";
-import { buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo";
+import { buildBreadcrumbJsonLd } from "@/lib/seo";
 
 type Props = { activeHref?: string; content: StaticPageContent; ctaHref?: string; path: string };
 
@@ -23,7 +23,6 @@ export function StaticMarketingPage({ activeHref, content, ctaHref = "/contact",
   const label = content.eyebrow.toUpperCase();
   return <main className="bd-landing bd-inner-page" data-page={path.slice(1)} id="main-content" tabIndex={-1}>
     <JsonLd data={buildBreadcrumbJsonLd(path)} />
-    {isFaq && <JsonLd data={buildFaqJsonLd()} />}
     <ScrollChoreography />
     <Navbar activeHref={activeHref ?? path} brandName={marketingContent.company.name} ctaHref="/contact" ctaLabel="Let’s talk ↗" items={siteNavigation} />
     <section className="bd-page-hero">

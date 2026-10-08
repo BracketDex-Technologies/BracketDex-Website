@@ -284,4 +284,40 @@ export const pageContent = {
       },
     ],
   },
+  privacy: {
+    title: "Privacy Policy",
+    description:
+      "A plain-language template explaining the information BracketDex collects through this website and how it is used.",
+    eyebrow: "Privacy",
+    primaryCta: "Contact Us",
+    sections: [
+      {
+        label: "Scope",
+        title: "A practical privacy template",
+        description:
+          "This page is a template for review before launch. It should be updated if the website adds a CRM, email provider, payments, chat, advertising, or other data processor.",
+      },
+      {
+        label: "What We Collect",
+        title: "Information you choose to share",
+        cards: [
+          { title: "Contact form", description: "Name, email address, optional company name, and project message are collected to prepare a project enquiry." },
+          { title: "Preferences", description: "A local browser preference records whether optional analytics consent was accepted or declined. The theme preference is also stored locally." },
+          { title: "Analytics", description: "Google Analytics is loaded only after consent and only when a real NEXT_PUBLIC_GA_MEASUREMENT_ID is configured." },
+        ],
+      },
+      {
+        label: "Use",
+        title: "Why we use this information",
+        description:
+          "We use enquiry details to respond to project requests, prevent abusive form traffic, and improve the website when optional analytics has been accepted. We do not sell enquiry information.",
+      },
+      {
+        label: "Review",
+        title: "Please confirm before publishing",
+        description:
+          "This is not legal advice. Confirm the final policy, retention periods, data processors, business address, and applicable rights with your legal adviser before launch.",
+      },
+    ],
+  },
 } as const satisfies Record<string, StaticPageContent>;

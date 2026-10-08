@@ -20,6 +20,7 @@ export function Footer({ brandName, navigation }: FooterProps) {
               {item.label === "Contact" ? "Contact us" : item.label}
             </Link>
           ))}
+          <Link className="bd-fresh-footer__link" href="/privacy">Privacy policy</Link>
         </nav>
         <address className="bd-fresh-footer__contact">
           <a href="mailto:bracketdex@gmail.com">E-mail: bracketdex@gmail.com</a>
