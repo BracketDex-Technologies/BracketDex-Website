@@ -70,6 +70,7 @@ export function StructureFlow() {
       sculpture.add(codePlane);
       const totalCharacters = CODE_LINES.reduce((sum, line) => sum + line.length, 0);
       const typing = { characters: 0, cursor: 1 };
+      let isLight = !document.documentElement.classList.contains("dark");
       const codeFontFamily = getComputedStyle(element).getPropertyValue("--font-geist-mono").trim() || "monospace";
       const paintCode = () => {
         if (!context) return;
@@ -80,7 +81,7 @@ export function StructureFlow() {
         let cursorPlaced = false;
         CODE_LINES.forEach((line, index) => {
           const y = 100 + index * 82;
-          context.fillStyle = "#797d88";
+          context.fillStyle = isLight ? "#525866" : "#797d88";
           context.font = `28px ${codeFontFamily}`;
           context.fillText(String(index + 1).padStart(2, "0"), 20, y);
           context.font = `78px ${codeFontFamily}`;
@@ -88,12 +89,15 @@ export function StructureFlow() {
           const tokens = visibleText.match(/"[^"]*"?|\bconst\b|\bmap\b|=>|[^"\s]+|\s+/g) ?? [];
           let x = 90;
           for (const token of tokens) {
-            context.fillStyle = token.startsWith('"') ? "#A8D9C5" : token === "const" || token === "=>" ? "#B8C7FF" : token.startsWith("stack.map") ? "#B8C7FF" : "#FAF9F6";
+            context.fillStyle = token.startsWith('"') ? (isLight ? "#166859" : "#A8D9C5")
+              : token === "const" || token === "=>" ? (isLight ? "#2448C8" : "#B8C7FF")
+              : token.startsWith("stack.map") ? (isLight ? "#7541A0" : "#B8C7FF")
+              : (isLight ? "#273244" : "#FAF9F6");
             context.fillText(token, x, y);
             x += context.measureText(token).width;
           }
           if (!cursorPlaced && remaining <= line.length) {
-            context.fillStyle = `rgba(184,199,255,${typing.cursor})`;
+            context.fillStyle = isLight ? `rgba(36,72,200,${typing.cursor})` : `rgba(184,199,255,${typing.cursor})`;
             context.fillRect(x + 4, y - 32, 4, 64);
             cursorPlaced = true;
           }
@@ -118,6 +122,19 @@ export function StructureFlow() {
       let frame = 0;
       let visible = true;
       const draw = () => renderer.render(scene, camera);
+      const updateTheme = () => {
+        isLight = !document.documentElement.classList.contains("dark");
+        bracketMaterial.color.set(isLight ? 0x303849 : 0xc7d0df);
+        bracketMaterial.metalness = isLight ? 0.35 : 0.65;
+        bracketMaterial.roughness = isLight ? 0.32 : 0.22;
+        renderer.toneMappingExposure = isLight ? 1 : 1.5;
+        key.intensity = isLight ? 3 : 5;
+        paintCode();
+        draw();
+      };
+      const themeObserver = new MutationObserver(updateTheme);
+      themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+      updateTheme();
       // Canvas text must explicitly load the face; CSS inheritance only covers DOM text.
       // Repaint even when reduced motion has stopped the animation loop.
       void document.fonts.load(`78px ${codeFontFamily}`, CODE_LINES.join(" ")).then(() => {
@@ -166,6 +183,7 @@ export function StructureFlow() {
       cleanup = () => {
         cancelAnimationFrame(frame);
         codeTimeline.kill();
+        themeObserver.disconnect();
         resize.disconnect(); intersection.disconnect();
         document.removeEventListener("visibilitychange", sync);
         reduced.removeEventListener("change", sync);

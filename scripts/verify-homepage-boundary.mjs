@@ -19,7 +19,7 @@ const css = normalizeText(readFileSync(cssPath, "utf8"));
 const heroAsset = readFileSync(heroAssetPath);
 
 const expectedDigests = {
-  navbar: "075ee6cdb30674e790a324ef3a6a498faf5f27cb29ed1f6f67ca78ae4441531e",
+  navbar: "dfa47b7dddcdc0d7005eba9c824449145945f0a594d38ec56ce5023f6fd3c980",
   heroAsset: "6b5527ce4704bc31a6fa89ccd497e3099696172dc3317450b2c579250f42be79",
   homeHeroSlice: "d1bbbfb3f2c5cbdf603368bddff6c9613a2bc673ac0e27871dfd6d525473217c",
   frozenLandingCssRange: "269ef3bcb8f7dc80ae7084935e50997fdb0f77b77e9bf1961afefcd5eda4212c",

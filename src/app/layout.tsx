@@ -11,6 +11,7 @@ import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { ProgressiveTextReveal } from "@/components/motion-primitives/progressive-text-reveal";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ThemeHotkey } from "@/components/theme-hotkey";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
@@ -20,6 +21,7 @@ import "./editorial.css";
 import "./scroll-pages.css";
 import "./premium.css";
 import "./typography.css";
+import "./light-theme.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -64,6 +66,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <ThemeProvider>
+          <ThemeToggle />
           <SmoothScroll root lerp={0.06} duration={1.6} wheelMultiplier={0.8}>
             <a className="skip-link" href="#main-content">
               Skip to main content

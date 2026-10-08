@@ -20,6 +20,7 @@ body {
 .bd-landing .bd-wordmark { font-family: var(--font-geist-sans), sans-serif; font-weight: 600; font-size: 1.5rem; letter-spacing: -.04em; }
 .bd-landing .bd-wordmark { width: 10.75rem; color: currentColor; }
 .bd-landing .bd-wordmark::before, .bd-landing .bd-wordmark::after { content: none; }
+.bd-landing .bd-nav-surface .bd-wordmark { width: auto; font-weight: 400; letter-spacing: 0; white-space: nowrap; }
 .bd-pixel-wordmark { display: block; width: 100%; height: auto; color: currentColor; overflow: visible; }
 .bd-landing .bd-nav-surface :is(.bd-nav-link,.bd-nav-cta) { font-size: .875rem; line-height: 1.5; }
 .bd-landing .bd-hero-title { font-size: clamp(2.5rem, 4.5vw, 4.5rem); line-height: 1.12; font-weight: 600; letter-spacing: -.045em; }
@@ -112,11 +113,18 @@ body {
 .bd-landing .bd-post-hero .bd-manifesto h2 { max-width: 19ch; font-size: clamp(2.75rem, 6vw, 6rem); line-height: 1.06; font-weight: 500; letter-spacing: -.045em; }
 .bd-landing .bd-post-hero .bd-manifesto .bd-scene-label { color: #B8C7FF; }
 .bd-landing .bd-site-loader-text .bd-pixel-wordmark { width: clamp(16rem, 42vw, 24rem); }
-.bd-theme-toggle { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 1px solid currentColor; border-radius: 999px; color: inherit; background: transparent; cursor: pointer; transition: transform .25s ease, background-color .35s ease, color .35s ease, border-color .35s ease; }
-.bd-theme-toggle:hover { transform: rotate(-12deg); background: rgb(49 91 255 / 12%); }
+.bd-theme-toggle { position: fixed; right: max(22px, env(safe-area-inset-right)); bottom: max(22px, env(safe-area-inset-bottom)); z-index: 80; display: inline-grid; place-items: center; width: 52px; height: 52px; padding: 0; border: 1px solid #DEDFDA; border-radius: 50%; color: #315BFF; background: #FAF9F6; box-shadow: 0 12px 30px rgb(21 22 25 / 24%); cursor: pointer; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.bd-theme-toggle:hover { transform: translateY(-3px); background: #315BFF; color: #FAF9F6; }
+.dark .bd-theme-toggle { background: #20232D; border-color: #414859; color: #B8C7FF; }
+.dark .bd-theme-toggle:hover { background: #B8C7FF; color: #20232D; }
+.bd-theme-toggle:focus-visible { outline: 3px solid #315BFF; outline-offset: 4px; }
+@media (max-width: 520px) { .bd-theme-toggle { right: max(14px, env(safe-area-inset-right)); bottom: max(14px, env(safe-area-inset-bottom)); width: 46px; height: 46px; } }
 html, body, .bd-landing, .bd-nav-surface, .bd-hero, .bd-manifesto, .bd-fresh-footer { transition: background-color .55s ease, color .55s ease, border-color .55s ease; }
-html[data-theme-transition]::before { position: fixed; inset: 0; z-index: 9999; pointer-events: none; content: ""; background: radial-gradient(circle at var(--theme-x, 92%) var(--theme-y, 8%), rgb(49 91 255 / 22%), transparent 0 13%, rgb(250 249 246 / 12%) 28%, transparent 47%); animation: bd-theme-wipe .72s cubic-bezier(.22,.8,.24,1) both; }
-@keyframes bd-theme-wipe { from { opacity: 0; transform: scale(.1); } 35% { opacity: 1; } to { opacity: 0; transform: scale(2.8); } }
+html[data-theme-transition="circle-blur"]::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+html[data-theme-transition="circle-blur"]::view-transition-new(root) { animation: bd-circle-blur-reveal 700ms cubic-bezier(.4,0,.2,1); mix-blend-mode: normal; }
+html[data-theme-transition="circle-blur"] :is(body,.bd-landing,.bd-nav-surface,.bd-hero,.bd-manifesto,.bd-fresh-footer) { transition: none; }
+@keyframes bd-circle-blur-reveal { from { clip-path: circle(0% at var(--bd-theme-origin,100% 100%)); filter: blur(8px); } to { clip-path: circle(150% at var(--bd-theme-origin,100% 100%)); filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { .bd-theme-toggle { transition: none; } .bd-theme-toggle:hover { transform: none; } }
 .bd-landing .bd-fresh-cta { padding-block: clamp(3rem, 5vw, 4.5rem); }
 .bd-landing .bd-fresh-cta__card { padding: clamp(2.5rem, 5vw, 4rem); }
 .bd-landing .bd-fresh-services { padding-block: clamp(3.5rem, 5vw, 5rem); }

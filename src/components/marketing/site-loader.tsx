@@ -3,15 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { logoFont } from "./logo-font";
 
-import { NAVBAR_WORDMARK_DOCK_SELECTOR } from "./navbar";
+import { NAVBAR_LOGO_TEXT, NAVBAR_WORDMARK_DOCK_SELECTOR } from "./navbar";
 import {
   SITE_LOADER_DURATION_MS,
   SITE_LOADER_SESSION_KEY,
 } from "./site-loader-config";
-import { PixelWordmark } from "./pixel-wordmark";
 
 gsap.registerPlugin(useGSAP);
+
+const LETTERS = NAVBAR_LOGO_TEXT.split("");
 
 export function SiteLoader() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -131,12 +133,22 @@ export function SiteLoader() {
       ref={rootRef}
       role="status"
     >
-      <div className="bd-site-loader-mark" ref={markRef}>
+      <div className="bd-site-loader-mark" ref={markRef} style={{ fontFamily: logoFont.style.fontFamily }}>
+        <span aria-hidden="true" className="bd-site-loader-bracket">
+          {"{"}
+        </span>
         <span className="bd-site-loader-word" aria-hidden="true">
           <span className="bd-site-loader-text">
-            <PixelWordmark />
+            {LETTERS.map((letter, index) => (
+              <span className="bd-site-loader-letter" key={`${letter}-${index}`}>
+                {letter}
+              </span>
+            ))}
             <span aria-hidden="true" className="bd-site-loader-underline" />
           </span>
+        </span>
+        <span aria-hidden="true" className="bd-site-loader-bracket">
+          {"}"}
         </span>
       </div>
       <span className="sr-only">Loading BracketDex Technologies</span>
