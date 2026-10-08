@@ -3,6 +3,8 @@ import Link from "next/link";
 import type { NavigationItem } from "@/content/marketing";
 import { cn } from "@/lib/utils";
 import { NavbarScrollState } from "./navbar-scroll-state";
+import { PixelWordmark } from "./pixel-wordmark";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export const NAVBAR_LOGO_TEXT = "BracketDex";
 export const NAVBAR_WORDMARK_DOCK_SELECTOR = "[data-site-wordmark]";
@@ -42,9 +44,7 @@ export function Navbar({
           className="bd-brand-link shrink-0"
           aria-label={`${brandName} home`}
         >
-          <span aria-hidden="true" className="bd-wordmark" data-site-wordmark>
-            {NAVBAR_LOGO_TEXT}
-          </span>
+          <span aria-hidden="true" className="bd-wordmark" data-site-wordmark><PixelWordmark /></span>
           <span className="sr-only">{brandName}</span>
         </Link>
 
@@ -77,6 +77,7 @@ export function Navbar({
             <span aria-hidden="true" className="bd-nav-cta-surface absolute inset-0" />
             <span className="relative z-10">{ctaLabel}</span>
           </Link>
+          <ThemeToggle />
         </div>
 
         <details className="bd-mobile-menu group">
@@ -109,6 +110,7 @@ export function Navbar({
               >
                 {ctaLabel}
               </Link>
+              <ThemeToggle />
             </div>
           </div>
         </details>

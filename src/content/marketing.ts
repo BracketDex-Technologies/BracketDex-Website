@@ -75,7 +75,6 @@ export const marketingContent = {
   ] satisfies readonly NavigationItem[],
   homepage: {
     hero: {
-      eyebrow: "SaaS for MSMEs",
       headline: "AI that works for the business you’ve built.",
       headlineAccent: "you’ve built.",
       subheadline:

@@ -105,6 +105,8 @@
 .bd-landing .bd-fresh-footer a { color: #B1B4BE; }
 .bd-landing .bd-fresh-footer a:hover { color: #FFFFFF; }
 .bd-landing { --destructive: #B42318; --destructive-foreground: #FFFFFF; }
+.bd-theme-toggle { color: #FAF9F6; border-color: #383A42; }
+.bd-landing.bd-inner-page .bd-theme-toggle { color: #151619; border-color: #DEDFDA; }
 .bd-landing form { border-radius: 12px; box-shadow: none; border: 1px solid #DEDFDA; background: #FFFFFF; color: #151619; }
 .bd-landing form :is(input,textarea) { background: #FFFFFF; color: #151619; border-radius: 8px; box-shadow: none; }
 .bd-landing form input { min-height: 44px; }
@@ -123,6 +125,21 @@
 .bd-page-chapter--mission .bd-chapter-row { border-color: #383A42; }
 .bd-page-chapter--mission .bd-chapter-row:hover { background: #222328; }
 .bd-page-chapter--mission .bd-chapter-row > span:last-child { color: #B8C7FF; }
+html:not(.dark) .bd-landing .bd-nav-surface { color: #151619 !important; background: rgb(250 249 246 / 94%); border-color: #DEDFDA; }
+html:not(.dark) .bd-landing .bd-nav-surface .bd-nav-link { color: #62656D !important; }
+html:not(.dark) .bd-landing .bd-nav-surface .bd-nav-cta { color: #151619 !important; }
+html:not(.dark) .bd-landing .bd-nav-surface .bd-nav-cta-surface { border-color: #DEDFDA; background: #FFFFFF !important; }
+html:not(.dark) .bd-landing .bd-mobile-toggle { color: #151619; }
+html:not(.dark) .bd-landing .bd-mobile-panel { background: #FFFFFF; border-color: #DEDFDA; }
+html:not(.dark) .bd-landing .bd-mobile-link { color: #151619; }
+html:not(.dark) .bd-landing .bd-hero { background: #FAF9F6; color: #151619; }
+html:not(.dark) .bd-landing .bd-hero-title { color: #151619; }
+html:not(.dark) .bd-landing .bd-hero-accent, html:not(.dark) .bd-landing .bd-hero-accent .bd-hero-word { color: #315BFF; }
+html:not(.dark) .bd-landing .bd-hero-subtitle { color: #62656D; }
+html:not(.dark) .bd-landing .bd-hero-secondary-cta { color: #151619; border-color: #B1B4BE; }
+html:not(.dark) .bd-landing .bd-manifesto { background: #EEF1FF; color: #151619; }
+html:not(.dark) .bd-landing .bd-manifesto .bd-scene-label { color: #315BFF; }
+html:not(.dark) .bd-landing .bd-fresh-footer { background: #151619; color: #FAF9F6; }
 html.bd-progressive-text-active #main-content.bd-landing :is(h1,h2,h3,p,a,li,summary),
 html.bd-progressive-text-active #main-content .bd-nav-cta > span:last-child { opacity: 1; filter: none; transition: none; }
 @media (max-width: 1023px) {

@@ -18,6 +18,9 @@ body {
 .bd-landing .content-shell { width: min(calc(100% - 4rem), 75rem); }
 .bd-landing .bd-nav-surface .bd-nav-inner { width: min(calc(100% - 4rem), 75rem) !important; min-height: 5rem; }
 .bd-landing .bd-wordmark { font-family: var(--font-geist-sans), sans-serif; font-weight: 600; font-size: 1.5rem; letter-spacing: -.04em; }
+.bd-landing .bd-wordmark { width: 10.75rem; color: currentColor; }
+.bd-landing .bd-wordmark::before, .bd-landing .bd-wordmark::after { content: none; }
+.bd-pixel-wordmark { display: block; width: 100%; height: auto; color: currentColor; overflow: visible; }
 .bd-landing .bd-nav-surface :is(.bd-nav-link,.bd-nav-cta) { font-size: .875rem; line-height: 1.5; }
 .bd-landing .bd-hero-title { font-size: clamp(2.5rem, 4.5vw, 4.5rem); line-height: 1.12; font-weight: 600; letter-spacing: -.045em; }
 .bd-landing .bd-hero-subtitle { font-size: 1.0625rem; line-height: 1.7; margin-top: 1.5rem; }
@@ -72,7 +75,6 @@ body {
 .bd-landing .bd-chapter-row p { margin-top: .625rem; }
 .bd-landing .bd-page-outro { padding-block: clamp(4rem, 6vw, 6rem); }
 .bd-landing .bd-page-outro h2 { margin-block: 1.5rem 2rem; }
-/* Self-hosted OFL alternatives: geometric Manrope and a single soft-serif accent. */
 .bd-landing .bd-hero-title { font-family: var(--font-home-headline); }
 .bd-landing .bd-hero-title .bd-hero-accent {
   font-family: var(--font-home-accent);
@@ -105,6 +107,16 @@ body {
 .bd-landing .bd-fresh-process--compact .bd-fresh-process__rail { grid-template-columns: repeat(3,minmax(0,1fr)); }
 .bd-landing .bd-fresh-process--compact { padding-block: clamp(3rem, 5vw, 4.5rem); }
 .bd-landing .bd-post-hero .bd-post-dark { padding-bottom: 0; }
+.bd-landing .bd-post-hero .bd-manifesto { height: 112svh; background: #151619; color: #FAF9F6; }
+.bd-landing .bd-post-hero .bd-manifesto-sticky { min-height: 100svh; padding-block: 6rem 3rem; }
+.bd-landing .bd-post-hero .bd-manifesto h2 { max-width: 19ch; font-size: clamp(2.75rem, 6vw, 6rem); line-height: 1.06; font-weight: 500; letter-spacing: -.045em; }
+.bd-landing .bd-post-hero .bd-manifesto .bd-scene-label { color: #B8C7FF; }
+.bd-landing .bd-site-loader-text .bd-pixel-wordmark { width: clamp(16rem, 42vw, 24rem); }
+.bd-theme-toggle { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 1px solid currentColor; border-radius: 999px; color: inherit; background: transparent; cursor: pointer; transition: transform .25s ease, background-color .35s ease, color .35s ease, border-color .35s ease; }
+.bd-theme-toggle:hover { transform: rotate(-12deg); background: rgb(49 91 255 / 12%); }
+html, body, .bd-landing, .bd-nav-surface, .bd-hero, .bd-manifesto, .bd-fresh-footer { transition: background-color .55s ease, color .55s ease, border-color .55s ease; }
+html[data-theme-transition]::before { position: fixed; inset: 0; z-index: 9999; pointer-events: none; content: ""; background: radial-gradient(circle at var(--theme-x, 92%) var(--theme-y, 8%), rgb(49 91 255 / 22%), transparent 0 13%, rgb(250 249 246 / 12%) 28%, transparent 47%); animation: bd-theme-wipe .72s cubic-bezier(.22,.8,.24,1) both; }
+@keyframes bd-theme-wipe { from { opacity: 0; transform: scale(.1); } 35% { opacity: 1; } to { opacity: 0; transform: scale(2.8); } }
 .bd-landing .bd-fresh-cta { padding-block: clamp(3rem, 5vw, 4.5rem); }
 .bd-landing .bd-fresh-cta__card { padding: clamp(2.5rem, 5vw, 4rem); }
 .bd-landing .bd-fresh-services { padding-block: clamp(3.5rem, 5vw, 5rem); }
@@ -119,6 +131,9 @@ body {
 @media (max-width: 699px) { .bd-landing.bd-inner-page .bd-fresh-projects__grid { grid-template-columns: minmax(0,1fr); } }
 @media (max-width: 767px) {
   .bd-landing .bd-fresh-process--compact .bd-fresh-process__rail { grid-template-columns: minmax(0,1fr); }
+  .bd-landing .bd-post-hero .bd-manifesto { height: 105svh; }
+  .bd-landing .bd-post-hero .bd-manifesto-sticky { min-height: 100svh; padding-block: 5.5rem 2.5rem; }
+  .bd-landing .bd-post-hero .bd-manifesto h2 { font-size: clamp(2.35rem, 10vw, 4rem); }
   .bd-landing .bd-fresh-services__row { grid-template-columns: 2rem minmax(0,1fr) 2.25rem; gap: .4rem .75rem; padding: 1.25rem 0; }
   .bd-landing .bd-fresh-services__title { font-size: 1.125rem; line-height: 1.35; }
   .bd-landing .bd-fresh-services__desc { grid-column: 2; grid-row: 2; line-height: 1.55; }
@@ -131,6 +146,7 @@ body {
   .bd-landing .content-shell { width: calc(100% - 2.5rem); }
   .bd-landing .bd-nav-surface .bd-nav-inner { width: calc(100% - 2.5rem) !important; min-height: 4rem; }
   .bd-landing .bd-wordmark { font-size: 1.25rem; }
+  .bd-landing .bd-wordmark { width: 8.75rem; }
   .bd-landing .bd-hero-layout { padding-block: 6.5rem 3rem; gap: 3rem; }
   .bd-landing .bd-hero-title { font-size: clamp(2.25rem, 9vw, 3rem); line-height: 1.15; max-width: 17ch; }
   .bd-landing .bd-hero-subtitle { font-size: 1rem; }

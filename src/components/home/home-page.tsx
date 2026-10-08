@@ -67,7 +67,6 @@ export function HomePage({ content }: HomePageProps) {
 
         <section className="content-shell bd-hero-layout">
           <div className="bd-hero-copy">
-            <p className="bd-hero-eyebrow">{hero.eyebrow}</p>
             <h1 className="bd-hero-title" aria-label={hero.headline}>
               <span aria-hidden="true">{renderHeadline(hero.headline, hero.headlineAccent)}</span>
             </h1>
