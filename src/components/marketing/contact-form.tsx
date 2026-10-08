@@ -25,7 +25,6 @@ export function ContactForm() {
     formState: { errors, isSubmitting },
     handleSubmit,
     register,
-    reset,
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -36,9 +35,10 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit() {
-    setStatus("Thanks. Your project details are ready for review.");
-    reset();
+  function onSubmit(values: ContactFormValues) {
+    const body = `Name: ${values.name}\nEmail: ${values.email}\nCompany: ${values.company || "Not provided"}\n\n${values.message}`;
+    window.location.href = `mailto:bracketdex@gmail.com?subject=${encodeURIComponent("Project enquiry from " + values.name)}&body=${encodeURIComponent(body)}`;
+    setStatus("Your email app will open with a draft. Please send it there. If it does not open, email bracketdex@gmail.com directly. Your details remain here.");
   }
 
   return (
@@ -48,8 +48,8 @@ export function ContactForm() {
       noValidate
       onSubmit={handleSubmit(onSubmit)}
     >
-      <p className="sr-only" id="contact-form-description">
-        Share your name, email, company, and project message so BracketDex can review your requirement.
+      <p className="mb-6 text-sm text-muted-foreground" id="contact-form-description">
+        Share your requirement below. This opens a draft in your email app; nothing is sent automatically.
       </p>
       <FieldGroup>
         <Field data-invalid={Boolean(errors.name)}>
@@ -72,7 +72,7 @@ export function ContactForm() {
           <FieldError errors={[errors.message]} id="message-error" />
         </Field>
         <Button aria-disabled={isSubmitting || undefined} disabled={isSubmitting} type="submit">
-          {isSubmitting ? "Submitting…" : "Submit Project Details"}
+          {isSubmitting ? "Preparing…" : "Prepare Email Enquiry"}
         </Button>
         {status ? (
           <p aria-live="polite" className="text-sm leading-6 text-muted-foreground" role="status">

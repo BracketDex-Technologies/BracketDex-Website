@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/fraunces/full.css";
 
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { SiteLoader } from "@/components/marketing/site-loader";
@@ -13,18 +16,10 @@ import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
-
-const array = localFont({
-  src: "../assets/fonts/Array-Regular.woff2",
-  variable: "--font-array",
-  display: "swap",
-});
-
-const alpino = localFont({
-  src: "../assets/fonts/Alpino-Variable.woff2",
-  variable: "--font-alpino",
-  display: "swap",
-});
+import "./editorial.css";
+import "./scroll-pages.css";
+import "./premium.css";
+import "./typography.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -67,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${alpino.variable} ${array.variable}`}>
+      <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <ThemeProvider>
           <SmoothScroll root lerp={0.06} duration={1.6} wheelMultiplier={0.8}>
             <a className="skip-link" href="#main-content">

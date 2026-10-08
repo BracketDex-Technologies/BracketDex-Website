@@ -5,11 +5,11 @@ import { marketingContent } from "@/content/marketing";
 
 type Expect<T extends true> = T;
 
-type HeroPlacementIsCentered = typeof HOMEPAGE_HERO_PLACEMENT extends "centered" ? true : false;
+type HeroPlacementIsSplit = typeof HOMEPAGE_HERO_PLACEMENT extends "split" ? true : false;
 type PostHeroStartsAfterHero = typeof POST_HERO_STARTS_AFTER_HERO extends true ? true : false;
 
 export type HomePageHeroFeedbackContract = [
-  Expect<HeroPlacementIsCentered>,
+  Expect<HeroPlacementIsSplit>,
   Expect<PostHeroStartsAfterHero>,
 ];
 

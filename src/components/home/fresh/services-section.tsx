@@ -50,7 +50,7 @@ export function ServicesSection({ content }: { content: MarketingContent }) {
                   aria-current={isActive ? "true" : undefined}
                   className="bd-fresh-services__row"
                   data-active={isActive}
-                  href="#contact"
+                  href="/contact"
                   onBlur={() => setActive(null)}
                   onFocus={() => setActive(i)}
                   onMouseEnter={() => setActive(i)}

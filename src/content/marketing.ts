@@ -52,7 +52,7 @@ export type ProblemGroup = {
 export const marketingContent = {
   company: {
     name: "BracketDex Technologies",
-    tagline: "Engineering Solutions For Growing Businesses.",
+    tagline: "AI that works for the business you’ve built.",
     positioning: "Software Development & Technology Solutions Partner.",
     shortDescription:
       "BracketDex Technologies is a software development and technology solutions company helping businesses build, automate, and scale through modern software and AI solutions.",
@@ -75,9 +75,9 @@ export const marketingContent = {
   ] satisfies readonly NavigationItem[],
   homepage: {
     hero: {
-      eyebrow: "Software · AI · Automation",
-      headline: "Software that grows your business",
-      headlineAccent: "grows",
+      eyebrow: "SaaS for MSMEs",
+      headline: "AI that works for the business you’ve built.",
+      headlineAccent: "you’ve built.",
       subheadline:
         "BracketDex designs, builds, and automates custom software, AI, and cloud systems — so growing businesses run leaner and move faster.",
       primaryCta: "Book a consultation",

@@ -9,7 +9,7 @@ export const NAVBAR_WORDMARK_DOCK_SELECTOR = "[data-site-wordmark]";
 export const NAVBAR_CONTROL_RADIUS_PX = 8;
 export const NAVBAR_CONTROL_HEIGHT_PX = 32;
 export const NAVBAR_IS_STICKY = true;
-const PRIMARY_NAVIGATION_HREFS = new Set(["#services", "#process", "#industries", "#projects"]);
+const PRIMARY_NAVIGATION_HREFS = new Set(["#services", "#process", "#industries", "#projects", "/services", "/solutions", "/projects", "/about", "/faq"]);
 
 type NavbarProps = {
   brandName: string;
@@ -90,7 +90,7 @@ export function Navbar({
           </summary>
           <div className="bd-mobile-panel absolute right-0 top-12 w-[min(21rem,calc(100vw-2rem))] p-3">
             <div className="flex flex-col gap-1">
-              {navigationItems.map((item) => (
+              {items.filter((item) => item.href !== "/" && item.href !== ctaHref).map((item) => (
                 <Link
                   aria-current={activeHref === item.href ? "page" : undefined}
                   className={cn(

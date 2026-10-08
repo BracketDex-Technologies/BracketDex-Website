@@ -1,4 +1,5 @@
 import { marketingContent } from "./marketing";
+import { caseStudyCards } from "./case-studies";
 
 export type PageCard = {
   title: string;
@@ -23,10 +24,6 @@ export type StaticPageContent = {
 };
 
 const contactCta = "Contact Us";
-const projectPlaceholderCards = marketingContent.projectPlaceholders.map((placeholder) => ({
-  title: placeholder.label,
-  description: placeholder.reason,
-}));
 
 export const pageContent = {
   services: {
@@ -93,10 +90,10 @@ export const pageContent = {
       },
       {
         label: "Case Studies",
-        title: "Proof Requires Real Project Data",
+        title: "Practical Solutions In Action",
         description:
-          "Case studies will be added only after real project names, industries, problems, solutions, technologies, outcomes, and screenshots are available.",
-        cards: projectPlaceholderCards,
+          "From school ID cards to community operations: a glimpse of how we turn recurring work into useful software.",
+        cards: caseStudyCards,
       },
       {
         label: "Why BracketDex",
@@ -132,13 +129,6 @@ export const pageContent = {
     secondaryCta: "View Solutions",
     sections: [
       {
-        label: "Industries",
-        title: "Industry Grid",
-        description:
-          "Domain-aware software and automation for operations, workflows, platforms, and customer experiences.",
-        cards: marketingContent.industries,
-      },
-      {
         label: "Challenges",
         title: "Common Industry Challenges",
         description: "Each industry page should stay focused on real business pain points before proposing technology.",
@@ -152,38 +142,19 @@ export const pageContent = {
         label: "Case Studies",
         title: "Industry Case Studies",
         description:
-          "Industry case studies will remain placeholders until real project details and permission to publish are available.",
-        cards: projectPlaceholderCards,
+          "Selected work across education, community organisations, housing societies, and professional services.",
+        cards: caseStudyCards,
       },
     ],
   },
   projects: {
     title: "Projects & Case Studies",
     description:
-      "Explore software projects, AI solutions, automation systems, and technology case studies delivered by BracketDex Technologies.",
+      "Explore selected software, AI, automation, and digital operations work delivered by BracketDex Technologies.",
     eyebrow: "Projects",
     primaryCta: contactCta,
     secondaryCta: "View Services",
-    sections: [
-      {
-        label: "Portfolio",
-        title: "Case Studies Need Real Evidence",
-        description:
-          "Public project pages should answer what problem existed, what was built, why it was built, and what outcome was achieved.",
-        cards: projectPlaceholderCards,
-      },
-      {
-        label: "Format",
-        title: "Case Study Structure",
-        description: "Every project should follow a consistent format before publication.",
-        list: [
-          "Client, industry, and project category",
-          "Business problem and solution",
-          "Technologies used and measurable results",
-          "Desktop, tablet, and mobile screenshots",
-        ],
-      },
-    ],
+    sections: [],
   },
   about: {
     title: "About BracketDex Technologies",
@@ -223,6 +194,49 @@ export const pageContent = {
           "Innovation",
           "Long-Term Partnership",
           "Continuous Improvement",
+        ],
+      },
+      {
+        label: "Operating Principles",
+        title: "How We Work Together",
+        description:
+          "Seven practical principles keep communication clear, ownership visible, and delivery dependable.",
+        cards: [
+          {
+            title: "DAD / ID",
+            description:
+              "What is not in writing has never been said or discussed. We use DAD — Discuss, Agree, and Document — or ID — Inform and Document — as the situation requires.",
+          },
+          {
+            title: "No SPOFs",
+            description:
+              "We avoid bottlenecks by designing for no single points of failure and sharing context across the team.",
+          },
+          {
+            title: "PQR through Accurate Speed",
+            description:
+              "We deliver Performance, Quality, and Reliability by moving with accuracy and intention.",
+          },
+          {
+            title: "No Negative Bonding",
+            description:
+              "We aim to be the best-performing team by building trust, staying constructive, and refusing to bond through negativity.",
+          },
+          {
+            title: "Know the Why",
+            description:
+              "We understand why we are doing what we are doing. Clarity helps us explain, align, and make better decisions.",
+          },
+          {
+            title: "R u G’ing The JD?",
+            description:
+              "Are we getting the job done? When we find a missing link, we highlight it to the team and take ownership to fix it.",
+          },
+          {
+            title: "Chew, Digest, Deliver",
+            description:
+              "We assess the work on our plate and choose the next items according to our RPK index and SPPS SMART goals, so the other six principles remain achievable.",
+          },
         ],
       },
       {

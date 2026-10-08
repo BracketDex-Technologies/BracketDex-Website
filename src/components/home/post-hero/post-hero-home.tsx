@@ -1,15 +1,8 @@
 import type { MarketingContent } from "@/content/marketing";
-import { FaqSection } from "@/components/marketing/faq-section";
-import { CapabilityIndex } from "@/components/home/fresh/capability-index";
-import { CloudPanel } from "@/components/home/fresh/cloud-panel";
-import { ContactSection } from "@/components/home/fresh/contact-section";
 import { FreshCta } from "@/components/home/fresh/cta-section";
-import { ProblemSection } from "@/components/home/fresh/problem-section";
 import { ProcessRail } from "@/components/home/fresh/process-rail";
-import { ProjectsPlaceholder } from "@/components/home/fresh/projects-placeholder";
+import { ProjectsSection } from "@/components/home/fresh/projects-section";
 import { ServicesSection } from "@/components/home/fresh/services-section";
-import { TrustStrip } from "@/components/home/fresh/trust-strip";
-import { WhySection } from "@/components/home/fresh/why-section";
 import { PostHeroMotion } from "./post-hero-motion";
 
 export const POST_HERO_DESIGN = "dark-systems-lab" as const;
@@ -19,36 +12,14 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
   return (
     <div className="bd-post-hero" data-post-hero-design={POST_HERO_DESIGN}>
       <PostHeroMotion />
-      <TrustStrip content={content} />
-      <ProblemSection content={content} />
       <ServicesSection content={content} />
-
       <div className="bd-post-dark">
         <div className="content-shell">
-          <CloudPanel content={content} />
-
-          <ProcessRail content={content} />
-
-          <CapabilityIndex content={content} />
+          <ProcessRail content={content} compact />
         </div>
       </div>
-
-      <WhySection content={content} />
-      <ProjectsPlaceholder content={content} />
-
-      <section className="bd-post-faq" aria-labelledby="post-faq-title">
-        <div className="content-shell bd-post-faq__grid">
-          <div>
-            <p className="bd-post-kicker">FAQ</p>
-            <h2 id="post-faq-title">Questions, answered clearly.</h2>
-            <p>Direct answers based on documented BracketDex services and working style.</p>
-          </div>
-          <FaqSection defaultOpenFirst items={content.faqs} />
-        </div>
-      </section>
-
+      <ProjectsSection />
       <FreshCta content={content} />
-      <ContactSection />
     </div>
   );
 }

@@ -1,0 +1,158 @@
+/* Shared type and spacing scale. Geist is self-hosted through next/font. */
+body {
+  --font-home-headline: "Manrope Variable", var(--font-geist-sans), sans-serif;
+  --font-home-accent: "Fraunces Variable", Georgia, serif;
+  --font-alpino: var(--font-geist-sans);
+  --font-editorial: var(--font-geist-sans);
+  --font-alliance: var(--font-geist-sans);
+  --font-array: var(--font-geist-sans);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.bd-landing { font-family: var(--font-geist-sans), Arial, sans-serif; }
+.bd-landing :is(h1,h2,h3,h4) { font-family: var(--font-geist-sans), Arial, sans-serif; text-wrap: balance; }
+.bd-landing :is(p,li,dd) { overflow-wrap: break-word; }
+.bd-landing :is(button,input,textarea,select) { font-family: inherit; font-size: 1rem; }
+.bd-landing .content-shell { width: min(calc(100% - 4rem), 75rem); }
+.bd-landing .bd-nav-surface .bd-nav-inner { width: min(calc(100% - 4rem), 75rem) !important; min-height: 5rem; }
+.bd-landing .bd-wordmark { font-family: var(--font-geist-sans), sans-serif; font-weight: 600; font-size: 1.5rem; letter-spacing: -.04em; }
+.bd-landing .bd-nav-surface :is(.bd-nav-link,.bd-nav-cta) { font-size: .875rem; line-height: 1.5; }
+.bd-landing .bd-hero-title { font-size: clamp(2.5rem, 4.5vw, 4.5rem); line-height: 1.12; font-weight: 600; letter-spacing: -.045em; }
+.bd-landing .bd-hero-subtitle { font-size: 1.0625rem; line-height: 1.7; margin-top: 1.5rem; }
+.bd-landing .bd-hero-layout { padding-block: 7.5rem 4rem; }
+.bd-landing :is(.bd-hero-primary-cta,.bd-hero-secondary-cta,.bd-fresh-cta__btn) { font-size: .9375rem; font-weight: 500; }
+.bd-landing .bd-post-hero h2,
+.bd-landing :is(.bd-chapter-heading h2,.bd-page-outro h2) { font-size: clamp(1.875rem, 3.2vw, 3rem); line-height: 1.18; font-weight: 600; letter-spacing: -.035em; }
+.bd-landing .bd-manifesto h2 { font-size: clamp(2rem, 4.5vw, 4rem); line-height: 1.2; max-width: 25ch; }
+.bd-landing .bd-page-intro h1 { font-size: clamp(2rem, 3.8vw, 3.5rem); line-height: 1.15; font-weight: 600; letter-spacing: -.04em; }
+.bd-landing .bd-page-display { font-size: clamp(2rem, 4.5vw, 4rem); font-weight: 600; letter-spacing: -.025em; justify-content: flex-start; gap: 0; line-height: 1.15; padding-block: .2em; }
+.bd-landing .bd-chapter-row h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
+.bd-landing :is(.bd-page-intro > p:last-child,.bd-chapter-heading > p:not(.bd-scene-label),.bd-chapter-row p) { font-size: 1rem; line-height: 1.7; }
+.bd-landing :is(.bd-fresh-eyebrow,.bd-post-kicker,.bd-scene-label,.bd-hero-eyebrow) { font-family: var(--font-geist-sans), sans-serif; font-size: .75rem; line-height: 1.5; font-weight: 600; letter-spacing: .1em; }
+.bd-landing :is(.bd-fresh-problems,.bd-fresh-services,.bd-fresh-why,.bd-fresh-projects,.bd-post-faq,.bd-fresh-contact) { padding-block: clamp(4rem, 6vw, 6rem); }
+.bd-landing :is(.bd-cloud-panel,.bd-fresh-process,.bd-fresh-capability,.bd-page-chapter) { padding-block: clamp(4rem, 6vw, 6rem); scroll-margin-top: 6rem; }
+.bd-landing :is(.bd-fresh-problems__head p,.bd-fresh-problems__card li,.bd-fresh-why__head p,.bd-fresh-why__card p,.bd-fresh-projects__head p,.bd-fresh-projects__card p,.bd-fresh-contact__copy p,.bd-post-faq p,.bd-fresh-cta__card p,.bd-cloud-panel__description,.bd-cloud-panel__groups dd,.bd-fresh-process__head p,.bd-fresh-process__step p) { font-size: 1rem; line-height: 1.65; }
+.bd-landing :is(.bd-fresh-problems__card h3,.bd-fresh-why__card h3,.bd-fresh-projects__card h3) { font-size: 1.125rem; line-height: 1.4; font-weight: 600; letter-spacing: -.01em; }
+.bd-landing .bd-fresh-services__title { font-size: clamp(1.25rem, 2.4vw, 2rem); line-height: 1.3; font-weight: 500; }
+.bd-landing .bd-fresh-services__desc { font-size: 1rem; line-height: 1.6; }
+.bd-landing .bd-fresh-process__step strong { font-size: 1rem; line-height: 1.4; font-weight: 600; }
+.bd-landing .bd-fresh-trust__text :is(strong,small) { font-size: 1rem; line-height: 1.55; }
+.bd-landing .bd-fresh-capability h2 { max-width: 24ch; margin-top: 1rem; }
+.bd-landing .bd-fresh-capability__grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 3rem; margin-top: 2.5rem; align-items: start; }
+.bd-landing .bd-fresh-capability__grid > div { min-width: 0; }
+.bd-landing .bd-fresh-capability__grid h3 { font-family: var(--font-geist-sans), sans-serif; font-size: .875rem; font-weight: 600; line-height: 1.5; letter-spacing: .06em; padding-bottom: 1rem; }
+.bd-landing .bd-fresh-capability__row { padding-block: 1.25rem; gap: .5rem; }
+.bd-landing .bd-fresh-capability__row strong { font-size: 1.0625rem; line-height: 1.5; font-weight: 600; }
+.bd-landing .bd-fresh-capability__row span { font-size: 1rem; line-height: 1.65; }
+.bd-landing .bd-page-chapter { gap: 3rem; }
+.bd-landing .bd-page-index > * { font-size: .875rem; }
+.bd-landing .bd-chapter-row { padding-block: 1.75rem; }
+.bd-landing .bd-flow-brand { font-family: var(--font-geist-sans), sans-serif; letter-spacing: -.02em; }
+.bd-landing .bd-flow-brand small { font-family: var(--font-geist-sans), sans-serif; font-size: .8125rem; letter-spacing: .03em; }
+.bd-landing .bd-flow-label { font-size: .875rem; line-height: 1.6; }
+.bd-landing .bd-fresh-footer__word .bd-wordmark { font-size: clamp(2rem, 7vw, 6rem); font-weight: 600; }
+.bd-landing :is(code,pre,.bd-cloud-terminal__lines,.bd-cloud-terminal__bar) { font-family: var(--font-geist-mono), ui-monospace, monospace; }
+/* Natural document rhythm: animated titles never determine the page height. */
+.bd-landing .bd-page-hero { min-height: 0; padding-block: 9rem 3rem; }
+.bd-landing .bd-page-hero > .content-shell { min-height: 0; gap: 2.5rem; justify-content: flex-start; }
+.bd-landing .bd-page-intro { gap: 1.5rem 3rem; align-items: center; }
+.bd-landing .bd-page-intro .bd-scene-label { margin: 0; }
+.bd-landing .bd-page-intro h1 { max-width: 22ch; }
+.bd-landing .bd-page-intro > p:last-child { max-width: 42ch; }
+.bd-landing .bd-page-index { overflow: hidden; }
+.bd-landing .bd-page-index > * { min-height: 3.5rem; padding: .875rem 1rem; gap: .75rem; line-height: 1.5; }
+.bd-landing .bd-page-index > :last-child { border-right: 0; }
+.bd-landing .bd-chapter-heading { top: 7rem; }
+.bd-landing .bd-chapter-heading h2 { margin-block: 1rem; }
+.bd-landing .bd-chapter-heading > p:not(.bd-scene-label) { margin: 0; }
+.bd-landing .bd-chapter-rows { min-width: 0; }
+.bd-landing .bd-chapter-row { align-items: start; }
+.bd-landing .bd-chapter-row p { margin-top: .625rem; }
+.bd-landing .bd-page-outro { padding-block: clamp(4rem, 6vw, 6rem); }
+.bd-landing .bd-page-outro h2 { margin-block: 1.5rem 2rem; }
+/* Self-hosted OFL alternatives: geometric Manrope and a single soft-serif accent. */
+.bd-landing .bd-hero-title { font-family: var(--font-home-headline); }
+.bd-landing .bd-hero-title .bd-hero-accent {
+  font-family: var(--font-home-accent);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 72;
+  letter-spacing: -.035em;
+}
+.bd-landing .bd-fresh-projects__grid { gap: 1.5rem; }
+.bd-landing .bd-fresh-projects--featured .bd-fresh-projects__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.bd-landing .bd-fresh-projects__card { display: flex; flex-direction: column; align-items: flex-start; border-style: solid; padding: clamp(1.25rem, 3vw, 2rem); }
+.bd-landing .bd-fresh-projects__card h3 { font-size: 1.5rem; margin-top: 1rem; }
+.bd-landing .bd-fresh-projects__card .bd-case-category { font-size: .75rem; line-height: 1.5; font-weight: 500; color: #62656D; margin: 0; }
+.bd-landing .bd-fresh-projects__card .bd-case-headline { font-size: 1.125rem; font-weight: 500; color: #151619; margin-block: .5rem; }
+.bd-landing .bd-fresh-projects__card .bd-case-highlight { font-size: .9375rem; line-height: 1.6; color: #315BFF; background: #EEF1FF; border-radius: 6px; padding: .5rem .75rem; margin-top: auto; margin-bottom: 0; }
+.bd-landing .bd-fresh-projects__card { --case-accent: #315BFF; --case-tint: #EEF1FF; border-radius: 18px; min-width: 0; transition: border-color .25s ease, box-shadow .25s ease; }
+.bd-landing .bd-fresh-projects__card:nth-child(4n + 2) { --case-accent: #356D70; --case-tint: #EAF3F2; }
+.bd-landing .bd-fresh-projects__card:nth-child(4n + 3) { --case-accent: #72548D; --case-tint: #F3EEF7; }
+.bd-landing .bd-fresh-projects__card:nth-child(4n + 4) { --case-accent: #527044; --case-tint: #EFF3E9; }
+.bd-landing .bd-fresh-projects__card:hover { border-color: var(--case-accent); box-shadow: 0 12px 32px #15161908; }
+.bd-landing .bd-case-topline { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 1.25rem; }
+.bd-landing .bd-case-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; background: var(--case-tint); color: var(--case-accent); }
+.bd-landing .bd-case-number { font-size: .75rem; letter-spacing: .08em; color: #74777E; }
+.bd-landing .bd-fresh-projects__card h3 { margin-block: .625rem .75rem; letter-spacing: -.035em; }
+.bd-landing .bd-fresh-projects__card .bd-case-summary { margin: 0 0 1.5rem; color: #62656D; }
+.bd-landing .bd-case-result { width: 100%; margin-top: auto; padding-top: 1rem; border-top: 1px solid #E8E9E5; }
+.bd-landing .bd-case-result-label { display: block; margin-bottom: .4rem; font-size: .6875rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #62656D; }
+.bd-landing .bd-fresh-projects__card .bd-case-highlight { margin: 0; padding: 0; background: none; color: var(--case-accent); font-weight: 500; }
+@media (max-width: 699px) { .bd-landing .bd-fresh-projects--featured .bd-fresh-projects__grid { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .bd-landing .bd-fresh-projects__card { transition: none; } }
+.bd-landing .bd-fresh-process--compact .bd-fresh-process__rail { grid-template-columns: repeat(3,minmax(0,1fr)); }
+.bd-landing .bd-fresh-process--compact { padding-block: clamp(3rem, 5vw, 4.5rem); }
+.bd-landing .bd-post-hero .bd-post-dark { padding-bottom: 0; }
+.bd-landing .bd-fresh-cta { padding-block: clamp(3rem, 5vw, 4.5rem); }
+.bd-landing .bd-fresh-cta__card { padding: clamp(2.5rem, 5vw, 4rem); }
+.bd-landing .bd-fresh-services { padding-block: clamp(3.5rem, 5vw, 5rem); }
+.bd-landing .bd-fresh-projects { padding-block: clamp(3.5rem, 5vw, 5rem); }
+.bd-landing.bd-inner-page .bd-post-dark { background: #FAF9F6; color: #151619; }
+.bd-landing.bd-inner-page .bd-post-dark :is(.bd-cloud-panel h2,.bd-cloud-panel__groups dt,.bd-fresh-capability h2,.bd-fresh-capability__grid h3,.bd-fresh-capability__row strong) { color: #151619; }
+.bd-landing.bd-inner-page .bd-post-dark :is(.bd-cloud-panel .bd-post-kicker,.bd-cloud-panel__description,.bd-cloud-panel__groups dd,.bd-fresh-capability__eyebrow,.bd-fresh-capability__row span) { color: #62656D; }
+.bd-landing.bd-inner-page .bd-post-dark :is(.bd-cloud-panel,.bd-cloud-panel__groups > div,.bd-fresh-capability,.bd-fresh-capability__grid h3,.bd-fresh-capability__row) { border-color: #DEDFDA; }
+.bd-landing.bd-inner-page .bd-fresh-projects { background: #F0F0EC; }
+.bd-landing.bd-inner-page .bd-fresh-projects__grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+@media (max-width: 999px) { .bd-landing.bd-inner-page .bd-fresh-projects__grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 699px) { .bd-landing.bd-inner-page .bd-fresh-projects__grid { grid-template-columns: minmax(0,1fr); } }
+@media (max-width: 767px) {
+  .bd-landing .bd-fresh-process--compact .bd-fresh-process__rail { grid-template-columns: minmax(0,1fr); }
+  .bd-landing .bd-fresh-services__row { grid-template-columns: 2rem minmax(0,1fr) 2.25rem; gap: .4rem .75rem; padding: 1.25rem 0; }
+  .bd-landing .bd-fresh-services__title { font-size: 1.125rem; line-height: 1.35; }
+  .bd-landing .bd-fresh-services__desc { grid-column: 2; grid-row: 2; line-height: 1.55; }
+  .bd-landing .bd-fresh-services__arrow { grid-column: 3; grid-row: 1 / 3; width: 2.25rem; height: 2.25rem; }
+}
+.bd-landing .bd-case-link { display: inline-flex; align-items: center; gap: .625rem; min-height: 44px; margin-top: auto; color: #315BFF; font-size: .9375rem; font-weight: 500; }
+.bd-landing .bd-case-link:hover { text-decoration: underline; text-underline-offset: .25em; }
+.bd-landing .bd-case-link:focus-visible { outline: 2px solid #315BFF; outline-offset: 4px; }
+@media (max-width: 767px) {
+  .bd-landing .content-shell { width: calc(100% - 2.5rem); }
+  .bd-landing .bd-nav-surface .bd-nav-inner { width: calc(100% - 2.5rem) !important; min-height: 4rem; }
+  .bd-landing .bd-wordmark { font-size: 1.25rem; }
+  .bd-landing .bd-hero-layout { padding-block: 6.5rem 3rem; gap: 3rem; }
+  .bd-landing .bd-hero-title { font-size: clamp(2.25rem, 9vw, 3rem); line-height: 1.15; max-width: 17ch; }
+  .bd-landing .bd-hero-subtitle { font-size: 1rem; }
+  .bd-landing .bd-post-hero h2 { font-size: clamp(1.875rem, 7vw, 2.25rem); line-height: 1.2; }
+  .bd-landing .bd-fresh-capability__grid { grid-template-columns: minmax(0,1fr); gap: 2.5rem; margin-top: 2rem; }
+  .bd-landing .bd-fresh-capability__row { padding-block: 1rem; }
+  .bd-landing .bd-fresh-capability__row :is(strong,span) { font-size: 1rem; }
+  .bd-landing .bd-page-chapter { grid-template-columns: minmax(0,1fr); gap: 2rem; }
+  .bd-landing .bd-page-intro { grid-template-columns: minmax(0,1fr); }
+  .bd-landing .bd-fresh-process__rail { grid-template-columns: minmax(0,1fr); }
+  .bd-landing .bd-page-index > * { min-height: 44px; }
+  .bd-landing .bd-chapter-row { grid-template-columns: 1.5rem minmax(0,1fr) auto; gap: .75rem; }
+  .bd-landing .bd-page-chapter--mission { padding-inline: 1.25rem; }
+  .bd-landing .bd-page-hero { padding-block: 6.5rem 2rem; }
+  .bd-landing .bd-page-hero > .content-shell { gap: 2rem; }
+  .bd-landing .bd-page-intro { gap: 1rem; }
+  .bd-landing .bd-page-intro h1 { font-size: clamp(2rem, 8vw, 2.5rem); line-height: 1.2; }
+  .bd-landing .bd-page-display { font-size: clamp(1.625rem, 6.5vw, 2.5rem); }
+  .bd-landing .bd-page-index { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .bd-landing .bd-page-index > * { justify-content: flex-start; min-width: 0; padding: .875rem .75rem; font-size: .8125rem; border-right: 0; border-bottom: 1px solid var(--border); }
+  .bd-landing .bd-page-index > :last-child { border-bottom: 0; }
+  .bd-landing .bd-chapter-heading { position: static; }
+  .bd-landing :is(.bd-chapter-heading h2,.bd-page-outro h2) { font-size: clamp(1.75rem, 7vw, 2.25rem); line-height: 1.22; }
+  .bd-landing .bd-chapter-row h3 { font-size: 1.125rem; line-height: 1.4; }
+}

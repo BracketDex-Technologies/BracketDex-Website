@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { marketingContent } from "@/content/marketing";
 import { siteConfig } from "@/lib/site";
+import { routedPages } from "@/content/routed-pages";
 
 export type SeoRoute = {
   path: string;
@@ -19,6 +20,10 @@ export const seoRoutes = [
     changeFrequency: "weekly",
     priority: 1,
   },
+  ...Object.entries(routedPages).map(([slug, content]): SeoRoute => ({
+    path: `/${slug}`, title: `${content.eyebrow} | BracketDex Technologies`,
+    description: content.description, changeFrequency: "monthly", priority: 0.7,
+  })),
 ] satisfies readonly SeoRoute[];
 
 const routeMap = new Map(seoRoutes.map((route) => [route.path, route]));

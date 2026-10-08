@@ -21,10 +21,13 @@ const TEXT_REVEAL_SELECTOR = [
 ].join(",");
 
 const EXCLUDED_TEXT_REVEAL_SELECTOR = [
+  ".bd-landing",
   ".sr-only",
   "[aria-hidden='true']",
   ".bd-hero-copy",
   ".bd-hero-copy *",
+  ".bd-inner-page",
+  ".bd-manifesto",
   ".bd-site-loader",
   ".bd-site-loader *",
   ".agentation-toolbar",

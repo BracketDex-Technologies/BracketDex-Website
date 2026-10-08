@@ -23,6 +23,19 @@ export function NavbarScrollState({ transparentOnHero }: NavbarScrollStateProps)
       animationFrame = window.requestAnimationFrame(updateNavbarState);
     };
 
+    const menu = document.querySelector<HTMLDetailsElement>(".bd-mobile-menu");
+    const closeAfterNavigation = (event: Event) => {
+      if (event.target instanceof Element && event.target.closest("a") && menu) menu.open = false;
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && menu?.open) {
+        menu.open = false;
+        menu.querySelector("summary")?.focus();
+      }
+    };
+    menu?.addEventListener("click", closeAfterNavigation);
+    window.addEventListener("keydown", closeOnEscape);
+
     updateNavbarState();
     window.addEventListener("scroll", requestNavbarUpdate, { passive: true });
     window.addEventListener("resize", requestNavbarUpdate);
@@ -32,6 +45,8 @@ export function NavbarScrollState({ transparentOnHero }: NavbarScrollStateProps)
       window.removeEventListener("scroll", requestNavbarUpdate);
       window.removeEventListener("resize", requestNavbarUpdate);
       root.removeAttribute("data-nav-glass");
+      menu?.removeEventListener("click", closeAfterNavigation);
+      window.removeEventListener("keydown", closeOnEscape);
     };
   }, [transparentOnHero]);
 

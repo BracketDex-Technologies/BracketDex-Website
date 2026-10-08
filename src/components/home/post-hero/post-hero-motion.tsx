@@ -15,7 +15,14 @@ export function PostHeroMotion() {
     gsap.registerPlugin(ScrollTrigger);
     const context = gsap.context(() => {
       root.querySelectorAll<HTMLElement>("[data-motion-section]").forEach((section) => {
-        gsap.fromTo(section, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out", scrollTrigger: { trigger: section, start: "top 82%", once: true } });
+        gsap.fromTo(section, { y: 24 }, { y: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 92%", once: true } });
+        const cards = section.querySelectorAll(".bd-fresh-problems__card, .bd-fresh-why__card, .bd-fresh-process__step, .bd-fresh-services__row, .bd-fresh-projects__card");
+        if (cards.length) {
+          cards.forEach((card, index) => gsap.fromTo(card, { y: 24, opacity: 0.5 }, {
+            y: 0, opacity: 1, duration: 0.7, delay: (index % 3) * 0.045, ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 94%", once: true },
+          }));
+        }
       });
       root.querySelectorAll<HTMLElement>(".bd-cloud-topology__connector").forEach((line, index) => {
         gsap.fromTo(line, { scaleY: 0 }, { scaleY: 1, duration: 0.6, delay: index * 0.08, ease: "expo.out", scrollTrigger: { trigger: line.closest(".bd-cloud-visual"), start: "top 78%", once: true } });

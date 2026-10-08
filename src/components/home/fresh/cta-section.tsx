@@ -16,7 +16,7 @@ export function FreshCta({ content }: { content: MarketingContent }) {
             <h2 id="fresh-cta-title">{postHero.closingCta}</h2>
             <p>{content.company.shortDescription}</p>
           </div>
-          <Link className="bd-fresh-cta__btn" href="#contact">
+          <Link className="bd-fresh-cta__btn" href="/contact">
             Book Consultation
             <ArrowRightIcon aria-hidden="true" />
           </Link>
