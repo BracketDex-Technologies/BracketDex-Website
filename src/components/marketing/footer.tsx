@@ -1,6 +1,8 @@
 import Link from "next/link";
 
 import type { NavigationItem } from "@/content/marketing";
+import { logoFont } from "./logo-font";
+import { NAVBAR_LOGO_TEXT } from "./navbar";
 
 type FooterProps = {
   brandName: string;
@@ -25,7 +27,13 @@ export function Footer({ brandName, navigation }: FooterProps) {
         </address>
       </div>
       <p aria-hidden="true" className="bd-fresh-footer__word">
-        <span className="bd-wordmark bd-fresh-footer__logo">BracketDex</span>
+        <span
+          className="bd-wordmark bd-fresh-footer__logo"
+          data-site-wordmark
+          style={{ fontFamily: logoFont.style.fontFamily }}
+        >
+          {`{${NAVBAR_LOGO_TEXT}}`}
+        </span>
       </p>
       <div className="content-shell">
         <p className="bd-fresh-footer__base">

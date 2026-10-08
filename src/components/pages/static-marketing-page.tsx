@@ -37,7 +37,7 @@ export function StaticMarketingPage({ activeHref, content, ctaHref = "/contact",
           {label.split("").map((letter, index) => <span key={index}>{letter}</span>)}
         </div>
         <div className="bd-page-index">
-          {isContact ? <><a href="mailto:bracketdex@gmail.com">bracketdex@gmail.com ↗</a><span>Pune, India</span></> : isFaq ? <><a href="#answers">Explore the answers ↓</a><Link href="/contact">Ask us a question ↗</Link></> : isProjects ? <><span>Software &amp; automation</span><span>14 examples below</span></> : content.sections.map((section, index) => (
+          {isContact ? <><a href="mailto:bracketdex@gmail.com">bracketdex@gmail.com ↗</a><span>Pune, India</span></> : isFaq ? <><a href="#answers">Explore the answers ↓</a><Link href="/contact">Ask us a question ↗</Link></> : isProjects ? <><span>Software &amp; automation</span><span>Selected delivery examples</span></> : content.sections.map((section, index) => (
             <a href={`#chapter-${index + 1}`} key={section.title}><span>{String(index + 1).padStart(2, "0")}</span>{section.label}</a>
           ))}
         </div>

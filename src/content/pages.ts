@@ -240,10 +240,27 @@ export const pageContent = {
         ],
       },
       {
-        label: "Achievements",
-        title: "Achievements Need Source Data",
+        label: "Metrics",
+        title: "Measured progress, shared carefully",
         description:
-          "Awards, certifications, client logos, metrics, and leadership details will remain unpublished until accurate source information is supplied.",
+          "A few grounded outcomes from systems we have delivered and initiatives we are building in public.",
+        cards: [
+          {
+            title: "ID-card manufacturing",
+            description:
+              "An AI-assisted school ID-card workflow helped the delivery operation achieve an 8× increase in business while reducing repetitive preparation and avoidable errors.",
+          },
+          {
+            title: "Digital mandal operations",
+            description:
+              "Samavet is our first-of-its-kind digital platform for mandals, helping connect brands and mandals while making contribution and event workflows easier to manage.",
+          },
+          {
+            title: "GreenPune initiative",
+            description:
+              "Our citizen-led urban greening initiative for Pune supports better coordination around native tree planting, neighbourhood participation, and long-term care.",
+          },
+        ],
       },
     ],
   },
