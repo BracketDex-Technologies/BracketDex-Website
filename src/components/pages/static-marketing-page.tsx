@@ -53,7 +53,7 @@ export function StaticMarketingPage({ activeHref, content, ctaHref = "/contact",
       <div className="bd-chapter-heading"><p className="bd-scene-label">{String(index + 1).padStart(2, "0")} / {section.label}</p><h2><ScrollWords text={section.title} /></h2>{section.description && <p>{section.description}</p>}</div>
       <div className="bd-chapter-rows">
         {section.cards?.map((card, i) => <article className="bd-chapter-row" data-scroll-row key={card.title}>
-          <span className="bd-scene-label">{String(i + 1).padStart(2, "0")}</span><div><h3>{card.title}</h3><p>{card.description}</p></div><span aria-hidden="true">↗</span>
+          <span className="bd-scene-label">{String(i + 1).padStart(2, "0")}</span><div><h3>{card.title}</h3><p>{card.description}</p></div>
         </article>)}
         {section.list?.map((item, i) => <div className="bd-chapter-row" data-scroll-row key={item}><span className="bd-scene-label">{String(i + 1).padStart(2, "0")}</span><h3>{item}</h3></div>)}
       </div>

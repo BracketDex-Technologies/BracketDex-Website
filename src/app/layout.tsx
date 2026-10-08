@@ -67,7 +67,7 @@ export default function RootLayout({
       <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
         <ThemeProvider>
           <ThemeToggle />
-          <SmoothScroll root lerp={0.06} duration={1.6} wheelMultiplier={0.8}>
+          <SmoothScroll root lerp={0.06} duration={1.6} wheelMultiplier={0.8} touch>
             <a className="skip-link" href="#main-content">
               Skip to main content
             </a>
