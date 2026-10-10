@@ -1,16 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 import type { NavigationItem } from "@/content/marketing";
-import { cn } from "@/lib/utils";
-import { NavbarScrollState } from "./navbar-scroll-state";
-import { logoFont } from "./logo-font";
+import styles from "./navbar.module.css";
 
 export const NAVBAR_LOGO_TEXT = "BracketDex";
-export const NAVBAR_WORDMARK_DOCK_SELECTOR = "[data-site-wordmark]";
-export const NAVBAR_CONTROL_RADIUS_PX = 8;
-export const NAVBAR_CONTROL_HEIGHT_PX = 32;
-export const NAVBAR_IS_STICKY = true;
-const PRIMARY_NAVIGATION_HREFS = new Set(["#services", "#process", "#industries", "#projects", "/services", "/solutions", "/projects", "/about", "/faq"]);
+export const NAVBAR_CONTROL_HEIGHT_PX = 44;
 
 type NavbarProps = {
   brandName: string;
@@ -21,96 +18,61 @@ type NavbarProps = {
   transparentOnHero?: boolean;
 };
 
-export function Navbar({
-  activeHref,
-  brandName,
-  ctaHref,
-  ctaLabel,
-  items,
-  transparentOnHero = false,
-}: NavbarProps) {
-  const navigationItems = items.filter((item) => PRIMARY_NAVIGATION_HREFS.has(item.href));
+export function Navbar({ activeHref, brandName, ctaHref, ctaLabel, items }: NavbarProps) {
+  const routes = items.filter((item) => item.href !== "/" && item.href !== ctaHref);
+  const menuRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && menuRef.current?.open) {
+        menuRef.current.open = false;
+        menuRef.current.querySelector("summary")?.focus();
+      }
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
+
+  const closeMenu = () => { if (menuRef.current) menuRef.current.open = false; };
 
   return (
-    <header
-      className="bd-nav-surface sticky top-0 z-40 flex justify-center"
-      data-hero-nav={transparentOnHero || undefined}
-    >
-      <NavbarScrollState transparentOnHero={transparentOnHero} />
-      <nav aria-label="Primary navigation" className="bd-nav-inner">
-        <Link
-          href="/"
-          className="bd-brand-link shrink-0"
-          aria-label={`${brandName} home`}
-        >
-          <span aria-hidden="true" className="bd-wordmark" data-site-wordmark style={{ fontFamily: logoFont.style.fontFamily }}>
-            {`{${NAVBAR_LOGO_TEXT}}`}
-          </span>
-          <span className="sr-only">{brandName}</span>
+    <header className={styles.header}>
+      <nav aria-label="Primary navigation" className={styles.inner}>
+        <Link aria-label={`${brandName} home`} className={styles.wordmark} href="/">
+          <span aria-hidden="true">[</span>{NAVBAR_LOGO_TEXT}<span aria-hidden="true">]</span>
         </Link>
-
-        <div className="bd-desktop-menu">
-          <div className="bd-nav-group">
-            <div className="flex items-center">
-              {navigationItems.map((item, index) => (
-                <span className="contents" key={item.href}>
-                  {index > 0 ? <span aria-hidden="true" className="bd-nav-divider" /> : null}
-                  <span className="group relative inline-flex items-center justify-center">
-                    <span aria-hidden="true" className="bd-nav-hover absolute inset-0 opacity-0 group-hover:opacity-100" />
-                    <Link
-                      aria-current={activeHref === item.href ? "page" : undefined}
-                      className="bd-nav-link relative z-10"
-                      data-active={activeHref === item.href}
-                      href={item.href}
-                    >
-                      {item.label}
-                    </Link>
-                  </span>
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <Link
-            className="bd-nav-cta group relative inline-flex items-center justify-center"
-            href={ctaHref}
-          >
-            <span aria-hidden="true" className="bd-nav-cta-surface absolute inset-0" />
-            <span className="relative z-10">{ctaLabel}</span>
-          </Link>
+        <div className={styles.desktopLinks}>
+          {routes.map((item) => (
+            <Link
+              aria-current={activeHref === item.href ? "page" : undefined}
+              className={styles.navLink}
+              href={item.href}
+              key={item.href}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
-
-        <details className="bd-mobile-menu group">
-          <summary className="bd-mobile-toggle">
-            <span className="sr-only">Toggle navigation menu</span>
-            <span aria-hidden="true" className="bd-mobile-toggle-lines">
-              <span />
-              <span />
-              <span />
-            </span>
+        <Link className={styles.desktopCta} href={ctaHref}>{ctaLabel}</Link>
+        <details className={styles.mobileMenu} data-mobile-menu ref={menuRef}>
+          <summary className={styles.mobileToggle}>
+            <span className={styles.mobileToggleLabel}>Menu</span>
+            <span aria-hidden="true" className={styles.menuBars}><span /><span /></span>
           </summary>
-          <div className="bd-mobile-panel absolute right-0 top-12 w-[min(21rem,calc(100vw-2rem))] p-3">
-            <div className="flex flex-col gap-1">
-              {items.filter((item) => item.href !== "/" && item.href !== ctaHref).map((item) => (
-                <Link
-                  aria-current={activeHref === item.href ? "page" : undefined}
-                  className={cn(
-                    "bd-mobile-link",
-                    activeHref === item.href ? "bd-mobile-link-active" : undefined
-                  )}
-                  href={item.href}
-                  key={item.href}
-                >
-                  {item.label}
-                </Link>
-              ))}
+          <div className={styles.mobilePanel}>
+            {routes.map((item, index) => (
               <Link
-                className="bd-mobile-cta mt-2 px-3 py-3 text-center"
-                href={ctaHref}
+                aria-current={activeHref === item.href ? "page" : undefined}
+                className={styles.mobileLink}
+                href={item.href}
+                key={item.href}
+                onClick={closeMenu}
               >
-                {ctaLabel}
+                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                {item.label}
               </Link>
-            </div>
+            ))}
+            <Link className={styles.mobileCta} href={ctaHref} onClick={closeMenu}>{ctaLabel}</Link>
           </div>
         </details>
       </nav>

@@ -1,56 +1,28 @@
 import Link from "next/link";
-import { Fragment } from "react";
-import { siteNavigation } from "@/content/site-navigation";
-import { ScrollChoreography } from "@/components/motion/scroll-choreography";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 
 import type { MarketingContent } from "@/content/marketing";
+import { siteNavigation } from "@/content/site-navigation";
 import { Footer } from "@/components/marketing/footer";
 import { Navbar } from "@/components/marketing/navbar";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildBreadcrumbJsonLd } from "@/lib/seo";
-import { EditorialMotion } from "./editorial-motion";
-import { StructureFlow } from "./structure-flow";
+import { HeroSystemIllustration } from "./hero-system-illustration";
 import { PostHeroHome } from "./post-hero/post-hero-home";
+import styles from "./home-hero.module.css";
 
-type HomePageProps = {
-  content: MarketingContent;
-};
+type HomePageProps = { content: MarketingContent };
 
-export const HOMEPAGE_HERO_PLACEMENT = "split";
-
-function renderWords(text: string) {
-  return text.split(" ").filter(Boolean).map((word, index) => (
-    <Fragment key={`${word}-${index}`}>
-      <span className="bd-hero-word-mask"><span className="bd-hero-word">{word}</span></span>{" "}
-    </Fragment>
-  ));
-}
-
-function renderHeadline(text: string, accent: string) {
-  const index = accent ? text.indexOf(accent) : -1;
-
-  if (index === -1) {
-    return renderWords(text);
-  }
-
-  return (
-    <>
-      {renderWords(text.slice(0, index))}
-      <span className="bd-hero-accent">{renderWords(accent)}</span>
-      {renderWords(text.slice(index + accent.length))}
-    </>
-  );
-}
+export const HOMEPAGE_HERO_PLACEMENT = "copy-before-illustration";
 
 export function HomePage({ content }: HomePageProps) {
   const hero = content.homepage.hero;
+  const opening = "AI that works";
+  const hasOpening = hero.headline.startsWith(opening);
 
   return (
     <main className="bd-landing min-h-screen" id="main-content" tabIndex={-1}>
       <JsonLd data={buildBreadcrumbJsonLd("/")} />
-      <EditorialMotion />
-      <ScrollChoreography />
-
       <Navbar
         activeHref="/"
         brandName={content.company.name}
@@ -59,38 +31,29 @@ export function HomePage({ content }: HomePageProps) {
         items={siteNavigation}
         transparentOnHero
       />
-
-      <div className="bd-hero">
-        <div aria-hidden="true" className="bd-hero-bg-slot">
-          <div className="bd-editorial-grid" />
-        </div>
-
-        <section className="content-shell bd-hero-layout">
-          <div className="bd-hero-copy">
-            <h1 className="bd-hero-title" aria-label={hero.headline}>
-              <span aria-hidden="true">{renderHeadline(hero.headline, hero.headlineAccent)}</span>
+      <section aria-labelledby="home-hero-title" className={styles.hero}>
+        <div className={styles.inner}>
+          <div className={styles.copy}>
+            <p className={styles.eyebrow}>{content.company.positioning}</p>
+            <h1 className={styles.title} id="home-hero-title" aria-label={hero.headline}>
+              {hasOpening ? <><span className={styles.display}>{opening}</span>{hero.headline.slice(opening.length)}</> : hero.headline}
             </h1>
-            <p className="bd-hero-subtitle">{hero.subheadline}</p>
-            <div className="bd-hero-actions">
-              <Link className="bd-hero-primary-cta" href="/contact">
-                {hero.primaryCta} <span aria-hidden="true">↗</span>
+            <p className={styles.subtitle}>{hero.subheadline}</p>
+            <div className={styles.actions}>
+              <Link className={styles.primaryCta} href="/contact">
+                {hero.primaryCta}<ArrowUpRight aria-hidden="true" size={18} />
               </Link>
-              <Link className="bd-hero-secondary-cta" href="#services">
-                {hero.secondaryCta}
+              <Link className={styles.secondaryCta} href="#services">
+                {hero.secondaryCta}<ArrowDownRight aria-hidden="true" size={18} />
               </Link>
             </div>
           </div>
-          <StructureFlow />
-        </section>
-      </div>
-
+          <HeroSystemIllustration />
+        </div>
+        <div aria-hidden="true" className={styles.bottomRule} />
+      </section>
       <PostHeroHome content={content} />
-
-      <Footer
-        brandName={content.company.name}
-        description={content.company.footerDescription}
-        navigation={siteNavigation}
-      />
+      <Footer brandName={content.company.name} description={content.company.footerDescription} navigation={siteNavigation} />
     </main>
   );
 }

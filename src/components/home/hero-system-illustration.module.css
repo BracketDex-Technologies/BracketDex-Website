@@ -1,0 +1,22 @@
+.frame { width: 100%; min-width: 0; border: 1px solid var(--bd-dark-border); border-radius: 12px; background: var(--bd-dark-raised); overflow: hidden; }
+.frameTop { display: flex; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid var(--bd-dark-border); color: var(--bd-dark-muted); font: .68rem ui-monospace, monospace; letter-spacing: .08em; }
+.svg { display: block; width: 100%; height: auto; }
+.connections path { fill: none; stroke: #5b9dff; stroke-width: 1.5; stroke-dasharray: 5 5; opacity: .7; }
+.pulse { fill: #5b9dff0b; stroke: #5b9dff55; stroke-width: 1; }
+.core { fill: #225ab7; stroke: #5b9dff; stroke-width: 2; }
+.coreGlyph { fill: none; stroke: white; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.node { cursor: pointer; }
+.node rect { fill: #202733; stroke: #455c7d; stroke-width: 1.5; transition: fill .22s ease, stroke .22s ease; }
+.node:hover rect, .node:focus-visible rect { fill: #294169; stroke: #5b9dff; stroke-width: 2.5; }
+.node:focus-visible { outline: none; }
+.number { fill: #5b9dff; font: 14px ui-monospace, monospace; }
+.name { fill: #f6f5f0; font: 500 24px var(--font-body), sans-serif; }
+.arrow { fill: none; stroke: #8cbaff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 420px) {
+  .frameTop { padding: .75rem 1rem; font-size: .6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node rect { transition: none; }
+}

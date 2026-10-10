@@ -28,3 +28,20 @@ test("local fonts and route baseline", async () => {
   const contact = await getHtml("/contact");
   assert.match(contact, /Contact BracketDex Technologies/);
 });
+
+test("hero and navigation", async () => {
+  const home = await getHtml("/");
+  assert.equal((home.match(/<h1\b/g) ?? []).length, 1);
+  assert.ok(home.indexOf('href="/contact"') < home.indexOf('data-hero-system="true"'));
+  const heroSvg = home.match(/<svg[^>]*data-hero-system="true"[\s\S]*?<\/svg>/)?.[0];
+  assert.ok(heroSvg, "hero system SVG must render on server");
+  for (const label of ["Software", "AI", "Automation", "Cloud"]) {
+    assert.match(heroSvg, new RegExp(label));
+  }
+  assert.match(heroSvg, /data-pointer-layer/);
+  assert.doesNotMatch(home, /<canvas\b/);
+  assert.doesNotMatch(home, /Loading BracketDex Technologies/);
+  for (const destination of ["/", "/services", "/solutions", "/industries", "/projects", "/about", "/faq", "/contact"]) {
+    assert.ok(home.includes(`href="${destination}"`), `${destination} is present in navigation`);
+  }
+});
