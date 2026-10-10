@@ -1,52 +1,33 @@
-import {
-  BadgeCheckIcon,
-  BlocksIcon,
-  HandshakeIcon,
-  MessagesSquareIcon,
-  RocketIcon,
-  ScanEyeIcon,
-  TrendingUpIcon,
-} from "lucide-react";
+import { Code2, PackageCheck, ShieldCheck, Workflow } from "lucide-react";
+import type { FeatureItem, MarketingContent } from "@/content/marketing";
+import { pageContent } from "@/content/pages";
+import styles from "./why-section.module.css";
 
-import type { MarketingContent } from "@/content/marketing";
+const icons = [Workflow, Code2, PackageCheck, ShieldCheck] as const;
 
-const icons = [
-  BadgeCheckIcon,
-  RocketIcon,
-  ScanEyeIcon,
-  TrendingUpIcon,
-  BlocksIcon,
-  HandshakeIcon,
-  MessagesSquareIcon,
-] as const;
+function ProofCard({ item, index }: { item: FeatureItem; index: number }) {
+  const Icon = icons[index % icons.length];
+  return (
+    <li className={styles.card} data-proof-card>
+      <Icon aria-hidden="true" size={20} />
+      <h3>{item.title}</h3>
+      <p>{item.description}</p>
+    </li>
+  );
+}
 
 export function WhySection({ content }: { content: MarketingContent }) {
+  const section = pageContent.solutions.sections[3];
   return (
-    <section
-      aria-labelledby="fresh-why-title"
-      className="bd-fresh-why"
-      data-motion-section
-      id="why"
-    >
-      <div className="content-shell">
-        <p className="bd-fresh-eyebrow">Why BracketDex</p>
-        <div className="bd-fresh-why__head">
-          <h2 id="fresh-why-title">A partner, not a vendor.</h2>
-          <p>Business-first thinking, transparent communication, and architecture built for growth.</p>
+    <section aria-labelledby="home-why-title" className={styles.section} data-home-section="why" data-motion-section id="why">
+      <div className={styles.inner}>
+        <p className={styles.eyebrow}>{section.label}</p>
+        <div className={styles.heading}>
+          <h2 id="home-why-title">{section.title}</h2>
+          <p>{section.description}</p>
         </div>
-        <ul className="bd-fresh-why__grid">
-          {content.whyChooseUs.map((item, i) => {
-            const Icon = icons[i % icons.length];
-            return (
-              <li className="bd-fresh-why__card" key={item.title}>
-                <span aria-hidden="true" className="bd-fresh-why__icon">
-                  <Icon />
-                </span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </li>
-            );
-          })}
+        <ul className={styles.grid}>
+          {content.whyChooseUs.map((item, index) => <ProofCard index={index} item={item} key={item.title} />)}
         </ul>
       </div>
     </section>

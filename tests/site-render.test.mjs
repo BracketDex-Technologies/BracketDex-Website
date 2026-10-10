@@ -113,3 +113,25 @@ test("cloud then seven process steps", async () => {
   assert.deepEqual(titles, marketingContent.process.map((step) => step.title));
   assert.doesNotMatch(cloud, /Last updated|Success|Run #/i);
 });
+
+test("capabilities industries and proof", async () => {
+  const home = await getHtml("/");
+  const { marketingContent } = await loadDataModule("src/content/marketing.ts");
+  assert.deepEqual(homeKeys(home).slice(5, 7), ["capabilities", "why"]);
+  const capabilities = homeSection(home, "capabilities");
+  const why = homeSection(home, "why");
+  for (const group of marketingContent.technologyStack) {
+    assert.ok(capabilities.includes(group.category), group.category);
+    for (const item of group.items) assert.ok(capabilities.includes(item), item);
+  }
+  for (const item of marketingContent.industries) {
+    assert.ok(capabilities.includes(item.title), item.title);
+    assert.ok(capabilities.includes(item.description), item.description);
+  }
+  for (const item of marketingContent.whyChooseUs) {
+    assert.ok(why.includes(item.title), item.title);
+    assert.ok(why.includes(item.description), item.description);
+  }
+  assert.equal((capabilities.match(/data-industry-card/g) ?? []).length, 9);
+  assert.equal((why.match(/data-proof-card/g) ?? []).length, 7);
+});

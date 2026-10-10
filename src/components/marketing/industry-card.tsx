@@ -1,31 +1,12 @@
-import type { LucideIcon } from "lucide-react";
+import styles from "./industry-card.module.css";
 
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+type IndustryCardProps = { title: string; description: string };
 
-type IndustryCardProps = {
-  title: string;
-  description: string;
-  icon?: LucideIcon;
-};
-
-export function IndustryCard({ description, icon: Icon, title }: IndustryCardProps) {
+export function IndustryCard({ description, title }: IndustryCardProps) {
   return (
-    <Card className="h-full transition-shadow hover:shadow-soft">
-      <CardHeader>
-        {Icon ? (
-          <div className="mb-2 grid size-10 place-items-center rounded-lg bg-secondary/15 text-secondary">
-            <Icon aria-hidden="true" />
-          </div>
-        ) : null}
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-    </Card>
+    <article className={styles.card} data-industry-card>
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </article>
   );
 }
-
