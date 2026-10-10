@@ -1,9 +1,6 @@
 import { marketingContent } from "@/content/marketing";
 import {
-  AiOrchestrationVisual,
-  AutomationPipelineVisual,
   CloudDevOpsVisual,
-  OrderFulfillmentVisual,
   SystemVisual,
   SYSTEM_VISUAL_LAYOUTS,
 } from "./system-visuals";
@@ -16,15 +13,12 @@ type Equal<A, B> =
 export type SystemVisualsContract = Expect<
   Equal<
     typeof SYSTEM_VISUAL_LAYOUTS,
-    readonly ["order-fulfillment", "ai-orchestration", "automation-pipeline", "cloud-topology"]
+    readonly ["software-flow", "ai-branch", "automation-pipeline", "cloud-topology"]
   >
 >;
 
 export const systemVisualsContract = (
   <>
-    <OrderFulfillmentVisual />
-    <AiOrchestrationVisual />
-    <AutomationPipelineVisual />
     <SystemVisual variant="software" />
     <SystemVisual variant="ai" />
     <SystemVisual variant="automation" />

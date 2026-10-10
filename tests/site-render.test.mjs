@@ -27,7 +27,9 @@ function homeSection(html, key) {
   const start = html.indexOf(`data-home-section="${key}"`);
   assert.notEqual(start, -1, `${key} section must render`);
   const next = html.indexOf('data-home-section="', start + 1);
-  return html.slice(start, next === -1 ? undefined : next);
+  const close = html.indexOf("</section>", start);
+  const end = Math.min(next === -1 ? Infinity : next, close === -1 ? Infinity : close + "</section>".length);
+  return html.slice(start, Number.isFinite(end) ? end : undefined);
 }
 
 test("local fonts and route baseline", async () => {
@@ -79,4 +81,21 @@ test("trust then problems", async () => {
     for (const challenge of group.challenges) assert.ok(problems.includes(challenge), challenge);
   }
   assert.doesNotMatch(trust, /marquee|\b\d\+\b/i);
+});
+
+test("three service chapters", async () => {
+  const home = await getHtml("/");
+  const { marketingContent } = await loadDataModule("src/content/marketing.ts");
+  const services = homeSection(home, "services");
+  assert.equal((services.match(/data-home-chapter=/g) ?? []).length, 3);
+  for (const item of marketingContent.services.slice(0, 3)) {
+    assert.ok(services.includes(item.title), item.title);
+    assert.ok(services.includes(item.description), item.description);
+  }
+  for (const index of [0, 1, 2, 3, 4, 5]) {
+    const item = marketingContent.solutions[index];
+    assert.ok(services.includes(item.title), item.title);
+    assert.ok(services.includes(item.outcome), item.outcome);
+  }
+  assert.doesNotMatch(services, /Digital Growth|run_[a-z0-9]+|exec_[a-z0-9]+|Last run|Latency|Tokens|Cost|2m ago/i);
 });

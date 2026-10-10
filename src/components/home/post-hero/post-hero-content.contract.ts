@@ -1,7 +1,6 @@
 import { marketingContent } from "@/content/marketing";
 import {
   buildPostHeroContent,
-  POST_HERO_THEME_TOGGLE,
   type PostHeroContent,
 } from "./post-hero-content";
 
@@ -13,7 +12,6 @@ type Equal<A, B> =
 const content: PostHeroContent = buildPostHeroContent(marketingContent);
 
 export type PostHeroContentContract = [
-  Expect<Equal<typeof POST_HERO_THEME_TOGGLE, false>>,
   Expect<Equal<(typeof content.serviceChapters)[number]["visual"], "software" | "ai" | "automation">>,
 ];
 
