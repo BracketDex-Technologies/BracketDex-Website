@@ -1,0 +1,29 @@
+.section { padding-block: clamp(4rem, 7vw, 6rem); border-top: 1px solid var(--bd-dark-border); background: var(--bd-dark); color: var(--bd-dark-text); }
+.inner { width: min(100% - 2.5rem, 75rem); margin-inline: auto; }
+.eyebrow { margin: 0 0 1rem; color: var(--bd-dark-blue); font: .7rem/1.5 ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; }
+.heading { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 2rem; margin-bottom: 3rem; }
+.section .heading h2 { max-width: 12ch; margin: 0; font-family: var(--font-body), sans-serif; font-size: clamp(2.25rem, 4vw, 3.75rem); font-weight: 470; line-height: 1.1; letter-spacing: -.055em; }
+.heading p { max-width: 34rem; margin: 0; color: var(--bd-dark-muted); font-size: 1.08rem; line-height: 1.65; }
+.rail { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--bd-dark-border); }
+.step { position: relative; min-width: 0; padding: 1.5rem .85rem 1rem; border-left: 1px solid var(--bd-dark-border); }
+.step:last-child { border-right: 1px solid var(--bd-dark-border); }
+.step::before { position: absolute; top: -4px; left: -4px; width: 7px; height: 7px; border-radius: 50%; background: var(--bd-dark-blue); content: ""; }
+.number { display: block; margin-bottom: 2rem; color: var(--bd-dark-blue); font: .74rem ui-monospace, monospace; letter-spacing: .08em; }
+.step strong { display: block; font-size: 1rem; font-weight: 620; line-height: 1.25; }
+.step p { margin: .55rem 0 0; color: var(--bd-dark-muted); font-size: .9rem; line-height: 1.45; }
+
+@media (max-width: 999px) {
+  .rail { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 1rem; }
+  .step { border-bottom: 1px solid var(--bd-dark-border); }
+  .number { margin-bottom: 1.25rem; }
+}
+
+@media (max-width: 650px) {
+  .heading { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+  .rail { display: block; border-top: 0; border-left: 1px solid var(--bd-dark-border); }
+  .step { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: .1rem .75rem; padding: 0 0 1.6rem 1.1rem; border: 0; }
+  .step:last-child { border: 0; }
+  .step::before { top: .55rem; left: -4px; }
+  .number { grid-row: span 2; margin: .15rem 0 0; }
+  .step p { margin: 0; }
+}

@@ -99,3 +99,17 @@ test("three service chapters", async () => {
   }
   assert.doesNotMatch(services, /Digital Growth|run_[a-z0-9]+|exec_[a-z0-9]+|Last run|Latency|Tokens|Cost|2m ago/i);
 });
+
+test("cloud then seven process steps", async () => {
+  const home = await getHtml("/");
+  const { marketingContent } = await loadDataModule("src/content/marketing.ts");
+  assert.deepEqual(homeKeys(home).slice(3, 5), ["cloud", "process"]);
+  const cloud = homeSection(home, "cloud");
+  const process = homeSection(home, "process");
+  for (const group of marketingContent.technologyStack.filter((item) => ["Cloud", "DevOps"].includes(item.category))) {
+    for (const item of group.items) assert.ok(cloud.includes(item), item);
+  }
+  const titles = [...process.matchAll(/data-process-title[^>]*>([^<]+)<\/strong>/g)].map((match) => match[1]);
+  assert.deepEqual(titles, marketingContent.process.map((step) => step.title));
+  assert.doesNotMatch(cloud, /Last updated|Success|Run #/i);
+});

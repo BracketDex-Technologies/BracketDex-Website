@@ -1,5 +1,6 @@
 import type { MarketingContent } from "@/content/marketing";
 import { FreshCta } from "@/components/home/fresh/cta-section";
+import { CloudPanel } from "@/components/home/fresh/cloud-panel";
 import { ProblemSection } from "@/components/home/fresh/problem-section";
 import { ProcessRail } from "@/components/home/fresh/process-rail";
 import { ProjectsSection } from "@/components/home/fresh/projects-section";
@@ -21,10 +22,9 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
       <section aria-label="Services" data-home-section="services" id="services">
         {chapters.map((chapter, index) => <ChapterBlock chapter={chapter} flipped={index % 2 === 1} key={chapter.index} />)}
       </section>
+      <CloudPanel content={content} />
       <div className="bd-post-dark">
-        <div className="content-shell">
-          <ProcessRail content={content} compact />
-        </div>
+        <ProcessRail content={content} />
       </div>
       <ProjectsSection />
       <FreshCta content={content} />
