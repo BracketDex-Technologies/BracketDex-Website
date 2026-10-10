@@ -1,23 +1,23 @@
-/* Shared type and spacing scale. Geist is self-hosted through next/font. */
+/* Transitional type bridge while older section styles are replaced. */
 body {
-  --font-home-headline: "Manrope Variable", var(--font-geist-sans), sans-serif;
-  --font-home-accent: "Fraunces Variable", Georgia, serif;
-  --font-alpino: var(--font-geist-sans);
-  --font-editorial: var(--font-geist-sans);
-  --font-alliance: var(--font-geist-sans);
-  --font-array: var(--font-geist-sans);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+  --font-home-headline: var(--font-body);
+  --font-home-accent: var(--font-display);
+  --font-alpino: var(--font-body);
+  --font-editorial: var(--font-body);
+  --font-alliance: var(--font-body);
+  --font-array: var(--font-body);
+  font-family: var(--font-body), Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
-.bd-landing { font-family: var(--font-geist-sans), Arial, sans-serif; }
-.bd-landing :is(h1,h2,h3,h4) { font-family: var(--font-geist-sans), Arial, sans-serif; text-wrap: balance; }
+.bd-landing { font-family: var(--font-body), Arial, sans-serif; }
+.bd-landing :is(h1,h2,h3,h4) { font-family: var(--font-body), Arial, sans-serif; text-wrap: balance; }
 .bd-landing :is(p,li,dd) { overflow-wrap: break-word; }
 .bd-landing :is(button,input,textarea,select) { font-family: inherit; font-size: 1rem; }
 .bd-landing .content-shell { width: min(calc(100% - 4rem), 75rem); }
 .bd-landing .bd-nav-surface .bd-nav-inner { width: min(calc(100% - 4rem), 75rem) !important; min-height: 5rem; }
-.bd-landing .bd-wordmark { font-family: var(--font-geist-sans), sans-serif; font-weight: 600; font-size: 1.5rem; letter-spacing: -.04em; }
+.bd-landing .bd-wordmark { font-family: var(--font-body), sans-serif; font-weight: 600; font-size: 1.5rem; letter-spacing: -.04em; }
 .bd-landing .bd-wordmark { width: 10.75rem; color: currentColor; }
 .bd-landing .bd-wordmark::before, .bd-landing .bd-wordmark::after { content: none; }
 .bd-landing .bd-nav-surface .bd-wordmark { width: auto; font-weight: 400; letter-spacing: 0; white-space: nowrap; }
@@ -34,7 +34,7 @@ body {
 .bd-landing .bd-page-display { font-size: clamp(2rem, 4.5vw, 4rem); font-weight: 600; letter-spacing: -.025em; justify-content: flex-start; gap: 0; line-height: 1.15; padding-block: .2em; }
 .bd-landing .bd-chapter-row h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
 .bd-landing :is(.bd-page-intro > p:last-child,.bd-chapter-heading > p:not(.bd-scene-label),.bd-chapter-row p) { font-size: 1rem; line-height: 1.7; }
-.bd-landing :is(.bd-fresh-eyebrow,.bd-post-kicker,.bd-scene-label,.bd-hero-eyebrow) { font-family: var(--font-geist-sans), sans-serif; font-size: .75rem; line-height: 1.5; font-weight: 600; letter-spacing: .1em; }
+.bd-landing :is(.bd-fresh-eyebrow,.bd-post-kicker,.bd-scene-label,.bd-hero-eyebrow) { font-family: ui-monospace, monospace; font-size: .75rem; line-height: 1.5; font-weight: 600; letter-spacing: .1em; }
 .bd-landing :is(.bd-fresh-problems,.bd-fresh-services,.bd-fresh-why,.bd-fresh-projects,.bd-post-faq,.bd-fresh-contact) { padding-block: clamp(4rem, 6vw, 6rem); }
 .bd-landing :is(.bd-cloud-panel,.bd-fresh-process,.bd-fresh-capability,.bd-page-chapter) { padding-block: clamp(4rem, 6vw, 6rem); scroll-margin-top: 6rem; }
 .bd-landing :is(.bd-fresh-problems__head p,.bd-fresh-problems__card li,.bd-fresh-why__head p,.bd-fresh-why__card p,.bd-fresh-projects__head p,.bd-fresh-projects__card p,.bd-fresh-contact__copy p,.bd-post-faq p,.bd-fresh-cta__card p,.bd-cloud-panel__description,.bd-cloud-panel__groups dd,.bd-fresh-process__head p,.bd-fresh-process__step p) { font-size: 1rem; line-height: 1.65; }
@@ -46,19 +46,19 @@ body {
 .bd-landing .bd-fresh-capability h2 { max-width: 24ch; margin-top: 1rem; }
 .bd-landing .bd-fresh-capability__grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 3rem; margin-top: 2.5rem; align-items: start; }
 .bd-landing .bd-fresh-capability__grid > div { min-width: 0; }
-.bd-landing .bd-fresh-capability__grid h3 { font-family: var(--font-geist-sans), sans-serif; font-size: .875rem; font-weight: 600; line-height: 1.5; letter-spacing: .06em; padding-bottom: 1rem; }
+.bd-landing .bd-fresh-capability__grid h3 { font-family: var(--font-body), sans-serif; font-size: .875rem; font-weight: 600; line-height: 1.5; letter-spacing: .06em; padding-bottom: 1rem; }
 .bd-landing .bd-fresh-capability__row { padding-block: 1.25rem; gap: .5rem; }
 .bd-landing .bd-fresh-capability__row strong { font-size: 1.0625rem; line-height: 1.5; font-weight: 600; }
 .bd-landing .bd-fresh-capability__row span { font-size: 1rem; line-height: 1.65; }
 .bd-landing .bd-page-chapter { gap: 3rem; }
 .bd-landing .bd-page-index > * { font-size: .875rem; }
 .bd-landing .bd-chapter-row { padding-block: 1.75rem; }
-.bd-landing .bd-flow-brand { font-family: var(--font-geist-sans), sans-serif; letter-spacing: -.02em; }
-.bd-landing .bd-flow-brand small { font-family: var(--font-geist-sans), sans-serif; font-size: .8125rem; letter-spacing: .03em; }
+.bd-landing .bd-flow-brand { font-family: var(--font-body), sans-serif; letter-spacing: -.02em; }
+.bd-landing .bd-flow-brand small { font-family: var(--font-body), sans-serif; font-size: .8125rem; letter-spacing: .03em; }
 .bd-landing .bd-flow-label { font-size: .875rem; line-height: 1.6; }
 .bd-landing .bd-fresh-footer__word { padding-right: clamp(1rem, 3vw, 3rem); text-align: right; }
 .bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; max-width: 100%; padding-inline: 0; font-size: 1.5rem; font-weight: 400; line-height: .9; letter-spacing: 0; white-space: nowrap; }
-.bd-landing :is(code,pre,.bd-cloud-terminal__lines,.bd-cloud-terminal__bar) { font-family: var(--font-geist-mono), ui-monospace, monospace; }
+.bd-landing :is(code,pre,.bd-cloud-terminal__lines,.bd-cloud-terminal__bar) { font-family: ui-monospace, monospace; }
 /* Natural document rhythm: animated titles never determine the page height. */
 .bd-landing .bd-page-hero { min-height: 0; padding-block: 9rem 3rem; }
 .bd-landing .bd-page-hero > .content-shell { min-height: 0; gap: 2.5rem; justify-content: flex-start; }

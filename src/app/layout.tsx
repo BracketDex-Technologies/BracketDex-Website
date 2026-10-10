@@ -1,8 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import "@fontsource-variable/manrope";
-import "@fontsource-variable/fraunces/full.css";
+import localFont from "next/font/local";
 
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { SiteLoader } from "@/components/marketing/site-loader";
@@ -22,6 +19,20 @@ import "./scroll-pages.css";
 import "./premium.css";
 import "./typography.css";
 import "./light-theme.css";
+
+const pontano = localFont({
+  src: "../assets/fonts/pontano-sans/PontanoSans-VariableFont_wght.ttf",
+  display: "swap",
+  variable: "--font-body",
+  weight: "300 700",
+});
+
+const stint = localFont({
+  src: "../assets/fonts/stint-ultra-expanded/StintUltraExpanded-Regular.ttf",
+  display: "swap",
+  variable: "--font-display",
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -64,7 +75,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`${pontano.variable} ${stint.variable}`}>
         <ThemeProvider>
           <ThemeToggle />
           <SmoothScroll root lerp={0.06} duration={1.6} wheelMultiplier={0.8} touch>

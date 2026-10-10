@@ -54,6 +54,18 @@
   --motion-fast: 180ms;
   --motion-base: 320ms;
   --motion-slow: 640ms;
+  --bd-dark: #111318;
+  --bd-dark-raised: #1a1d24;
+  --bd-dark-border: #30343e;
+  --bd-dark-text: #f6f5f0;
+  --bd-dark-muted: #b5bac4;
+  --bd-dark-blue: #5b9dff;
+  --bd-light: #f6f5f0;
+  --bd-light-card: #ffffff;
+  --bd-light-ink: #15171c;
+  --bd-light-muted: #5d626b;
+  --bd-light-border: #dcdedb;
+  --bd-light-blue: #1455d9;
 }
 
 .dark {
@@ -133,7 +145,7 @@ body {
   overflow-x: clip;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-alpino), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -144,12 +156,12 @@ body {
 }
 
 .bd-brand-font {
-  font-family: var(--font-array), var(--font-alpino), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
 }
 
 :where(h1, h2, .bd-title-font, [data-slot="card-title"]) {
-  font-family: var(--font-array), var(--font-alpino), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
 }
 
