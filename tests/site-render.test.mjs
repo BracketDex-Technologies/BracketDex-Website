@@ -135,3 +135,21 @@ test("capabilities industries and proof", async () => {
   assert.equal((capabilities.match(/data-industry-card/g) ?? []).length, 9);
   assert.equal((why.match(/data-proof-card/g) ?? []).length, 7);
 });
+
+test("projects FAQ and final action", async () => {
+  const home = await getHtml("/");
+  const { featuredCaseStudies } = await loadDataModule("src/content/case-studies.ts");
+  const { marketingContent } = await loadDataModule("src/content/marketing.ts");
+  assert.deepEqual(homeKeys(home).slice(7), ["projects", "faq", "cta"]);
+  const projects = homeSection(home, "projects");
+  const faq = homeSection(home, "faq");
+  const cta = homeSection(home, "cta");
+  for (const study of featuredCaseStudies) {
+    assert.ok(projects.includes(study.name), study.name);
+    assert.ok(projects.includes(study.benefit), study.benefit);
+  }
+  assert.equal((faq.match(/data-faq-item=/g) ?? []).length, 5);
+  assert.match(faq, /aria-expanded="true"/);
+  assert.ok(cta.includes(marketingContent.ctas[2]));
+  assert.doesNotMatch(projects, /20\+ projects delivered/i);
+});
