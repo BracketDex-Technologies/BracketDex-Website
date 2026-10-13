@@ -11,11 +11,12 @@ type RequiredMarketingContent = {
     href: string;
   }[];
   homepage: {
+    navigationCta: string;
     hero: {
+      capabilities: readonly [string, string, string];
       headline: string;
       subheadline: string;
       primaryCta: string;
-      secondaryCta: string;
     };
     trustMetricPlaceholders: readonly {
       label: string;

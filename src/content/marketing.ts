@@ -74,13 +74,12 @@ export const marketingContent = {
     { label: "Contact", href: "#contact" },
   ] satisfies readonly NavigationItem[],
   homepage: {
+    navigationCta: "Book a consultation",
     hero: {
-      headline: "AI that works for the business you’ve built.",
-      headlineAccent: "you’ve built.",
-      subheadline:
-        "BracketDex designs, builds, and automates custom software, AI, and cloud systems — so growing businesses run leaner and move faster.",
-      primaryCta: "Book a consultation",
-      secondaryCta: "Explore services",
+      capabilities: ["Software", "AI", "Cloud"],
+      headline: "Your systems, working as one.",
+      subheadline: "Custom software, AI, and cloud—built around your business.",
+      primaryCta: "Discuss Your Project",
     },
     trustMetricPlaceholders: [
       {

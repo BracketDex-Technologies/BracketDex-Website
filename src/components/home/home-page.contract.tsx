@@ -5,11 +5,11 @@ import { marketingContent } from "@/content/marketing";
 
 type Expect<T extends true> = T;
 
-type HeroPlacementIsCopyFirst = typeof HOMEPAGE_HERO_PLACEMENT extends "copy-before-illustration" ? true : false;
+type HeroPlacementIsCentered = typeof HOMEPAGE_HERO_PLACEMENT extends "centered-over-media" ? true : false;
 type PostHeroStartsAfterHero = typeof POST_HERO_STARTS_AFTER_HERO extends true ? true : false;
 
 export type HomePageHeroFeedbackContract = [
-  Expect<HeroPlacementIsCopyFirst>,
+  Expect<HeroPlacementIsCentered>,
   Expect<PostHeroStartsAfterHero>,
 ];
 

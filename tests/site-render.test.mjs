@@ -43,7 +43,8 @@ test("local fonts and route baseline", async () => {
   }
 
   const home = await getHtml("/");
-  assert.match(home, /AI that works for the business you’ve built\./);
+  assert.match(home, /Your systems,/i);
+  assert.match(home, /Working as one\./i);
 
   const contact = await getHtml("/contact");
   assert.match(contact, /Contact BracketDex Technologies/);
@@ -52,15 +53,28 @@ test("local fonts and route baseline", async () => {
 test("hero and navigation", async () => {
   const home = await getHtml("/");
   assert.equal((home.match(/<h1\b/g) ?? []).length, 1);
-  assert.ok(home.indexOf('href="/contact"') < home.indexOf('data-hero-system="true"'));
-  const heroSvg = home.match(/<svg[^>]*data-hero-system="true"[\s\S]*?<\/svg>/)?.[0];
-  assert.ok(heroSvg, "hero system SVG must render on server");
-  for (const label of ["Software", "AI", "Automation", "Cloud"]) {
-    assert.match(heroSvg, new RegExp(label));
+  const hero = home.match(/<section[^>]*data-home-hero="cinematic"[\s\S]*?<\/section>/)?.[0];
+  assert.ok(hero, "cinematic hero must render on server");
+  for (const label of ["Software", "AI", "Cloud"]) {
+    assert.match(hero, new RegExp(`>${label}<`, "i"));
   }
-  assert.match(heroSvg, /data-pointer-layer/);
+  assert.match(hero, /Custom software, AI, and cloud/);
+  assert.match(hero, /href="\/contact"[^>]*>[\s\S]*Discuss Your Project/);
+  assert.match(hero, /Hero poster_ widescreen 16x9\.webp/);
+  assert.match(hero, /Hero poster_ vertical 9x16\.webp/);
+  assert.doesNotMatch(hero, /data-hero-system/);
   assert.doesNotMatch(home, /<canvas\b/);
   assert.doesNotMatch(home, /Loading BracketDex Technologies/);
+  for (const asset of [
+    "public/media/hero/Hero background loop_ 5s 9x16.webm",
+    "public/media/hero/Hero background loop_ 5s 9x16.mp4",
+    "public/media/hero/Hero scroll preview_ widescreen 16x9.webm",
+    "public/media/hero/Hero scroll preview_ widescreen 16x9.mp4",
+    "public/media/hero/Hero poster_ vertical 9x16.webp",
+    "public/media/hero/Hero poster_ widescreen 16x9.webp",
+  ]) {
+    assert.ok(existsSync(new URL(asset, `file:///${root.replaceAll("\\", "/")}/`)), `${asset} required`);
+  }
   for (const destination of ["/", "/services", "/solutions", "/industries", "/projects", "/about", "/faq", "/contact"]) {
     assert.ok(home.includes(`href="${destination}"`), `${destination} is present in navigation`);
   }

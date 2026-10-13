@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Instrument_Sans, Syne } from "next/font/google";
 import localFont from "next/font/local";
 
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
@@ -30,6 +31,20 @@ const stint = localFont({
   display: "swap",
   variable: "--font-display",
   weight: "400",
+});
+
+const instrumentSans = Instrument_Sans({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-hero-body",
+  weight: "variable",
+});
+
+const syne = Syne({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-hero-display",
+  weight: "variable",
 });
 
 export const metadata: Metadata = {
@@ -73,7 +88,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${pontano.variable} ${stint.variable}`}>
+      <body className={`${pontano.variable} ${stint.variable} ${instrumentSans.variable} ${syne.variable}`}>
         <ThemeProvider>
           <ThemeToggle />
           <SmoothScroll root lerp={0.06} duration={1.6} wheelMultiplier={0.8} touch>
