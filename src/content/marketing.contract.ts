@@ -14,7 +14,10 @@ type RequiredMarketingContent = {
     navigationCta: string;
     hero: {
       capabilities: readonly [string, string, string];
-      headline: string;
+      headline: {
+        label: string;
+        lines: readonly [readonly [string, string], readonly [string, string]];
+      };
       subheadline: string;
       primaryCta: string;
     };

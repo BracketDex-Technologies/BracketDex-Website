@@ -174,13 +174,19 @@ export function HomeHero({ hero }: HomeHeroProps) {
             ))}
           </Link>
 
-          <h1 className={styles.title} data-hero-reveal id="home-hero-title">
-            <span className={styles.titleLine}>
-              <span>Your</span> <span>systems,</span>
-            </span>
-            <span className={styles.titleLine}>
-              <span>Working</span> <span>as one.</span>
-            </span>
+          <h1
+            aria-label={hero.headline.label}
+            className={styles.title}
+            data-hero-reveal
+            id="home-hero-title"
+          >
+            {hero.headline.lines.map((line) => (
+              <span className={styles.titleLine} key={line.join(" ")}>
+                {line.map((fragment, index) => (
+                  <span key={fragment}>{index > 0 ? " " : null}{fragment}</span>
+                ))}
+              </span>
+            ))}
           </h1>
 
           <p className={styles.subtitle} data-hero-reveal>{hero.subheadline}</p>

@@ -77,7 +77,13 @@ export const marketingContent = {
     navigationCta: "Book a consultation",
     hero: {
       capabilities: ["Software", "AI", "Cloud"],
-      headline: "Your systems, working as one.",
+      headline: {
+        label: "Your systems, working as one.",
+        lines: [
+          ["Your", "systems,"],
+          ["Working", "as one."],
+        ],
+      },
       subheadline: "Custom software, AI, and cloud—built around your business.",
       primaryCta: "Discuss Your Project",
     },
