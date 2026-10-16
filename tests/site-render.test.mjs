@@ -80,6 +80,37 @@ test("hero and navigation", async () => {
   }
 });
 
+test("navbar overlays the hero and keeps every primary destination reachable", async () => {
+  const home = await getHtml("/");
+  const contact = await getHtml("/contact");
+  const homeHeader = home.match(/<header[\s\S]*?<\/header>/)?.[0];
+  const contactHeader = contact.match(/<header[\s\S]*?<\/header>/)?.[0];
+
+  assert.ok(homeHeader, "homepage navbar must render");
+  assert.ok(contactHeader, "static-page navbar must render");
+  assert.match(homeHeader, /data-overlay="true"/);
+  assert.doesNotMatch(contactHeader, /data-overlay="true"/);
+  assert.match(homeHeader, /Contact us/);
+  assert.match(contactHeader, /Contact us/);
+
+  for (const label of ["Services", "Solutions", "Industries", "Projects", "About", "FAQ"]) {
+    assert.match(homeHeader, new RegExp(`>${label}<`), `${label} is visible in the primary navbar`);
+  }
+});
+
+test("hero headline keeps side breathing across breakpoints", () => {
+  const css = readFileSync(
+    new URL("src/components/home/home-hero.module.css", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+
+  assert.match(css, /max-width:\s*82rem/);
+  assert.match(css, /font-size:\s*clamp\(3rem,\s*5\.75vw,\s*7\.75rem\)/);
+  assert.match(css, /max-width:\s*18rem/);
+  assert.match(css, /font-size:\s*clamp\(1\.85rem,\s*8\.6vw,\s*4\.15rem\)/);
+  assert.match(css, /font-size:\s*clamp\(3\.1rem,\s*7vw,\s*5\.75rem\)/);
+});
+
 test("trust then problems", async () => {
   const home = await getHtml("/");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");

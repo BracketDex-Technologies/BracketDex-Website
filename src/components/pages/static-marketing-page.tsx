@@ -25,7 +25,7 @@ export function StaticMarketingPage({ activeHref, content, ctaHref = "/contact",
   return <main className="bd-landing bd-inner-page" data-page={path.slice(1)} id="main-content" tabIndex={-1}>
     <JsonLd data={buildBreadcrumbJsonLd(path)} />
     <ScrollChoreography />
-    <Navbar activeHref={activeHref ?? path} brandName={marketingContent.company.name} ctaHref="/contact" ctaLabel="Let’s talk ↗" items={siteNavigation} />
+    <Navbar activeHref={activeHref ?? path} brandName={marketingContent.company.name} ctaHref="/contact" ctaLabel={marketingContent.homepage.navigationCta} items={siteNavigation} />
     <section className="bd-page-hero">
       <div className="content-shell">
         <div className="bd-page-intro">

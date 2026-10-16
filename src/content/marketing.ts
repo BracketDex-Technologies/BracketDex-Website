@@ -74,7 +74,7 @@ export const marketingContent = {
     { label: "Contact", href: "#contact" },
   ] satisfies readonly NavigationItem[],
   homepage: {
-    navigationCta: "Book a consultation",
+    navigationCta: "Contact us",
     hero: {
       capabilities: ["Software", "AI", "Cloud"],
       headline: {
