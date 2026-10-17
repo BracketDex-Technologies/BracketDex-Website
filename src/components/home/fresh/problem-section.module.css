@@ -124,6 +124,21 @@
   background: #d8d3ca;
 }
 
+.card:nth-child(4) {
+  border-color: rgb(244 239 230 / 20%);
+  background: #242424;
+  color: #f4efe6;
+}
+
+.card:nth-child(4) .challengeList li,
+.card:nth-child(4) .solutionBlock p {
+  color: rgb(244 239 230 / 72%);
+}
+
+.card:nth-child(4) .solutionBlock {
+  border-top-color: rgb(244 239 230 / 22%);
+}
+
 .track[data-enhanced="true"] .card:not([data-visible="true"]) {
   opacity: 0.32;
   transform: translateY(1rem);

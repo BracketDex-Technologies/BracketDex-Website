@@ -124,14 +124,17 @@ test("capability strip then problem solution stories", async () => {
     assert.ok(!trust.includes(item.label), `${item.label} is replaced by documented capabilities`);
   }
   assert.match(trust, /data-capability-strip="true"/);
-  assert.equal((problems.match(/data-problem-card="true"/g) ?? []).length, 3);
+  assert.equal((problems.match(/data-problem-card="true"/g) ?? []).length, 4);
   for (const group of marketingContent.homepage.problemGroups) {
-    assert.ok(problems.includes(group.title), group.title);
+    assert.ok(problems.includes(group.title.replaceAll("&", "&amp;")), group.title);
     for (const challenge of group.challenges) assert.ok(problems.includes(challenge), challenge);
   }
-  for (const index of [0, 3, 4]) {
+  for (const index of [0, 3, 4, 5]) {
     assert.ok(problems.includes(marketingContent.solutions[index].title), marketingContent.solutions[index].title);
   }
+  assert.ok(problems.includes("Cloud &amp; DevOps"));
+  assert.ok(problems.includes("Reliable infrastructure"));
+  assert.ok(problems.includes("Deployment pipelines"));
   assert.match(problems, /aria-label="Previous problem story"/);
   assert.match(problems, /aria-label="Next problem story"/);
   assert.doesNotMatch(trust, /marquee|\b\d\+\b/i);

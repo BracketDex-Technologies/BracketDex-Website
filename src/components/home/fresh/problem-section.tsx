@@ -7,6 +7,7 @@ const problemSolutionPairs = [
   { groupIndex: 0, solutionIndex: 0 },
   { groupIndex: 1, solutionIndex: 3 },
   { groupIndex: 2, solutionIndex: 4 },
+  { groupIndex: 3, solutionIndex: 5 },
 ] as const;
 
 export function ProblemSection({ content }: { content: MarketingContent }) {

@@ -122,6 +122,10 @@ export const marketingContent = {
         title: "Enterprise Challenges",
         challenges: ["Scalability issues", "System integrations", "Complex processes"],
       },
+      {
+        title: "Cloud & DevOps",
+        challenges: ["Reliable infrastructure", "Deployment pipelines"],
+      },
     ] satisfies readonly ProblemGroup[],
   },
   services: [
