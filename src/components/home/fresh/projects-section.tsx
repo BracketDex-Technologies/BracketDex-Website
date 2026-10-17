@@ -1,38 +1,74 @@
 import { caseStudies, featuredCaseStudies } from "@/content/case-studies";
-import { BadgeCheck, Building2, Sprout, Users, BriefcaseBusiness } from "lucide-react";
-
-const projectIcons = [BadgeCheck, Building2, Users, Sprout];
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import styles from "./projects-section.module.css";
 
 export function ProjectsSection({ all = false }: { all?: boolean }) {
   const studies = all ? caseStudies : featuredCaseStudies;
   return (
-    <section aria-labelledby={all ? "portfolio-title" : "fresh-projects-title"} className={`bd-fresh-projects${all ? "" : " bd-fresh-projects--featured"}`} data-motion-section id={all ? "portfolio" : "projects"}>
-      <div className="content-shell">
-        <p className="bd-fresh-eyebrow">20+ projects delivered</p>
-        <div className="bd-fresh-why__head">
+    <section
+      aria-labelledby={all ? "portfolio-title" : "fresh-projects-title"}
+      className={`bd-fresh-projects ${styles.section}${all ? "" : ` bd-fresh-projects--featured ${styles.featured}`}`}
+      data-motion-section
+      id={all ? "portfolio" : "projects"}
+    >
+      <div className={`content-shell ${styles.shell}`}>
+        <header className={styles.header}>
           <h2 id={all ? "portfolio-title" : "fresh-projects-title"}>{all ? "Selected projects and use cases." : "Built for everyday business."}</h2>
-          <p>Real businesses. Everyday challenges. A few of the systems we’ve built to make work simpler.</p>
-        </div>
-        <ul className="bd-fresh-projects__grid">
-          {studies.map((study, index) => {
-            const Icon = projectIcons[index] ?? BriefcaseBusiness;
+          <p>A few systems we’ve built to make everyday work simpler.</p>
+        </header>
+
+        <ul className={`bd-fresh-projects__grid ${styles.grid}`}>
+          {studies.map((study) => {
+            const labels = study.category.split(" · ");
             return (
-            <li className="bd-fresh-projects__card" key={study.name}>
-              <div className="bd-case-topline" aria-hidden="true">
-                <span className="bd-case-icon"><Icon size={23} strokeWidth={1.6} /></span>
-                <span className="bd-case-number">{String(index + 1).padStart(2, "0")}</span>
+            <li className={`bd-fresh-projects__card ${styles.card}`} data-project-card key={study.name}>
+              <div className={styles.cardHeader}>
+                <h3 className={styles.cardTitle}>{study.name}</h3>
+                <Link
+                  aria-label={all ? `Discuss ${study.name}` : `View ${study.name} in all projects`}
+                  className={styles.cardArrow}
+                  href={all ? "/contact" : "/projects"}
+                >
+                  <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.8} />
+                </Link>
               </div>
-              <p className="bd-case-category">{study.category}</p>
-              <h3>{study.name}</h3>
-              <p className="bd-case-summary">{study.summary}</p>
-              <div className="bd-case-result">
-                <span className="bd-case-result-label">The difference</span>
-                <p className="bd-case-highlight">{study.benefit}</p>
+
+              <div className={styles.rows}>
+                <div className={styles.row} data-project-row="category">
+                  <span>Category</span>
+                  <p>{study.category}</p>
+                </div>
+                <div className={styles.row} data-project-row="summary">
+                  <span>System</span>
+                  <p>{study.summary}</p>
+                </div>
+                <div className={styles.row} data-project-row="benefit">
+                  <span>Value</span>
+                  <p>{study.benefit}</p>
+                </div>
               </div>
+
+              <ul aria-label={`${study.name} categories`} className={styles.labels}>
+                {labels.map((label) => <li key={label}>{label}</li>)}
+              </ul>
             </li>
             );
           })}
         </ul>
+
+        {!all ? (
+          <div className={styles.actions}>
+            <Link className={styles.primaryAction} href="/projects">
+              View all projects
+              <ArrowRight aria-hidden="true" size={17} strokeWidth={1.8} />
+            </Link>
+            <Link className={styles.secondaryAction} href="/contact">
+              Start a project
+              <ArrowUpRight aria-hidden="true" size={17} strokeWidth={1.8} />
+            </Link>
+          </div>
+        ) : null}
       </div>
     </section>
   );

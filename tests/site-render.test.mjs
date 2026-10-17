@@ -193,6 +193,28 @@ test("capabilities industries and proof", async () => {
   assert.equal((why.match(/data-proof-card/g) ?? []).length, 7);
 });
 
+test("homepage project showcase uses six documented cards", async () => {
+  const { featuredCaseStudies } = await loadDataModule("src/content/case-studies.ts");
+  const source = readFileSync(
+    new URL("src/components/home/fresh/projects-section.tsx", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+  const css = readFileSync(
+    new URL("src/components/home/fresh/projects-section.module.css", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+
+  assert.equal(featuredCaseStudies.length, 6);
+  assert.match(source, /projects-section\.module\.css/);
+  assert.match(source, /styles\.header/);
+  assert.match(source, /styles\.grid/);
+  assert.match(source, /data-project-card/);
+  assert.match(source, /data-project-row/);
+  assert.match(source, /View all projects/);
+  assert.match(source, /Start a project/);
+  assert.match(css, /grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)\s*!important/);
+});
+
 test("projects FAQ and final action", async () => {
   const home = await getHtml("/");
   const { featuredCaseStudies } = await loadDataModule("src/content/case-studies.ts");

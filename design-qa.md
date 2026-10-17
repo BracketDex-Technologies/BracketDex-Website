@@ -114,7 +114,7 @@ No actionable P0, P1, or P2 findings remain.
 - The section follows the reference hierarchy: restrained eyebrow, section heading, circular previous/next controls, and a horizontal rail of large rounded cards on `#171717`.
 - Card copy is tightly spaced at the top. Each card uses an oversized documented solution title as the focal element instead of copying the reference's third-party brand illustrations.
 - The approved capability strip directly precedes the section and uses four documented capabilities rather than placeholder trust metrics.
-- Desktop measured three 400 × 464 pixel cards inside a 1200-pixel viewport rail. The 1232-pixel rail intentionally leaves a small horizontal progression cue.
+- Desktop now renders four cards in the horizontal rail. A basic interaction check moved the rail 415 pixels and surfaced the new Cloud & DevOps card without page-level overflow.
 - Mobile measured 335 × 384 pixel cards in a 335-pixel viewport rail. The first card is complete and readable, while the next card is reached by swipe or the arrow control.
 - Document scroll width equaled client width at both viewports, so the carousel creates no page-level horizontal overflow.
 
@@ -137,6 +137,28 @@ No actionable P0, P1, or P2 findings remain.
 ### Findings
 
 No actionable P0, P1, or P2 findings remain for this section.
+
+## Project showcase Design QA — October 18
+
+### Comparison target
+
+- Source visual truth: `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-17 235420.png` (890 × 707 pixels).
+- User-approved adaptation: left-aligned minimal heading, 3 × 2 desktop grid, three compact content rows per card, category labels, orange hover feedback, and two closing actions.
+- Implementation: `http://localhost:3001/#projects`.
+- Checked viewports: current desktop browser viewport and 390 × 844 CSS pixels.
+
+### Basic verification evidence
+
+- Desktop renders six documented projects in three columns and two rows. Tablet and mobile rules reduce the layout to two and one columns respectively.
+- Mobile shows one complete card per row with readable category, system, and value content; links retain 44-pixel touch targets.
+- Heading alignment, square card geometry, narrow row spacing, cream surface, charcoal borders, and orange hover treatment follow the approved adaptation.
+- The first desktop check exposed an older global two-column override. The local component rule now wins at desktop while retaining the approved tablet and mobile breakpoints.
+- The browser console reported no errors. The focused showcase contract test and TypeScript check passed.
+- Hero, navbar, and loader files were not changed.
+
+### Findings
+
+No actionable P0, P1, or P2 findings remain for the project showcase.
 
 ## Follow-up polish
 

@@ -17,7 +17,7 @@ export const caseStudies = [
   { name: "Schedule Poster Studio", category: "Media · OCR automation", summary: "A local workflow that converts structured schedule documents into editable records and print-ready poster artwork for commercial teams.", benefit: "Consistent vector PDFs, combined documents, and PNG assets from one reviewed source." },
 ] as const;
 
-export const featuredCaseStudies = caseStudies.slice(0, 4);
+export const featuredCaseStudies = caseStudies.slice(0, 6);
 
 export const caseStudyCards = caseStudies.map((study) => ({
   title: study.name,
