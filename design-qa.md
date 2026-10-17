@@ -8,7 +8,7 @@
   - `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-12 203456.png`
   - `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-12 221748.png`
   - `C:\Users\pawan\Downloads\download (4).jpg`
-- Implementation: `http://localhost:3000/`
+- Implementation: `http://localhost:3001/` for the current local QA preview.
 - Implementation screenshots: inline Codex in-app browser captures from this task. The browser API did not expose filesystem paths for the captures.
 - Desktop viewport: 1440 × 900 CSS px at device pixel ratio 1.
 - Mobile viewport: 390 × 844 CSS px at device pixel ratio 1.
@@ -45,10 +45,98 @@ No horizontal overflow remained at 1440, 390, or 320 CSS pixels. The desktop hea
 3. Mobile pass found P1 horizontal overflow caused by max-content headline sizing. Constrained the grid and copy width, then split the approved headline into responsive fragments.
 4. Narrow-mobile pass found P2 overflow from the 350-pixel override. Removed that override and rechecked at 320 × 700.
 5. Final desktop and mobile captures showed no actionable P0, P1, or P2 differences.
+6. October 16 refinement addressed the headline occupying too much horizontal space. Desktop type changed from `6.45vw` to `5.75vw` with an `82rem` cap; mobile changed from `9.4vw` to `8.6vw` with an `18rem` cap; short landscape changed from `8vw` to `7vw`.
+
+## October 16 headline-width refinement
+
+- Rechecked in the in-app browser at effective CSS viewports of 1600 × 1000, 781 × 668, 434 × 938, and 355 × 778.
+- Desktop headline rendered at 92 pixels inside a 1312-pixel frame, leaving clear side breathing without changing Syne, weight, copy, or line grouping.
+- The fluid desktop minimum was reduced from `3.75rem` to `3rem`; at the 781-pixel transition width the headline rendered at 48 pixels and remained fully visible.
+- Mobile headline stayed inside its 288-pixel frame at both checked widths and retained the approved four-line grouping.
+- No horizontal overflow appeared at any checked viewport. The Hero animation, CTA, navbar, and loader were not changed.
 
 ## Findings
 
 No actionable P0, P1, or P2 findings remain.
+
+## Navbar Design QA — October 16
+
+### Comparison target
+
+- Source visual truth: `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-16 230107.png` (1893 × 130 pixels).
+- User-approved adaptation: preserve the source's left wordmark, centered navigation, and right contact action, but use a fully transparent state over the Hero and a translucent cream glass state after scrolling.
+- Implementation: `http://localhost:3001/`.
+- Implementation screenshots: inline Codex in-app browser captures; the browser API did not expose filesystem paths.
+- Desktop viewport: 1440 × 900 CSS pixels. Mobile viewport: 390 × 844 CSS pixels.
+
+### Full-view comparison evidence
+
+- Desktop composition matches the reference structure: large wordmark aligned left, six existing routes centered independently, and `Contact us ↗` aligned right.
+- At the top of the page the computed navbar background was fully transparent, its position was fixed, and its text used warm cream over the Hero.
+- After scrolling 720 pixels, the computed background was `rgb(244 239 230 / 76%)`, backdrop blur was 18 pixels, text changed to `#171717`, and the sticky glass surface remained readable.
+- No horizontal overflow appeared: document scroll width equaled client width at desktop and mobile viewports.
+
+### Focused region evidence
+
+- Typography: Instrument Sans carries navigation and CTA copy; the larger BracketDex wordmark uses the same family with tighter tracking and orange brackets.
+- Interaction: route underline and contact-arrow motion use the approved orange accent. Keyboard focus is clearly outlined in orange, and reduced-motion preferences remove transitions.
+- Mobile: the top state remained transparent at 390 pixels, the menu expanded into a cream glass panel with all six routes and contact action visible, and Escape returned focus to the collapsed Menu control.
+- Scroll trigger: an Intersection Observer switches the navbar state; a passive scroll fallback covers browsers without observer support.
+- Console: no runtime errors or warnings appeared during navbar state checks.
+
+### Required fidelity surfaces
+
+- Fonts and typography: passed. Weight, scale, line height, and tracking preserve the reference's restrained navigation hierarchy.
+- Spacing and layout rhythm: passed. Desktop uses three balanced grid tracks; mobile maintains 44-pixel minimum controls and consistent separators.
+- Colors and visual tokens: passed. Only `#f25623`, `#171717`, and `#f4efe6` are used for the navbar system.
+- Image quality and asset fidelity: passed. The reference contains no required raster asset; the existing BracketDex text wordmark is preserved rather than copying the reference brand.
+- Copy and content: passed. Existing routes remain reachable and the contact label uses the approved wording.
+
+### Navbar comparison history
+
+1. The source supplied the composition and spacing target.
+2. The approved brief intentionally replaced the source's always-solid surface with transparent-over-Hero and glass-on-scroll states.
+3. Desktop, mobile, open-menu, Escape-dismissal, and scrolled states showed no actionable P0, P1, or P2 differences.
+
+## Problem/Solution and capability-strip Design QA — October 17
+
+### Comparison target
+
+- Source visual truth: `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-16 234431.png` (1309 × 577 pixels).
+- User-approved adaptation: retain the reference's dark canvas, compact card typography, right-side circular controls, horizontal card progression, and one large focal element per card while using BracketDex's documented problems and solutions.
+- Implementation: `http://localhost:3001/#problems`.
+- Desktop screenshot: `C:\Users\pawan\.codex\visualizations\2026\10\11\01a12bbf-c6f3-7393-8711-846b43e8b55a\problem-solution-desktop.png`.
+- Mobile screenshots: `C:\Users\pawan\.codex\visualizations\2026\10\11\01a12bbf-c6f3-7393-8711-846b43e8b55a\problem-solution-mobile.png` and `problem-solution-mobile-section.png` in the same folder.
+- Checked viewports: 1440 × 900 and 390 × 844 CSS pixels.
+
+### Full-view comparison evidence
+
+- The section follows the reference hierarchy: restrained eyebrow, section heading, circular previous/next controls, and a horizontal rail of large rounded cards on `#171717`.
+- Card copy is tightly spaced at the top. Each card uses an oversized documented solution title as the focal element instead of copying the reference's third-party brand illustrations.
+- The approved capability strip directly precedes the section and uses four documented capabilities rather than placeholder trust metrics.
+- Desktop measured three 400 × 464 pixel cards inside a 1200-pixel viewport rail. The 1232-pixel rail intentionally leaves a small horizontal progression cue.
+- Mobile measured 335 × 384 pixel cards in a 335-pixel viewport rail. The first card is complete and readable, while the next card is reached by swipe or the arrow control.
+- Document scroll width equaled client width at both viewports, so the carousel creates no page-level horizontal overflow.
+
+### Focused interaction and accessibility evidence
+
+- Desktop Next moved the rail from 0 to 32 pixels, disabled Next at the end, and enabled Previous. Mobile Next moved from 0 to 351 pixels; Previous returned it to 0.
+- On a fresh mobile load, only the first card was revealed. Advancing the rail revealed the second card through the section's Intersection Observer.
+- Controls have explicit accessible labels, disabled states, orange keyboard focus, and reduced-motion fallbacks. Native horizontal scrolling remains available for touch input.
+- The browser console reported no warnings or errors during desktop, mobile, and interaction checks.
+- Public content comes from the existing marketing content model. No client names, logos, statistics, certifications, testimonials, or case-study claims were invented.
+
+### Required fidelity surfaces
+
+- Typography and hierarchy: passed. Compact problem copy supports the oversized solution title without competing with it.
+- Spacing and rhythm: passed. Card insets and list gaps remain narrow, and the section breathes around the horizontal rail.
+- Colors: passed. The implementation uses `#f25623`, `#171717`, warm cream, and a restrained neutral card; no purple or blue gradient appears.
+- Responsive behavior: passed. The rail is mouse-, keyboard-, and touch-compatible with no page overflow at the checked viewports.
+- Reference fidelity: passed. Layout and interaction language follow the supplied reference while BracketDex content and visual identity remain original.
+
+### Findings
+
+No actionable P0, P1, or P2 findings remain for this section.
 
 ## Follow-up polish
 

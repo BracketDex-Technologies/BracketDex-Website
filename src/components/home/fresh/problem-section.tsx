@@ -1,32 +1,38 @@
-import type { MarketingContent, ProblemGroup } from "@/content/marketing";
+import type { MarketingContent } from "@/content/marketing";
 import { pageContent } from "@/content/pages";
+import { ProblemStoryRail, type ProblemStory } from "./problem-story-rail";
 import styles from "./problem-section.module.css";
 
-function ProblemCard({ group, index }: { group: ProblemGroup; index: number }) {
-  return (
-    <li className={styles.card}>
-      <span aria-hidden="true" className={styles.index}>{String(index + 1).padStart(2, "0")}</span>
-      <h3>{group.title}</h3>
-      <ul>
-        {group.challenges.map((challenge) => <li key={challenge}>{challenge}</li>)}
-      </ul>
-    </li>
-  );
-}
+const problemSolutionPairs = [
+  { groupIndex: 0, solutionIndex: 0 },
+  { groupIndex: 1, solutionIndex: 3 },
+  { groupIndex: 2, solutionIndex: 4 },
+] as const;
 
 export function ProblemSection({ content }: { content: MarketingContent }) {
   const section = pageContent.solutions.sections[0];
+  const stories = problemSolutionPairs.flatMap(({ groupIndex, solutionIndex }) => {
+    const group = content.homepage.problemGroups[groupIndex];
+    const solution = content.solutions[solutionIndex];
+    if (!group || !solution) return [];
+
+    return [{
+      challenges: group.challenges,
+      outcome: solution.outcome,
+      problem: group.title,
+      solution: solution.title,
+    } satisfies ProblemStory];
+  });
+
   return (
-    <section aria-labelledby="home-problems-title" className={styles.section} data-home-section="problems" id="problems">
+    <section aria-labelledby="home-problems-title" className={styles.section} data-home-section="problems" data-motion-section id="problems">
       <div className={styles.inner}>
-        <p className={styles.eyebrow}>{section.label}</p>
-        <div className={styles.heading}>
-          <h2 id="home-problems-title">{section.title}</h2>
-          <p>{section.description}</p>
-        </div>
-        <ul className={styles.grid}>
-          {content.homepage.problemGroups.map((group, index) => <ProblemCard group={group} index={index} key={group.title} />)}
-        </ul>
+        <ProblemStoryRail
+          description={section.description}
+          label={section.label}
+          stories={stories}
+          title={section.title}
+        />
       </div>
     </section>
   );

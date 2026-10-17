@@ -111,20 +111,29 @@ test("hero headline keeps side breathing across breakpoints", () => {
   assert.match(css, /font-size:\s*clamp\(3\.1rem,\s*7vw,\s*5\.75rem\)/);
 });
 
-test("trust then problems", async () => {
+test("capability strip then problem solution stories", async () => {
   const home = await getHtml("/");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
   assert.deepEqual(homeKeys(home).slice(0, 2), ["trust", "problems"]);
   const trust = homeSection(home, "trust");
   const problems = homeSection(home, "problems");
-  for (const item of marketingContent.homepage.trustMetricPlaceholders) {
-    assert.ok(trust.includes(item.label), item.label);
-    assert.ok(!trust.includes(item.placeholder), "placeholder instructions are not public copy");
+  for (const service of marketingContent.services.slice(0, 4)) {
+    assert.ok(trust.includes(service.title.replaceAll("&", "&amp;")), service.title);
   }
+  for (const item of marketingContent.homepage.trustMetricPlaceholders) {
+    assert.ok(!trust.includes(item.label), `${item.label} is replaced by documented capabilities`);
+  }
+  assert.match(trust, /data-capability-strip="true"/);
+  assert.equal((problems.match(/data-problem-card="true"/g) ?? []).length, 3);
   for (const group of marketingContent.homepage.problemGroups) {
     assert.ok(problems.includes(group.title), group.title);
     for (const challenge of group.challenges) assert.ok(problems.includes(challenge), challenge);
   }
+  for (const index of [0, 3, 4]) {
+    assert.ok(problems.includes(marketingContent.solutions[index].title), marketingContent.solutions[index].title);
+  }
+  assert.match(problems, /aria-label="Previous problem story"/);
+  assert.match(problems, /aria-label="Next problem story"/);
   assert.doesNotMatch(trust, /marquee|\b\d\+\b/i);
 });
 
