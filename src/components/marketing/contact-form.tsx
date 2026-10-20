@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(2, "Enter your name."),
@@ -21,7 +22,11 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-export function ContactForm() {
+type ContactFormProps = {
+  className?: string;
+};
+
+export function ContactForm({ className }: ContactFormProps = {}) {
   const [status, setStatus] = useState<string | null>(null);
   const {
     formState: { errors, isSubmitting },
@@ -51,7 +56,8 @@ export function ContactForm() {
   return (
     <form
       aria-describedby="contact-form-description"
-      className="rounded-xl border border-border bg-card p-6 shadow-soft"
+      className={cn("rounded-xl border border-border bg-card p-6 shadow-soft", className)}
+      id="contact-form"
       noValidate
       onSubmit={handleSubmit(onSubmit)}
     >

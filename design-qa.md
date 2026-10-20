@@ -164,6 +164,58 @@ No actionable P0, P1, or P2 findings remain for the project showcase.
 
 - P3: add Next.js `data-scroll-behavior="smooth"` migration metadata when global layout work is approved. This warning predates and sits outside the Hero slice.
 
+## Conversion section Design QA — October 20
+
+### Comparison target
+
+- Source visual truth: `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-20 222458.png` (882 × 665 pixels).
+- Approved adaptation: preserve the reference's centered conversion hierarchy, solid dark surface, restrained orange action, and compact supporting copy while retaining the existing BracketDex enquiry form.
+- Intended preview: `http://localhost:3001/#contact`.
+
+### Implementation evidence
+
+- The section uses a solid charcoal surface. No image, gradient, decorative blob, or copied brand asset appears in the background.
+- Existing form validation and submission behavior remain unchanged. The form now accepts a presentation class for the conversion layout.
+- Desktop and mobile use one centered content column. Form fields remain left-aligned for scanability and retain 44-pixel controls.
+- Orange is reserved for the eyebrow, focus states, direct-email underline, and primary form action.
+- Focused conversion contract test and TypeScript check passed after this refinement.
+
+### Blocker
+
+- The local Next.js server started successfully on port 3001, but the in-app browser returned connection timeouts for both `localhost` and `127.0.0.1`.
+- No same-viewport prototype screenshot could be captured. Visual comparison and interaction checks remain blocked.
+
+### Findings
+
+No code-level blocker found. Visual QA remains blocked until the local preview is reachable in the browser.
+
+## Footer Design QA — October 20
+
+### Comparison target
+
+- Source visual truth: `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-03 215529.png` (1125 × 458 pixels).
+- Approved adaptation: dark rounded panel, essential links at top left, verified contact details at top right, oversized BracketDex watermark, and restrained orange illumination.
+- Intended preview: `http://localhost:3001/#contact`.
+
+### Implementation evidence
+
+- Footer exposes only Home, Projects, Solutions, Contact us, and Privacy policy.
+- Contact content uses the documented email, phone number, and Pune location. No social profiles were invented.
+- Oversized BracketDex watermark uses text, color, shadow, and the existing logo font. No background image or gradient was added.
+- Desktop uses the reference's two-sided top layout. Mobile stacks navigation and contact details with 44-pixel link targets.
+- Orange underline, contact-arrow movement, visible keyboard focus, and reduced-motion handling are included.
+- Focused footer contract test and TypeScript check passed.
+- Follow-up correction replaced content-width `right`/transform positioning with a full-panel flex anchor, keeping the watermark centered along the card bottom at every breakpoint.
+
+### Blocker
+
+- Browser visual comparison was not repeated because the approved QA scope requested basic verification unless an inconsistency appeared.
+- Same-viewport visual fidelity remains unverified.
+
+### Findings
+
+No code-level blocker found. Visual QA remains blocked pending browser comparison.
+
 ## Final result
 
-final result: passed
+final result: blocked

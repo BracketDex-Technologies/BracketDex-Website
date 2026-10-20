@@ -1,0 +1,219 @@
+.section {
+  padding-block: clamp(3rem, 6vw, 6rem) !important;
+  color: #f5f0e6;
+  background: #f5f0e6 !important;
+}
+
+.shell {
+  width: min(calc(100% - 4rem), 75rem);
+}
+
+.panel {
+  min-height: clamp(38rem, 55vw, 48rem);
+  background: #0c0c0c;
+  border: 1px solid #171717;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(2rem, 4vw, 3.25rem);
+  min-height: inherit;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.copy {
+  display: flex;
+  max-width: 48rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: #f25623;
+  font-family: ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.copy h2 {
+  max-width: 15ch;
+  margin: 0;
+  color: #fffdf8;
+  font-size: clamp(2.8rem, 5vw, 5.8rem) !important;
+  font-weight: 500;
+  line-height: 0.96 !important;
+  letter-spacing: -0.055em !important;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 40rem;
+  margin: 1.4rem 0 0 !important;
+  color: rgb(255 253 248 / 72%) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+.emailLink {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.25rem;
+  padding: 0.65rem 0;
+  color: #fffdf8;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #f25623;
+  text-underline-offset: 0.35rem;
+}
+
+.emailLink svg {
+  transition: transform 180ms ease;
+}
+
+.emailLink:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.emailLink:focus-visible {
+  outline: 3px solid #f25623;
+  outline-offset: 4px;
+}
+
+.form {
+  width: 100%;
+  max-width: 38rem;
+  margin: 0;
+  padding: clamp(1.15rem, 2vw, 1.6rem) !important;
+  color: #fffdf8;
+  background: #111 !important;
+  border: 1px solid rgb(255 253 248 / 32%) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  text-align: left;
+}
+
+.form > p {
+  margin: 0 0 1rem;
+  color: rgb(255 253 248 / 64%) !important;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.form :global([data-slot="field-group"]) {
+  gap: 0.9rem;
+}
+
+.form :global([data-slot="field"]) {
+  gap: 0.4rem;
+}
+
+.form :global([data-slot="field-label"]) {
+  color: #fffdf8;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.form :global([data-slot="input"]),
+.form :global([data-slot="textarea"]) {
+  min-height: 2.75rem;
+  color: #fffdf8;
+  caret-color: #f25623;
+  background: #191919 !important;
+  border: 1px solid rgb(255 253 248 / 28%);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.form :global([data-slot="textarea"]) {
+  min-height: 4.75rem;
+  resize: vertical;
+}
+
+.form :global([data-slot="input"]:focus-visible),
+.form :global([data-slot="textarea"]:focus-visible) {
+  border-color: #f25623;
+  outline: 2px solid #f25623;
+  outline-offset: 1px;
+  box-shadow: none;
+}
+
+.form :global([data-slot="field-error"]) {
+  color: #ff926d;
+  font-size: 0.72rem;
+}
+
+.form :global([data-slot="button"]) {
+  min-height: 3rem;
+  color: #171717;
+  background: #f25623;
+  border: 1px solid #f25623;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.form :global([data-slot="button"]:hover) {
+  color: #171717;
+  background: #fffdf8;
+  border-color: #fffdf8;
+  transform: translateY(-2px);
+}
+
+.form :global([data-slot="button"]:focus-visible) {
+  outline: 3px solid #fffdf8;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .shell {
+    width: calc(100% - 2.5rem);
+  }
+
+  .panel {
+    min-height: 0;
+  }
+
+  .content {
+    min-height: 0;
+    gap: 2rem;
+    padding: 3.5rem 1.25rem 1.25rem;
+  }
+
+  .copy h2 {
+    max-width: 13ch;
+    font-size: clamp(2.55rem, 12vw, 4rem) !important;
+  }
+
+  .description {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emailLink svg,
+  .form :global([data-slot="button"]) {
+    transition: none;
+  }
+
+  .emailLink:hover svg,
+  .form :global([data-slot="button"]:hover) {
+    transform: none;
+  }
+}

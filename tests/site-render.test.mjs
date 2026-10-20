@@ -215,6 +215,61 @@ test("homepage project showcase uses six documented cards", async () => {
   assert.match(css, /grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)\s*!important/);
 });
 
+test("conversion panel keeps the existing enquiry flow", () => {
+  const source = readFileSync(
+    new URL("src/components/home/fresh/cta-section.tsx", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+  const css = readFileSync(
+    new URL("src/components/home/fresh/cta-section.module.css", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+  const formSource = readFileSync(
+    new URL("src/components/marketing/contact-form.tsx", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+
+  assert.equal(existsSync(new URL("public/media/conversion/bracketdex-conversion-halftone.png", `file:///${root.replaceAll("\\", "/")}/`)), false);
+  assert.match(source, /cta-section\.module\.css/);
+  assert.doesNotMatch(source, /next\/image|PixelWordmark|bracketdex-conversion-halftone\.png/);
+  assert.match(source, /<ContactForm/);
+  assert.match(source, /Email directly/);
+  assert.match(source, /data-home-section="cta"/);
+  assert.match(source, /styles\.content/);
+  assert.match(css, /text-align:\s*center/);
+  assert.match(css, /background:\s*#0c0c0c/);
+  assert.doesNotMatch(css, /background-image|linear-gradient|radial-gradient/);
+  assert.match(formSource, /className\?: string/);
+});
+
+test("footer keeps only essential routes and verified BracketDex details", () => {
+  const cssUrl = new URL("src/components/marketing/footer.module.css", `file:///${root.replaceAll("\\", "/")}/`);
+  const source = readFileSync(
+    new URL("src/components/marketing/footer.tsx", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+  assert.ok(existsSync(cssUrl), "footer CSS module must exist");
+  const css = readFileSync(cssUrl, "utf8");
+
+  assert.match(source, /footer\.module\.css/);
+  assert.match(source, /ESSENTIAL_FOOTER_LINKS/);
+  for (const label of ["Home", "Projects", "Solutions", "Contact us"]) {
+    assert.match(source, new RegExp(`"${label}"`));
+  }
+  assert.match(source, /contactDetails\.email/);
+  assert.match(source, /contactDetails\.phone/);
+  assert.match(source, /contactDetails\.location/);
+  assert.match(source, /Privacy policy/);
+  assert.doesNotMatch(source, /Instagram|LinkedIn|WhatsApp|Dribbble/i);
+  assert.match(css, /border-radius:\s*clamp/);
+  assert.match(css, /#f25623/);
+  assert.match(css, /grid-template-columns:\s*minmax\(0, 1fr\)\s+minmax\(0, 1fr\)/);
+  assert.match(css, /inset-inline:\s*0/);
+  assert.match(css, /width:\s*100%/);
+  assert.match(css, /justify-content:\s*center/);
+  assert.doesNotMatch(css, /right:\s*50%|translateX\(50%\)/);
+});
+
 test("projects FAQ and final action", async () => {
   const home = await getHtml("/");
   const { featuredCaseStudies } = await loadDataModule("src/content/case-studies.ts");

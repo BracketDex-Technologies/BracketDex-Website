@@ -1,0 +1,183 @@
+.footer {
+  padding: clamp(1rem, 2vw, 1.5rem) !important;
+  color: #fffdf8;
+  background: #080808 !important;
+}
+
+.shell {
+  width: min(100%, 90rem);
+}
+
+.panel {
+  position: relative;
+  min-height: clamp(29rem, 43vw, 38rem);
+  overflow: hidden;
+  background: #141414;
+  border: 1px solid rgb(255 253 248 / 8%);
+  border-radius: clamp(1.1rem, 2vw, 1.6rem);
+  box-shadow: inset 0 -7rem 9rem -4rem rgb(242 86 35 / 82%);
+}
+
+.top {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  padding: clamp(2rem, 4vw, 3.5rem);
+}
+
+.navigation {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: start;
+}
+
+.link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.45rem;
+  color: #fffdf8;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35rem;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.link svg {
+  transition: transform 180ms ease;
+}
+
+.link:hover {
+  color: #f25623;
+  text-decoration-color: #f25623;
+}
+
+.link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.link:focus-visible,
+.contact a:focus-visible,
+.base a:focus-visible {
+  outline: 3px solid #f25623;
+  outline-offset: 4px;
+}
+
+.contact {
+  display: grid;
+  gap: 0.55rem;
+  align-content: start;
+  justify-items: end;
+  color: rgb(255 253 248 / 66%);
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.contact a {
+  color: inherit;
+  transition: color 180ms ease;
+}
+
+.contact a:hover {
+  color: #f25623;
+}
+
+.wordmark {
+  position: absolute;
+  z-index: 1;
+  inset-inline: 0;
+  bottom: -0.14em;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 0;
+  color: rgb(242 86 35 / 48%);
+  font-size: clamp(4.25rem, 16vw, 14rem);
+  font-weight: 500;
+  line-height: 0.72;
+  letter-spacing: -0.065em;
+  text-align: center;
+  text-shadow: 0 0 1.4rem rgb(242 86 35 / 42%), 0 0 4rem rgb(242 86 35 / 52%);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.wordmark span {
+  display: block;
+}
+
+.base {
+  display: flex;
+  min-height: 3.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgb(255 253 248 / 54%);
+  font-size: 0.75rem;
+}
+
+.base p {
+  margin: 0;
+}
+
+.base a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgb(242 86 35 / 62%);
+  text-underline-offset: 0.25rem;
+}
+
+.base a:hover {
+  color: #fffdf8;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding: 0.75rem !important;
+  }
+
+  .panel {
+    min-height: 35rem;
+  }
+
+  .top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.25rem;
+    padding: 1.5rem;
+  }
+
+  .contact {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .wordmark {
+    bottom: 0;
+    font-size: clamp(3.45rem, 16.5vw, 5rem);
+  }
+
+  .base {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: 1rem 0.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .link svg,
+  .contact a {
+    transition: none;
+  }
+
+  .link:hover svg {
+    transform: none;
+  }
+}
