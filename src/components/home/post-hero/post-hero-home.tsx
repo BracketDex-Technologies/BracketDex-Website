@@ -1,6 +1,5 @@
 import type { MarketingContent } from "@/content/marketing";
 import { FreshCta } from "@/components/home/fresh/cta-section";
-import { CloudPanel } from "@/components/home/fresh/cloud-panel";
 import { CapabilityIndex } from "@/components/home/fresh/capability-index";
 import { ProblemSection } from "@/components/home/fresh/problem-section";
 import { ProcessRail } from "@/components/home/fresh/process-rail";
@@ -20,7 +19,6 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
       <TrustStrip content={content} />
       <ProblemSection content={content} />
       <ServicesBento content={content} />
-      <CloudPanel content={content} />
       <div className="bd-post-dark">
         <ProcessRail content={content} />
       </div>

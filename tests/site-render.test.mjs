@@ -154,24 +154,20 @@ test("five documented services in the interactive bento", async () => {
   assert.doesNotMatch(services, /run_[a-z0-9]+|exec_[a-z0-9]+|Last run|Latency|Tokens|Cost|2m ago/i);
 });
 
-test("cloud then seven process steps", async () => {
+test("services lead directly into seven process steps", async () => {
   const home = await getHtml("/");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(3, 5), ["cloud", "process"]);
-  const cloud = homeSection(home, "cloud");
+  assert.deepEqual(homeKeys(home).slice(2, 4), ["services", "process"]);
+  assert.ok(!homeKeys(home).includes("cloud"));
   const process = homeSection(home, "process");
-  for (const group of marketingContent.technologyStack.filter((item) => ["Cloud", "DevOps"].includes(item.category))) {
-    for (const item of group.items) assert.ok(cloud.includes(item), item);
-  }
   const titles = [...process.matchAll(/data-process-title[^>]*>([^<]+)<\/strong>/g)].map((match) => match[1]);
   assert.deepEqual(titles, marketingContent.process.map((step) => step.title));
-  assert.doesNotMatch(cloud, /Last updated|Success|Run #/i);
 });
 
 test("capabilities industries and proof", async () => {
   const home = await getHtml("/");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(5, 7), ["capabilities", "why"]);
+  assert.deepEqual(homeKeys(home).slice(4, 6), ["capabilities", "why"]);
   const capabilities = homeSection(home, "capabilities");
   const why = homeSection(home, "why");
   for (const group of marketingContent.technologyStack) {
@@ -271,7 +267,7 @@ test("projects FAQ and final action", async () => {
   const home = await getHtml("/");
   const { featuredCaseStudies } = await loadDataModule("src/content/case-studies.ts");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(7), ["projects", "faq", "cta"]);
+  assert.deepEqual(homeKeys(home).slice(6), ["projects", "faq", "cta"]);
   const projects = homeSection(home, "projects");
   const faq = homeSection(home, "faq");
   const cta = homeSection(home, "cta");

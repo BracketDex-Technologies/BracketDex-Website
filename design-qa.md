@@ -243,4 +243,6 @@ final result: blocked
 - Removed the motion toggle and the caption below the cards as requested. Removed their unused styles, toggle state, and reserved heading space.
 - Cursor response, scroll parallax, ambient animation, offscreen pausing, and reduced-motion support remain in place.
 
+- Removed the standalone Cloud panel from the homepage following the next annotation. Services now lead directly into the process section; the Cloud & DevOps bento card remains. Updated affected section-order assertions. Browser verification remains unavailable.
+
 final result: blocked
