@@ -219,3 +219,10 @@ No code-level blocker found. Visual QA remains blocked pending browser compariso
 ## Final result
 
 final result: blocked
+
+## Footer spacing refinement — October 22
+
+- Removed the desktop and mobile panel minimum heights. The panel now follows its content, with the centered watermark in normal flow as the final grid row.
+- Reduced top padding, link spacing, and copyright-strip spacing. Mobile navigation uses two columns while preserving 44-pixel link targets.
+- Retained the existing watermark size, orange illumination, contact content, focus states, and reduced-motion handling.
+- Basic verification: the existing focused footer test passed (1/1), and `git diff --check` passed. Browser appearance was not verified for this refinement.
