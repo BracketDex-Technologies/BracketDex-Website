@@ -226,3 +226,21 @@ final result: blocked
 - Reduced top padding, link spacing, and copyright-strip spacing. Mobile navigation uses two columns while preserving 44-pixel link targets.
 - Retained the existing watermark size, orange illumination, contact content, focus states, and reduced-motion handling.
 - Basic verification: the existing focused footer test passed (1/1), and `git diff --check` passed. Browser appearance was not verified for this refinement.
+
+## Services bento — October 22
+
+- Source: `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-22 104247.png` (1001 × 701). The supplied image defines the five-card arrangement, rounded dark surfaces, compact copy, and large visual areas.
+- Implemented one small and one double-width card in the desktop first row, with three equal cards below. Tablet uses two columns; mobile uses one.
+- Content uses all five documented services. Cloud & DevOps and Digital Growth are the two additions to this section; no new service offerings or technology claims were invented.
+- Typography reuses the current body font. Colors adapt the reference to charcoal, cream text, and orange accents. Custom SVGs follow the user's explicit request for animated vector artwork rather than raster assets.
+- GSAP controls layered cursor response, scroll parallax, and ambient SVG animation. IntersectionObserver and document visibility pause ambient animation when it is not visible. A section control and reduced-motion preference disable motion. Motion supplies button feedback; the existing Lenis provider remains in use.
+- Basic checks: TypeScript passed; `git diff --check` passed. The existing services render test was updated for five cards and documented content, but execution was blocked by localhost access (`EACCES`, then `ETIMEDOUT` after escalation).
+- Browser capture: unavailable. The in-app browser timed out connecting to `http://127.0.0.1:3001/#services`; its resulting error page was blocked by browser URL policy. No alternate browser or policy workaround was attempted.
+- Visual comparison, mobile screenshots, cursor behavior, pause/resume, and runtime console checks remain unverified. No pixel-fidelity claim is made.
+
+### Follow-up annotation
+
+- Removed the motion toggle and the caption below the cards as requested. Removed their unused styles, toggle state, and reserved heading space.
+- Cursor response, scroll parallax, ambient animation, offscreen pausing, and reduced-motion support remain in place.
+
+final result: blocked

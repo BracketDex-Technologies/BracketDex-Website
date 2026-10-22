@@ -140,21 +140,18 @@ test("capability strip then problem solution stories", async () => {
   assert.doesNotMatch(trust, /marquee|\b\d\+\b/i);
 });
 
-test("three service chapters", async () => {
+test("five documented services in the interactive bento", async () => {
   const home = await getHtml("/");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
   const services = homeSection(home, "services");
-  assert.equal((services.match(/data-home-chapter=/g) ?? []).length, 3);
-  for (const item of marketingContent.services.slice(0, 3)) {
-    assert.ok(services.includes(item.title), item.title);
+  assert.equal((services.match(/data-service-card=/g) ?? []).length, 5);
+  for (const item of marketingContent.services) {
+    assert.ok(services.includes(item.title.replaceAll("&", "&amp;")), item.title);
     assert.ok(services.includes(item.description), item.description);
   }
-  for (const index of [0, 1, 2, 3, 4, 5]) {
-    const item = marketingContent.solutions[index];
-    assert.ok(services.includes(item.title), item.title);
-    assert.ok(services.includes(item.outcome), item.outcome);
-  }
-  assert.doesNotMatch(services, /Digital Growth|run_[a-z0-9]+|exec_[a-z0-9]+|Last run|Latency|Tokens|Cost|2m ago/i);
+  assert.equal((services.match(/<h3\b/g) ?? []).length, 5);
+  assert.equal((services.match(/href="\/(services|solutions)"/g) ?? []).length, 5);
+  assert.doesNotMatch(services, /run_[a-z0-9]+|exec_[a-z0-9]+|Last run|Latency|Tokens|Cost|2m ago/i);
 });
 
 test("cloud then seven process steps", async () => {
