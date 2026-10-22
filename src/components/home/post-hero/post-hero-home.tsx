@@ -19,9 +19,7 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
       <TrustStrip content={content} />
       <ProblemSection content={content} />
       <ServicesBento content={content} />
-      <div className="bd-post-dark">
-        <ProcessRail content={content} />
-      </div>
+      <ProcessRail content={content} />
       <CapabilityIndex content={content} />
       <WhySection content={content} />
       <ProjectsSection />

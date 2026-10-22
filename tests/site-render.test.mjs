@@ -170,6 +170,10 @@ test("capabilities industries and proof", async () => {
   assert.deepEqual(homeKeys(home).slice(4, 6), ["capabilities", "why"]);
   const capabilities = homeSection(home, "capabilities");
   const why = homeSection(home, "why");
+  assert.ok(capabilities.includes('id="tech-stack"'), "technology has its own anchor");
+  assert.ok(capabilities.includes('data-tech-wordmark="true"'), "centered brand wordmark renders");
+  assert.equal((capabilities.match(/data-tech-node="true"/g) ?? []).length, 7);
+  assert.ok(capabilities.indexOf('id="tech-stack"') < capabilities.indexOf('id="industries"'), "technology precedes industries");
   for (const group of marketingContent.technologyStack) {
     assert.ok(capabilities.includes(group.category), group.category);
     for (const item of group.items) assert.ok(capabilities.includes(item), item);

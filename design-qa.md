@@ -246,3 +246,15 @@ final result: blocked
 - Removed the standalone Cloud panel from the homepage following the next annotation. Services now lead directly into the process section; the Cloud & DevOps bento card remains. Updated affected section-order assertions. Browser verification remains unavailable.
 
 final result: blocked
+
+## Process timeline redesign — October 22
+
+- Replaced the horizontal process rail with a cream two-column timeline directly after Services. The desktop heading and large step counter remain sticky while the seven existing steps scroll past.
+- Preserved all documented step names and descriptions. Added restrained outline icons, an orange scroll-progress line, active-row highlighting, and short GSAP entrance movements. IntersectionObserver selects the current step.
+- Mobile and tablet use a single column without the sticky counter. Reduced-motion preferences disable GSAP movement and CSS transitions. Content remains readable without animation.
+- Removed only the process section's surrounding dark spacer; hero, navbar, loader, Services bento, and other sections remain unchanged.
+- Basic checks passed: TypeScript, the focused seven-step/section-order render test (1/1), and whitespace validation.
+- Browser verification at approximately 1265 × 712 confirmed the desktop layout, sticky heading, and counter progression from Planning (02) to Development (04) after scrolling. All seven steps rendered. The preview server is now accessible.
+- Mobile appearance and reduced-motion runtime behavior were not browser-tested. No full-site QA or pixel-fidelity claim is made.
+
+Process result: implemented; basic checks passed.
