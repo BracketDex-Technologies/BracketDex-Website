@@ -78,10 +78,10 @@ export const marketingContent = {
     hero: {
       capabilities: ["Software", "AI", "Cloud"],
       headline: {
-        label: "Your systems, working as one.",
+        label: "Your Business Running Smarter with AI",
         lines: [
-          ["Your", "systems,"],
-          ["Working", "as one."],
+          ["Your", "Business"],
+          ["Running", "Smarter", "with", "AI"],
         ],
       },
       subheadline: "Custom software, AI, and cloud—built around your business.",

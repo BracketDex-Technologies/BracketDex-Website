@@ -77,18 +77,18 @@
 
 .capabilityRail {
   display: inline-flex;
-  min-height: 2.5rem;
+  min-height: 2rem;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 1rem;
+  padding: 0.4rem 0.75rem;
   border: 1px solid rgb(244 239 230 / 32%);
   border-radius: 999px;
   background: rgb(23 23 23 / 32%);
   color: rgb(244 239 230 / 86%);
   font-family: var(--font-hero-body), sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.1em;
   line-height: 1;
   text-transform: uppercase;
   backdrop-filter: blur(10px);
@@ -101,7 +101,7 @@
 }
 
 .divider {
-  margin-inline: 0.65rem;
+  margin-inline: 0.45rem;
   color: var(--hero-orange);
 }
 
@@ -110,12 +110,12 @@
   max-width: 82rem;
   margin: clamp(1.2rem, 2.4vh, 2rem) 0 0;
   color: var(--hero-cream);
-  font-family: var(--font-hero-display), sans-serif;
+  font-family: var(--font-hero-body), sans-serif;
   font-size: clamp(3rem, 5.75vw, 7.75rem);
-  font-weight: 800;
-  letter-spacing: -0.075em;
-  line-height: 0.82;
-  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  text-transform: none;
   text-shadow: 0 0.15rem 1rem rgb(0 0 0 / 38%);
   text-wrap: initial;
 }
@@ -209,30 +209,26 @@
   }
 
   .capabilityRail {
-    min-height: 2.35rem;
-    padding-inline: 0.85rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
+    min-height: 1.9rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
   }
 
   .divider {
-    margin-inline: 0.45rem;
+    margin-inline: 0.32rem;
   }
 
   .hero .title {
-    max-width: 18rem;
+    max-width: 22rem;
     margin-top: 1.25rem;
-    font-size: clamp(1.85rem, 8.6vw, 4.15rem);
-    letter-spacing: -0.07em;
-    line-height: 0.86;
+    font-size: clamp(2.35rem, 10vw, 4.15rem);
+    letter-spacing: -0.035em;
+    line-height: 1;
   }
 
-  .titleLine > span {
-    display: block;
-  }
-
-  .titleLine > span + span {
-    margin-top: 0.08em;
+  .titleLine {
+    white-space: normal;
   }
 
   .subtitle {
@@ -259,7 +255,7 @@
   }
 
   .capabilityRail {
-    font-size: 0.58rem;
+    font-size: 0.54rem;
   }
 
 }

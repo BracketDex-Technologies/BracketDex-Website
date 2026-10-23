@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, type CSSProperties } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import type { TechnologyGroup } from "@/content/marketing";
 import styles from "./technology-network.module.css";
+import { TechnologyIcon } from "./technology-icon";
 
 type Props = { groups: readonly TechnologyGroup[]; label: string; title: string };
 
@@ -16,16 +17,20 @@ export function TechnologyNetwork({ groups, label, title }: Props) {
   const root = useRef<HTMLDivElement>(null);
   const diagram = useRef<HTMLDivElement>(null);
   const hub = useRef<HTMLDivElement>(null);
-  const [paths, setPaths] = useState<string[]>([]);
+  const scheduleMeasure = useRef<() => void>(() => {});
+  const onPositionChange = useCallback(() => scheduleMeasure.current(), []);
+  const technologies = groups.flatMap((group) => group.items.map((name) => ({ name, key: `${group.category}-${name}` })));
 
   useEffect(() => {
     const canvas = diagram.current;
     const center = hub.current;
     if (!canvas || !center) return;
-    const nodes = Array.from(canvas.querySelectorAll<HTMLElement>("[data-tech-node]"));
+    const nodes = Array.from(canvas.querySelectorAll<HTMLElement>("[data-tech-icon]"));
+    const connectors = canvas.querySelectorAll<SVGGElement>("[data-tech-connection]");
     let frame = 0;
     let disposed = false;
     const measure = () => {
+      frame = 0;
       const origin = canvas.getBoundingClientRect();
       const anchor = center.getBoundingClientRect();
       const cx = anchor.left + anchor.width / 2 - origin.left;
@@ -37,7 +42,7 @@ export function TechnologyNetwork({ groups, label, title }: Props) {
         const dx = nx - cx;
         const dy = ny - cy;
         // Connect actual card edges, including after font loading and mobile reflow.
-        if (Math.abs(dy) > Math.abs(dx) * 0.65) {
+        if (Math.abs(dy) > anchor.height) {
           const direction = Math.sign(dy);
           const sy = cy + direction * anchor.height / 2;
           const ey = ny - direction * bounds.height / 2;
@@ -49,29 +54,31 @@ export function TechnologyNetwork({ groups, label, title }: Props) {
         const sx = cx + direction * anchor.width / 2;
         const ex = nx - direction * bounds.width / 2;
         const bend = (ex - sx) * 0.55;
-        return `M ${sx} ${cy} C ${sx + bend} ${cy}, ${ex - bend} ${ny}, ${ex} ${ny}`;
+        const sy = cy + Math.max(-anchor.height * 0.28, Math.min(anchor.height * 0.28, (ny - cy) * 0.4));
+        return `M ${sx} ${sy} C ${sx + bend} ${sy}, ${ex - bend} ${ny}, ${ex} ${ny}`;
       });
-      setPaths((previous) => previous.join("|") === next.join("|") ? previous : next);
+      next.forEach((path, index) => {
+        connectors[index]?.querySelectorAll("path").forEach((element) => element.setAttribute("d", path));
+      });
     };
     const schedule = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(measure);
+      if (!frame) frame = requestAnimationFrame(measure);
     };
+    scheduleMeasure.current = schedule;
     const observer = new ResizeObserver(schedule);
     [canvas, center, ...nodes].forEach((element) => observer.observe(element));
     document.fonts.ready.then(() => { if (!disposed) schedule(); });
     schedule();
-    return () => { disposed = true; observer.disconnect(); cancelAnimationFrame(frame); };
+    return () => { disposed = true; scheduleMeasure.current = () => {}; observer.disconnect(); cancelAnimationFrame(frame); };
   }, [groups]);
 
   useGSAP(() => {
     const element = root.current;
-    if (!element || paths.length === 0) return;
+    if (!element) return;
     const media = gsap.matchMedia();
     media.add("(prefers-reduced-motion: no-preference)", () => {
       const wordmark = element.querySelector("[data-tech-wordmark]");
       const signals = element.querySelectorAll("[data-tech-signal]");
-      const cards = element.querySelectorAll("[data-tech-node]");
       const loop = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 1.1 });
       // A soft double beat launches one outward wave. Never blink the text off.
       loop.to(wordmark, { scale: 1.025, duration: 0.3, ease: "sine.inOut" }, 0)
@@ -79,13 +86,11 @@ export function TechnologyNetwork({ groups, label, title }: Props) {
         .to(wordmark, { scale: 1.015, duration: 0.25, ease: "sine.inOut" }, 0.6)
         .to(wordmark, { scale: 1, duration: 0.5, ease: "sine.inOut" }, 0.85);
       signals.forEach((signal, index) => {
-        const start = 0.45 + index * 0.07;
-        loop.fromTo(signal, { strokeDashoffset: 12, opacity: 0 }, {
-          strokeDashoffset: -100, opacity: 0.9, duration: 1.9, ease: "none",
+        const start = 0.45 + index * 0.025;
+        loop.fromTo(signal, { strokeDashoffset: 0, opacity: 0.15 }, {
+          strokeDashoffset: -52, opacity: 0.7, duration: 1.9, ease: "none",
         }, start)
-          .to(signal, { opacity: 0, duration: 0.2 }, start + 1.7)
-          .to(cards[index], { borderColor: "#f25623", duration: 0.25 }, start + 1.6)
-          .to(cards[index], { borderColor: "#454039", duration: 0.8 }, start + 1.95);
+          .to(signal, { opacity: 0.15, duration: 0.3 }, start + 1.9);
       });
       let visible = false;
       const sync = () => { if (visible && !document.hidden) loop.play(); else loop.pause(); };
@@ -101,7 +106,7 @@ export function TechnologyNetwork({ groups, label, title }: Props) {
       };
     });
     return () => media.revert();
-  }, { scope: root, dependencies: [paths], revertOnUpdate: true });
+  }, { scope: root, dependencies: [groups], revertOnUpdate: true });
 
   return (
     <div ref={root} className={styles.section} id="tech-stack" role="region" aria-labelledby="home-capability-title">
@@ -109,13 +114,14 @@ export function TechnologyNetwork({ groups, label, title }: Props) {
         <header className={styles.heading}>
           <p>{label}</p>
           <h2 id="home-capability-title">{title}</h2>
+          <div className={styles.subheading}>Different technologies. <span>One connected system.</span></div>
         </header>
         <div className={styles.diagram} ref={diagram}>
           <svg className={styles.connections} aria-hidden="true" focusable="false">
-            {paths.map((path, index) => (
-              <g key={groups[index].category}>
-                <path className={styles.string} d={path} />
-                <path className={styles.signal} data-tech-signal d={path} pathLength="100" strokeDasharray="12 100" />
+            {technologies.map(({ key }) => (
+              <g key={key} data-tech-connection>
+                <path className={styles.string} strokeDasharray="4 9" />
+                <path className={styles.signal} data-tech-signal strokeDasharray="4 9" />
               </g>
             ))}
           </svg>
@@ -129,7 +135,9 @@ export function TechnologyNetwork({ groups, label, title }: Props) {
               <li key={group.category} className={styles.node} data-tech-node="true"
                 style={{ "--node-x": `${positions[index][0]}%`, "--node-y": `${positions[index][1]}%`, "--node-order": index } as CSSProperties}>
                 <h3>{group.category}</h3>
-                <p>{group.items.join(" · ")}</p>
+                <div className={styles.icons}>
+                  {group.items.map((name) => <TechnologyIcon key={name} name={name} onPositionChange={onPositionChange} />)}
+                </div>
               </li>
             ))}
           </ul>
