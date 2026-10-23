@@ -307,3 +307,51 @@ Result: implemented; basic code/render/asset checks passed; browser verification
 - Mobile headline fragments now wrap naturally instead of forcing every fragment onto its own line.
 - Focused copy and typography contracts passed (2/2). Whitespace validation passed.
 - Hero media, loader, navigation, subheadline, CTA, and all other sections remain unchanged. No commit or push.
+
+## Why BracketDex bento redesign — October 23
+
+### Comparison target
+
+- Source visual truth: `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-23 230835.png` (874 × 545 pixels) and `C:\Users\pawan\OneDrive\Pictures\Screenshots 1\Screenshot 2026-10-23 230351.png` (977 × 717 pixels).
+- Intended adaptation: use the references for the centered heading, restrained bento structure, one dark focal card, and diagram-led cards while preserving BracketDex content and its cream, charcoal, and orange palette.
+- Implementation: `http://127.0.0.1:3000/#why`.
+- Desktop evidence: `C:\Users\pawan\Projects\BracketDex_Site\design-qa-why-desktop.png` and `C:\Users\pawan\Projects\BracketDex_Site\design-qa-why-desktop-lower.png`.
+- Mobile evidence: `C:\Users\pawan\Projects\BracketDex_Site\design-qa-why-mobile.png`.
+- Desktop viewport and screenshot: 1440 × 1200 CSS pixels at device pixel ratio 1.
+- Mobile viewport and screenshot: 390 × 844 CSS pixels at device pixel ratio 1.
+- State: section entry, lower-card view, keyboard focus traversal, and pointer hover over the Modern Technology card.
+
+### Full-view comparison evidence
+
+- The section follows the references' centered hierarchy and diagram-led card language without copying their brands, colors, claims, or imagery.
+- Seven existing BracketDex proof items render in a responsive bento: three balanced cards, two asymmetric pairs, and a single-column mobile flow.
+- Desktop captures confirm consistent card edges, rounded corners, narrow copy spacing, one charcoal focal card, and a clean transition into Services.
+- The mobile capture confirms the heading wraps without clipping, cards stay within the viewport, copy remains readable, and the original capability strip remains between Hero and this section.
+
+### Focused region comparison evidence
+
+- Lower desktop capture verifies Long-Term Support and Transparent Communication illustrations and the transition into Services.
+- Each card has a distinct inline SVG matched to its existing claim: pricing controls, delivery clock, technology orbit, outcome path, scalable layers, support loop, and communication milestones.
+- Pointer hover on Modern Technology produced the `whyOrbit` animation with a 5-second duration. Keyboard traversal focused Fast Delivery. Reduced-motion CSS removes animation and movement.
+- Browser console reported no errors at desktop or mobile viewports.
+
+### Required fidelity surfaces
+
+- Fonts and typography: passed. Existing Instrument Sans styling produces the reference's clean hierarchy with readable card copy and balanced responsive wrapping.
+- Spacing and layout rhythm: passed. Desktop uses a 12-column bento with consistent gaps; tablet and mobile collapse predictably without horizontal overflow.
+- Colors and visual tokens: passed. Flat cream, `#171717`, and `#f25623` match the approved site palette. No purple or blue gradient appears.
+- Image quality and asset fidelity: passed for the approved adaptation. User explicitly requested original animated SVGs, so no raster replacements, third-party logos, or copied visuals were introduced.
+- Copy and content: passed. All seven existing `whyChooseUs` items remain unchanged. No metrics, testimonials, client claims, or technology claims were added.
+
+### Comparison history
+
+1. Initial source review established a centered bento with one contrasting card and illustration-first cards.
+2. First desktop capture showed balanced first-row proportions and clear visual hierarchy; lower capture confirmed the asymmetric rows and Services transition.
+3. Mobile capture at 390 × 844 showed no clipping or page-level horizontal overflow.
+4. Hover animation, keyboard focus, and console state were checked. No actionable P0, P1, or P2 finding remained.
+
+### Findings
+
+No actionable P0, P1, or P2 findings remain.
+
+final result: passed

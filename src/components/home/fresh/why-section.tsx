@@ -1,17 +1,17 @@
-import { Code2, PackageCheck, ShieldCheck, Workflow } from "lucide-react";
 import type { FeatureItem, MarketingContent } from "@/content/marketing";
 import { pageContent } from "@/content/pages";
+import { WhyProofVisual } from "./why-proof-visual";
 import styles from "./why-section.module.css";
 
-const icons = [Workflow, Code2, PackageCheck, ShieldCheck] as const;
-
 function ProofCard({ item, index }: { item: FeatureItem; index: number }) {
-  const Icon = icons[index % icons.length];
   return (
-    <li className={styles.card} data-proof-card>
-      <Icon aria-hidden="true" size={20} />
-      <h3>{item.title}</h3>
-      <p>{item.description}</p>
+    <li className={styles.card} data-proof-card tabIndex={0}>
+      <div className={styles.copy}>
+        <span className={styles.index}>0{index + 1}</span>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </div>
+      <WhyProofVisual index={index} />
     </li>
   );
 }
@@ -21,8 +21,8 @@ export function WhySection({ content }: { content: MarketingContent }) {
   return (
     <section aria-labelledby="home-why-title" className={styles.section} data-home-section="why" data-motion-section id="why">
       <div className={styles.inner}>
-        <p className={styles.eyebrow}>{section.label}</p>
         <div className={styles.heading}>
+          <p className={styles.eyebrow}>{section.label}</p>
           <h2 id="home-why-title">{section.title}</h2>
           <p>{section.description}</p>
         </div>
