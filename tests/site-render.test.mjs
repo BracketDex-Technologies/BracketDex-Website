@@ -74,7 +74,7 @@ test("hero and navigation", async () => {
   ]) {
     assert.ok(existsSync(new URL(asset, `file:///${root.replaceAll("\\", "/")}/`)), `${asset} required`);
   }
-  for (const destination of ["/", "/services", "/solutions", "/industries", "/projects", "/about", "/faq", "/contact"]) {
+  for (const destination of ["/", "/services", "/solutions", "/projects", "/about", "/faq", "/contact"]) {
     assert.ok(home.includes(`href="${destination}"`), `${destination} is present in navigation`);
   }
 });
@@ -92,9 +92,10 @@ test("navbar overlays the hero and keeps every primary destination reachable", a
   assert.match(homeHeader, /Contact us/);
   assert.match(contactHeader, /Contact us/);
 
-  for (const label of ["Services", "Solutions", "Industries", "Projects", "About", "FAQ"]) {
+  for (const label of ["Services", "Solutions", "Projects", "About", "FAQ"]) {
     assert.match(homeHeader, new RegExp(`>${label}<`), `${label} is visible in the primary navbar`);
   }
+  assert.doesNotMatch(homeHeader, />Industries</);
 });
 
 test("navbar keeps a compact desktop and mobile rhythm", () => {
@@ -144,10 +145,10 @@ test("hero capability chip keeps compact proportions", () => {
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.capabilityRail \{[\s\S]*min-height:\s*1\.9rem/);
 });
 
-test("capability strip then problem solution stories", async () => {
+test("capability strip and problem solution stories remain intact", async () => {
   const home = await getHtml("/");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(0, 2), ["trust", "problems"]);
+  assert.deepEqual(homeKeys(home).slice(0, 6), ["trust", "why", "services", "process", "capabilities", "problems"]);
   const trust = homeSection(home, "trust");
   const problems = homeSection(home, "problems");
   for (const service of marketingContent.services.slice(0, 4)) {
@@ -171,6 +172,15 @@ test("capability strip then problem solution stories", async () => {
   assert.match(problems, /aria-label="Previous problem story"/);
   assert.match(problems, /aria-label="Next problem story"/);
   assert.doesNotMatch(trust, /marquee|\b\d\+\b/i);
+});
+
+test("problem section follows technology stack", () => {
+  const source = readFileSync(
+    new URL("../src/components/home/post-hero/post-hero-home.tsx", import.meta.url),
+    "utf8",
+  );
+  assert.ok(source.indexOf("<CapabilityIndex") < source.indexOf("<ProblemSection"));
+  assert.ok(source.indexOf("<ProblemSection") < source.indexOf("<ProjectsSection"));
 });
 
 test("five documented services in the interactive bento", async () => {
@@ -213,12 +223,11 @@ test("technology network gives large side icons separate connector lanes", () =>
   assert.match(source, /const sy = cy \+ Math\.max/);
 });
 
-test("capabilities industries and proof", async () => {
+test("technology stack leads into problem stories", async () => {
   const home = await getHtml("/");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(4, 6), ["capabilities", "why"]);
+  assert.deepEqual(homeKeys(home).slice(4, 6), ["capabilities", "problems"]);
   const capabilities = homeSection(home, "capabilities");
-  const why = homeSection(home, "why");
   assert.ok(capabilities.includes('id="tech-stack"'), "technology has its own anchor");
   assert.ok(capabilities.includes('data-tech-wordmark="true"'), "centered brand wordmark renders");
   assert.equal((capabilities.match(/data-tech-node="true"/g) ?? []).length, 7);
@@ -226,21 +235,41 @@ test("capabilities industries and proof", async () => {
   assert.ok(capabilities.includes("One connected system."));
   assert.equal((capabilities.match(/data-tech-icon="true"/g) ?? []).length,
     marketingContent.technologyStack.flatMap((group) => group.items).length);
-  assert.ok(capabilities.indexOf('id="tech-stack"') < capabilities.indexOf('id="industries"'), "technology precedes industries");
+  assert.doesNotMatch(capabilities, /id="industries"|data-industry-card/);
   for (const group of marketingContent.technologyStack) {
     assert.ok(capabilities.includes(group.category), group.category);
     for (const item of group.items) assert.ok(capabilities.includes(`aria-label="${item}"`), item);
   }
-  for (const item of marketingContent.industries) {
-    assert.ok(capabilities.includes(item.title), item.title);
-    assert.ok(capabilities.includes(item.description), item.description);
-  }
+});
+
+test("why BracketDex bento follows the hero strip with seven animated visuals", async () => {
+  const home = await getHtml("/");
+  const { marketingContent } = await loadDataModule("src/content/marketing.ts");
+  const why = homeSection(home, "why");
+  assert.deepEqual(homeKeys(home).slice(0, 3), ["trust", "why", "services"]);
+  assert.equal((why.match(/data-proof-card/g) ?? []).length, 7);
+  assert.equal((why.match(/data-proof-visual=/g) ?? []).length, 7);
   for (const item of marketingContent.whyChooseUs) {
     assert.ok(why.includes(item.title), item.title);
     assert.ok(why.includes(item.description), item.description);
   }
-  assert.equal((capabilities.match(/data-industry-card/g) ?? []).length, 9);
-  assert.equal((why.match(/data-proof-card/g) ?? []).length, 7);
+
+  const css = readFileSync(new URL("../src/components/home/fresh/why-section.module.css", import.meta.url), "utf8");
+  assert.match(css, /\.card:hover[\s\S]*\.visual/);
+  assert.match(css, /\.card:focus-visible/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+});
+
+test("industries route and navigation entry are removed", () => {
+  const navigation = readFileSync(new URL("../src/content/site-navigation.ts", import.meta.url), "utf8");
+  const marketing = readFileSync(new URL("../src/content/marketing.ts", import.meta.url), "utf8");
+  const pages = readFileSync(new URL("../src/content/pages.ts", import.meta.url), "utf8");
+  const renderer = readFileSync(new URL("../src/components/pages/static-marketing-page.tsx", import.meta.url), "utf8");
+
+  assert.doesNotMatch(navigation, /href:\s*"\/industries"|label:\s*"Industries"/);
+  assert.doesNotMatch(marketing, /label:\s*"Industries",\s*href:\s*"#industries"/);
+  assert.doesNotMatch(pages, /^\s{2}industries:\s*\{/m);
+  assert.doesNotMatch(renderer, /path === "\/industries"|CapabilityIndex/);
 });
 
 test("homepage project showcase uses six documented cards", async () => {
@@ -320,20 +349,19 @@ test("footer keeps only essential routes and verified BracketDex details", () =>
   assert.doesNotMatch(css, /right:\s*50%|translateX\(50%\)/);
 });
 
-test("projects FAQ and final action", async () => {
+test("projects and final action close the homepage", async () => {
   const home = await getHtml("/");
   const { featuredCaseStudies } = await loadDataModule("src/content/case-studies.ts");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(6), ["projects", "faq", "cta"]);
-  const projects = homeSection(home, "projects");
-  const faq = homeSection(home, "faq");
+  assert.deepEqual(homeKeys(home).slice(6), ["cta"]);
+  const projects = home.match(/<section[^>]*id="projects"[\s\S]*?<\/section>/)?.[0] ?? "";
   const cta = homeSection(home, "cta");
+  assert.ok(projects, "projects section must render before the final action");
+  assert.ok(home.indexOf('id="projects"') < home.indexOf('data-home-section="cta"'));
   for (const study of featuredCaseStudies) {
     assert.ok(projects.includes(study.name), study.name);
     assert.ok(projects.includes(study.benefit), study.benefit);
   }
-  assert.equal((faq.match(/data-faq-item=/g) ?? []).length, 5);
-  assert.match(faq, /aria-expanded="true"/);
-  assert.ok(cta.includes(marketingContent.ctas[2]));
+  assert.ok(cta.includes(marketingContent.ctas[2].replace("'", "&#x27;")));
   assert.doesNotMatch(projects, /20\+ projects delivered/i);
 });

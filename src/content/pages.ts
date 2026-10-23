@@ -120,33 +120,6 @@ export const pageContent = {
       },
     ],
   },
-  industries: {
-    title: "Industry-Specific Technology Solutions",
-    description:
-      "Software and technology solutions tailored for startups, FinTech, healthcare, e-commerce, real estate, and more.",
-    eyebrow: "Industries",
-    primaryCta: "Book Consultation",
-    secondaryCta: "View Solutions",
-    sections: [
-      {
-        label: "Challenges",
-        title: "Common Industry Challenges",
-        description: "Each industry page should stay focused on real business pain points before proposing technology.",
-        list: [
-          "Manual operations and disconnected systems",
-          "Legacy software that limits growth",
-          "Scalability, integrations, and reporting needs",
-        ],
-      },
-      {
-        label: "Case Studies",
-        title: "Industry Case Studies",
-        description:
-          "Selected work across education, community organisations, housing societies, and professional services.",
-        cards: caseStudyCards,
-      },
-    ],
-  },
   projects: {
     title: "Projects & Case Studies",
     description:
