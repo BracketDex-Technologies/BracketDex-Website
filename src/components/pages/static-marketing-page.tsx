@@ -10,7 +10,6 @@ import { ScrollChoreography } from "@/components/motion/scroll-choreography";
 import { ScrollWords } from "@/components/motion/scroll-words";
 import { ProjectsSection } from "@/components/home/fresh/projects-section";
 import { CloudPanel } from "@/components/home/fresh/cloud-panel";
-import { CapabilityIndex } from "@/components/home/fresh/capability-index";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildBreadcrumbJsonLd } from "@/lib/seo";
 import { contactDetails } from "@/lib/site";
@@ -43,7 +42,6 @@ export function StaticMarketingPage({ activeHref, content, ctaHref = "/contact",
         </div>
       </div>
     </section>
-    {path === "/industries" && <div className="bd-post-dark"><div className="content-shell"><CapabilityIndex content={marketingContent} /></div></div>}
     {isProjects ? <ProjectsSection all /> : isContact ? <section className="bd-page-chapter content-shell" id="contact">
       <div className="bd-chapter-heading"><p className="bd-scene-label">Start a conversation</p><h2><ScrollWords text="Let’s discuss your project." /></h2><p>{content.sections[0]?.description}</p><a href={`mailto:${contactDetails.email}`}>{contactDetails.email} ↗</a><a href={contactDetails.phoneHref}>{contactDetails.phone}</a></div>
       <div><ContactForm /></div>

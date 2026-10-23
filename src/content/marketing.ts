@@ -68,7 +68,6 @@ export const marketingContent = {
     { label: "Home", href: "/" },
     { label: "Services", href: "#services" },
     { label: "Process", href: "#process" },
-    { label: "Industries", href: "#industries" },
     { label: "Projects", href: "#projects" },
     { label: "Why Us", href: "#why" },
     { label: "Contact", href: "#contact" },

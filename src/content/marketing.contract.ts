@@ -16,7 +16,7 @@ type RequiredMarketingContent = {
       capabilities: readonly [string, string, string];
       headline: {
         label: string;
-        lines: readonly [readonly [string, string], readonly [string, string]];
+        lines: readonly [readonly [string, string], readonly [string, string, string, string]];
       };
       subheadline: string;
       primaryCta: string;
