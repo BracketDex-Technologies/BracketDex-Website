@@ -189,7 +189,10 @@ export function HomeHero({ hero }: HomeHeroProps) {
             ))}
           </h1>
 
-          <p className={styles.subtitle} data-hero-reveal>{hero.subheadline}</p>
+          <p className={styles.subtitle} data-hero-reveal>
+            <span>{hero.subheadline}</span>
+            <span>{hero.supportingLine}</span>
+          </p>
 
           <motion.div
             className={styles.ctaMotion}
