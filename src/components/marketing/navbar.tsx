@@ -9,6 +9,16 @@ import styles from "./navbar.module.css";
 export const NAVBAR_LOGO_TEXT = "BracketDex";
 export const NAVBAR_CONTROL_HEIGHT_PX = 44;
 
+const DARK_SURFACE_LUMINANCE = 120;
+
+function getBackgroundLuminance(element: Element) {
+  const channels = window.getComputedStyle(element).backgroundColor.match(/[\d.]+/g)?.map(Number);
+  if (!channels || channels.length < 3 || (channels[3] ?? 1) < 0.1) return null;
+
+  const [red, green, blue] = channels;
+  return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+}
+
 type NavbarProps = {
   brandName: string;
   items: readonly NavigationItem[];
@@ -67,6 +77,46 @@ export function Navbar({
     });
     observer.observe(sentinel);
     return () => observer.disconnect();
+  }, [transparentOnHero]);
+
+  useEffect(() => {
+    if (!transparentOnHero) return;
+
+    const header = headerRef.current;
+    if (!header) return;
+
+    let animationFrame = 0;
+    const updateSurfaceTone = () => {
+      animationFrame = 0;
+      const sampleY = Math.min(window.innerHeight - 1, Math.round(header.getBoundingClientRect().height + 1));
+      const surface = document
+        .elementsFromPoint(window.innerWidth / 2, sampleY)
+        .find((element) => !header.contains(element));
+
+      let current: Element | null = surface ?? document.body;
+      let luminance: number | null = null;
+      while (current && luminance === null) {
+        luminance = getBackgroundLuminance(current);
+        current = current.parentElement;
+      }
+
+      header.dataset.surface = luminance !== null && luminance < DARK_SURFACE_LUMINANCE ? "dark" : "light";
+    };
+
+    const scheduleSurfaceUpdate = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(updateSurfaceTone);
+    };
+
+    updateSurfaceTone();
+    window.addEventListener("scroll", scheduleSurfaceUpdate, { passive: true });
+    window.addEventListener("resize", scheduleSurfaceUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", scheduleSurfaceUpdate);
+      window.removeEventListener("resize", scheduleSurfaceUpdate);
+      delete header.dataset.surface;
+    };
   }, [transparentOnHero]);
 
   const closeMenu = () => { if (menuRef.current) menuRef.current.open = false; };

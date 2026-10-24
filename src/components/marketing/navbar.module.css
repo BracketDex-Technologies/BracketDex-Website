@@ -14,7 +14,7 @@
   top: 0;
   z-index: 60;
   width: 100%;
-  border-bottom: 1px solid rgb(23 23 23 / 14%);
+  border-bottom: 0.5px solid rgb(23 23 23 / 14%);
   background: var(--nav-cream);
   color: var(--nav-charcoal);
   transition:
@@ -34,21 +34,28 @@
 
 .header[data-overlay="true"][data-scrolled="true"],
 .header[data-overlay="true"]:has(.mobileMenu[open]) {
-  border-color: rgb(255 255 255 / 58%);
-  background: rgb(255 255 255 / 52%);
+  border-color: rgb(23 23 23 / 14%);
+  background: transparent;
   box-shadow: 0 0.5rem 1.5rem rgb(23 23 23 / 4%);
   color: var(--nav-charcoal);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
+.header[data-overlay="true"][data-scrolled="true"][data-surface="dark"],
+.header[data-overlay="true"][data-surface="dark"]:has(.mobileMenu[open]) {
+  border-color: rgb(255 255 255 / 24%);
+  background: rgb(255 255 255 / 14%);
+  color: var(--nav-cream);
+}
+
 .inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  width: 100%;
+  width: min(calc(100% - 4rem), 75rem);
   min-height: clamp(3.75rem, 4.2vw, 4.5rem);
   align-items: center;
-  padding-inline: clamp(1.25rem, 2.2vw, 2rem);
+  margin-inline: auto;
 }
 
 .wordmark {
@@ -257,6 +264,7 @@
 @media (max-width: 1070px) {
   .inner {
     display: flex;
+    width: 100%;
     min-height: 4rem;
     padding-inline: 1.25rem;
   }
