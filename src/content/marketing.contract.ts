@@ -19,6 +19,7 @@ type RequiredMarketingContent = {
         lines: readonly [readonly [string, string], readonly [string, string, string, string]];
       };
       subheadline: string;
+      supportingLine: string;
       primaryCta: string;
     };
     trustMetricPlaceholders: readonly {
