@@ -100,10 +100,29 @@ test("navbar overlays the hero and keeps every primary destination reachable", a
 
 test("navbar keeps a compact desktop and mobile rhythm", () => {
   const css = readFileSync(new URL("../src/components/marketing/navbar.module.css", import.meta.url), "utf8");
+  const source = readFileSync(new URL("../src/components/marketing/navbar.tsx", import.meta.url), "utf8");
   assert.match(css, /min-height:\s*clamp\(3\.75rem,\s*4\.2vw,\s*4\.5rem\)/);
+  assert.match(css, /width:\s*min\(calc\(100% - 4rem\),\s*75rem\)/);
+  assert.match(css, /margin-inline:\s*auto/);
+  assert.match(css, /border-bottom:\s*0\.5px solid rgb\(23 23 23 \/ 14%\)/);
+  assert.match(css, /data-scrolled="true"[\s\S]*background:\s*transparent[\s\S]*backdrop-filter:\s*blur\(16px\)/);
+  assert.match(css, /data-surface="dark"[\s\S]*background:\s*rgb\(255 255 255 \/ 14%\)/);
+  assert.doesNotMatch(css, /linear-gradient/);
+  assert.doesNotMatch(css, /background:\s*rgb\(255 255 255 \/ 52%\)/);
+  assert.match(source, /document[\s\S]*\.elementsFromPoint\(/);
+  assert.match(source, /header\.dataset\.surface\s*=/);
   assert.match(css, /gap:\s*clamp\(0\.5rem,\s*0\.9vw,\s*1rem\)/);
-  assert.match(css, /@media \(max-width:\s*1070px\)[\s\S]*min-height:\s*4rem/);
+  assert.match(css, /@media \(max-width:\s*1070px\)[\s\S]*width:\s*100%[\s\S]*min-height:\s*4rem/);
   assert.match(css, /inset:\s*4rem 0 auto/);
+});
+
+test("trust strip keeps a compact vertical rhythm", () => {
+  const css = readFileSync(new URL("../src/components/home/fresh/trust-strip.module.css", import.meta.url), "utf8");
+  assert.match(css, /padding-block:\s*clamp\(0\.5rem,\s*0\.8vw,\s*0\.7rem\)/);
+  assert.match(css, /font-size:\s*clamp\(0\.9rem,\s*1\.25vw,\s*1\.18rem\)/);
+  assert.match(css, /font-weight:\s*560/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*padding-block:\s*0\.55rem/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*font-size:\s*0\.86rem/);
 });
 
 test("hero headline uses simple undistorted typography across breakpoints", () => {
@@ -112,21 +131,24 @@ test("hero headline uses simple undistorted typography across breakpoints", () =
     "utf8",
   );
 
-  assert.match(css, /max-width:\s*82rem/);
+  assert.match(css, /max-width:\s*68rem/);
   assert.match(css, /font-family:\s*var\(--font-hero-body\),\s*sans-serif/);
-  assert.match(css, /font-size:\s*clamp\(3rem,\s*5\.75vw,\s*7\.75rem\)/);
-  assert.match(css, /font-weight:\s*700/);
-  assert.match(css, /letter-spacing:\s*-0\.04em/);
-  assert.match(css, /line-height:\s*0\.98/);
+  assert.match(css, /font-size:\s*clamp\(3rem,\s*4\.6vw,\s*5\.75rem\)/);
+  assert.match(css, /font-weight:\s*680/);
+  assert.match(css, /letter-spacing:\s*-0\.045em/);
+  assert.match(css, /line-height:\s*1\.02/);
+  assert.match(css, /word-spacing:\s*0\.01em/);
   assert.match(css, /text-transform:\s*none/);
+  assert.match(css, /\.titleLine:nth-child\(2\)[\s\S]*color:\s*rgb\(255 250 243 \/ 76%\)/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.titleLine\s*\{[\s\S]*white-space:\s*normal/);
-  assert.match(css, /font-size:\s*clamp\(3\.1rem,\s*7vw,\s*5\.75rem\)/);
+  assert.match(css, /font-size:\s*clamp\(2\.75rem,\s*7vw,\s*5\.25rem\)/);
 });
 
 test("hero headline uses the approved AI message", async () => {
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
   assert.equal(marketingContent.homepage.hero.headline.label, "Your Business Running Smarter with AI");
   assert.equal(marketingContent.homepage.hero.headline.lines.flat().join(" "), "Your Business Running Smarter with AI");
+  assert.equal(marketingContent.homepage.hero.supportingLine, "Automate workflows, connect systems, and scale with confidence.");
 });
 
 test("hero capability chip keeps compact proportions", () => {
@@ -145,12 +167,15 @@ test("hero capability chip keeps compact proportions", () => {
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.capabilityRail \{[\s\S]*min-height:\s*1\.9rem/);
 });
 
-test("capability strip and problem solution stories remain intact", async () => {
+test("capability marquee stays on home and problem stories move to solutions", async () => {
   const home = await getHtml("/");
+  const solutionsPage = await getHtml("/solutions");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(0, 6), ["trust", "why", "services", "process", "capabilities", "problems"]);
+  assert.deepEqual(homeKeys(home).slice(0, 6), ["trust", "why", "services", "process", "capabilities", "cta"]);
+  assert.ok(!homeKeys(home).includes("problems"));
+  assert.ok(!homeKeys(home).includes("projects"));
   const trust = homeSection(home, "trust");
-  const problems = homeSection(home, "problems");
+  const problems = homeSection(solutionsPage, "problems");
   for (const service of marketingContent.services.slice(0, 4)) {
     assert.ok(trust.includes(service.title.replaceAll("&", "&amp;")), service.title);
   }
@@ -158,6 +183,12 @@ test("capability strip and problem solution stories remain intact", async () => 
     assert.ok(!trust.includes(item.label), `${item.label} is replaced by documented capabilities`);
   }
   assert.match(trust, /data-capability-strip="true"/);
+  assert.match(trust, /data-capability-marquee="true"/);
+  assert.ok(trust.includes("SEO &amp; Growth"));
+  assert.ok(trust.includes("SaaS Platforms"));
+  assert.equal((trust.match(/data-marquee-copy="true"/g) ?? []).length, 2);
+  assert.ok((trust.match(/data-capability-star="true"/g) ?? []).length >= 12);
+  assert.doesNotMatch(trust, />0[1-9]</);
   assert.equal((problems.match(/data-problem-card="true"/g) ?? []).length, 4);
   for (const group of marketingContent.homepage.problemGroups) {
     assert.ok(problems.includes(group.title.replaceAll("&", "&amp;")), group.title);
@@ -171,16 +202,34 @@ test("capability strip and problem solution stories remain intact", async () => 
   assert.ok(problems.includes("Deployment pipelines"));
   assert.match(problems, /aria-label="Previous problem story"/);
   assert.match(problems, /aria-label="Next problem story"/);
-  assert.doesNotMatch(trust, /marquee|\b\d\+\b/i);
+  assert.doesNotMatch(trust, /\b\d\+\b/i);
 });
 
-test("problem section follows technology stack", () => {
-  const source = readFileSync(
+test("problem section renders only on the solutions page", () => {
+  const homeSource = readFileSync(
     new URL("../src/components/home/post-hero/post-hero-home.tsx", import.meta.url),
     "utf8",
   );
-  assert.ok(source.indexOf("<CapabilityIndex") < source.indexOf("<ProblemSection"));
-  assert.ok(source.indexOf("<ProblemSection") < source.indexOf("<ProjectsSection"));
+  const pageSource = readFileSync(
+    new URL("../src/components/pages/static-marketing-page.tsx", import.meta.url),
+    "utf8",
+  );
+  assert.doesNotMatch(homeSource, /ProblemSection/);
+  assert.match(pageSource, /isSolutions && <ProblemSection content=\{marketingContent\}/);
+  assert.match(pageSource, /isSolutions && <a href="#problems"/);
+});
+
+test("projects section renders only on the projects page", () => {
+  const homeSource = readFileSync(
+    new URL("../src/components/home/post-hero/post-hero-home.tsx", import.meta.url),
+    "utf8",
+  );
+  const pageSource = readFileSync(
+    new URL("../src/components/pages/static-marketing-page.tsx", import.meta.url),
+    "utf8",
+  );
+  assert.doesNotMatch(homeSource, /ProjectsSection/);
+  assert.match(pageSource, /isProjects \? <ProjectsSection all \/>/);
 });
 
 test("five documented services in the interactive bento", async () => {
@@ -195,6 +244,14 @@ test("five documented services in the interactive bento", async () => {
   assert.equal((services.match(/<h3\b/g) ?? []).length, 5);
   assert.equal((services.match(/href="\/(services|solutions)"/g) ?? []).length, 5);
   assert.doesNotMatch(services, /run_[a-z0-9]+|exec_[a-z0-9]+|Last run|Latency|Tokens|Cost|2m ago/i);
+});
+
+test("service bento cards use opposing neumorphic shadows", () => {
+  const css = readFileSync(new URL("../src/components/home/fresh/services-bento.module.css", import.meta.url), "utf8");
+  const card = css.match(/\.card \{([^}]+)\}/)?.[1] ?? "";
+  const hover = css.match(/\.card:hover, \.card:focus-within \{([^}]+)\}/)?.[1] ?? "";
+  assert.match(card, /box-shadow:[^;]*14px 14px 30px[^;]*-10px -10px 26px/s);
+  assert.match(hover, /box-shadow:[^;]*18px 18px 36px[^;]*-12px -12px 30px/s);
 });
 
 test("services lead directly into seven process steps", async () => {
@@ -223,10 +280,10 @@ test("technology network gives large side icons separate connector lanes", () =>
   assert.match(source, /const sy = cy \+ Math\.max/);
 });
 
-test("technology stack leads into problem stories", async () => {
+test("technology stack leads into the final action on the homepage", async () => {
   const home = await getHtml("/");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(4, 6), ["capabilities", "problems"]);
+  assert.deepEqual(homeKeys(home).slice(4, 6), ["capabilities", "cta"]);
   const capabilities = homeSection(home, "capabilities");
   assert.ok(capabilities.includes('id="tech-stack"'), "technology has its own anchor");
   assert.ok(capabilities.includes('data-tech-wordmark="true"'), "centered brand wordmark renders");

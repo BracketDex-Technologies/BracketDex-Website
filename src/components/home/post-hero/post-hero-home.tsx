@@ -1,9 +1,7 @@
 import type { MarketingContent } from "@/content/marketing";
 import { FreshCta } from "@/components/home/fresh/cta-section";
 import { CapabilityIndex } from "@/components/home/fresh/capability-index";
-import { ProblemSection } from "@/components/home/fresh/problem-section";
 import { ProcessRail } from "@/components/home/fresh/process-rail";
-import { ProjectsSection } from "@/components/home/fresh/projects-section";
 import { TrustStrip } from "@/components/home/fresh/trust-strip";
 import { WhySection } from "@/components/home/fresh/why-section";
 import { ServicesBento } from "@/components/home/fresh/services-bento";
@@ -21,8 +19,6 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
       <ServicesBento content={content} />
       <ProcessRail content={content} />
       <CapabilityIndex content={content} />
-      <ProblemSection content={content} />
-      <ProjectsSection />
       <FreshCta content={content} />
     </div>
   );
