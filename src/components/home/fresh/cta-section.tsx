@@ -1,8 +1,8 @@
-import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-import { ContactForm } from "@/components/marketing/contact-form";
 import type { MarketingContent } from "@/content/marketing";
-import { contactDetails } from "@/lib/site";
 import { buildPostHeroContent } from "@/components/home/post-hero/post-hero-content";
 import styles from "./cta-section.module.css";
 
@@ -19,18 +19,31 @@ export function FreshCta({ content }: { content: MarketingContent }) {
     >
       <div className={`content-shell ${styles.shell}`}>
         <div className={styles.panel}>
-          <div className={styles.content}>
-            <div className={styles.copy}>
-              <p className={styles.eyebrow}>Start a project</p>
-              <h2 id="fresh-cta-title">{postHero.closingCta}</h2>
-              <p className={styles.description}>{content.company.shortDescription}</p>
-              <a className={styles.emailLink} href={`mailto:${contactDetails.email}`}>
-                Email directly
+          <div className={styles.copy}>
+            <p className={styles.eyebrow}>Start a project</p>
+            <h2 id="fresh-cta-title">{postHero.closingCta}</h2>
+            <p className={styles.description}>{content.company.shortDescription}</p>
+            <div className={styles.actions}>
+              <Link className={styles.primaryAction} href="/contact">
+                Start a project
                 <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.8} />
-              </a>
+              </Link>
+              <Link className={styles.secondaryAction} href="/projects">
+                View our work
+                <ArrowRight aria-hidden="true" size={18} strokeWidth={1.8} />
+              </Link>
             </div>
+          </div>
 
-            <ContactForm className={styles.form} />
+          <div aria-hidden="true" className={styles.artwork}>
+            <Image
+              alt=""
+              height={785}
+              priority={false}
+              sizes="(max-width: 767px) 100vw, 55vw"
+              src="/media/cta/ascii-magic-characters.png"
+              width={736}
+            />
           </div>
         </div>
       </div>

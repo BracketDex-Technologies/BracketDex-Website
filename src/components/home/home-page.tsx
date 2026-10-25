@@ -1,10 +1,10 @@
 import type { MarketingContent } from "@/content/marketing";
 import { siteNavigation } from "@/content/site-navigation";
-import { Footer } from "@/components/marketing/footer";
 import { Navbar } from "@/components/marketing/navbar";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildBreadcrumbJsonLd } from "@/lib/seo";
 import { HomeHero } from "./home-hero";
+import { HomeClosingStack } from "./fresh/home-closing-stack";
 import { PostHeroHome } from "./post-hero/post-hero-home";
 
 type HomePageProps = { content: MarketingContent };
@@ -26,7 +26,7 @@ export function HomePage({ content }: HomePageProps) {
       />
       <HomeHero hero={hero} />
       <PostHeroHome content={content} />
-      <Footer brandName={content.company.name} description={content.company.footerDescription} navigation={siteNavigation} />
+      <HomeClosingStack content={content} />
     </main>
   );
 }

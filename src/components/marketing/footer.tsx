@@ -13,51 +13,73 @@ type FooterProps = {
   navigation: readonly NavigationItem[];
 };
 
-const ESSENTIAL_FOOTER_LINKS = new Set(["Home", "Projects", "Solutions", "Contact"]);
+const FOOTER_LINK_GROUPS = [
+  { title: "Explore", labels: ["Home", "Services", "Solutions", "Projects"] },
+  { title: "Company", labels: ["About", "FAQ", "Contact"] },
+] as const;
 
-export function Footer({ brandName, navigation }: FooterProps) {
-  const essentialLinks = navigation.filter((item) => ESSENTIAL_FOOTER_LINKS.has(item.label));
+export function Footer({ brandName, description, navigation }: FooterProps) {
+  const linkGroups = FOOTER_LINK_GROUPS.map((group) => ({
+    ...group,
+    links: group.labels.flatMap((label) => {
+      const item = navigation.find((navigationItem) => navigationItem.label === label);
+      return item ? [item] : [];
+    }),
+  }));
 
   return (
     <footer className={`bd-fresh-footer ${styles.footer}`}>
       <div className={`content-shell ${styles.shell}`}>
         <div className={styles.panel}>
           <div className={styles.top}>
-            <nav aria-label="Footer navigation" className={styles.navigation}>
-              {essentialLinks.map((item) => {
-                const label = item.label === "Contact" ? "Contact us" : item.label;
+            <div className={styles.identity}>
+              <div className={styles.brand}>
+                <p className={styles.brandName} style={{ fontFamily: logoFont.style.fontFamily }}>
+                  <span aria-hidden="true">[</span>{NAVBAR_LOGO_TEXT}<span aria-hidden="true">]</span>
+                </p>
+                <p className={styles.description}>{description}</p>
+              </div>
+              <address className={styles.contact}>
+                <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+                <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
+                <span>{contactDetails.location}</span>
+              </address>
+            </div>
 
-                return (
-                  <Link className={styles.link} href={item.href} key={item.href}>
-                    <span>{label}</span>
-                    {item.label === "Contact" ? (
-                      <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.8} />
-                    ) : null}
-                  </Link>
-                );
-              })}
+            <nav aria-label="Footer navigation" className={styles.linkColumns}>
+              {linkGroups.map((group) => (
+                <div className={styles.linkGroup} key={group.title}>
+                  <h2>{group.title}</h2>
+                  <div className={styles.navigation}>
+                    {group.links.map((item) => (
+                      <Link className={styles.link} href={item.href} key={item.href}>
+                        <span>{item.label === "Contact" ? "Contact us" : item.label}</span>
+                        {item.label === "Contact" ? (
+                          <ArrowUpRight aria-hidden="true" size={16} strokeWidth={1.8} />
+                        ) : null}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </nav>
-
-            <address className={styles.contact}>
-              <a href={`mailto:${contactDetails.email}`}>E-mail: {contactDetails.email}</a>
-              <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
-              <span>{contactDetails.location}</span>
-            </address>
           </div>
 
-          <p aria-hidden="true" className={styles.wordmark} data-footer-wordmark>
-            <span
-              className="bd-fresh-footer__logo"
-              style={{ fontFamily: logoFont.style.fontFamily }}
-            >
-              {NAVBAR_LOGO_TEXT}
-            </span>
-          </p>
-        </div>
+          <div className={styles.base}>
+            <p>© {new Date().getFullYear()} {brandName}. All rights reserved.</p>
+            <Link href="/privacy">Privacy policy</Link>
+          </div>
 
-        <div className={styles.base}>
-          <p>© {new Date().getFullYear()} {brandName}. All rights reserved.</p>
-          <Link href="/privacy">Privacy policy</Link>
+          <div aria-hidden="true" className={styles.watermarkStage}>
+            <p className={styles.wordmark} data-footer-wordmark>
+              <span
+                className="bd-fresh-footer__logo"
+                style={{ fontFamily: logoFont.style.fontFamily }}
+              >
+                {NAVBAR_LOGO_TEXT}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

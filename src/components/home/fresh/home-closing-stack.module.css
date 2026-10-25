@@ -1,0 +1,26 @@
+.section {
+  padding-block: clamp(2.5rem, 5vw, 4.5rem);
+  background: #080808;
+}
+
+.shell {
+  width: min(75rem, calc(100% - 4rem));
+}
+
+.card {
+  overflow: hidden;
+  background: #121111;
+  border: 1px solid rgb(255 253 248 / 8%);
+  border-radius: clamp(1.1rem, 2vw, 1.6rem);
+  box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 22%);
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-block: 1.5rem;
+  }
+
+  .shell {
+    width: calc(100% - 2.5rem);
+  }
+}

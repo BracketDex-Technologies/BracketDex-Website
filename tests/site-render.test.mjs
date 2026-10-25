@@ -351,7 +351,39 @@ test("homepage project showcase uses six documented cards", async () => {
   assert.match(css, /grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)\s*!important/);
 });
 
-test("conversion panel keeps the existing enquiry flow", () => {
+test("homepage closing content uses one shared shell", () => {
+  const stackUrl = new URL(
+    "src/components/home/fresh/home-closing-stack.tsx",
+    `file:///${root.replaceAll("\\", "/")}/`,
+  );
+  const homeSource = readFileSync(
+    new URL("src/components/home/home-page.tsx", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+  const postHeroSource = readFileSync(
+    new URL("src/components/home/post-hero/post-hero-home.tsx", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+  const stackExists = existsSync(stackUrl);
+  const stackSource = stackExists ? readFileSync(stackUrl, "utf8") : "";
+  const stackCss = readFileSync(
+    new URL(
+      "src/components/home/fresh/home-closing-stack.module.css",
+      `file:///${root.replaceAll("\\", "/")}/`,
+    ),
+    "utf8",
+  );
+
+  assert.equal(stackExists, true);
+  assert.match(homeSource, /<HomeClosingStack content=\{content\}/);
+  assert.doesNotMatch(postHeroSource, /FreshCta/);
+  assert.match(stackSource, /<FreshCta content=\{content\} \/>[\s\S]*<Footer/);
+  assert.match(stackSource, /styles\.card/);
+  assert.match(stackCss, /\.card[\s\S]*border-radius:\s*clamp/);
+  assert.match(stackCss, /\.card[\s\S]*overflow:\s*hidden/);
+});
+
+test("conversion panel uses the approved split artwork layout", () => {
   const source = readFileSync(
     new URL("src/components/home/fresh/cta-section.tsx", `file:///${root.replaceAll("\\", "/")}/`),
     "utf8",
@@ -360,25 +392,38 @@ test("conversion panel keeps the existing enquiry flow", () => {
     new URL("src/components/home/fresh/cta-section.module.css", `file:///${root.replaceAll("\\", "/")}/`),
     "utf8",
   );
-  const formSource = readFileSync(
-    new URL("src/components/marketing/contact-form.tsx", `file:///${root.replaceAll("\\", "/")}/`),
+  const pageSource = readFileSync(
+    new URL("src/components/pages/static-marketing-page.tsx", `file:///${root.replaceAll("\\", "/")}/`),
     "utf8",
   );
 
-  assert.equal(existsSync(new URL("public/media/conversion/bracketdex-conversion-halftone.png", `file:///${root.replaceAll("\\", "/")}/`)), false);
+  assert.equal(existsSync(new URL("public/media/cta/ascii-magic-characters.png", `file:///${root.replaceAll("\\", "/")}/`)), true);
   assert.match(source, /cta-section\.module\.css/);
-  assert.doesNotMatch(source, /next\/image|PixelWordmark|bracketdex-conversion-halftone\.png/);
-  assert.match(source, /<ContactForm/);
-  assert.match(source, /Email directly/);
+  assert.match(source, /from "next\/image"/);
+  assert.match(source, /ascii-magic-characters\.png/);
+  assert.match(source, /width=\{736\}/);
+  assert.match(source, /height=\{785\}/);
+  assert.match(source, /href="\/contact"/);
+  assert.match(source, /href="\/projects"/);
+  assert.doesNotMatch(source, /ContactForm/);
+  assert.match(pageSource, /<ContactForm \/>/);
   assert.match(source, /data-home-section="cta"/);
-  assert.match(source, /styles\.content/);
-  assert.match(css, /text-align:\s*center/);
+  assert.match(source, /styles\.artwork/);
+  assert.match(css, /grid-template-columns:\s*minmax\(0,\s*0\.9fr\) minmax\(0,\s*1\.1fr\)/);
+  assert.match(css, /height:\s*auto/);
+  assert.match(css, /text-align:\s*left/);
+  assert.match(css, /border:\s*0/);
   assert.match(css, /background:\s*#0c0c0c/);
-  assert.doesNotMatch(css, /background-image|linear-gradient|radial-gradient/);
-  assert.match(formSource, /className\?: string/);
+  assert.match(css, /\.section[\s\S]*padding:\s*0\s*!important/);
+  assert.match(css, /\.section[\s\S]*background:\s*transparent\s*!important/);
+  assert.match(css, /\.artwork img[\s\S]*position:\s*relative[\s\S]*width:\s*100%\s*!important[\s\S]*height:\s*auto\s*!important/);
+  assert.doesNotMatch(css, /height:\s*200%\s*!important/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.copy[\s\S]*text-align:\s*center/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.actions[\s\S]*width:\s*100%/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.artwork[\s\S]*opacity:\s*0\.14/);
 });
 
-test("footer keeps only essential routes and verified BracketDex details", () => {
+test("footer uses expanded route columns and a mostly visible watermark", () => {
   const cssUrl = new URL("src/components/marketing/footer.module.css", `file:///${root.replaceAll("\\", "/")}/`);
   const source = readFileSync(
     new URL("src/components/marketing/footer.tsx", `file:///${root.replaceAll("\\", "/")}/`),
@@ -388,37 +433,41 @@ test("footer keeps only essential routes and verified BracketDex details", () =>
   const css = readFileSync(cssUrl, "utf8");
 
   assert.match(source, /footer\.module\.css/);
-  assert.match(source, /ESSENTIAL_FOOTER_LINKS/);
-  for (const label of ["Home", "Projects", "Solutions", "Contact us"]) {
+  assert.match(source, /FOOTER_LINK_GROUPS/);
+  assert.match(source, /description/);
+  for (const label of ["Home", "Services", "Solutions", "Projects", "About", "FAQ", "Contact"]) {
     assert.match(source, new RegExp(`"${label}"`));
   }
+  assert.match(source, /Explore/);
+  assert.match(source, /Company/);
   assert.match(source, /contactDetails\.email/);
   assert.match(source, /contactDetails\.phone/);
   assert.match(source, /contactDetails\.location/);
   assert.match(source, /Privacy policy/);
   assert.doesNotMatch(source, /Instagram|LinkedIn|WhatsApp|Dribbble/i);
-  assert.match(css, /border-radius:\s*clamp/);
   assert.match(css, /#f25623/);
-  assert.match(css, /grid-template-columns:\s*minmax\(0, 1fr\)\s+minmax\(0, 1fr\)/);
-  assert.match(css, /inset-inline:\s*0/);
-  assert.match(css, /width:\s*100%/);
+  assert.match(css, /grid-template-columns:\s*minmax\(0,\s*1\.3fr\) minmax\(0,\s*1fr\)/);
+  assert.match(css, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(css, /\.wordmark[\s\S]*width:\s*80%/);
+  assert.match(css, /bottom:\s*-0\.04em/);
+  assert.match(css, /text-shadow:\s*0 0 1\.25rem rgb\(242 86 35 \/ 22%\)/);
   assert.match(css, /justify-content:\s*center/);
-  assert.doesNotMatch(css, /right:\s*50%|translateX\(50%\)/);
+  assert.match(css, /\.panel[\s\S]*background:\s*transparent[\s\S]*border:\s*0[\s\S]*border-radius:\s*0[\s\S]*box-shadow:\s*none/);
+  assert.doesNotMatch(css, /\.base[\s\S]*border-top/);
+  assert.match(source, /styles\.identity/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.identity[\s\S]*grid-template-columns:\s*minmax\(0,\s*0\.9fr\) minmax\(0,\s*1\.1fr\)/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.contact[\s\S]*text-align:\s*right[\s\S]*white-space:\s*nowrap/);
 });
 
-test("projects and final action close the homepage", async () => {
+test("final action closes the homepage without duplicated projects", async () => {
   const home = await getHtml("/");
-  const { featuredCaseStudies } = await loadDataModule("src/content/case-studies.ts");
   const { marketingContent } = await loadDataModule("src/content/marketing.ts");
-  assert.deepEqual(homeKeys(home).slice(6), ["cta"]);
-  const projects = home.match(/<section[^>]*id="projects"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.equal(homeKeys(home).at(-1), "cta");
+  assert.ok(!homeKeys(home).includes("projects"));
+  assert.doesNotMatch(home, /<section[^>]*id="projects"/);
   const cta = homeSection(home, "cta");
-  assert.ok(projects, "projects section must render before the final action");
-  assert.ok(home.indexOf('id="projects"') < home.indexOf('data-home-section="cta"'));
-  for (const study of featuredCaseStudies) {
-    assert.ok(projects.includes(study.name), study.name);
-    assert.ok(projects.includes(study.benefit), study.benefit);
-  }
   assert.ok(cta.includes(marketingContent.ctas[2].replace("'", "&#x27;")));
-  assert.doesNotMatch(projects, /20\+ projects delivered/i);
+  assert.match(cta, /href="\/contact"/);
+  assert.match(cta, /href="\/projects"/);
+  assert.match(cta, /ascii-magic-characters\.png/);
 });
