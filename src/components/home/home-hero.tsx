@@ -190,8 +190,9 @@ export function HomeHero({ hero }: HomeHeroProps) {
           </h1>
 
           <p className={styles.subtitle} data-hero-reveal>
-            <span>{hero.subheadline}</span>
-            <span>{hero.supportingLine}</span>
+            <span className={styles.desktopSubtitle}>{hero.subheadline}</span>
+            <span className={styles.desktopSubtitle}>{hero.supportingLine}</span>
+            <span className={styles.mobileSubtitle}>{hero.mobileSummary}</span>
           </p>
 
           <motion.div

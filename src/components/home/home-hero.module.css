@@ -149,6 +149,10 @@
   display: block;
 }
 
+.mobileSubtitle {
+  display: none !important;
+}
+
 .ctaMotion {
   display: inline-flex;
   margin-top: clamp(1.5rem, 3vh, 2.25rem);
@@ -253,6 +257,14 @@
     gap: 0.2rem;
     font-size: 0.96rem;
     line-height: 1.45;
+  }
+
+  .desktopSubtitle {
+    display: none !important;
+  }
+
+  .mobileSubtitle {
+    display: block !important;
   }
 
   .ctaMotion {
