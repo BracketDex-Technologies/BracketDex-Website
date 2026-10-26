@@ -85,6 +85,8 @@ export const marketingContent = {
       },
       subheadline: "Custom software, AI, and cloud—built around your business.",
       supportingLine: "Automate workflows, connect systems, and scale with confidence.",
+      mobileSummary:
+        "Custom software, AI, and cloud for your business—automate workflows, connect systems, scale confidently.",
       primaryCta: "Discuss Your Project",
     },
     trustMetricPlaceholders: [

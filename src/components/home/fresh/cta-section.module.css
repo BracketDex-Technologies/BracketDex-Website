@@ -5,7 +5,8 @@
 }
 
 .shell {
-  width: 100%;
+  width: 100% !important;
+  margin-inline: 0;
 }
 
 .panel {
@@ -14,8 +15,8 @@
   height: auto;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   overflow: hidden;
-  border: 0;
-  border-radius: 0;
+  border: 1px solid rgb(255 253 248 / 8%);
+  border-radius: 1rem;
   background: #0c0c0c;
   box-shadow: none;
 }
@@ -140,7 +141,7 @@
 
 @media (max-width: 767px) {
   .shell {
-    width: 100%;
+    width: 100% !important;
   }
 
   .panel {

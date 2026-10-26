@@ -20,6 +20,7 @@ type RequiredMarketingContent = {
       };
       subheadline: string;
       supportingLine: string;
+      mobileSummary: string;
       primaryCta: string;
     };
     trustMetricPlaceholders: readonly {

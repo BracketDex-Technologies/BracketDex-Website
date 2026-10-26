@@ -151,6 +151,29 @@ test("hero headline uses the approved AI message", async () => {
   assert.equal(marketingContent.homepage.hero.supportingLine, "Automate workflows, connect systems, and scale with confidence.");
 });
 
+test("hero subtitle keeps full desktop copy and a compact mobile summary", async () => {
+  const { marketingContent } = await loadDataModule("src/content/marketing.ts");
+  const source = readFileSync(
+    new URL("src/components/home/home-hero.tsx", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+  const css = readFileSync(
+    new URL("src/components/home/home-hero.module.css", `file:///${root.replaceAll("\\", "/")}/`),
+    "utf8",
+  );
+
+  assert.equal(
+    marketingContent.homepage.hero.mobileSummary,
+    "Custom software, AI, and cloud for your business—automate workflows, connect systems, scale confidently.",
+  );
+  assert.match(source, /styles\.desktopSubtitle/);
+  assert.match(source, /styles\.mobileSubtitle/);
+  assert.match(source, /hero\.mobileSummary/);
+  assert.match(css, /\.mobileSubtitle[\s\S]*display:\s*none/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.desktopSubtitle[\s\S]*display:\s*none/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.mobileSubtitle[\s\S]*display:\s*block/);
+});
+
 test("hero capability chip keeps compact proportions", () => {
   const css = readFileSync(
     new URL("src/components/home/home-hero.module.css", `file:///${root.replaceAll("\\", "/")}/`),
@@ -381,6 +404,8 @@ test("homepage closing content uses one shared shell", () => {
   assert.match(stackSource, /styles\.card/);
   assert.match(stackCss, /\.card[\s\S]*border-radius:\s*clamp/);
   assert.match(stackCss, /\.card[\s\S]*overflow:\s*hidden/);
+  assert.match(stackCss, /\.card[\s\S]*padding:\s*0\.5rem/);
+  assert.match(stackCss, /\.card[\s\S]*gap:\s*0\.5rem/);
 });
 
 test("conversion panel uses the approved split artwork layout", () => {
@@ -412,10 +437,12 @@ test("conversion panel uses the approved split artwork layout", () => {
   assert.match(css, /grid-template-columns:\s*minmax\(0,\s*0\.9fr\) minmax\(0,\s*1\.1fr\)/);
   assert.match(css, /height:\s*auto/);
   assert.match(css, /text-align:\s*left/);
-  assert.match(css, /border:\s*0/);
+  assert.match(css, /border:\s*1px solid rgb\(255 253 248 \/ 8%\)/);
+  assert.match(css, /border-radius:\s*1rem/);
   assert.match(css, /background:\s*#0c0c0c/);
   assert.match(css, /\.section[\s\S]*padding:\s*0\s*!important/);
   assert.match(css, /\.section[\s\S]*background:\s*transparent\s*!important/);
+  assert.match(css, /\.shell[\s\S]*width:\s*100%\s*!important[\s\S]*margin-inline:\s*0/);
   assert.match(css, /\.artwork img[\s\S]*position:\s*relative[\s\S]*width:\s*100%\s*!important[\s\S]*height:\s*auto\s*!important/);
   assert.doesNotMatch(css, /height:\s*200%\s*!important/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.copy[\s\S]*text-align:\s*center/);
@@ -448,7 +475,10 @@ test("footer uses expanded route columns and a mostly visible watermark", () => 
   assert.match(css, /#f25623/);
   assert.match(css, /grid-template-columns:\s*minmax\(0,\s*1\.3fr\) minmax\(0,\s*1fr\)/);
   assert.match(css, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
-  assert.match(css, /\.wordmark[\s\S]*width:\s*80%/);
+  assert.match(css, /\.shell[\s\S]*width:\s*100%\s*!important[\s\S]*margin-inline:\s*0/);
+  assert.match(css, /\.wordmark[\s\S]*width:\s*100%/);
+  assert.match(css, /\.wordmark[\s\S]*font-size:\s*clamp\(5\.75rem,\s*15\.5vw,\s*13\.5rem\)/);
+  assert.match(css, /\.watermarkStage::before[\s\S]*radial-gradient[\s\S]*filter:\s*blur\(1\.75rem\)/);
   assert.match(css, /bottom:\s*-0\.04em/);
   assert.match(css, /text-shadow:\s*0 0 1\.25rem rgb\(242 86 35 \/ 22%\)/);
   assert.match(css, /justify-content:\s*center/);

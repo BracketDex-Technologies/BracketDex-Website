@@ -8,6 +8,11 @@
   width: 100%;
 }
 
+:global([data-home-closing-shell]) .shell {
+  width: 100% !important;
+  margin-inline: 0;
+}
+
 .panel {
   position: relative;
   overflow: hidden;
@@ -141,15 +146,35 @@
   overflow: hidden;
 }
 
+.watermarkStage::before {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: -20%;
+  left: 0;
+  height: 70%;
+  pointer-events: none;
+  content: "";
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgb(242 86 35 / 32%) 0%,
+    rgb(242 86 35 / 14%) 44%,
+    transparent 74%
+  );
+  filter: blur(1.75rem);
+  transform: translateY(-0.25rem);
+}
+
 .wordmark {
   position: relative;
+  z-index: 1;
   bottom: -0.04em;
   display: flex;
-  width: 80%;
+  width: 100%;
   justify-content: center;
   margin: 0 auto;
   color: rgb(242 86 35 / 42%);
-  font-size: clamp(5rem, 13vw, 11.75rem);
+  font-size: clamp(5.75rem, 15.5vw, 13.5rem);
   font-weight: 500;
   line-height: 0.82;
   letter-spacing: -0.045em;
@@ -230,8 +255,8 @@
   }
 
   .wordmark {
-    width: 90%;
-    font-size: clamp(3.35rem, 15vw, 5.2rem);
+    width: 100%;
+    font-size: clamp(3.65rem, 18vw, 6.1rem);
   }
 
   .watermarkStage {
