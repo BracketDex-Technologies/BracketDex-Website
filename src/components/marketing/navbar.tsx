@@ -1,12 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 import type { NavigationItem } from "@/content/marketing";
 import styles from "./navbar.module.css";
 
-export const NAVBAR_LOGO_TEXT = "BracketDex";
 export const NAVBAR_CONTROL_HEIGHT_PX = 44;
 
 const DARK_SURFACE_LUMINANCE = 120;
@@ -132,9 +132,24 @@ export function Navbar({
       >
         <nav aria-label="Primary navigation" className={styles.inner}>
           <Link aria-label={`${brandName} home`} className={styles.wordmark} href="/">
-            <span aria-hidden="true">[</span>
-            {NAVBAR_LOGO_TEXT}
-            <span aria-hidden="true">]</span>
+            <Image
+              alt=""
+              aria-hidden="true"
+              className={styles.logoDark}
+              height={104}
+              priority={!transparentOnHero}
+              src="/media/brand/bracketdex-logo-regular-dark.svg"
+              width={572}
+            />
+            <Image
+              alt=""
+              aria-hidden="true"
+              className={styles.logoLight}
+              height={104}
+              priority={transparentOnHero}
+              src="/media/brand/bracketdex-logo-regular-light.svg"
+              width={572}
+            />
           </Link>
           <div className={styles.desktopLinks}>
             {routes.map((item) => (

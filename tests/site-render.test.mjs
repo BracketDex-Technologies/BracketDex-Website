@@ -114,6 +114,10 @@ test("navbar keeps a compact desktop and mobile rhythm", () => {
   assert.match(css, /gap:\s*clamp\(0\.5rem,\s*0\.9vw,\s*1rem\)/);
   assert.match(css, /@media \(max-width:\s*1070px\)[\s\S]*width:\s*100%[\s\S]*min-height:\s*4rem/);
   assert.match(css, /inset:\s*4rem 0 auto/);
+  assert.match(source, /bracketdex-logo-regular-dark\.svg/);
+  assert.match(source, /bracketdex-logo-regular-light\.svg/);
+  assert.match(css, /--logo-dark-display:\s*block/);
+  assert.match(css, /--logo-light-display:\s*block/);
 });
 
 test("trust strip keeps a compact vertical rhythm", () => {
@@ -301,6 +305,7 @@ test("technology network gives large side icons separate connector lanes", () =>
   assert.match(css, /\.node:nth-child\(4\)[\s\S]*\.icon:nth-child\(odd\)/);
   assert.match(css, /\.node:nth-child\(5\)[\s\S]*\.icon:nth-child\(even\)/);
   assert.match(source, /const sy = cy \+ Math\.max/);
+  assert.match(source, /bracketdex-logo-regular-light\.svg/);
 });
 
 test("technology stack leads into the final action on the homepage", async () => {
@@ -404,7 +409,7 @@ test("homepage closing content uses one shared shell", () => {
   assert.match(stackSource, /styles\.card/);
   assert.match(stackCss, /\.card[\s\S]*border-radius:\s*clamp/);
   assert.match(stackCss, /\.card[\s\S]*overflow:\s*hidden/);
-  assert.match(stackCss, /\.card[\s\S]*padding:\s*0\.5rem/);
+  assert.match(stackCss, /\.card[\s\S]*padding:\s*0\.5rem 0\.5rem 0/);
   assert.match(stackCss, /\.card[\s\S]*gap:\s*0\.5rem/);
 });
 
@@ -477,10 +482,16 @@ test("footer uses expanded route columns and a mostly visible watermark", () => 
   assert.match(css, /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(css, /\.shell[\s\S]*width:\s*100%\s*!important[\s\S]*margin-inline:\s*0/);
   assert.match(css, /\.wordmark[\s\S]*width:\s*100%/);
-  assert.match(css, /\.wordmark[\s\S]*font-size:\s*clamp\(5\.75rem,\s*15\.5vw,\s*13\.5rem\)/);
-  assert.match(css, /\.watermarkStage::before[\s\S]*radial-gradient[\s\S]*filter:\s*blur\(1\.75rem\)/);
-  assert.match(css, /bottom:\s*-0\.04em/);
-  assert.match(css, /text-shadow:\s*0 0 1\.25rem rgb\(242 86 35 \/ 22%\)/);
+  assert.match(css, /\.wordmark[\s\S]*aspect-ratio:\s*572\.25\s*\/\s*103\.5/);
+  assert.match(css, /mask:\s*url\("\/media\/brand\/bracketdex-logo-regular-light\.svg"\) center \/ 103% auto/);
+  assert.match(source, /bracketdex-logo-regular-dark\.svg/);
+  assert.match(source, /bracketdex-logo-regular-light\.svg/);
+  assert.match(css, /:global\(\[data-home-closing-shell\]\) \.footer \.brand \.brandLogoDark\s*\{\s*display:\s*none/);
+  assert.match(css, /:global\(\[data-home-closing-shell\]\) \.footer \.brand \.brandLogoLight\s*\{\s*display:\s*block/);
+  assert.match(css, /\.watermarkStage\s*\{[^}]*overflow:\s*hidden;[^}]*background:\s*linear-gradient/);
+  assert.match(css, /:global\(\[data-home-closing-shell\]\) \.footer\s*\{[^}]*width:\s*calc\(100% \+ 1rem\);[^}]*margin-inline:\s*-0\.5rem/);
+  assert.match(css, /\.wordmark[\s\S]*opacity:\s*0\.6/);
+  assert.match(css, /\.wordmark[\s\S]*transform:\s*translateY\(33%\)/);
   assert.match(css, /justify-content:\s*center/);
   assert.match(css, /\.panel[\s\S]*background:\s*transparent[\s\S]*border:\s*0[\s\S]*border-radius:\s*0[\s\S]*box-shadow:\s*none/);
   assert.doesNotMatch(css, /\.base[\s\S]*border-top/);

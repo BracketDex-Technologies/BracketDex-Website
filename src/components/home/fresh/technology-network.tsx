@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useRef, type CSSProperties } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -126,8 +127,14 @@ export function TechnologyNetwork({ groups, label, title }: Props) {
             ))}
           </svg>
           <div className={styles.hub} ref={hub}>
-            <div className={styles.wordmark} data-tech-wordmark="true" aria-label="BracketDex">
-              <span aria-hidden="true">[</span>BracketDex<span aria-hidden="true">]</span>
+            <div className={styles.wordmark} data-tech-wordmark="true" aria-label="BracketDex" role="img">
+              <Image
+                alt=""
+                aria-hidden="true"
+                height={104}
+                src="/media/brand/bracketdex-logo-regular-light.svg"
+                width={572}
+              />
             </div>
           </div>
           <ul className={styles.nodes} aria-label="Technology stack">

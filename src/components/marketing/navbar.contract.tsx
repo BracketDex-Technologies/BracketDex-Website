@@ -1,7 +1,6 @@
 import {
   Navbar,
   NAVBAR_CONTROL_HEIGHT_PX,
-  NAVBAR_LOGO_TEXT,
 } from "./navbar";
 
 const navigation = [
@@ -12,11 +11,9 @@ const navigation = [
 
 type Expect<T extends true> = T;
 
-type LogoTextIsBracketDex = typeof NAVBAR_LOGO_TEXT extends "BracketDex" ? true : false;
 type ControlHeightIsFortyFour = typeof NAVBAR_CONTROL_HEIGHT_PX extends 44 ? true : false;
 
 export type NavbarContract = [
-  Expect<LogoTextIsBracketDex>,
   Expect<ControlHeightIsFortyFour>,
 ];
 
