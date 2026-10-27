@@ -4,6 +4,11 @@
   background: transparent !important;
 }
 
+:global([data-home-closing-shell]) .footer {
+  width: calc(100% + 1rem);
+  margin-inline: -0.5rem;
+}
+
 .shell {
   width: 100%;
 }
@@ -20,6 +25,10 @@
   border: 0;
   border-radius: 0;
   box-shadow: none;
+}
+
+:global([data-home-closing-shell]) .panel {
+  overflow: visible;
 }
 
 .top {
@@ -44,15 +53,38 @@
 }
 
 .brandName {
-  margin: 0;
-  color: #fffdf8;
-  font-size: clamp(1.45rem, 2.2vw, 2rem);
-  line-height: 1;
-  letter-spacing: -0.055em;
+  display: block;
+  width: clamp(11rem, 15vw, 13rem);
 }
 
-.brandName span {
-  color: #f25623;
+.brandLogoDark,
+.brandLogoLight {
+  width: 100%;
+  height: auto;
+}
+
+.brandLogoDark {
+  display: none;
+}
+
+.brandLogoLight {
+  display: block;
+}
+
+:global(html:not(.dark)) .footer .brandLogoDark {
+  display: block;
+}
+
+:global(html:not(.dark)) .footer .brandLogoLight {
+  display: none;
+}
+
+:global([data-home-closing-shell]) .footer .brand .brandLogoDark {
+  display: none;
+}
+
+:global([data-home-closing-shell]) .footer .brand .brandLogoLight {
+  display: block;
 }
 
 .description {
@@ -144,48 +176,33 @@
   align-items: flex-end;
   justify-content: center;
   overflow: hidden;
-}
-
-.watermarkStage::before {
-  position: absolute;
-  z-index: 0;
-  right: 0;
-  bottom: -20%;
-  left: 0;
-  height: 70%;
-  pointer-events: none;
-  content: "";
-  background: radial-gradient(
-    ellipse at 50% 100%,
-    rgb(242 86 35 / 32%) 0%,
-    rgb(242 86 35 / 14%) 44%,
-    transparent 74%
+  background: linear-gradient(
+    180deg,
+    transparent 38%,
+    rgb(242 86 35 / 2%) 58%,
+    rgb(242 86 35 / 8%) 78%,
+    rgb(242 86 35 / 22%) 100%
   );
-  filter: blur(1.75rem);
-  transform: translateY(-0.25rem);
 }
 
 .wordmark {
   position: relative;
   z-index: 1;
-  bottom: -0.04em;
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  margin: 0 auto;
-  color: rgb(242 86 35 / 42%);
-  font-size: clamp(5.75rem, 15.5vw, 13.5rem);
-  font-weight: 500;
-  line-height: 0.82;
-  letter-spacing: -0.045em;
-  text-align: center;
-  text-shadow: 0 0 1.25rem rgb(242 86 35 / 22%);
-  white-space: nowrap;
-  user-select: none;
-}
-
-.wordmark span {
   display: block;
+  width: 100%;
+  aspect-ratio: 572.25 / 103.5;
+  margin: 0 auto;
+  opacity: 0.6;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(242 86 35 / 12%) 30%,
+    rgb(242 86 35 / 44%) 100%
+  );
+  -webkit-mask: url("/media/brand/bracketdex-logo-regular-light.svg") center / 103% auto no-repeat;
+  mask: url("/media/brand/bracketdex-logo-regular-light.svg") center / 103% auto no-repeat;
+  transform: translateY(33%);
+  user-select: none;
 }
 
 .base {
@@ -232,7 +249,7 @@
   }
 
   .brandName {
-    font-size: clamp(1.15rem, 5vw, 1.45rem);
+    width: clamp(8.5rem, 37vw, 10.5rem);
   }
 
   .description {
@@ -252,11 +269,6 @@
   .linkColumns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
-  }
-
-  .wordmark {
-    width: 100%;
-    font-size: clamp(3.65rem, 18vw, 6.1rem);
   }
 
   .watermarkStage {

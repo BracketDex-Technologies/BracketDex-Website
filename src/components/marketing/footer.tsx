@@ -1,10 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 import type { NavigationItem } from "@/content/marketing";
 import { contactDetails } from "@/lib/site";
-import { logoFont } from "./logo-font";
-import { NAVBAR_LOGO_TEXT } from "./navbar";
 import styles from "./footer.module.css";
 
 type FooterProps = {
@@ -34,9 +33,24 @@ export function Footer({ brandName, description, navigation }: FooterProps) {
           <div className={styles.top}>
             <div className={styles.identity}>
               <div className={styles.brand}>
-                <p className={styles.brandName} style={{ fontFamily: logoFont.style.fontFamily }}>
-                  <span aria-hidden="true">[</span>{NAVBAR_LOGO_TEXT}<span aria-hidden="true">]</span>
-                </p>
+                <span aria-label={brandName} className={styles.brandName} role="img">
+                  <Image
+                    alt=""
+                    aria-hidden="true"
+                    className={styles.brandLogoDark}
+                    height={104}
+                    src="/media/brand/bracketdex-logo-regular-dark.svg"
+                    width={572}
+                  />
+                  <Image
+                    alt=""
+                    aria-hidden="true"
+                    className={styles.brandLogoLight}
+                    height={104}
+                    src="/media/brand/bracketdex-logo-regular-light.svg"
+                    width={572}
+                  />
+                </span>
                 <p className={styles.description}>{description}</p>
               </div>
               <address className={styles.contact}>
@@ -71,14 +85,7 @@ export function Footer({ brandName, description, navigation }: FooterProps) {
           </div>
 
           <div aria-hidden="true" className={styles.watermarkStage}>
-            <p className={styles.wordmark} data-footer-wordmark>
-              <span
-                className="bd-fresh-footer__logo"
-                style={{ fontFamily: logoFont.style.fontFamily }}
-              >
-                {NAVBAR_LOGO_TEXT}
-              </span>
-            </p>
+            <div className={styles.wordmark} data-footer-wordmark />
           </div>
         </div>
       </div>
