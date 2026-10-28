@@ -9,7 +9,7 @@ const principles = [
       "We use DAD (Discuss, Agree, Document) or ID (Inform, Document) to keep decisions clear.",
   },
   {
-    title: "Know the Why",
+    title: "Understand the Why",
     description:
       "We understand the purpose behind each task so we can explain decisions, stay aligned, and choose the right next step.",
   },
@@ -29,7 +29,7 @@ const principles = [
       "We share context and design around bottlenecks so progress does not depend on one system.",
   },
   {
-    title: "Constructive Teamwork",
+    title: "Build Better Together",
     description:
       "We build trust, stay constructive, and avoid bonding through negativity so the team can perform at its best.",
   },

@@ -336,7 +336,7 @@ test("why BracketDex shows six working principles in three visual pillars", asyn
   assert.equal((why.match(/<article\b/g) ?? []).length, 3);
   assert.equal((why.match(/<li\b/g) ?? []).length, 6);
   assert.ok(!why.includes("Chew. Digest. Deliver."));
-  for (const title of ["Clarity", "Execution", "Continuity", "Discuss. Agree. Document.", "Know the Why", "Accurate Speed", "Get the Job Done", "No Single Point of Failure", "Constructive Teamwork"]) {
+  for (const title of ["Clarity", "Execution", "Continuity", "Discuss. Agree. Document.", "Understand the Why", "Accurate Speed", "Get the Job Done", "No Single Point of Failure", "Build Better Together"]) {
     assert.ok(why.includes(title), title);
   }
   for (const image of ["clarity.png", "execution.png", "continuity.png"]) assert.ok(why.includes(image), image);
