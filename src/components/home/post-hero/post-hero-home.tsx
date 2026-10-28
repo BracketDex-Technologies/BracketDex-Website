@@ -14,7 +14,7 @@ export function PostHeroHome({ content }: { content: MarketingContent }) {
     <div className="bd-post-hero" data-post-hero-design={POST_HERO_DESIGN}>
       <PostHeroMotion />
       <TrustStrip content={content} />
-      <WhySection content={content} />
+      <WhySection />
       <ServicesBento content={content} />
       <ProcessRail content={content} />
       <CapabilityIndex content={content} />
