@@ -169,6 +169,17 @@
   color: #f98761;
 }
 
+.location {
+  display: block;
+  width: min(100%, 34ch);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.location span {
+  display: block;
+}
+
 .watermarkStage {
   position: relative;
   display: flex;
@@ -179,9 +190,9 @@
   background: linear-gradient(
     180deg,
     transparent 38%,
-    rgb(242 86 35 / 2%) 58%,
-    rgb(242 86 35 / 8%) 78%,
-    rgb(242 86 35 / 22%) 100%
+    rgb(242 86 35 / 3%) 58%,
+    rgb(242 86 35 / 10%) 78%,
+    rgb(242 86 35 / 26%) 100%
   );
 }
 
@@ -201,7 +212,7 @@
   );
   -webkit-mask: url("/media/brand/bracketdex-logo-regular-light.svg") center / 103% auto no-repeat;
   mask: url("/media/brand/bracketdex-logo-regular-light.svg") center / 103% auto no-repeat;
-  transform: translateY(33%);
+  transform: translateY(29%);
   user-select: none;
 }
 

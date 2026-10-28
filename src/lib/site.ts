@@ -1,5 +1,11 @@
 import { marketingContent } from "@/content/marketing";
 
+const locationLines = [
+  "Building B, Office 317",
+  "Suratwalla Mark Plazzo, S. No. 27",
+  "Mulshi, Hinjawadi, Pune 411057, India",
+] as const;
+
 export const siteConfig = {
   name: marketingContent.company.name,
   tagline: marketingContent.company.tagline,
@@ -12,5 +18,6 @@ export const contactDetails = {
   email: "bracketdevs.teams@gmail.com",
   phone: "+91 8605589062",
   phoneHref: "tel:+918605589062",
-  location: "Pune, Maharashtra",
+  location: locationLines.join(", "),
+  locationLines,
 } as const;

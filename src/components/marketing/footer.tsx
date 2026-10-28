@@ -56,7 +56,9 @@ export function Footer({ brandName, description, navigation }: FooterProps) {
               <address className={styles.contact}>
                 <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
                 <a href={contactDetails.phoneHref}>{contactDetails.phone}</a>
-                <span>{contactDetails.location}</span>
+                <span className={styles.location}>
+                  {contactDetails.locationLines.map((line) => <span key={line}>{line}</span>)}
+                </span>
               </address>
             </div>
 

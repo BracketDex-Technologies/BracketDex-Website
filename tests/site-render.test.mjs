@@ -327,22 +327,23 @@ test("technology stack leads into the final action on the homepage", async () =>
   }
 });
 
-test("why BracketDex bento follows the hero strip with seven animated visuals", async () => {
+test("why BracketDex shows six working principles in three visual pillars", async () => {
   const home = await getHtml("/");
-  const { marketingContent } = await loadDataModule("src/content/marketing.ts");
   const why = homeSection(home, "why");
   assert.deepEqual(homeKeys(home).slice(0, 3), ["trust", "why", "services"]);
-  assert.equal((why.match(/data-proof-card/g) ?? []).length, 7);
-  assert.equal((why.match(/data-proof-visual=/g) ?? []).length, 7);
-  for (const item of marketingContent.whyChooseUs) {
-    assert.ok(why.includes(item.title), item.title);
-    assert.ok(why.includes(item.description), item.description);
+  assert.ok(why.includes("How We Work Together"));
+  assert.ok(why.includes("Six practical principles"));
+  assert.equal((why.match(/<article\b/g) ?? []).length, 3);
+  assert.equal((why.match(/<li\b/g) ?? []).length, 6);
+  assert.ok(!why.includes("Chew. Digest. Deliver."));
+  for (const title of ["Clarity", "Execution", "Continuity", "Discuss. Agree. Document.", "Know the Why", "Accurate Speed", "Get the Job Done", "No Single Point of Failure", "Constructive Teamwork"]) {
+    assert.ok(why.includes(title), title);
   }
+  for (const image of ["clarity.png", "execution.png", "continuity.png"]) assert.ok(why.includes(image), image);
 
   const css = readFileSync(new URL("../src/components/home/fresh/why-section.module.css", import.meta.url), "utf8");
-  assert.match(css, /\.card:hover[\s\S]*\.visual/);
-  assert.match(css, /\.card:focus-visible/);
-  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(css, /\.pillars\s*\{[^}]*grid-template-columns:\s*repeat\(3/);
+  assert.match(css, /@media \(max-width:\s*1000px\)/);
 });
 
 test("industries route and navigation entry are removed", () => {
@@ -491,7 +492,7 @@ test("footer uses expanded route columns and a mostly visible watermark", () => 
   assert.match(css, /\.watermarkStage\s*\{[^}]*overflow:\s*hidden;[^}]*background:\s*linear-gradient/);
   assert.match(css, /:global\(\[data-home-closing-shell\]\) \.footer\s*\{[^}]*width:\s*calc\(100% \+ 1rem\);[^}]*margin-inline:\s*-0\.5rem/);
   assert.match(css, /\.wordmark[\s\S]*opacity:\s*0\.6/);
-  assert.match(css, /\.wordmark[\s\S]*transform:\s*translateY\(33%\)/);
+  assert.match(css, /\.wordmark[\s\S]*transform:\s*translateY\(29%\)/);
   assert.match(css, /justify-content:\s*center/);
   assert.match(css, /\.panel[\s\S]*background:\s*transparent[\s\S]*border:\s*0[\s\S]*border-radius:\s*0[\s\S]*box-shadow:\s*none/);
   assert.doesNotMatch(css, /\.base[\s\S]*border-top/);
