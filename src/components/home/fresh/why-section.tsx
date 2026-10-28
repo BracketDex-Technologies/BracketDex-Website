@@ -6,7 +6,7 @@ const principles = [
   {
     title: "Discuss. Agree. Document.",
     description:
-      "If it matters, we put it in writing. We use DAD (Discuss, Agree, Document) or ID (Inform, Document) to keep decisions clear.",
+      "We use DAD (Discuss, Agree, Document) or ID (Inform, Document) to keep decisions clear.",
   },
   {
     title: "Know the Why",
@@ -21,12 +21,12 @@ const principles = [
   {
     title: "Get the Job Done",
     description:
-      "We ask, ‘R u G’ing the JD?’ When we spot a missing link, we raise it with the team and take ownership of the fix.",
+      "When we spot a missing link, we raise it with the team and take ownership of the fix.",
   },
   {
     title: "No Single Point of Failure",
     description:
-      "We share context and design around bottlenecks so progress does not depend on one person or one system.",
+      "We share context and design around bottlenecks so progress does not depend on one system.",
   },
   {
     title: "Constructive Teamwork",
