@@ -3,6 +3,8 @@
 
 import type Lenis from "lenis";
 import { ReactLenis, useLenis } from "lenis/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type MotionValue, useMotionValue, useReducedMotion } from "motion/react";
 import {
   createContext,
@@ -111,7 +113,15 @@ function LenisBridge({
   });
   useEffect(() => {
     lenisRef.current = lenis ?? null;
+    if (!lenis) return () => { lenisRef.current = null; };
+
+    gsap.registerPlugin(ScrollTrigger);
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    lenis.on("scroll", ScrollTrigger.update);
     return () => {
+      gsap.ticker.remove(tick);
+      lenis.off("scroll", ScrollTrigger.update);
       lenisRef.current = null;
     };
   }, [lenis, lenisRef]);
@@ -212,6 +222,7 @@ export function SmoothScroll({
     <SmoothScrollContext.Provider value={api}>
       <ReactLenis
         root={root}
+        autoRaf={false}
         className={className}
         options={{
           lerp,

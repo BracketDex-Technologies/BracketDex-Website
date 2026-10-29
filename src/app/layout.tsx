@@ -91,7 +91,7 @@ export default function RootLayout({
       <body className={`${pontano.variable} ${stint.variable} ${instrumentSans.variable} ${syne.variable}`}>
         <ThemeProvider>
           <ThemeToggle />
-          <SmoothScroll root lerp={0.06} duration={1.6} wheelMultiplier={0.8} touch>
+          <SmoothScroll root lerp={0.15} wheelMultiplier={1}>
             <a className="skip-link" href="#main-content">
               Skip to main content
             </a>
