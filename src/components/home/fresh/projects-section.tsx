@@ -5,6 +5,7 @@ import { caseStudies, featuredCaseStudies } from "@/content/case-studies";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import styles from "./projects-section.module.css";
+import { caseStudyDetails } from "@/content/case-study-details";
 
 const projectGroups: Record<string, string> = {
   Education: "Education",
@@ -41,6 +42,7 @@ export function ProjectsSection({ all = false }: { all?: boolean }) {
         <ul className={`bd-fresh-projects__grid ${styles.grid}`}>
           {visibleStudies.map((study) => {
             const labels = study.category.split(" · ");
+            const detail = caseStudyDetails[study.name];
             return (
             <li className={`bd-fresh-projects__card ${styles.card}`} data-project-card key={study.name}>
               <div className={styles.cardHeader}>
@@ -50,14 +52,16 @@ export function ProjectsSection({ all = false }: { all?: boolean }) {
               <div className={styles.rows}>
                 <div className={styles.row} data-project-row="category">
                   <span>Category</span>
-                  <p>{study.category}</p>
+                  <p>{detail?.focus ?? study.category}</p>
                 </div>
+                {detail && <div className={styles.row}><span>Problem</span><p>{detail.problem}</p></div>}
                 <div className={styles.row} data-project-row="summary">
-                  <span>System</span>
+                  <span>{detail ? "Solution" : "System"}</span>
                   <p>{study.summary}</p>
                 </div>
+                {detail && <div className={styles.row}><span>Technology</span><p>{detail.technology}</p></div>}
                 <div className={styles.row} data-project-row="benefit">
-                  <span>Value</span>
+                  <span>{detail ? "Result" : "Value"}</span>
                   <p>{study.benefit}</p>
                 </div>
               </div>
