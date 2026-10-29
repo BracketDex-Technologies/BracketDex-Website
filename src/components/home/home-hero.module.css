@@ -86,7 +86,7 @@
   border-radius: 999px;
   background: rgb(23 23 23 / 32%);
   color: rgb(244 239 230 / 86%);
-  font-family: var(--font-hero-body), sans-serif;
+  font-family: var(--font-hero-body), Arial, sans-serif;
   font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -111,9 +111,9 @@
   max-width: 68rem;
   margin: clamp(1.75rem, 3.4vh, 2.65rem) 0 0;
   color: #fffaf3;
-  font-family: var(--font-hero-body), sans-serif;
+  font-family: var(--font-hero-body), Arial, sans-serif !important;
   font-size: clamp(3rem, 4.6vw, 5.75rem);
-  font-weight: 680;
+  font-weight: 680 !important;
   letter-spacing: -0.045em;
   line-height: 1.02;
   text-transform: none;
@@ -137,7 +137,7 @@
   margin: clamp(1.35rem, 2.8vh, 2rem) 0 0;
   gap: 0.08rem;
   color: rgb(255 250 243 / 88%);
-  font-family: var(--font-hero-body), sans-serif;
+  font-family: var(--font-hero-body), Arial, sans-serif !important;
   font-size: clamp(0.98rem, 1.15vw, 1.12rem);
   font-weight: 470;
   letter-spacing: -0.01em;
