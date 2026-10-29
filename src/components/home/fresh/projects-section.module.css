@@ -276,3 +276,9 @@
     transform: none;
   }
 }
+.filters { display: flex; gap: .6rem; overflow-x: auto; padding: .5rem .15rem 1rem; margin-bottom: .5rem; scrollbar-color: #f25623 #f5f0e6; }
+.filters button { flex: 0 0 auto; min-height: 44px; padding: .6rem 1rem; border: 1px solid #171717; border-radius: 999px; background: #fffdf8; color: #171717; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: #171717; color: #fffdf8; border-color: #f25623; }
+.filters button:hover { border-color: #f25623; }
+.filters button:focus-visible { outline: 2px solid #f25623; outline-offset: 3px; }
+.resultCount { margin: 0 0 1.25rem; color: #56514a; font-size: .85rem; }

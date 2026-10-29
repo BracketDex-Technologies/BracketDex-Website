@@ -14,6 +14,8 @@ import { CloudPanel } from "@/components/home/fresh/cloud-panel";
 import { JsonLd } from "@/components/seo/json-ld";
 import { buildBreadcrumbJsonLd } from "@/lib/seo";
 import { contactDetails } from "@/lib/site";
+import { BuildCta } from "@/components/marketing/build-cta";
+import closingStyles from "@/components/home/fresh/home-closing-stack.module.css";
 
 type Props = { activeHref?: string; content: StaticPageContent; ctaHref?: string; path: string };
 
@@ -70,7 +72,13 @@ export function StaticMarketingPage({ activeHref, content, ctaHref = "/contact",
     </section>;
     })}
     {path === "/services" && <div className="bd-post-dark"><div className="content-shell"><CloudPanel content={marketingContent} /></div></div>}
-    {!isContact && <section className="bd-page-outro content-shell"><p className="bd-scene-label">Build with BracketDex</p><h2><ScrollWords text={marketingContent.ctas[0]} /></h2><Link className="bd-hero-primary-cta" href={ctaHref}>{content.primaryCta ?? "Start a conversation"} ↗</Link></section>}
-    <Footer brandName={marketingContent.company.name} description={marketingContent.company.footerDescription} navigation={siteNavigation} />
+    <div className={closingStyles.section} data-home-closing-shell data-inner-closing-shell>
+      <div className={`content-shell ${closingStyles.shell}`}>
+        <div className={closingStyles.card}>
+          {!isContact && <BuildCta headline={marketingContent.ctas[0]} description={marketingContent.company.shortDescription} href={ctaHref} label="Book Consultation" />}
+          <Footer brandName={marketingContent.company.name} description={marketingContent.company.footerDescription} navigation={siteNavigation} />
+        </div>
+      </div>
+    </div>
   </main>;
 }

@@ -1,7 +1,7 @@
 .footer {
   padding: 0 !important;
   color: #fffdf8;
-  background: transparent !important;
+  background: #111111 !important;
 }
 
 :global([data-home-closing-shell]) .footer {

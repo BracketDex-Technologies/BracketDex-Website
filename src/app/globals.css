@@ -9,7 +9,7 @@
   --card-foreground: #101828;
   --popover: #fbfbf8;
   --popover-foreground: #101828;
-  --primary: #1455d9;
+  --primary: #f25623;
   --primary-foreground: #ffffff;
   --secondary: #f97316;
   --secondary-foreground: #111827;
@@ -23,7 +23,7 @@
   --surface-foreground: #182230;
   --border: #dcdcd2;
   --input: #d7d7cc;
-  --ring: #1455d9;
+  --ring: #f25623;
   --radius: 1rem;
   --shadow-soft: 0 18px 48px rgb(23 23 23 / 0.08);
   --shadow-lift: 0 22px 64px rgb(23 23 23 / 0.14);
@@ -65,7 +65,7 @@
   --bd-light-ink: #15171c;
   --bd-light-muted: #5d626b;
   --bd-light-border: #dcdedb;
-  --bd-light-blue: #1455d9;
+  --bd-light-blue: #f25623;
 }
 
 .dark {
@@ -1119,7 +1119,7 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
   --post-dark-border: #23252a;
   --post-dark-text: #d0d6e0;
   --post-dark-muted: #8a8f98;
-  --post-blue: #1455d9;
+  --post-blue: #f25623;
   background: var(--post-warm);
   color: var(--post-ink);
 }
@@ -1402,7 +1402,7 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
   font-weight: 650;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #1455d9;
+  color: #f25623;
 }
 .bd-fresh-problems { background: #f7f7f4; padding-block: clamp(3.5rem, 6vw, 5.5rem); }
 .bd-fresh-problems__head {
@@ -1455,7 +1455,7 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
-  background: #1455d9;
+  background: #f25623;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1522,7 +1522,7 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
   gap: 0.4rem;
   width: 11rem;
   border-radius: 12px;
-  background: #1455d9;
+  background: #f25623;
   color: #fff;
   padding: 0.9rem;
   transform: translateY(-50%) rotate(7deg) scale(0.9);
@@ -1586,14 +1586,14 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
   padding: 1.1rem 1rem 1.2rem;
   transition: border-color 180ms ease, transform 180ms ease;
 }
-.bd-fresh-process__step:hover { border-color: #1455d9; transform: translateY(-2px); }
+.bd-fresh-process__step:hover { border-color: #f25623; transform: translateY(-2px); }
 .bd-fresh-process__num {
   display: grid;
   place-items: center;
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 50%;
-  background: #1455d9;
+  background: #f25623;
   color: #fff;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.65rem;
@@ -1654,7 +1654,7 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
   height: 2.5rem;
   border-radius: 10px;
   background: #eef3ff;
-  color: #1455d9;
+  color: #f25623;
 }
 .bd-fresh-why__icon svg { width: 1.2rem; height: 1.2rem; }
 .bd-fresh-why__card h3 { margin: 1rem 0 0; font-size: 1rem; color: #171717; }
@@ -1668,7 +1668,7 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
 .bd-fresh-projects__card { border: 1px dashed #c9c9c0; border-radius: 14px; background: #fbfbf8; padding: 1.5rem; }
 .bd-fresh-projects__card h3 { margin: 1rem 0 0; font-size: 1rem; color: #171717; }
 .bd-fresh-projects__card p { margin: 0.5rem 0 0; font-size: 0.86rem; line-height: 1.6; color: #666762; }
-.bd-fresh-projects__link { display: inline-flex; gap: 0.5rem; align-items: center; margin-top: 1.6rem; color: #1455d9; font-size: 0.9rem; font-weight: 600; }
+.bd-fresh-projects__link { display: inline-flex; gap: 0.5rem; align-items: center; margin-top: 1.6rem; color: #f25623; font-size: 0.9rem; font-weight: 600; }
 .bd-fresh-projects__link svg { width: 1rem; }
 
 /* Fresh footer — full-width dark, giant wordmark (ref-based) */
@@ -1757,5 +1757,5 @@ html.bd-progressive-text-active :is(.sr-only, [aria-hidden="true"], .bd-site-loa
 .bd-fresh-contact__grid h2 { margin: 1rem 0 0; font-size: clamp(2rem, 3.6vw, 3.2rem); line-height: 1.02; letter-spacing: -0.02em; color: #171717; }
 .bd-fresh-contact__grid p { margin: 1rem 0 0; max-width: 30rem; color: #666762; line-height: 1.65; }
 .bd-fresh-contact__details { display: grid; gap: 0.3rem; margin-top: 1.5rem; font-style: normal; font-size: 0.9rem; }
-.bd-fresh-contact__details a { width: fit-content; font-weight: 600; color: #1455d9; }
+.bd-fresh-contact__details a { width: fit-content; font-weight: 600; color: #f25623; }
 .bd-fresh-contact__details span { color: #666762; }

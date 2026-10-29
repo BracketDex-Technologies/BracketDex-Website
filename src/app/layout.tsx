@@ -91,11 +91,6 @@ export default function RootLayout({
             </a>
             <JsonLd data={organizationJsonLd} />
             <JsonLd data={websiteJsonLd} />
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `try{document.documentElement.classList.add("bd-progressive-text-active")}catch(e){}`,
-              }}
-            />
             <ProgressiveTextReveal />
             {children}
             <AgentationToolbar />

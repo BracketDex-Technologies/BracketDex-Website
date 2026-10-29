@@ -5,6 +5,9 @@ import styles from "./projects-section.module.css";
 
 export function ProjectsSection({ all = false }: { all?: boolean }) {
   const studies = all ? caseStudies : featuredCaseStudies;
+  const [category, setCategory] = useState("All");
+  const categories = ["All", ...new Set(studies.flatMap((study) => study.category.split(" · ")))];
+  const visibleStudies = category === "All" ? studies : studies.filter((study) => study.category.split(" · ").includes(category));
   return (
     <section
       aria-labelledby={all ? "portfolio-title" : "fresh-projects-title"}
@@ -18,20 +21,17 @@ export function ProjectsSection({ all = false }: { all?: boolean }) {
           <p>A few systems we’ve built to make everyday work simpler.</p>
         </header>
 
+        {all && <nav className={styles.filters} aria-label="Project categories">
+          {categories.map((item) => <button type="button" key={item} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</button>)}
+        </nav>}
+        {all && <p className={styles.resultCount} role="status">{visibleStudies.length} projects · {category}</p>}
         <ul className={`bd-fresh-projects__grid ${styles.grid}`}>
-          {studies.map((study) => {
+          {visibleStudies.map((study) => {
             const labels = study.category.split(" · ");
             return (
             <li className={`bd-fresh-projects__card ${styles.card}`} data-project-card key={study.name}>
               <div className={styles.cardHeader}>
                 <h3 className={styles.cardTitle}>{study.name}</h3>
-                <Link
-                  aria-label={all ? `Discuss ${study.name}` : `View ${study.name} in all projects`}
-                  className={styles.cardArrow}
-                  href={all ? "/contact" : "/projects"}
-                >
-                  <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.8} />
-                </Link>
               </div>
 
               <div className={styles.rows}>
@@ -73,3 +73,6 @@ export function ProjectsSection({ all = false }: { all?: boolean }) {
     </section>
   );
 }
+"use client";
+
+import { useState } from "react";
