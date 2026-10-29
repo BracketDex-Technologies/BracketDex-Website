@@ -268,18 +268,17 @@
   }
 
   .description {
-    max-width: 24rem;
-    margin-top: 0.75rem;
-    font-size: 0.72rem;
-    line-height: 1.5;
+    display: none;
   }
 
   .contact {
-    justify-items: end;
+    justify-items: start;
     margin-top: 0;
-    font-size: 0.62rem;
-    text-align: right;
-    white-space: nowrap;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .linkColumns {
