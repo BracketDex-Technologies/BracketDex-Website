@@ -499,7 +499,7 @@ test("footer uses expanded route columns and a mostly visible watermark", () => 
   assert.match(source, /styles\.identity/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.identity[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.brand[\s\S]*width:\s*min\(100%,\s*20rem\)/);
-  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.contact[\s\S]*text-align:\s*right[\s\S]*white-space:\s*nowrap/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.contact[\s\S]*text-align:\s*left[\s\S]*white-space:\s*normal/);
 });
 
 test("final action closes the homepage without duplicated projects", async () => {
