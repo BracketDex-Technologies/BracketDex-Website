@@ -6,9 +6,6 @@ import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { ProgressiveTextReveal } from "@/components/motion-primitives/progressive-text-reveal";
 import { JsonLd } from "@/components/seo/json-ld";
-import { ThemeHotkey } from "@/components/theme-hotkey";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { ThemeProvider } from "@/components/theme-provider";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -17,7 +14,6 @@ import "./editorial.css";
 import "./scroll-pages.css";
 import "./premium.css";
 import "./typography.css";
-import "./light-theme.css";
 
 const pontano = localFont({
   src: "../assets/fonts/pontano-sans/PontanoSans-VariableFont_wght.ttf",
@@ -87,10 +83,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html className="dark" lang="en">
       <body className={`${pontano.variable} ${stint.variable} ${instrumentSans.variable} ${syne.variable}`}>
-        <ThemeProvider>
-          <ThemeToggle />
           <SmoothScroll root lerp={0.15} wheelMultiplier={1}>
             <a className="skip-link" href="#main-content">
               Skip to main content
@@ -103,11 +97,9 @@ export default function RootLayout({
               }}
             />
             <ProgressiveTextReveal />
-            <ThemeHotkey />
             {children}
             <AgentationToolbar />
           </SmoothScroll>
-        </ThemeProvider>
       </body>
     </html>
   );

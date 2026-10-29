@@ -105,8 +105,6 @@
 .bd-landing .bd-fresh-footer a { color: #B1B4BE; }
 .bd-landing .bd-fresh-footer a:hover { color: #FFFFFF; }
 .bd-landing { --destructive: #B42318; --destructive-foreground: #FFFFFF; }
-.bd-theme-toggle { color: #FAF9F6; border-color: #383A42; }
-.bd-landing.bd-inner-page .bd-theme-toggle { color: #151619; border-color: #DEDFDA; }
 .bd-landing form { border-radius: 12px; box-shadow: none; border: 1px solid #DEDFDA; background: #FFFFFF; color: #151619; }
 .bd-landing form :is(input,textarea) { background: #FFFFFF; color: #151619; border-radius: 8px; box-shadow: none; }
 .bd-landing form input { min-height: 44px; }
