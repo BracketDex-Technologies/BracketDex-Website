@@ -6,11 +6,21 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import styles from "./projects-section.module.css";
 
+const projectGroups: Record<string, string> = {
+  Education: "Education",
+  Housing: "Business & operations", Community: "Community & lifestyle",
+  Agriculture: "Business & operations", Agency: "Business & operations",
+  "Professional services": "CRM & professional services", "Home interiors": "CRM & professional services",
+  "Local business": "Business & operations", Finance: "CRM & professional services",
+  "Civic work": "Community & lifestyle", "Business community": "Community & lifestyle",
+  Fitness: "Community & lifestyle", Travel: "Community & lifestyle", Media: "AI & automation",
+};
+const categories = ["All", "CRM & professional services", "Business & operations", "Education", "Community & lifestyle", "AI & automation"];
+
 export function ProjectsSection({ all = false }: { all?: boolean }) {
   const studies = all ? caseStudies : featuredCaseStudies;
   const [category, setCategory] = useState("All");
-  const categories = ["All", ...new Set(studies.flatMap((study) => study.category.split(" · ")))];
-  const visibleStudies = category === "All" ? studies : studies.filter((study) => study.category.split(" · ").includes(category));
+  const visibleStudies = category === "All" ? studies : studies.filter((study) => projectGroups[study.category.split(" · ")[0]] === category);
   return (
     <section
       aria-labelledby={all ? "portfolio-title" : "fresh-projects-title"}
@@ -27,7 +37,7 @@ export function ProjectsSection({ all = false }: { all?: boolean }) {
         {all && <nav className={styles.filters} aria-label="Project categories">
           {categories.map((item) => <button type="button" key={item} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</button>)}
         </nav>}
-        {all && <p className={styles.resultCount} role="status">{visibleStudies.length} projects · {category}</p>}
+        {all && <p className={styles.resultCount} role="status">{visibleStudies.length} {visibleStudies.length === 1 ? "project" : "projects"} · {category}</p>}
         <ul className={`bd-fresh-projects__grid ${styles.grid}`}>
           {visibleStudies.map((study) => {
             const labels = study.category.split(" · ");
