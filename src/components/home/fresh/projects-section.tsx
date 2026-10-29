@@ -1,10 +1,26 @@
+"use client";
+
+import { useState } from "react";
 import { caseStudies, featuredCaseStudies } from "@/content/case-studies";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import styles from "./projects-section.module.css";
 
+const projectGroups: Record<string, string> = {
+  Education: "Education",
+  Housing: "Business & operations", Community: "Community & lifestyle",
+  Agriculture: "Business & operations", Agency: "Business & operations",
+  "Professional services": "CRM & professional services", "Home interiors": "CRM & professional services",
+  "Local business": "Business & operations", Finance: "CRM & professional services",
+  "Civic work": "Community & lifestyle", "Business community": "Community & lifestyle",
+  Fitness: "Community & lifestyle", Travel: "Community & lifestyle", Media: "AI & automation",
+};
+const categories = ["All", "CRM & professional services", "Business & operations", "Education", "Community & lifestyle", "AI & automation"];
+
 export function ProjectsSection({ all = false }: { all?: boolean }) {
   const studies = all ? caseStudies : featuredCaseStudies;
+  const [category, setCategory] = useState("All");
+  const visibleStudies = category === "All" ? studies : studies.filter((study) => projectGroups[study.category.split(" · ")[0]] === category);
   return (
     <section
       aria-labelledby={all ? "portfolio-title" : "fresh-projects-title"}
@@ -18,20 +34,17 @@ export function ProjectsSection({ all = false }: { all?: boolean }) {
           <p>A few systems we’ve built to make everyday work simpler.</p>
         </header>
 
+        {all && <nav className={styles.filters} aria-label="Project categories">
+          {categories.map((item) => <button type="button" key={item} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</button>)}
+        </nav>}
+        {all && <p className={styles.resultCount} role="status">{visibleStudies.length} {visibleStudies.length === 1 ? "project" : "projects"} · {category}</p>}
         <ul className={`bd-fresh-projects__grid ${styles.grid}`}>
-          {studies.map((study) => {
+          {visibleStudies.map((study) => {
             const labels = study.category.split(" · ");
             return (
             <li className={`bd-fresh-projects__card ${styles.card}`} data-project-card key={study.name}>
               <div className={styles.cardHeader}>
                 <h3 className={styles.cardTitle}>{study.name}</h3>
-                <Link
-                  aria-label={all ? `Discuss ${study.name}` : `View ${study.name} in all projects`}
-                  className={styles.cardArrow}
-                  href={all ? "/contact" : "/projects"}
-                >
-                  <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.8} />
-                </Link>
               </div>
 
               <div className={styles.rows}>
