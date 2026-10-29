@@ -1,10 +1,10 @@
 .visual { overflow: hidden; border: 1px solid var(--bd-dark-border); border-radius: 12px; background: var(--bd-dark-raised); color: var(--bd-dark-text); }
 .meta { display: flex; justify-content: space-between; gap: 1rem; padding: .9rem 1.1rem; border-bottom: 1px solid var(--bd-dark-border); color: var(--bd-dark-muted); font: .7rem/1.4 ui-monospace, monospace; letter-spacing: .05em; }
-.canvas { position: relative; min-height: 390px; padding: 1.25rem; background-image: radial-gradient(#4a597655 1px, transparent 1px); background-size: 22px 22px; }
+.canvas { position: relative; min-height: 390px; padding: 1.25rem; background-image: radial-gradient(#75665555 1px, transparent 1px); background-size: 22px 22px; }
 .lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.lines path, .cloudLines path { fill: none; stroke: #5b9dff; stroke-width: 2; stroke-dasharray: 6 5; }
+.lines path, .cloudLines path { fill: none; stroke: #f25623; stroke-width: 2; stroke-dasharray: 6 5; }
 .nodes { position: relative; z-index: 1; height: 350px; }
-.node { position: absolute; display: flex; width: min(46%, 212px); min-height: 114px; flex-direction: column; align-items: flex-start; justify-content: center; gap: .18rem; padding: .85rem; border: 1px solid #4d607e; border-radius: 10px; background: #202937; box-shadow: 0 12px 24px #05070c55; }
+.node { position: absolute; display: flex; width: min(46%, 212px); min-height: 114px; flex-direction: column; align-items: flex-start; justify-content: center; gap: .18rem; padding: .85rem; border: 1px solid #655347; border-radius: 10px; background: #24201c; box-shadow: 0 12px 24px #05070c55; }
 .node strong { font-size: .99rem; line-height: 1.18; font-weight: 620; }
 .node > span:last-child { color: var(--bd-dark-muted); font-size: .83rem; line-height: 1.3; }
 .nodeIndex { margin-bottom: .3rem; color: var(--bd-dark-blue); font: .65rem ui-monospace, monospace; }
@@ -21,7 +21,7 @@
 .cloudLines { position: absolute; inset: 0; width: 100%; height: 100%; }
 .cloudColumn { z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: .65rem; }
 .cloudLabel { margin-bottom: .4rem; color: var(--bd-dark-blue); font: .7rem ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
-.cloudNode { display: flex; min-height: 50px; align-items: center; padding: .6rem .85rem; border: 1px solid #4d607e; border-radius: 8px; background: #202937; color: var(--bd-dark-text); font-size: .91rem; }
+.cloudNode { display: flex; min-height: 50px; align-items: center; padding: .6rem .85rem; border: 1px solid #655347; border-radius: 8px; background: #24201c; color: var(--bd-dark-text); font-size: .91rem; }
 
 @media (max-width: 700px) {
   .canvas { min-height: 0; padding: 1rem; }
