@@ -101,7 +101,7 @@ test("navbar overlays the hero and keeps every primary destination reachable", a
 test("navbar keeps a compact desktop and mobile rhythm", () => {
   const css = readFileSync(new URL("../src/components/marketing/navbar.module.css", import.meta.url), "utf8");
   const source = readFileSync(new URL("../src/components/marketing/navbar.tsx", import.meta.url), "utf8");
-  assert.match(css, /min-height:\s*clamp\(3\.75rem,\s*4\.2vw,\s*4\.5rem\)/);
+  assert.match(css, /min-height:\s*clamp\(3\.5rem,\s*3\.7vw,\s*3\.6rem\)/);
   assert.match(css, /width:\s*min\(calc\(100% - 4rem\),\s*75rem\)/);
   assert.match(css, /margin-inline:\s*auto/);
   assert.match(css, /border-bottom:\s*0\.5px solid rgb\(23 23 23 \/ 14%\)/);
@@ -112,8 +112,8 @@ test("navbar keeps a compact desktop and mobile rhythm", () => {
   assert.match(source, /document[\s\S]*\.elementsFromPoint\(/);
   assert.match(source, /header\.dataset\.surface\s*=/);
   assert.match(css, /gap:\s*clamp\(0\.5rem,\s*0\.9vw,\s*1rem\)/);
-  assert.match(css, /@media \(max-width:\s*1070px\)[\s\S]*width:\s*100%[\s\S]*min-height:\s*4rem/);
-  assert.match(css, /inset:\s*4rem 0 auto/);
+  assert.match(css, /@media \(max-width:\s*1070px\)[\s\S]*width:\s*100%[\s\S]*min-height:\s*3\.25rem/);
+  assert.match(css, /inset:\s*3\.25rem 0 auto/);
   assert.match(source, /bracketdex-logo-regular-dark\.svg/);
   assert.match(source, /bracketdex-logo-regular-light\.svg/);
   assert.match(css, /--logo-dark-display:\s*block/);

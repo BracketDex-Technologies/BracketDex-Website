@@ -16,6 +16,7 @@
 .card[data-wide] { grid-column: span 2; }
 .card:hover, .card:focus-within { border-color: #c8643d; background: #282522; box-shadow: 18px 18px 36px rgb(6 6 6 / 68%), -12px -12px 30px rgb(67 59 53 / 45%), inset 0 0 48px rgb(242 86 35 / 5%); }
 .art { position: relative; display: grid; place-items: center; min-height: 0; height: clamp(12rem, 19vw, 15rem); overflow: hidden; pointer-events: none; }
+.card[data-service-card="ai"] .art { display: block; }
 .parallax { width: 100%; height: 100%; }
 .svg { display: block; width: 100%; height: 100%; overflow: visible; }
 .ecosystem { width: 100%; height: 115%; margin-top: -1rem; }
@@ -25,7 +26,7 @@
 .svgLabel { fill: #eee5d9; font-size: 14px; }
 .svgMuted { fill: #96897c; font-size: 11px; }
 .aiLabel { fill: #f25623; font-size: 36px; font-weight: 500; }
-.copy { padding: 0.75rem clamp(1.25rem, 2.3vw, 1.8rem) 1.6rem; }
+.copy { padding: 0.4rem clamp(0.9rem, 1.5vw, 1.2rem) 1.1rem; }
 .section .copy h3 { margin: 0; font: 600 clamp(1.1rem, 1.6vw, 1.35rem)/1.2 var(--font-body), sans-serif; letter-spacing: -0.025em; }
 .link { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; min-height: 44px; color: #f5f0e6; text-decoration: none; }
 .link::after { position: absolute; inset: 0; content: ""; }
@@ -49,7 +50,7 @@
   .grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
   .card[data-wide] { grid-column: auto; }
   .art { height: 13rem; }
-  .copy { padding: 0.25rem 1.35rem 1.5rem; }
+  .copy { padding: 0.25rem 1rem 1.1rem; }
   .ecosystem { width: 145%; max-width: none; margin-left: -22.5%; }
 }
 
