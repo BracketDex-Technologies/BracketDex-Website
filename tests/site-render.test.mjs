@@ -497,7 +497,8 @@ test("footer uses expanded route columns and a mostly visible watermark", () => 
   assert.match(css, /\.panel[\s\S]*background:\s*transparent[\s\S]*border:\s*0[\s\S]*border-radius:\s*0[\s\S]*box-shadow:\s*none/);
   assert.doesNotMatch(css, /\.base[\s\S]*border-top/);
   assert.match(source, /styles\.identity/);
-  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.identity[\s\S]*grid-template-columns:\s*minmax\(0,\s*0\.9fr\) minmax\(0,\s*1\.1fr\)/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.identity[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
+  assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.brand[\s\S]*width:\s*min\(100%,\s*20rem\)/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.contact[\s\S]*text-align:\s*right[\s\S]*white-space:\s*nowrap/);
 });
 

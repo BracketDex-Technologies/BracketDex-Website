@@ -254,16 +254,21 @@
   }
 
   .identity {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.15rem;
     align-items: start;
   }
 
+  .brand {
+    width: min(100%, 20rem);
+  }
+
   .brandName {
-    width: clamp(8.5rem, 37vw, 10.5rem);
+    width: clamp(9rem, 42vw, 11rem);
   }
 
   .description {
+    max-width: 24rem;
     margin-top: 0.75rem;
     font-size: 0.72rem;
     line-height: 1.5;
