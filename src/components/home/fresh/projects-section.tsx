@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { caseStudies, featuredCaseStudies } from "@/content/case-studies";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
@@ -73,6 +76,3 @@ export function ProjectsSection({ all = false }: { all?: boolean }) {
     </section>
   );
 }
-"use client";
-
-import { useState } from "react";
