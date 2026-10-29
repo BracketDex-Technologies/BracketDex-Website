@@ -10,7 +10,8 @@
 .icons { position: absolute; inset: 0; pointer-events: none; }
 .tile { position: absolute; display: grid; place-items: center; width: 4.2rem; height: 4.2rem; border: 1px dashed #ffeadb99; border-radius: .4rem; color: #ffe5d3; }
 .tile:nth-child(1) { left: 8%; top: 29%; }.tile:nth-child(2) { left: 15%; top: 6%; }.tile:nth-child(3) { left: 22%; top: 46%; }.tile:nth-child(4) { right: 13%; top: 10%; }.tile:nth-child(5) { right: 20%; top: 42%; }.tile:nth-child(6) { right: 6%; top: 51%; }
-.strip { position: relative; display: flex; justify-content: space-around; gap: 2rem; padding: 1.1rem 1.5rem; border-top: 1px solid #ffffff33; background: #ff591b; font-size: .85rem; }
+.strip { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; gap: 0; padding: .75rem 1rem; border-top: 1px solid #ffffff33; background: #ff591b; font-size: .85rem; }
+.strip span { display: flex; align-items: center; justify-content: center; min-width: 0; padding: .65rem .5rem; text-align: center; line-height: 1.45; text-wrap: balance; }
 @media(max-width: 1000px) { .tile { opacity: .5; width: 3rem; height: 3rem; }.tile:nth-child(3), .tile:nth-child(5) { display: none; }.copy { padding: 6rem 2rem; } }
 @media(max-width: 600px) { .panel { margin: .75rem; }.copy { padding: 7rem 1.25rem 4rem; }.tile:nth-child(1) { top: 3%; left: 4%; }.tile:nth-child(2) { top: 5%; left: 28%; }.tile:nth-child(4) { top: 3%; right: 28%; }.tile:nth-child(6) { top: 5%; right: 4%; }.strip { flex-wrap: wrap; gap: .8rem 1.5rem; font-size: .75rem; } }
 @media(prefers-reduced-motion: reduce) { .tile { transform: none !important; opacity: 1 !important; }.action { transition: none; } }
@@ -18,6 +19,10 @@
 .surround .panel { margin: 0; }
 @media (max-width: 600px) { .surround { padding: .75rem .75rem 0; } .surround .panel { margin: 0; } }
 :global([data-inner-closing-shell]) .surround { padding: 0; background: transparent; }
+@media (max-width: 600px) {
+  .panel .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; padding: .5rem; font-size: .75rem; }
+  .panel .strip span { min-height: 3.25rem; padding: .6rem .4rem; }
+}
 .panel .icons { inset: 1.5rem 1.5rem auto; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); justify-items: center; gap: 1rem; }
 .panel .tile:nth-child(n) { position: relative; inset: auto; display: grid; width: 3.25rem; height: 3.25rem; }
 .panel .copy { padding-top: 8.5rem; }
