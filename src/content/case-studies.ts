@@ -17,6 +17,7 @@ export const caseStudies = [
   { name: "Schedule Poster Studio", category: "Media · OCR automation", summary: "A local workflow that converts structured schedule documents into editable records and print-ready poster artwork for commercial teams.", benefit: "Consistent vector PDFs, combined documents, and PNG assets from one reviewed source." },
   { name: "CA CRM Automation", category: "Professional services · CRM automation", summary: "A CRM automation system built for chartered accountancy practices.", benefit: "Organises client relationship workflows for CA teams." },
   { name: "Modular Kitchen CRM Automation", category: "Home interiors · CRM automation", summary: "A CRM automation system built for modular kitchen businesses.", benefit: "Organises customer relationship workflows for modular kitchen teams." },
+  { name: "OCR Extraction Automation", category: "Media · OCR automation", summary: "Upload the respective PDF to extract its content with OCR, collect supporting data from a website, and automatically generate a poster from the combined information.", benefit: "Creates posters from source documents and website data with less manual extraction and re-entry." },
 ] as const;
 
 export const featuredCaseStudies = caseStudies.slice(0, 6);
