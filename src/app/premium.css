@@ -4,7 +4,7 @@
   --ink: #151619;
   --primary: #f25623;
   --ring: #f25623;
-  --accent-cobalt: #f25623;
+  --accent-orange: #f25623;
   font-family: var(--font-alpino), Arial, sans-serif;
 }
 .bd-landing :is(h1,h2,.bd-wordmark) { font-family: var(--font-alpino), Arial, sans-serif; font-weight: 500; letter-spacing: -.055em; }
@@ -47,7 +47,7 @@
 .bd-landing .bd-fresh-trust__text small { font-size: .9rem; color: #62656D; line-height: 1.5; }
 .bd-landing .bd-fresh-trust__dark { background: #F0F0EC; color: #62656D; border-color: #DEDFDA; }
 .bd-landing .bd-fresh-trust__logo { font-weight: 450; color: #62656D; }
-.bd-landing .bd-post-hero { --post-dark: #151619; --post-dark-text: #FAF9F6; --post-dark-muted: #B1B4BE; --post-dark-border: #383A42; --post-ink: #151619; --post-muted: #62656D; --post-blue: #f25623; --post-border: #DEDFDA; }
+.bd-landing .bd-post-hero { --post-dark: #151619; --post-dark-text: #FAF9F6; --post-dark-muted: #B1B4BE; --post-dark-border: #383A42; --post-ink: #151619; --post-muted: #62656D; --post-orange: #f25623; --post-border: #DEDFDA; }
 .bd-landing .bd-fresh-problems { background: #F0F0EC; }
 .bd-landing :is(.bd-fresh-problems__card,.bd-fresh-why__card,.bd-fresh-projects__card) { border-color: #DEDFDA; background: #ffffff80; border-radius: 12px; }
 .bd-landing :is(.bd-fresh-problems__card,.bd-fresh-why__card,.bd-fresh-projects__card):hover { border-color: #f9b293; background: #ffffff; box-shadow: none; }

@@ -17,8 +17,8 @@ import { SplitText } from "gsap/SplitText";
  *   tab is hidden, and is DPR-aware.
  */
 
-const NODE_COLOR = "rgb(180 210 255 / 0.85)";
-const NODE_CORE = "rgb(233 242 255 / 0.95)";
+const NODE_COLOR = "rgb(245 240 230 / 0.85)";
+const NODE_CORE = "rgb(245 240 230 / 0.95)";
 const LINK_COLOR = "79, 140, 255"; // --primary-ish, as rgb triplet for alpha compositing
 const LINK_DISTANCE = 132;
 const MOUSE_DISTANCE = 172;

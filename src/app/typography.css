@@ -93,8 +93,8 @@ body {
 .bd-landing .bd-fresh-projects__card .bd-case-headline { font-size: 1.125rem; font-weight: 500; color: #151619; margin-block: .5rem; }
 .bd-landing .bd-fresh-projects__card .bd-case-highlight { font-size: .9375rem; line-height: 1.6; color: #f25623; background: #f5eee4; border-radius: 6px; padding: .5rem .75rem; margin-top: auto; margin-bottom: 0; }
 .bd-landing .bd-fresh-projects__card { --case-accent: #f25623; --case-tint: #f5eee4; border-radius: 18px; min-width: 0; transition: border-color .25s ease, box-shadow .25s ease; }
-.bd-landing .bd-fresh-projects__card:nth-child(4n + 2) { --case-accent: #356D70; --case-tint: #EAF3F2; }
-.bd-landing .bd-fresh-projects__card:nth-child(4n + 3) { --case-accent: #72548D; --case-tint: #F3EEF7; }
+.bd-landing .bd-fresh-projects__card:nth-child(4n + 2) { --case-accent: #f25623; --case-tint: #EAF3F2; }
+.bd-landing .bd-fresh-projects__card:nth-child(4n + 3) { --case-accent: #f25623; --case-tint: #f5f0e6; }
 .bd-landing .bd-fresh-projects__card:nth-child(4n + 4) { --case-accent: #527044; --case-tint: #EFF3E9; }
 .bd-landing .bd-fresh-projects__card:hover { border-color: var(--case-accent); box-shadow: 0 12px 32px #15161908; }
 .bd-landing .bd-case-topline { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 1.25rem; }

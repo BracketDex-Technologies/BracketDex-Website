@@ -1,5 +1,5 @@
 .card { display: flex; min-width: 0; min-height: 160px; flex-direction: column; padding: clamp(1.3rem, 2vw, 1.75rem); border: 1px solid var(--bd-light-border); border-radius: 10px; background: var(--bd-light-card); color: var(--bd-light-ink); transition: transform .22s ease, border-color .22s ease; }
-.card:hover { transform: translateY(-4px); border-color: var(--bd-light-blue); }
+.card:hover { transform: translateY(-4px); border-color: var(--bd-light-orange); }
 .card h3 { margin: 0 0 .7rem; font-family: var(--font-body), sans-serif; font-size: 1.22rem; font-weight: 620; line-height: 1.25; }
 .card p { margin: 0; color: var(--bd-light-muted); font-size: 1rem; line-height: 1.55; }
 @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }

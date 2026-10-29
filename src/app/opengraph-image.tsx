@@ -15,8 +15,8 @@ export default function OpenGraphImage() {
       <div
         style={{
           alignItems: "center",
-          background: "linear-gradient(135deg, #EEF6FF 0%, #FFFFFF 45%, #FFF2E7 100%)",
-          color: "#182033",
+          background: "linear-gradient(135deg, #f5f0e6 0%, #FFFFFF 45%, #FFF2E7 100%)",
+          color: "#111111",
           display: "flex",
           flexDirection: "column",
           fontFamily: "Arial, sans-serif",
@@ -28,7 +28,7 @@ export default function OpenGraphImage() {
       >
         <div
           style={{
-            color: "#2563EB",
+            color: "#f25623",
             fontSize: 34,
             fontWeight: 700,
             letterSpacing: 2,
@@ -52,7 +52,7 @@ export default function OpenGraphImage() {
         </div>
         <div
           style={{
-            color: "#5B6475",
+            color: "#f25623",
             fontSize: 30,
             lineHeight: 1.35,
             marginTop: 32,

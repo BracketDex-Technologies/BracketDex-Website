@@ -90,9 +90,9 @@ export function StructureFlow() {
           let x = 90;
           for (const token of tokens) {
             context.fillStyle = token.startsWith('"') ? (isLight ? "#166859" : "#A8D9C5")
-              : token === "const" || token === "=>" ? (isLight ? "#2448C8" : "#B8C7FF")
-              : token.startsWith("stack.map") ? (isLight ? "#7541A0" : "#B8C7FF")
-              : (isLight ? "#273244" : "#FAF9F6");
+              : token === "const" || token === "=>" ? (isLight ? "#f25623" : "#f5f0e6")
+              : token.startsWith("stack.map") ? (isLight ? "#f25623" : "#f5f0e6")
+              : (isLight ? "#29231e" : "#FAF9F6");
             context.fillText(token, x, y);
             x += context.measureText(token).width;
           }
