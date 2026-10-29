@@ -50,7 +50,7 @@
 
 .scrim {
   z-index: 1;
-  background: rgb(23 23 23 / 52%);
+  background: rgb(23 23 23 / 42%);
   pointer-events: none;
 }
 
