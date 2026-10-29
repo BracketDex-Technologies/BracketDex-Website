@@ -18,3 +18,12 @@
 .surround .panel { margin: 0; }
 @media (max-width: 600px) { .surround { padding: .75rem .75rem 0; } .surround .panel { margin: 0; } }
 :global([data-inner-closing-shell]) .surround { padding: 0; background: transparent; }
+.panel .icons { inset: 1.5rem 1.5rem auto; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); justify-items: center; gap: 1rem; }
+.panel .tile:nth-child(n) { position: relative; inset: auto; display: grid; width: 3.25rem; height: 3.25rem; }
+.panel .copy { padding-top: 8.5rem; }
+@media (max-width: 600px) {
+  .panel .icons { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+  .panel .tile:nth-child(n) { width: 2.5rem; height: 2.5rem; }
+  .panel .tile svg { width: 23px; height: 23px; }
+  .panel .copy { padding-top: 10rem; }
+}
