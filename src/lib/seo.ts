@@ -123,11 +123,11 @@ export function buildBreadcrumbJsonLd(path: string) {
   };
 }
 
-export function buildFaqJsonLd() {
+export function buildFaqJsonLd(items: readonly { question: string; answer: string }[] = marketingContent.faqs) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: marketingContent.faqs.map((faq) => ({
+    mainEntity: items.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {

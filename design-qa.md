@@ -1,62 +1,65 @@
-# Project Atlas design QA
+# Minimal About and FAQ design QA
 
 Date: October 30, 2026.
 
-## Result and reference
+final result: passed
 
-No actionable P0/P1/P2 findings remain within the approved scope. Existing project cards and shared homepage Navbar/Footer take precedence over their generated approximations. This is a responsive implementation of Project Atlas with deliberate differences for those protected surfaces.
+## Findings
 
-- Reference: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/fresh-directions/projects-2.png`.
-- Preview: `http://127.0.0.1:3101/projects`.
-- Compared state: All sectors, all 18 projects, no context selected.
-- Source: 906 x 1737, uniformly normalized to 935px wide.
-- Browser: 950 x 879 CSS pixels, document content width 935px, devicePixelRatio approximately 1.
-- Raw viewport captures: 935 x 866, uniformly resized to 950 x 880, then cropped to 935px content width.
-- Final full implementation: 935 x 5430. Seven overlapping captures use settled scroll offsets. Later frames exclude the top 60px to avoid duplicating the sticky Navbar; earlier frames cover those regions.
-- Additional visual checks: 1440px desktop, 390px and 320px mobile.
+No actionable P0/P1/P2 findings remain. The actual homepage Navbar and Footer intentionally take precedence over their generated renderings.
 
-Evidence directory: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/implementation-projects/`.
+One P2 responsive finding was corrected: About's original fixed 47rem story width became too narrow as desktop type grew. The final width scales to 88% of its parent, capped at 66rem, and resets to full width on mobile. Compare `about-wide-v1.png` with `about-wide-final.png`; the final 1440px story width is 1056px and both paragraphs retain a comfortable three-line rhythm.
 
-## Comparison history
+## Source, state and evidence
 
-1. **P2, title weight and spacing.** The first combined comparison (`desktop-top-v1-comparison.png`) showed a heavier, higher title and an early collection boundary. Newsreader weight 400 and revised spacing restore the composition. The collection now starts at 650.4px versus approximately 654px in the normalized reference.
-2. **P2, SVG alignment.** A global SVG rule interfered with transform-based positioning. Scoped individual CSS translation centers the dropdown arrow and context icons. Final arrow center delta is less than 0.01px.
+Selected references, both 1003 x 1568 pixels:
 
-Opened and inspected the source beside the implementation in `desktop-top-final-comparison.png`, `desktop-full-comparison-final.png` and `closing-comparison-final.png`. Standalone evidence: `desktop-top-final.png`, `desktop-1440-final.png`, `desktop-full-final.png`, `mobile-390-final.png`, `mobile-320-final.png`. Capture offsets and geometry: `positions-final.json`.
+- `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/fresh-directions/minimal-refinements/about-minimal.png`.
+- `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/fresh-directions/minimal-refinements/faq-minimal.png`.
 
-Previous Solutions QA is archived in `docs/superpowers/qa/2026-10-30-solutions-design-qa.md`. Services QA remains in the same directory.
+Implementation: `http://127.0.0.1:3102/about` and `http://127.0.0.1:3102/faq`.
 
-## Fidelity assessment
+Evidence directory: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/implementation-minimal/`.
+
+Reference comparison viewport: 1018 x 900 CSS pixels, document width 1003px, approximately 1x density. Full-page browser captures exclude the scrollbar: About 1002 x 1808, FAQ 1002 x 1749. Each is uniformly normalized to 1003px wide, producing 1003 x 1810 and 1003 x 1751 respectively. No content-region crop or nonuniform stretching is used for full comparisons.
+
+Compared state: About static story and values; FAQ first question open and the other four closed. The final fonts report loaded. Shared Footer proportions make the implementations taller than the generated references.
+
+Opened the source and browser rendering together in `about-v1-comparison.png` and `faq-v1-comparison.png`, then the final `about-final-comparison.png` and `faq-final-comparison.png`. Opened focused, equally positioned content comparisons in `about-focused-comparison-final.png` and `faq-focused-comparison-final.png` to inspect typography, copy, spacing and disclosure icons at readable size. Final standalone captures: `about-final.png`, `faq-final.png`, `about-wide-final.png`, and both pages at 390px and 320px. `pages-preview-final.png` places the two final page introductions together for handoff.
+
+## Required fidelity surfaces
 
 | Surface | Assessment |
 | --- | --- |
-| Typography | Newsreader title and context labels; DM Sans editorial copy and controls. Two approved title lines preserved. Original card and shared chrome typography retained. |
-| Layout | Ivory introduction, five orbital contexts, thin-rule toolbar, three-column desktop collection, quiet closing link. Two columns on tablets and one on mobile. |
-| Color and borders | Warm ivory, dark ink, pale orbital lines, restrained orange interaction accents. Existing card surfaces and borders unchanged. |
-| Assets | Five generated transparent orbital backings with real Lucide icons and accessible, functional buttons. Curves and node positions vary slightly from the image. |
-| Controls | Pressed-state buttons and synchronized native select update cards and live result count. Visible hover, focus and selected states. |
-| Mobile | Horizontal context rail with exposed scrollbar; readable labels and one-column cards. Toolbar wraps at narrow widths. No document overflow at 390px or 320px. |
-| Shared chrome | Actual homepage Navbar and Footer, including existing menu breakpoint, Footer panel proportions and watermark. |
-
-## Intentional differences and preserved boundaries
-
-- The source previews six abbreviated cards. All 18 existing projects retain full original content, card markup, rows, tags, styles and hover behavior. Unabridged content makes the cards and full page taller than the image.
-- The card-rendering block matches HEAD after line-ending normalization. Original project stylesheet, case studies and case-study details are unchanged. Only the collection layout and surrounding presentation changed.
-- Existing category assignments were extracted without change. Education includes WiseMelon; AI & automation uses the existing Media mapping.
-- Initial state correctly shows All sectors and 18 projects. Education becomes orange on hover/focus/selection, avoiding a selected Education context with an incorrect All count.
-- Shared Navbar/Footer, home body, Services, Solutions and protected Solutions problem cards were not edited.
-- Remaining P3 variation: orbital curves/nodes, minor type tracking and paper tones. No further styling loops warranted.
+| Typography | Newsreader display headings and DM Sans body text match the approved restrained direction. About preserves the two title groups and two short paragraphs. FAQ retains a single title and five question rows. Mobile titles wrap naturally without clipping. Minor optical weight and tracking differences from raster text remain P3. |
+| Spacing and layout | About uses the approved broad left margin, story column, single dividing rule and two plain value rows. FAQ uses a narrower reading column, thin separators, open first answer and one Contact link. At reference width the About closing shell starts at approximately 1167px versus 1160px in the source; FAQ at approximately 1109px versus 1082px. These small rhythm differences are P3. Large-screen story width was corrected and recaptured. |
+| Colors and tokens | Warm ivory paper, dark ink, muted eyebrow and pale neutral rules. Orange appears on interaction/focus. Shared Navbar and Footer retain home colors, borders, watermark, font treatment and existing responsive behavior. No added shadows, card grids or decorative backgrounds in page bodies. |
+| Images and icons | Neither selected body requires raster illustrations. Existing brand assets and Footer watermark are reused. Lucide Plus and Minus provide real outline disclosure icons, with the correct icon visible in each native open/closed state. No placeholder or handcrafted artwork. |
+| Copy and content | About title, story and six values follow the selected image. FAQ uses the exact five approved questions and first answer. Remaining answers use existing company FAQs or a conservative restatement about improving existing systems. Visible answers and FAQ structured data share one source and are verified equal. No repeated capability inventory, project preview, process block or generic CTA. |
 
 ## Functional and technical verification
 
-- Production build passed using isolated `.next-verify` output; all 17 static pages generated. Standalone TypeScript check passed.
-- Eight focused route/asset/taxonomy checks passed across Projects, Services and Solutions. Four existing checks passed for navbar destinations, project-route placement, the six-card homepage showcase and Footer columns/watermark: 12 checks total.
-- The new Projects route contract first failed against the previous page before implementation.
-- All browser filters displayed the expected names: Education 2; Business & operations 5; CRM & professional services 4; Community & lifestyle 5; AI & automation 2. All sectors resets to 18.
-- Keyboard Enter activates Education; native-select Home resets to All. Button state, select value, cards and live count stay synchronized.
-- Mobile Menu opens; Escape closes it and restores focus. The brief link reaches `/contact?topic=project-brief` with Contact heading and form visible. No form submitted.
-- Final browser error log contains no errors after the final production reload.
-- HTTP comparison confirms identical shared Footer markup and homepage Navbar class on Services, Solutions and Projects.
-- `git diff --check` passed. Build-generated `next-env.d.ts` and `tsconfig.json` changes restored. No dependency changes, staging, commits or pushes.
+- Final production build passed, including TypeScript validation and all 17 static pages.
+- All 11 focused tests passed: About content and values, five native FAQ disclosures and matching structured data, exact shared Footer/Navbar, and existing Services, Solutions and Projects checks.
+- Browser exercised all five answers. Each answer is visible when open; selecting another leaves exactly one row open. Space closes the current row, Enter opens the first, and keyboard focus stays on SUMMARY.
+- The Contact link reaches `/contact` with its form visible. No form was submitted.
+- Both pages were captured and inspected at 390px and 320px. Document width equals scroll width; no horizontal overflow. Mobile FAQ selection works. Shared Menu opens; Escape closes it and restores focus to SUMMARY.
+- Final browser error log is empty after the final production reload.
+- Protected homepage, Services, Solutions, Projects, original project card stylesheet and Solutions problem component have no new diff.
+- Build-generated changes to next-env.d.ts and tsconfig.json were restored. The isolated build directory is ignored. No new dependency, staging, commit, push or deployment.
 
-Local production preview remains running on port 3101. Nothing deployed.
+The initial restricted build could not download fonts and failed on a local build-directory permission. The authorized build with network/filesystem access passed. Browser runtime handles were refreshed before visual capture; early selector failures targeted non-focusable text or an incorrect Menu role. Correct semantic SUMMARY targets passed. These were tooling/test targeting issues, not product defects.
+
+Previous Project Atlas QA is archived in `docs/superpowers/qa/2026-10-30-projects-design-qa.md`.
+
+## Follow-up polish and limits
+
+P3 only: fine type tracking, paper tone and the first FAQ answer's exact line break differ slightly from raster artwork. Browser verification covers the local in-app browser; other browser engines were not tested. Native disclosures provide progressive behavior without page JavaScript.
+
+## Implementation checklist
+
+- [x] Implement About before FAQ from the selected minimal revisions.
+- [x] Preserve shared homepage chrome and protected neighboring pages.
+- [x] Fix the large-screen story column and compare again.
+- [x] Verify disclosures, keyboard navigation, Contact and mobile layouts.
+- [x] Pass build and focused checks; retain local previews on port 3102.

@@ -4,6 +4,8 @@ import { StaticMarketingPage } from "@/components/pages/static-marketing-page";
 import { ServicesFieldguide } from "@/components/pages/services-fieldguide";
 import { SolutionsScenarios } from "@/components/pages/solutions-scenarios";
 import { ProjectsAtlasPage } from "@/components/pages/projects-atlas";
+import { AboutMinimalPage } from "@/components/pages/about-minimal";
+import { FaqMinimalPage } from "@/components/pages/faq-minimal";
 import { buildPageMetadata } from "@/lib/seo";
 export const dynamicParams = false;
 export function generateStaticParams() { return Object.keys(routedPages).map((slug) => ({ slug })); }
@@ -18,5 +20,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   if (slug === "services") return <ServicesFieldguide />;
   if (slug === "solutions") return <SolutionsScenarios />;
   if (slug === "projects") return <ProjectsAtlasPage />;
+  if (slug === "about") return <AboutMinimalPage />;
+  if (slug === "faq") return <FaqMinimalPage />;
   return <StaticMarketingPage content={routedPages[slug]} path={`/${slug}`} />;
 }
