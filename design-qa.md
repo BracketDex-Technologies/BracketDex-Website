@@ -1,69 +1,62 @@
-# Solutions Change Scenarios design QA
+# Project Atlas design QA
 
 Date: October 30, 2026.
 
-## Result and source
+## Result and reference
 
-No actionable P0/P1/P2 findings remain after the final comparison. The preserved problem rail, shared Navbar and original home Footer intentionally take precedence over their generated renderings.
+No actionable P0/P1/P2 findings remain within the approved scope. Existing project cards and shared homepage Navbar/Footer take precedence over their generated approximations. This is a responsive implementation of Project Atlas with deliberate differences for those protected surfaces.
 
-- Selected reference: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/fresh-directions/solutions-2.png`.
-- Implementation: `http://127.0.0.1:3101/solutions`.
-- State compared: Repeated approvals selected, questions closed, problem rail at its initial position.
-- Source: 916 × 1717 pixels, normalized uniformly to 935px wide.
-- Browser: 950 × 879 CSS pixels, 935px document content width, devicePixelRatio approximately 1.
-- Viewport capture: 935 × 866 pixels. Uniform resizing to 950px wide yields 950 × 880, then the scrollbar strip is cropped to a 935px content width.
-- Final assembled implementation: 935 × 2362. Overlapping captures use settled DOM scroll offsets. The top 60px of later captures is excluded to avoid duplicating the sticky Navbar; previous captures cover those content regions.
-- Desktop resilience was also checked at 1440px; mobile at 390px and 320px.
+- Reference: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/fresh-directions/projects-2.png`.
+- Preview: `http://127.0.0.1:3101/projects`.
+- Compared state: All sectors, all 18 projects, no context selected.
+- Source: 906 x 1737, uniformly normalized to 935px wide.
+- Browser: 950 x 879 CSS pixels, document content width 935px, devicePixelRatio approximately 1.
+- Raw viewport captures: 935 x 866, uniformly resized to 950 x 880, then cropped to 935px content width.
+- Final full implementation: 935 x 5430. Seven overlapping captures use settled scroll offsets. Later frames exclude the top 60px to avoid duplicating the sticky Navbar; earlier frames cover those regions.
+- Additional visual checks: 1440px desktop, 390px and 320px mobile.
 
-Evidence folder: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/implementation-solutions/`.
+Evidence directory: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/implementation-projects/`.
 
-## Comparison evidence and history
+## Comparison history
 
-1. **P2, vertical spacing and illustration framing.** The first spread ended around 787px instead of the reference's approximately 707px. Tab padding, column spacing and transparent image margins pushed the visual sequence down. The first combined comparison is `desktop-top-v1-comparison.png`. Revised spacing and image frames bring the spread end to 703px; `desktop-top-v2-comparison.png` confirms the correction.
-2. **P2, center diagram scale.** A percentage height limit constrained the diagram inside its padded frame. Removing that limit restores the intended circle size. The final focused top comparison is `desktop-top-final-comparison.png`.
-3. **P2, lower heading wrapping and density.** The heading previously read “A useful solution has” on its first line, and the section occupied 357px. Explicit title lines, a better notebook frame and tighter question spacing restore the intended composition. Compare `lower-comparison-v2.png` with `lower-comparison-final.png`; the final section is approximately 317px against a normalized reference region of 313px.
+1. **P2, title weight and spacing.** The first combined comparison (`desktop-top-v1-comparison.png`) showed a heavier, higher title and an early collection boundary. Newsreader weight 400 and revised spacing restore the composition. The collection now starts at 650.4px versus approximately 654px in the normalized reference.
+2. **P2, SVG alignment.** A global SVG rule interfered with transform-based positioning. Scoped individual CSS translation centers the dropdown arrow and context icons. Final arrow center delta is less than 0.01px.
 
-Final full-view evidence: `desktop-full-comparison-final.png`, with reference left and implementation right. Both the full comparison and focused top/lower comparisons were opened and inspected together. Original viewport captures are `desktop-top-final.png`, `desktop-middle-final.png` and `desktop-bottom-final.png`. Capture geometry is recorded in `positions-final.json`.
+Opened and inspected the source beside the implementation in `desktop-top-final-comparison.png`, `desktop-full-comparison-final.png` and `closing-comparison-final.png`. Standalone evidence: `desktop-top-final.png`, `desktop-1440-final.png`, `desktop-full-final.png`, `mobile-390-final.png`, `mobile-320-final.png`. Capture offsets and geometry: `positions-final.json`.
 
-The earlier Services report is preserved in `docs/superpowers/qa/2026-10-30-services-design-qa.md`.
+Previous Solutions QA is archived in `docs/superpowers/qa/2026-10-30-solutions-design-qa.md`. Services QA remains in the same directory.
 
-## Required fidelity surfaces
+## Fidelity assessment
 
 | Surface | Assessment |
 | --- | --- |
-| Typography | Newsreader headings and DM Sans body match the approved direction. Main title, three column headings and lower title preserve the intended hierarchy. The closing title uses the reference's two line groups. Mobile text remains readable without clipping. |
-| Layout and spacing | Centered introduction, understated situation selector, three divided columns and a centered outline action follow the source. The final scenario region ends within approximately 4px of the normalized reference boundary. The notebook/questions composition is within approximately 4px of its reference section height. |
-| Colors and tokens | Warm ivory, dark ink, restrained orange, thin gray rules and dark protected sections follow the selected palette. Interactive focus uses darker orange on ivory. |
-| Images and icons | Four independent transparent PNGs provide the paper, decision sequence, shared queue and notebook illustrations. All assets load. Brand assets and Lucide UI arrows are reused. The page mockup is not embedded as the interface. |
-| Copy and content | Initial scenario and closing questions follow the selected image. The two alternate situations describe intended operational changes and are labelled illustrative. No results, metrics, testimonials or customer claims were invented. Services inventories and project previews are absent. |
+| Typography | Newsreader title and context labels; DM Sans editorial copy and controls. Two approved title lines preserved. Original card and shared chrome typography retained. |
+| Layout | Ivory introduction, five orbital contexts, thin-rule toolbar, three-column desktop collection, quiet closing link. Two columns on tablets and one on mobile. |
+| Color and borders | Warm ivory, dark ink, pale orbital lines, restrained orange interaction accents. Existing card surfaces and borders unchanged. |
+| Assets | Five generated transparent orbital backings with real Lucide icons and accessible, functional buttons. Curves and node positions vary slightly from the image. |
+| Controls | Pressed-state buttons and synchronized native select update cards and live result count. Visible hover, focus and selected states. |
+| Mobile | Horizontal context rail with exposed scrollbar; readable labels and one-column cards. Toolbar wraps at narrow widths. No document overflow at 390px or 320px. |
+| Shared chrome | Actual homepage Navbar and Footer, including existing menu breakpoint, Footer panel proportions and watermark. |
 
-## Interaction verification
+## Intentional differences and preserved boundaries
 
-- Three tabs switch Before, Change, After, stage captions and the consultation destination.
-- ArrowRight, End and Home update selection and keyboard focus with roving tab order.
-- Fragmented records and Growing demand destinations reflect the selected situation.
-- The Growing demand action opens `/contact?scenario=growing-demand`; the existing contact heading and form are visible. No form was submitted.
-- The first business-test question opens its guidance and closes again.
-- The preserved rail's Next control advances its horizontal position from 0 to approximately 338px after its smooth scroll settles. The initial immediate read was 0; the settled read confirms movement.
-- Shared mobile navigation opens and closes, with Escape restoring focus to its summary.
-- No horizontal document overflow at 320px, 390px or 1440px. Both closing-heading spans fit their 265px container at the narrowest width.
-- Final browser error inspection is empty after reloading the completed build. Earlier prefetch failures occurred while the local preview was stopped for rebuilding; they are not present in the final run.
-- Separate reduced-motion media emulation was not performed. New interactions use static state changes, and the existing rail retains its own reduced-motion behavior.
+- The source previews six abbreviated cards. All 18 existing projects retain full original content, card markup, rows, tags, styles and hover behavior. Unabridged content makes the cards and full page taller than the image.
+- The card-rendering block matches HEAD after line-ending normalization. Original project stylesheet, case studies and case-study details are unchanged. Only the collection layout and surrounding presentation changed.
+- Existing category assignments were extracted without change. Education includes WiseMelon; AI & automation uses the existing Media mapping.
+- Initial state correctly shows All sectors and 18 projects. Education becomes orange on hover/focus/selection, avoiding a selected Education context with an incorrect All count.
+- Shared Navbar/Footer, home body, Services, Solutions and protected Solutions problem cards were not edited.
+- Remaining P3 variation: orbital curves/nodes, minor type tracking and paper tones. No further styling loops warranted.
 
-Responsive/state evidence: `mobile-390-final.png`, `mobile-320-test-final.png`, `mobile-320-top.png`, `mobile-menu.png`, `desktop-1440-final.png`, `fragmented-records.png` and `question-open.png`.
+## Functional and technical verification
 
-## Protected scope and checks
+- Production build passed using isolated `.next-verify` output; all 17 static pages generated. Standalone TypeScript check passed.
+- Eight focused route/asset/taxonomy checks passed across Projects, Services and Solutions. Four existing checks passed for navbar destinations, project-route placement, the six-card homepage showcase and Footer columns/watermark: 12 checks total.
+- The new Projects route contract first failed against the previous page before implementation.
+- All browser filters displayed the expected names: Education 2; Business & operations 5; CRM & professional services 4; Community & lifestyle 5; AI & automation 2. All sectors resets to 18.
+- Keyboard Enter activates Education; native-select Home resets to All. Button state, select value, cards and live count stay synchronized.
+- Mobile Menu opens; Escape closes it and restores focus. The brief link reaches `/contact?topic=project-brief` with Contact heading and form visible. No form submitted.
+- Final browser error log contains no errors after the final production reload.
+- HTTP comparison confirms identical shared Footer markup and homepage Navbar class on Services, Solutions and Projects.
+- `git diff --check` passed. Build-generated `next-env.d.ts` and `tsconfig.json` changes restored. No dependency changes, staging, commits or pushes.
 
-- ProblemSection, ProblemStoryRail, their stylesheet, homepage, shared marketing components and Services source are unchanged.
-- The protected rail keeps its current heading, description, card dimensions, colors, typography, copy and circular controls. Its source rendering is larger than the image's simplified rail.
-- Navbar is the shared homepage component in its standard inner-page state. It uses the shared mobile breakpoint, so Menu appears at the 935px reference content width. The 1440px check shows the desktop links.
-- Footer uses the actual home closing shell/card, typography and contact details. Its markup is identical to home; its extra height and framing are intentional.
-- Standalone TypeScript passed. The final isolated production build passed, including type checking and generation of all 17 static pages.
-- Five Solutions/Services contracts and five selected existing regression checks passed. Shared Navbar class and identical home Footer markup were separately verified for both redesigned routes.
-- No dependencies were added. No work was staged, committed or pushed.
-
-## Remaining P3 polish
-
-The generated linework, small copy line breaks and illustration paper/sticky-note tones vary slightly from the raster mockup. These do not change the layout or hide content. No further P3 iteration was undertaken.
-
-final result: passed
+Local production preview remains running on port 3101. Nothing deployed.

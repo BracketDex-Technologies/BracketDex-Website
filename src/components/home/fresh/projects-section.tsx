@@ -6,22 +6,13 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import styles from "./projects-section.module.css";
 import { caseStudyDetails } from "@/content/case-study-details";
+import { projectCategories as categories, projectMatchesCategory, type ProjectCategory } from "@/content/project-categories";
 
-const projectGroups: Record<string, string> = {
-  Education: "Education",
-  Housing: "Business & operations", Community: "Community & lifestyle",
-  Agriculture: "Business & operations", Agency: "Business & operations",
-  "Professional services": "CRM & professional services", "Home interiors": "CRM & professional services",
-  "Local business": "Business & operations", Finance: "CRM & professional services",
-  "Civic work": "Community & lifestyle", "Business community": "Community & lifestyle",
-  Fitness: "Community & lifestyle", Travel: "Community & lifestyle", Media: "AI & automation",
-};
-const categories = ["All", "CRM & professional services", "Business & operations", "Education", "Community & lifestyle", "AI & automation"];
-
-export function ProjectsSection({ all = false }: { all?: boolean }) {
+export function ProjectsSection({ all = false, atlas = false, filterCategory }: { all?: boolean; atlas?: boolean; filterCategory?: ProjectCategory }) {
   const studies = all ? caseStudies : featuredCaseStudies;
-  const [category, setCategory] = useState("All");
-  const visibleStudies = category === "All" ? studies : studies.filter((study) => projectGroups[study.category.split(" · ")[0]] === category);
+  const [localCategory, setCategory] = useState<ProjectCategory>("All");
+  const category = filterCategory ?? localCategory;
+  const visibleStudies = studies.filter((study) => projectMatchesCategory(study.category, category));
   return (
     <section
       aria-labelledby={all ? "portfolio-title" : "fresh-projects-title"}
@@ -30,15 +21,15 @@ export function ProjectsSection({ all = false }: { all?: boolean }) {
       id={all ? "portfolio" : "projects"}
     >
       <div className={`content-shell ${styles.shell}`}>
-        <header className={styles.header}>
+        {atlas ? <h2 className="sr-only" id="portfolio-title">Projects</h2> : <header className={styles.header}>
           <h2 id={all ? "portfolio-title" : "fresh-projects-title"}>{all ? "Selected projects and use cases." : "Built for everyday business."}</h2>
           <p>A few systems we’ve built to make everyday work simpler.</p>
-        </header>
+        </header>}
 
-        {all && <nav className={styles.filters} aria-label="Project categories">
+        {all && !atlas && <nav className={styles.filters} aria-label="Project categories">
           {categories.map((item) => <button type="button" key={item} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</button>)}
         </nav>}
-        {all && <p className={styles.resultCount} role="status">{visibleStudies.length} {visibleStudies.length === 1 ? "project" : "projects"} · {category}</p>}
+        {all && !atlas && <p className={styles.resultCount} role="status">{visibleStudies.length} {visibleStudies.length === 1 ? "project" : "projects"} · {category}</p>}
         <ul className={`bd-fresh-projects__grid ${styles.grid}`}>
           {visibleStudies.map((study) => {
             const labels = study.category.split(" · ");
