@@ -12,7 +12,7 @@ import styles from "./minimal-pages.module.css";
 const newsreader = Newsreader({ subsets: ["latin"], display: "swap", variable: "--font-minimal-heading" });
 const dmSans = DM_Sans({ subsets: ["latin"], display: "swap", variable: "--font-minimal-body" });
 
-export function MinimalMarketingShell({ page, children }: { page: "about" | "faq"; children: ReactNode }) {
+export function MinimalMarketingShell({ page, children }: { page: "about" | "faq" | "contact"; children: ReactNode }) {
   return <main className={`${styles.page} ${newsreader.variable} ${dmSans.variable} bd-landing bd-inner-page`} data-page={page} data-minimal-page={page} id="main-content" tabIndex={-1}>
     <JsonLd data={buildBreadcrumbJsonLd(`/${page}`)} />
     <Navbar activeHref={`/${page}`} brandName={marketingContent.company.name} ctaHref="/contact" ctaLabel={marketingContent.homepage.navigationCta} items={siteNavigation} />

@@ -1,65 +1,39 @@
-# Minimal About and FAQ design QA
+# Minimal Contact verification
 
 Date: October 30, 2026.
 
 final result: passed
 
-## Findings
+## Scope and result
 
-No actionable P0/P1/P2 findings remain. The actual homepage Navbar and Footer intentionally take precedence over their generated renderings.
+Implemented `/contact` as a minimal extension of the approved About/FAQ page family. The page uses the existing Newsreader/DM Sans fonts, ivory surface, a short introduction, a single form column and one direct-email alternative. The actual homepage Navbar and Footer remain the default. No new image direction or external delivery integration was introduced.
 
-One P2 responsive finding was corrected: About's original fixed 47rem story width became too narrow as desktop type grew. The final width scales to 88% of its parent, capped at 66rem, and resets to full width on mobile. Compare `about-wide-v1.png` with `about-wide-final.png`; the final 1440px story width is 1056px and both paragraphs retain a comfortable three-line rhythm.
+Preview: `http://127.0.0.1:3101/contact`.
 
-## Source, state and evidence
+Evidence directory: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/implementation-contact/`.
 
-Selected references, both 1003 x 1568 pixels:
+Opened and inspected `desktop-initial.png`, `desktop-final.png`, `mobile-320-final.png` and `validation-mobile-final.png`. Also captured `mobile-390-final.png` and `validation-desktop.png`. Desktop checked at the normal approximately 1280px viewport; mobile at 390 x 844 and 320 x 844. Temporary viewport overrides were reset.
 
-- `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/fresh-directions/minimal-refinements/about-minimal.png`.
-- `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/fresh-directions/minimal-refinements/faq-minimal.png`.
+## Correction
 
-Implementation: `http://127.0.0.1:3102/about` and `http://127.0.0.1:3102/faq`.
+The first desktop check found that Company occupied only half the form width. CSS Modules had scoped an ID selector inside `:has()`. Replaced it with an attribute selector using the existing input name. After rebuilding and recapturing, Company measures 768px, equal to the entire form, while Name and Email remain paired. Message also spans the form width. No actionable visual or responsive issue remains.
 
-Evidence directory: `C:/Users/pawan/.codex/visualizations/2026/10/29/01a18877-8b29-76f3-adf5-d195d0d3ea8a/implementation-minimal/`.
+## Verification
 
-Reference comparison viewport: 1018 x 900 CSS pixels, document width 1003px, approximately 1x density. Full-page browser captures exclude the scrollbar: About 1002 x 1808, FAQ 1002 x 1749. Each is uniformly normalized to 1003px wide, producing 1003 x 1810 and 1003 x 1751 respectively. No content-region crop or nonuniform stretching is used for full comparisons.
+- Final production build passed, including TypeScript validation and generation of all 17 static pages.
+- All 13 focused checks passed: 11 existing page/asset/taxonomy checks plus the route baseline and shared-navbar check. Updated the Contact route baseline to expect its new visible heading.
+- Contact renders exactly one form, existing labeled fields and the truthful Prepare Email Enquiry action. `/contact` and incoming service, scenario and project-brief query links all render successfully.
+- HTTP comparisons confirmed exact homepage Footer markup and the shared Navbar class.
+- Desktop Name/Email fields share a row. Company and Message span the form width. All fields stack on mobile. Neither mobile width produces horizontal document overflow.
+- Submitting an empty form displays the existing three errors, connects each through aria-describedby, marks fields invalid and focuses Name. Keyboard order continues through Email, Company, Message and the submit button, skipping the hidden honeypot.
+- Correcting Name, Email and Message with synthetic preview values clears all errors. Company remains empty and valid. No valid browser form was submitted.
+- Local API validation rejects empty input with 400 and accepts valid synthetic input with 200 for email-draft preparation. The API does not send email.
+- Final browser error log is empty. Input values were cleared and the preview was left at its initial state.
+- Existing ContactForm and `/api/contact` source remain unchanged. No neighboring page body, shared chrome or protected project/problem card was edited. The shell change only adds Contact to its accepted page names.
+- Build-generated changes to tsconfig.json and next-env.d.ts were restored. `git diff --check` passes. No dependency changes, staging, commit, push or deployment.
 
-Compared state: About static story and values; FAQ first question open and the other four closed. The final fonts report loaded. Shared Footer proportions make the implementations taller than the generated references.
+## Preserved delivery behavior
 
-Opened the source and browser rendering together in `about-v1-comparison.png` and `faq-v1-comparison.png`, then the final `about-final-comparison.png` and `faq-final-comparison.png`. Opened focused, equally positioned content comparisons in `about-focused-comparison-final.png` and `faq-focused-comparison-final.png` to inspect typography, copy, spacing and disclosure icons at readable size. Final standalone captures: `about-final.png`, `faq-final.png`, `about-wide-final.png`, and both pages at 390px and 320px. `pages-preview-final.png` places the two final page introductions together for handoff.
+The form validates locally, requests server validation, then opens a draft in the visitor's email application and proceeds to the existing thank-you page. The form explicitly states that nothing is sent automatically. The email-application handoff and thank-you transition were preserved in source and were not exercised; no email application was opened and no enquiry was sent.
 
-## Required fidelity surfaces
-
-| Surface | Assessment |
-| --- | --- |
-| Typography | Newsreader display headings and DM Sans body text match the approved restrained direction. About preserves the two title groups and two short paragraphs. FAQ retains a single title and five question rows. Mobile titles wrap naturally without clipping. Minor optical weight and tracking differences from raster text remain P3. |
-| Spacing and layout | About uses the approved broad left margin, story column, single dividing rule and two plain value rows. FAQ uses a narrower reading column, thin separators, open first answer and one Contact link. At reference width the About closing shell starts at approximately 1167px versus 1160px in the source; FAQ at approximately 1109px versus 1082px. These small rhythm differences are P3. Large-screen story width was corrected and recaptured. |
-| Colors and tokens | Warm ivory paper, dark ink, muted eyebrow and pale neutral rules. Orange appears on interaction/focus. Shared Navbar and Footer retain home colors, borders, watermark, font treatment and existing responsive behavior. No added shadows, card grids or decorative backgrounds in page bodies. |
-| Images and icons | Neither selected body requires raster illustrations. Existing brand assets and Footer watermark are reused. Lucide Plus and Minus provide real outline disclosure icons, with the correct icon visible in each native open/closed state. No placeholder or handcrafted artwork. |
-| Copy and content | About title, story and six values follow the selected image. FAQ uses the exact five approved questions and first answer. Remaining answers use existing company FAQs or a conservative restatement about improving existing systems. Visible answers and FAQ structured data share one source and are verified equal. No repeated capability inventory, project preview, process block or generic CTA. |
-
-## Functional and technical verification
-
-- Final production build passed, including TypeScript validation and all 17 static pages.
-- All 11 focused tests passed: About content and values, five native FAQ disclosures and matching structured data, exact shared Footer/Navbar, and existing Services, Solutions and Projects checks.
-- Browser exercised all five answers. Each answer is visible when open; selecting another leaves exactly one row open. Space closes the current row, Enter opens the first, and keyboard focus stays on SUMMARY.
-- The Contact link reaches `/contact` with its form visible. No form was submitted.
-- Both pages were captured and inspected at 390px and 320px. Document width equals scroll width; no horizontal overflow. Mobile FAQ selection works. Shared Menu opens; Escape closes it and restores focus to SUMMARY.
-- Final browser error log is empty after the final production reload.
-- Protected homepage, Services, Solutions, Projects, original project card stylesheet and Solutions problem component have no new diff.
-- Build-generated changes to next-env.d.ts and tsconfig.json were restored. The isolated build directory is ignored. No new dependency, staging, commit, push or deployment.
-
-The initial restricted build could not download fonts and failed on a local build-directory permission. The authorized build with network/filesystem access passed. Browser runtime handles were refreshed before visual capture; early selector failures targeted non-focusable text or an incorrect Menu role. Correct semantic SUMMARY targets passed. These were tooling/test targeting issues, not product defects.
-
-Previous Project Atlas QA is archived in `docs/superpowers/qa/2026-10-30-projects-design-qa.md`.
-
-## Follow-up polish and limits
-
-P3 only: fine type tracking, paper tone and the first FAQ answer's exact line break differ slightly from raster artwork. Browser verification covers the local in-app browser; other browser engines were not tested. Native disclosures provide progressive behavior without page JavaScript.
-
-## Implementation checklist
-
-- [x] Implement About before FAQ from the selected minimal revisions.
-- [x] Preserve shared homepage chrome and protected neighboring pages.
-- [x] Fix the large-screen story column and compare again.
-- [x] Verify disclosures, keyboard navigation, Contact and mobile layouts.
-- [x] Pass build and focused checks; retain local previews on port 3102.
+Previous About/FAQ QA is archived in `docs/superpowers/qa/2026-10-30-about-faq-design-qa.md`. The production preview remains running on port 3101.

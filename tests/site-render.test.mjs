@@ -46,7 +46,7 @@ test("local fonts and route baseline", async () => {
   assert.match(home, /Your Business Running Smarter with AI/i);
 
   const contact = await getHtml("/contact");
-  assert.match(contact, /Contact BracketDex Technologies/);
+  assert.match(contact, /<h1>Contact us\.<\/h1>/);
 });
 
 test("hero and navigation", async () => {
