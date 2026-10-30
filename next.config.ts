@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import { fileURLToPath } from "node:url";
 
 const nextConfig: NextConfig = {
+  distDir: process.env.NEXT_BUILD_DIR || ".next",
   poweredByHeader: false,
   reactStrictMode: true,
   turbopack: { root: fileURLToPath(new URL(".", import.meta.url)) },

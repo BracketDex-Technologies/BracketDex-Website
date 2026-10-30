@@ -1,0 +1,134 @@
+.page {
+  --fieldguide-paper: #fffdf7;
+  --fieldguide-ink: #24231f;
+  --fieldguide-muted: #4d4c48;
+  --fieldguide-line: #c9c8c1;
+  --fieldguide-orange: #f66a3d;
+  --fieldguide-focus: #b94820;
+  min-height: 100svh;
+  overflow: clip;
+  background: var(--fieldguide-paper);
+  color: var(--fieldguide-ink);
+}
+
+/* Keep the global offscreen skip link from casting a shadow onto this light page. */
+:global(body):has(.page) :global(.skip-link:not(:focus-visible)) { box-shadow: none; }
+
+/* The legacy reveal observer excludes inner pages; these remain readable without motion. */
+.page.page :is(h1, h2, h3, p, a, li, summary) {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  will-change: auto;
+}
+
+.content { font-family: var(--font-fieldguide-body), Arial, sans-serif; }
+.shell { width: min(90.4%, 81.25rem); margin-inline: auto; }
+.content :where(h1, h2, h3, p, figure, dl, dd, ol) { margin: 0; }
+.content :where(h1, h2, h3) { font-weight: 500; font-family: var(--font-fieldguide-heading), Georgia, serif; }
+.page :is(a, summary):focus-visible { outline: 2px solid var(--fieldguide-focus); outline-offset: 6px; }
+.page section[id] { scroll-margin-top: 5rem; }
+
+
+.intro { position: relative; padding-top: clamp(1.4rem, 2.7vw, 2.5rem); padding-bottom: clamp(1.8rem, 3.5vw, 3.2rem); }
+.intro h1 { padding-right: 2.5rem; font-size: clamp(3rem, 8.9vw, 8rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+.period { color: var(--fieldguide-orange); }
+.chapterNav { display: flex; flex-wrap: wrap; gap: 0.7rem 1.1rem; margin-top: 1.15rem; }
+.chapterNav a { display: inline-flex; align-items: center; min-height: 30px; font-size: clamp(0.78rem, 1.45vw, 1.1rem); text-decoration: none; }
+.chapterNav a:not(:last-child)::after { content: "/"; margin-left: 1.1rem; color: #6e6d66; }
+.chapterNav a:hover { color: #bb471e; }
+.sideLabel { position: absolute; top: 2.5rem; right: -0.8rem; padding-left: 0.75rem; border-left: 1px solid var(--fieldguide-line); font-size: 0.68rem; line-height: 1.5; writing-mode: vertical-rl; }
+
+.software { display: grid; grid-template-columns: minmax(0, 1.48fr) minmax(0, 1fr); gap: 7.2%; padding-bottom: clamp(1rem, 1.7vw, 1.6rem); border-bottom: 1px solid var(--fieldguide-line); }
+.softwareFigure { position: relative; align-self: start; padding-left: 22%; }
+.stackArt { aspect-ratio: 0.88; overflow: hidden; }
+.stackImage { display: block; width: 116%; max-width: none; height: auto; transform: translate(-8%, -6%); }
+.layerLabels { position: absolute; inset: 15% auto 16% 0; display: flex; width: 21%; flex-direction: column; justify-content: space-between; }
+.layerLabels dt { font-family: var(--font-fieldguide-heading), Georgia, serif; font-size: clamp(0.9rem, 1.65vw, 1.35rem); font-weight: 600; line-height: 1.2; }
+.layerLabels dd { margin-top: 0.3rem; color: var(--fieldguide-muted); font-size: clamp(0.65rem, 1.1vw, 0.9rem); line-height: 1.35; }
+.softwareCopy { display: flex; flex-direction: column; align-items: flex-start; padding-block: 0.35rem 0; }
+.kicker { display: flex; align-items: center; gap: 0.7rem; font-size: clamp(0.64rem, 1.25vw, 0.95rem); line-height: 1.45; }
+.kicker::before { content: ""; width: 1.4rem; height: 1px; flex: 0 0 1.4rem; background: var(--fieldguide-orange); }
+.softwareCopy h2 { margin-top: clamp(1.5rem, 3vw, 2.6rem); font-size: clamp(2rem, 4.4vw, 4rem); font-weight: 500; letter-spacing: -0.04em; line-height: 0.99; }
+.scopeDetails { display: grid; gap: clamp(0.75rem, 1.2vw, 1.1rem); margin-top: clamp(1.6rem, 2.7vw, 2.4rem) !important; }
+.scopeDetails dt { font-size: clamp(0.88rem, 1.6vw, 1.2rem); font-weight: 600; line-height: 1.4; }
+.scopeDetails dd { margin-top: 0.4rem; color: var(--fieldguide-muted); font-size: clamp(0.82rem, 1.45vw, 1.1rem); line-height: 1.4; }
+.action { display: inline-flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 0.8rem; color: inherit; font-size: clamp(0.8rem, 1.5vw, 1.1rem); font-weight: 500; line-height: 1.35; text-decoration: none; }
+.action > span:first-child { text-decoration: underline; text-underline-offset: 0.35rem; text-decoration-thickness: 1px; }
+.actionIcon { display: inline-grid; width: clamp(2.15rem, 3.8vw, 3rem); height: clamp(2.15rem, 3.8vw, 3rem); flex: 0 0 auto; place-items: center; border: 1px solid currentColor; border-radius: 50%; transition: color 160ms ease, background-color 160ms ease; }
+.action:hover .actionIcon { background: var(--fieldguide-ink); color: var(--fieldguide-paper); }
+.softwareCopy > .action { margin-top: auto; padding-top: clamp(1.4rem, 2.6vw, 2.4rem); }
+
+.intelligence { display: grid; grid-template-columns: 36% minmax(0, 1fr); gap: 2%; padding-block: clamp(1.25rem, 2.45vw, 2.25rem); border-bottom: 1px solid var(--fieldguide-line); }
+.aiCopy { display: flex; flex-direction: column; align-items: flex-start; padding-right: 9%; border-right: 1px solid var(--fieldguide-line); }
+.aiCopy h2 { margin-top: clamp(1.4rem, 3vw, 2.5rem); font-size: clamp(2rem, 4.1vw, 3.7rem); font-weight: 500; letter-spacing: -0.05em; line-height: 1; }
+.aiTitleLine { display: block; white-space: nowrap; }
+.aiDescription { margin-top: 1.4rem !important; font-size: clamp(0.9rem, 1.65vw, 1.2rem); line-height: 1.4; }
+.aiCopy .action { margin-top: auto; padding-top: 1.6rem; }
+.aiFigure { align-self: center; }
+.aiStages { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.05rem; padding: 0; list-style: none; }
+.aiStages h3 { font-size: clamp(0.85rem, 1.5vw, 1.2rem); font-weight: 600; line-height: 1.15; }
+.aiStages p { max-width: 12ch; margin-top: 0.35rem; color: var(--fieldguide-muted); font-size: clamp(0.63rem, 1.17vw, 0.9rem); line-height: 1.3; }
+.aiArtwork { aspect-ratio: 3.5; overflow: hidden; margin-top: 0.6rem; }
+.aiImage { display: block; width: 113%; max-width: none; height: auto; transform: translate(-6.5%, -18%); }
+.aiFigure figcaption { margin-top: 0.6rem; color: #77766f; font-size: clamp(0.58rem, 0.95vw, 0.75rem); line-height: 1.4; text-align: right; }
+
+.supporting { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.65rem; padding-block: clamp(1.7rem, 3vw, 2.7rem) clamp(1.8rem, 3.2vw, 3rem); }
+.supportingService { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; }
+.supportingService + .supportingService { padding-left: 1.65rem; border-left: 1px solid var(--fieldguide-line); }
+.supportingService .kicker { gap: 0.6rem; font-size: clamp(0.6rem, 1.15vw, 0.85rem); }
+.supportingArt { width: 100%; height: clamp(8rem, 15.2vw, 13.8rem); overflow: hidden; margin-block: 1.35rem 0.75rem; }
+.supportingImage { display: block; width: 120%; max-width: none; height: auto; transform: translate(-8%, -20%); }
+.supportingArt[data-art="cloud"] .supportingImage { transform: translate(-8%, -16%); }
+.supportingArt[data-art="growth"] .supportingImage { transform: translate(-8%, -14%); }
+.supportingService h2 { font-size: clamp(1.2rem, 2.05vw, 1.85rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; }
+.supportingDescription { margin-top: 0.65rem !important; color: var(--fieldguide-muted); font-size: clamp(0.82rem, 1.45vw, 1.08rem); line-height: 1.35; }
+.supportingService .action { width: 100%; margin-top: auto; padding-top: 1.1rem; gap: 0.45rem; font-size: clamp(0.73rem, 1.38vw, 1.02rem); }
+.supportingService .actionIcon { width: clamp(2rem, 3.5vw, 2.8rem); height: clamp(2rem, 3.5vw, 2.8rem); }
+.footer { font-family: var(--font-body), Arial, sans-serif; }
+
+@media (min-width: 701px) {
+  .intro h1 { white-space: nowrap; }
+  .softwareFigure { transform: translateY(-0.8rem); }
+}
+
+@media (max-width: 700px) {
+  .shell { width: calc(100% - 2.5rem); }
+  .intro { padding-block: 1.5rem 2.25rem; }
+  .intro h1 { padding-right: 0; font-size: clamp(2.9rem, 10.8vw, 4.4rem); line-height: 1.02; }
+  .sideLabel { display: none; }
+  .chapterNav { gap: 0.2rem 0.7rem; margin-top: 1rem; }
+  .chapterNav a { min-height: 40px; font-size: 0.8rem; }
+  .chapterNav a:not(:last-child)::after { margin-left: 0.7rem; }
+  .software { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-bottom: 2rem; }
+  .softwareFigure { width: min(100%, 29rem); margin-inline: auto !important; padding-left: 21%; }
+  .layerLabels { width: 22%; }
+  .layerLabels dt { font-size: 1rem; }
+  .layerLabels dd { font-size: 0.7rem; }
+  .softwareCopy { padding-top: 0; }
+  .kicker, .supportingService .kicker { font-size: 0.75rem; }
+  .softwareCopy h2, .aiCopy h2 { max-width: 20ch; margin-top: 1.3rem; font-size: clamp(2.25rem, 8vw, 3rem); }
+  .aiTitleLine { display: inline; white-space: normal; }
+  .scopeDetails { gap: 1.3rem; margin-top: 1.5rem !important; }
+  .scopeDetails dt { font-size: 1rem; }
+  .scopeDetails dd { font-size: 0.95rem; line-height: 1.5; }
+  .softwareCopy > .action { margin-top: 1rem; padding-top: 0.6rem; }
+  .action, .supportingService .action { gap: 0.8rem; font-size: 0.92rem; }
+  .actionIcon, .supportingService .actionIcon { width: 2.5rem; height: 2.5rem; }
+  .intelligence { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-block: 2rem; }
+  .aiCopy { padding-right: 0; border-right: 0; }
+  .aiDescription { max-width: 32rem; font-size: 1rem; line-height: 1.5; }
+  .aiCopy .action { margin-top: 0.7rem; padding-top: 0.6rem; }
+  .aiStages { gap: 0.5rem; }
+  .aiStages h3 { font-size: clamp(0.75rem, 2.65vw, 1rem); }
+  .aiStages p { font-size: clamp(0.63rem, 2.3vw, 0.8rem); line-height: 1.4; }
+  .aiFigure figcaption { font-size: 0.65rem; }
+  .supporting { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-block: 2rem; }
+  .supportingService + .supportingService { padding-top: 2rem; padding-left: 0; border-top: 1px solid var(--fieldguide-line); border-left: 0; }
+  .supportingArt { width: min(100%, 24rem); height: auto; aspect-ratio: 1.8; align-self: center; margin-block: 1.5rem; }
+  .supportingService h2 { font-size: 1.8rem; }
+  .supportingDescription { max-width: 34rem; font-size: 1rem; line-height: 1.5; }
+  .supportingService .action { width: auto; margin-top: 0.7rem; padding-top: 0.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { .actionIcon { transition: none; } }
