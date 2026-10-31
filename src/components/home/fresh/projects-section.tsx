@@ -12,7 +12,7 @@ export function ProjectsSection({ all = false, atlas = false, filterCategory }: 
   const studies = all ? caseStudies : featuredCaseStudies;
   const [localCategory, setCategory] = useState<ProjectCategory>("All");
   const category = filterCategory ?? localCategory;
-  const visibleStudies = studies.filter((study) => projectMatchesCategory(study.category, category));
+  const visibleStudies = studies.filter((study) => projectMatchesCategory(study.category, category, study.name));
   return (
     <section
       aria-labelledby={all ? "portfolio-title" : "fresh-projects-title"}

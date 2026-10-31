@@ -11,6 +11,10 @@ const projectGroups: Readonly<Record<string, ProjectCategory>> = {
   Fitness: "Community & lifestyle", Travel: "Community & lifestyle", Media: "AI & automation",
 };
 
-export function projectMatchesCategory(category: string, selected: ProjectCategory) {
-  return selected === "All" || projectGroups[category.split(" · ")[0]] === selected;
+const automationProjects = new Set(["WiseMelon", "Smart Tap AI", "CA CRM Automation"]);
+
+export function projectMatchesCategory(category: string, selected: ProjectCategory, projectName?: string) {
+  return selected === "All"
+    || projectGroups[category.split(" · ")[0]] === selected
+    || (selected === "AI & automation" && automationProjects.has(projectName ?? ""));
 }

@@ -27,17 +27,27 @@ test("Project Atlas keeps the complete portfolio and offers context navigation",
   assert.doesNotMatch(html, /Book Consultation/);
 });
 
-test("every portfolio item belongs to exactly one Atlas context", async () => {
+test("portfolio items retain their original Atlas context and selected projects also appear in automation", async () => {
   const { caseStudies } = await dataModule("../src/content/case-studies.ts");
   const { projectCategories, projectMatchesCategory } = await dataModule("../src/content/project-categories.ts");
   const contexts = projectCategories.filter((name) => name !== "All");
+  const automationProjects = new Map([
+    ["WiseMelon", "Education"],
+    ["Smart Tap AI", "Business & operations"],
+    ["CA CRM Automation", "CRM & professional services"],
+  ]);
   assert.equal(caseStudies.length, 18);
   for (const study of caseStudies) {
-    assert.equal(contexts.filter((context) => projectMatchesCategory(study.category, context)).length, 1, study.name);
-    assert.ok(projectMatchesCategory(study.category, "All"));
+    const memberships = contexts.filter((context) => projectMatchesCategory(study.category, context, study.name));
+    const originalContext = automationProjects.get(study.name);
+    if (originalContext) {
+      assert.deepEqual(new Set(memberships), new Set([originalContext, "AI & automation"]), study.name);
+    } else {
+      assert.equal(memberships.length, 1, study.name);
+    }
+    assert.ok(projectMatchesCategory(study.category, "All", study.name));
   }
-  for (const context of contexts) assert.ok(caseStudies.some((study) => projectMatchesCategory(study.category, context)), context);
-  assert.ok(projectMatchesCategory(caseStudies.find((study) => study.name === "WiseMelon").category, "Education"));
+  for (const context of contexts) assert.ok(caseStudies.some((study) => projectMatchesCategory(study.category, context, study.name)), context);
 });
 
 test("Atlas orbital illustrations load individually", async () => {

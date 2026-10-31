@@ -19,7 +19,7 @@ const contexts = [
 
 export function ProjectAtlas() {
   const [category, setCategory] = useState<ProjectCategory>("All");
-  const visibleCount = caseStudies.filter((study) => projectMatchesCategory(study.category, category)).length;
+  const visibleCount = caseStudies.filter((study) => projectMatchesCategory(study.category, category, study.name)).length;
 
   return <>
     <section aria-labelledby="atlas-title" className={`${styles.editorial} ${styles.intro}`}>
