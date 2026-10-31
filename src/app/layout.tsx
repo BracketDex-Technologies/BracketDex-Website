@@ -3,6 +3,8 @@ import { Instrument_Sans, Syne } from "next/font/google";
 import localFont from "next/font/local";
 
 import { AgentationToolbar } from "@/components/dev/agentation-toolbar";
+import { SiteLoader } from "@/components/marketing/site-loader";
+import { SITE_LOADER_BOOTSTRAP } from "@/components/marketing/site-loader-bootstrap";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { ProgressiveTextReveal } from "@/components/motion-primitives/progressive-text-reveal";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -83,8 +85,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className="dark" lang="en">
+    <html className="dark" lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SITE_LOADER_BOOTSTRAP }} />
+      </head>
       <body className={`${pontano.variable} ${stint.variable} ${instrumentSans.variable} ${syne.variable}`}>
+        <SiteLoader />
+        <div id="site-content">
           <SmoothScroll root lerp={0.15} wheelMultiplier={1}>
             <a className="skip-link" href="#main-content">
               Skip to main content
@@ -95,6 +102,7 @@ export default function RootLayout({
             {children}
             <AgentationToolbar />
           </SmoothScroll>
+        </div>
       </body>
     </html>
   );

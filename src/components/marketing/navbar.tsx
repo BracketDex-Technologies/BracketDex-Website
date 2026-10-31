@@ -252,7 +252,7 @@ export function Navbar({
         ref={headerRef}
       >
         <nav aria-label="Primary navigation" className={styles.inner}>
-          <Link aria-label={`${brandName} home`} className={styles.wordmark} href="/" onClick={closeMenu}>
+          <Link aria-label={`${brandName} home`} className={styles.wordmark} data-navbar-wordmark href="/" onClick={closeMenu}>
             <Image
               alt=""
               aria-hidden="true"
