@@ -12,6 +12,14 @@
     --text-page: 2.25rem;
   }
 }
+/* Semantic defaults also cover standalone pages and reusable UI components.
+   Section-specific selectors can retain labels, captions and brand artwork. */
+:where(main) h1 { font-size: var(--text-page); }
+:where(main) h2 { font-size: var(--text-section); }
+:where(main) h3 { font-size: var(--text-card); }
+:where(main) :is(p, li, dd, input, textarea, select, button) {
+  font-size: var(--text-body);
+}
 /* Transitional type bridge while older section styles are replaced. */
 body {
   --font-home-headline: var(--font-body);
