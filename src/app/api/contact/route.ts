@@ -31,5 +31,5 @@ export async function POST(request: Request) {
   }
 
   requests.set(address, [...recent, now]);
-  return NextResponse.json({ ok: true, message: "Validated. Continue with your email draft." });
+  return NextResponse.json({ ok: true });
 }

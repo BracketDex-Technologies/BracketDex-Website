@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { contactDetails } from "@/lib/site";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -43,14 +42,32 @@ export function ContactForm({ className }: ContactFormProps = {}) {
   });
 
   async function onSubmit(values: ContactFormValues) {
-    const response = await fetch("/api/contact", { body: JSON.stringify(values), headers: { "Content-Type": "application/json" }, method: "POST" });
-    if (!response.ok) {
-      setStatus((await response.json().catch(() => null))?.error ?? "Please try again in a few minutes.");
+    setStatus(null);
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      setStatus("Enquiry delivery is unavailable. Please email us directly.");
       return;
     }
-    const body = `Name: ${values.name}\nEmail: ${values.email}\nCompany: ${values.company || "Not provided"}\n\n${values.message}`;
-    window.location.href = `mailto:${contactDetails.email}?subject=${encodeURIComponent("Project enquiry from " + values.name)}&body=${encodeURIComponent(body)}`;
-    window.setTimeout(() => { window.location.href = "/thank-you"; }, 500);
+    try {
+      const validation = await fetch("/api/contact", { body: JSON.stringify(values), headers: { "Content-Type": "application/json" }, method: "POST" });
+      if (!validation.ok) {
+        setStatus((await validation.json().catch(() => null))?.error ?? "Please try again in a few minutes.");
+        return;
+      }
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ access_key: accessKey, subject: "New BracketDex enquiry", from_name: "BracketDex website", name: values.name, email: values.email, company: values.company || "Not provided", message: values.message }),
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== true) {
+        setStatus("We could not send your enquiry. Please try again or email us directly.");
+        return;
+      }
+      window.location.href = "/thank-you";
+    } catch {
+      setStatus("We could not send your enquiry. Please try again or email us directly.");
+    }
   }
 
   return (
@@ -62,7 +79,7 @@ export function ContactForm({ className }: ContactFormProps = {}) {
       onSubmit={handleSubmit(onSubmit)}
     >
       <p className="mb-6 text-sm text-muted-foreground" id="contact-form-description">
-        Share your requirement below. This opens a draft in your email app; nothing is sent automatically.
+        Share your requirement below and we’ll get back to you.
       </p>
       <FieldGroup>
         <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden"><label htmlFor="website">Website</label><Input autoComplete="off" id="website" tabIndex={-1} {...register("website")} /></div>
@@ -86,7 +103,7 @@ export function ContactForm({ className }: ContactFormProps = {}) {
           <FieldError errors={[errors.message]} id="message-error" />
         </Field>
         <Button aria-disabled={isSubmitting || undefined} disabled={isSubmitting} type="submit">
-          {isSubmitting ? "Preparing…" : "Prepare Email Enquiry"}
+          {isSubmitting ? "Sending…" : "Send Enquiry"}
         </Button>
         {status ? (
           <p aria-live="polite" className="text-sm leading-6 text-muted-foreground" role="status">

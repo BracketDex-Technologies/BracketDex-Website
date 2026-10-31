@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-background px-6 text-center text-foreground">
-      <p className="bd-scene-label">Message prepared</p>
+      <p className="bd-scene-label">Message sent</p>
       <h1 className="text-4xl font-semibold tracking-tight">Thanks — we’ll take it from here.</h1>
-      <p className="max-w-xl text-muted-foreground">Your email draft is ready. Please send it from your email app and we’ll review your requirement.</p>
+      <p className="max-w-xl text-muted-foreground">Your enquiry has been sent. We’ll review your requirement and get back to you.</p>
       <Link className="rounded-md bg-primary px-5 py-3 text-primary-foreground" href="/">Back to BracketDex</Link>
     </main>
   );
