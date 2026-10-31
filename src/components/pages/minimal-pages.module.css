@@ -4,6 +4,12 @@
 .about :where(h1, h2, p, ul), .faq :where(h1, h2, p) { margin: 0; }
 .about { width: min(85.3%, 80rem); padding-block: clamp(4rem, 13.8vw, 9rem) clamp(5rem, 16vw, 11rem); }
 .eyebrow { color: #767570; font-size: var(--text-small); line-height: 1.5; }
+.aboutIntro { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); align-items: center; gap: clamp(2rem, 4vw, 4rem); }
+.aboutArt { display: block; width: 100%; max-width: 28rem; height: auto; justify-self: center; }
+@media (max-width: 1000px) {
+  .aboutIntro { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .aboutArt { max-width: 22rem; }
+}
 .page .about h1 { margin-top: 1.3rem; font-family: var(--font-minimal-heading), Georgia, serif; font-size: var(--text-page); font-weight: 400; letter-spacing: -0.035em; line-height: 1.12; text-wrap: initial; }
 .about h1 > span { display: block; }
 .story { max-width: 64ch; margin-top: 2.5rem; font-weight: 400; letter-spacing: -0.01em; }
