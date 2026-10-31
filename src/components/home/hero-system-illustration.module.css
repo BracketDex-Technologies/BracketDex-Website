@@ -1,5 +1,5 @@
 .frame { width: 100%; min-width: 0; border: 1px solid var(--bd-dark-border); border-radius: 12px; background: var(--bd-dark-raised); overflow: hidden; }
-.frameTop { display: flex; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid var(--bd-dark-border); color: var(--bd-dark-muted); font: .68rem ui-monospace, monospace; letter-spacing: .08em; }
+.frameTop { display: flex; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid var(--bd-dark-border); color: var(--bd-dark-muted); font: var(--text-small) ui-monospace, monospace; letter-spacing: .08em; }
 .svg { display: block; width: 100%; height: auto; }
 .connections path { fill: none; stroke: #f25623; stroke-width: 1.5; stroke-dasharray: 5 5; opacity: .7; }
 .pulse { fill: #f256230b; stroke: #f2562355; stroke-width: 1; }
@@ -14,7 +14,7 @@
 .arrow { fill: none; stroke: #f9b293; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
 @media (max-width: 420px) {
-  .frameTop { padding: .75rem 1rem; font-size: .6rem; }
+  .frameTop { padding: .75rem 1rem; font-size: var(--text-small); }
 }
 
 @media (prefers-reduced-motion: reduce) {

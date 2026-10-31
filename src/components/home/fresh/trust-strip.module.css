@@ -34,7 +34,7 @@
 
 .label {
   font-family: var(--font-body), sans-serif;
-  font-size: clamp(0.9rem, 1.25vw, 1.18rem);
+  font-size: var(--text-body);
   font-weight: 560;
   letter-spacing: -0.025em;
   line-height: 1;
@@ -47,7 +47,7 @@
   flex: none;
   place-items: center;
   color: #f25623;
-  font-size: clamp(1.2rem, 1.8vw, 1.75rem);
+  font-size: var(--text-card);
   line-height: 1;
   transform: rotate(0deg);
   transition: color 180ms ease, transform 180ms ease;
@@ -79,7 +79,7 @@
   }
 
   .label {
-    font-size: 0.86rem;
+    font-size: var(--text-small);
   }
 }
 

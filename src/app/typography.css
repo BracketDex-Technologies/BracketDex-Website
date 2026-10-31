@@ -1,3 +1,25 @@
+/* Shared role sizes. Font families, weights and brand artwork stay independent. */
+:root {
+  --text-small: 0.875rem;
+  --text-body: 1rem;
+  --text-card: 1.25rem;
+  --text-section: 2rem;
+  --text-page: 3.5rem;
+}
+@media (max-width: 767px) {
+  :root {
+    --text-section: 1.75rem;
+    --text-page: 2.25rem;
+  }
+}
+/* Semantic defaults also cover standalone pages and reusable UI components.
+   Section-specific selectors can retain labels, captions and brand artwork. */
+:where(main) h1 { font-size: var(--text-page); }
+:where(main) h2 { font-size: var(--text-section); }
+:where(main) h3 { font-size: var(--text-card); }
+:where(main) :is(p, li, dd, input, textarea, select, button) {
+  font-size: var(--text-body);
+}
 /* Transitional type bridge while older section styles are replaced. */
 body {
   --font-home-headline: var(--font-body);
@@ -7,14 +29,14 @@ body {
   --font-alliance: var(--font-body);
   --font-array: var(--font-body);
   font-family: var(--font-body), Arial, sans-serif;
-  font-size: 1rem;
+  font-size: var(--text-body);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
 .bd-landing { font-family: var(--font-body), Arial, sans-serif; }
 .bd-landing :is(h1,h2,h3,h4) { font-family: var(--font-body), Arial, sans-serif; text-wrap: balance; }
 .bd-landing :is(p,li,dd) { overflow-wrap: break-word; }
-.bd-landing :is(button,input,textarea,select) { font-family: inherit; font-size: 1rem; }
+.bd-landing :is(button,input,textarea,select) { font-family: inherit; font-size: var(--text-body); }
 .bd-landing .content-shell { width: min(calc(100% - 4rem), 75rem); }
 .bd-landing .bd-nav-surface .bd-nav-inner { width: min(calc(100% - 4rem), 75rem) !important; min-height: 5rem; }
 .bd-landing .bd-wordmark { font-family: var(--font-body), sans-serif; font-weight: 600; font-size: 1.5rem; letter-spacing: -.04em; }
@@ -22,40 +44,40 @@ body {
 .bd-landing .bd-wordmark::before, .bd-landing .bd-wordmark::after { content: none; }
 .bd-landing .bd-nav-surface .bd-wordmark { width: auto; font-weight: 400; letter-spacing: 0; white-space: nowrap; }
 .bd-pixel-wordmark { display: block; width: 100%; height: auto; color: currentColor; overflow: visible; }
-.bd-landing .bd-nav-surface :is(.bd-nav-link,.bd-nav-cta) { font-size: .875rem; line-height: 1.5; }
-.bd-landing .bd-hero-title { font-size: clamp(2.5rem, 4.5vw, 4.5rem); line-height: 1.12; font-weight: 600; letter-spacing: -.045em; }
-.bd-landing .bd-hero-subtitle { font-size: 1.0625rem; line-height: 1.7; margin-top: 1.5rem; }
+.bd-landing .bd-nav-surface :is(.bd-nav-link,.bd-nav-cta) { font-size: var(--text-body); line-height: 1.5; }
+.bd-landing .bd-hero-title { font-size: var(--text-page); line-height: 1.12; font-weight: 600; letter-spacing: -.045em; }
+.bd-landing .bd-hero-subtitle { font-size: var(--text-body); line-height: 1.7; margin-top: 1.5rem; }
 .bd-landing .bd-hero-layout { padding-block: 7.5rem 4rem; }
-.bd-landing :is(.bd-hero-primary-cta,.bd-hero-secondary-cta,.bd-fresh-cta__btn) { font-size: .9375rem; font-weight: 500; }
+.bd-landing :is(.bd-hero-primary-cta,.bd-hero-secondary-cta,.bd-fresh-cta__btn) { font-size: var(--text-body); font-weight: 500; }
 .bd-landing .bd-post-hero h2,
-.bd-landing :is(.bd-chapter-heading h2,.bd-page-outro h2) { font-size: clamp(1.875rem, 3.2vw, 3rem); line-height: 1.18; font-weight: 600; letter-spacing: -.035em; }
-.bd-landing .bd-manifesto h2 { font-size: clamp(2rem, 4.5vw, 4rem); line-height: 1.2; max-width: 25ch; }
-.bd-landing .bd-page-intro h1 { font-size: clamp(2rem, 3.8vw, 3.5rem); line-height: 1.15; font-weight: 600; letter-spacing: -.04em; }
-.bd-landing .bd-page-display { font-size: clamp(2rem, 4.5vw, 4rem); font-weight: 600; letter-spacing: -.025em; justify-content: flex-start; gap: 0; line-height: 1.15; padding-block: .2em; }
-.bd-landing .bd-chapter-row h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
-.bd-landing :is(.bd-page-intro > p:last-child,.bd-chapter-heading > p:not(.bd-scene-label),.bd-chapter-row p) { font-size: 1rem; line-height: 1.7; }
-.bd-landing :is(.bd-fresh-eyebrow,.bd-post-kicker,.bd-scene-label,.bd-hero-eyebrow) { font-family: ui-monospace, monospace; font-size: .75rem; line-height: 1.5; font-weight: 600; letter-spacing: .1em; }
+.bd-landing :is(.bd-chapter-heading h2,.bd-page-outro h2) { font-size: var(--text-section); line-height: 1.18; font-weight: 600; letter-spacing: -.035em; }
+.bd-landing .bd-manifesto h2 { font-size: var(--text-section); line-height: 1.2; max-width: 25ch; }
+.bd-landing .bd-page-intro h1 { font-size: var(--text-page); line-height: 1.15; font-weight: 600; letter-spacing: -.04em; }
+.bd-landing .bd-page-display { font-size: var(--text-page); font-weight: 600; letter-spacing: -.025em; justify-content: flex-start; gap: 0; line-height: 1.15; padding-block: .2em; }
+.bd-landing .bd-chapter-row h3 { font-size: var(--text-card); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
+.bd-landing :is(.bd-page-intro > p:last-child,.bd-chapter-heading > p:not(.bd-scene-label),.bd-chapter-row p) { font-size: var(--text-body); line-height: 1.7; }
+.bd-landing :is(.bd-fresh-eyebrow,.bd-post-kicker,.bd-scene-label,.bd-hero-eyebrow) { font-family: ui-monospace, monospace; font-size: var(--text-small); line-height: 1.5; font-weight: 600; letter-spacing: .1em; }
 .bd-landing :is(.bd-fresh-problems,.bd-fresh-services,.bd-fresh-why,.bd-fresh-projects,.bd-post-faq,.bd-fresh-contact) { padding-block: clamp(4rem, 6vw, 6rem); }
 .bd-landing :is(.bd-cloud-panel,.bd-fresh-process,.bd-fresh-capability,.bd-page-chapter) { padding-block: clamp(4rem, 6vw, 6rem); scroll-margin-top: 6rem; }
-.bd-landing :is(.bd-fresh-problems__head p,.bd-fresh-problems__card li,.bd-fresh-why__head p,.bd-fresh-why__card p,.bd-fresh-projects__head p,.bd-fresh-projects__card p,.bd-fresh-contact__copy p,.bd-post-faq p,.bd-fresh-cta__card p,.bd-cloud-panel__description,.bd-cloud-panel__groups dd,.bd-fresh-process__head p,.bd-fresh-process__step p) { font-size: 1rem; line-height: 1.65; }
-.bd-landing :is(.bd-fresh-problems__card h3,.bd-fresh-why__card h3,.bd-fresh-projects__card h3) { font-size: 1.125rem; line-height: 1.4; font-weight: 600; letter-spacing: -.01em; }
-.bd-landing .bd-fresh-services__title { font-size: clamp(1.25rem, 2.4vw, 2rem); line-height: 1.3; font-weight: 500; }
-.bd-landing .bd-fresh-services__desc { font-size: 1rem; line-height: 1.6; }
-.bd-landing .bd-fresh-process__step strong { font-size: 1rem; line-height: 1.4; font-weight: 600; }
-.bd-landing .bd-fresh-trust__text :is(strong,small) { font-size: 1rem; line-height: 1.55; }
+.bd-landing :is(.bd-fresh-problems__head p,.bd-fresh-problems__card li,.bd-fresh-why__head p,.bd-fresh-why__card p,.bd-fresh-projects__head p,.bd-fresh-projects__card p,.bd-fresh-contact__copy p,.bd-post-faq p,.bd-fresh-cta__card p,.bd-cloud-panel__description,.bd-cloud-panel__groups dd,.bd-fresh-process__head p,.bd-fresh-process__step p) { font-size: var(--text-body); line-height: 1.65; }
+.bd-landing :is(.bd-fresh-problems__card h3,.bd-fresh-why__card h3,.bd-fresh-projects__card h3) { font-size: var(--text-card); line-height: 1.4; font-weight: 600; letter-spacing: -.01em; }
+.bd-landing .bd-fresh-services__title { font-size: var(--text-card); line-height: 1.3; font-weight: 500; }
+.bd-landing .bd-fresh-services__desc { font-size: var(--text-body); line-height: 1.6; }
+.bd-landing .bd-fresh-process__step strong { font-size: var(--text-body); line-height: 1.4; font-weight: 600; }
+.bd-landing .bd-fresh-trust__text :is(strong,small) { font-size: var(--text-body); line-height: 1.55; }
 .bd-landing .bd-fresh-capability h2 { max-width: 24ch; margin-top: 1rem; }
 .bd-landing .bd-fresh-capability__grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 3rem; margin-top: 2.5rem; align-items: start; }
 .bd-landing .bd-fresh-capability__grid > div { min-width: 0; }
-.bd-landing .bd-fresh-capability__grid h3 { font-family: var(--font-body), sans-serif; font-size: .875rem; font-weight: 600; line-height: 1.5; letter-spacing: .06em; padding-bottom: 1rem; }
+.bd-landing .bd-fresh-capability__grid h3 { font-family: var(--font-body), sans-serif; font-size: var(--text-card); font-weight: 600; line-height: 1.5; letter-spacing: .06em; padding-bottom: 1rem; }
 .bd-landing .bd-fresh-capability__row { padding-block: 1.25rem; gap: .5rem; }
-.bd-landing .bd-fresh-capability__row strong { font-size: 1.0625rem; line-height: 1.5; font-weight: 600; }
-.bd-landing .bd-fresh-capability__row span { font-size: 1rem; line-height: 1.65; }
+.bd-landing .bd-fresh-capability__row strong { font-size: var(--text-body); line-height: 1.5; font-weight: 600; }
+.bd-landing .bd-fresh-capability__row span { font-size: var(--text-body); line-height: 1.65; }
 .bd-landing .bd-page-chapter { gap: 3rem; }
-.bd-landing .bd-page-index > * { font-size: .875rem; }
+.bd-landing .bd-page-index > * { font-size: var(--text-small); }
 .bd-landing .bd-chapter-row { padding-block: 1.75rem; }
 .bd-landing .bd-flow-brand { font-family: var(--font-body), sans-serif; letter-spacing: -.02em; }
-.bd-landing .bd-flow-brand small { font-family: var(--font-body), sans-serif; font-size: .8125rem; letter-spacing: .03em; }
-.bd-landing .bd-flow-label { font-size: .875rem; line-height: 1.6; }
+.bd-landing .bd-flow-brand small { font-family: var(--font-body), sans-serif; font-size: var(--text-small); letter-spacing: .03em; }
+.bd-landing .bd-flow-label { font-size: var(--text-small); line-height: 1.6; }
 .bd-landing .bd-fresh-footer__word { padding-right: clamp(1rem, 3vw, 3rem); text-align: right; }
 .bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; max-width: 100%; padding-inline: 0; font-size: 1.5rem; font-weight: 400; line-height: .9; letter-spacing: 0; white-space: nowrap; }
 .bd-landing :is(code,pre,.bd-cloud-terminal__lines,.bd-cloud-terminal__bar) { font-family: ui-monospace, monospace; }
@@ -88,10 +110,10 @@ body {
 .bd-landing .bd-fresh-projects__grid { gap: 1.5rem; }
 .bd-landing .bd-fresh-projects--featured .bd-fresh-projects__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .bd-landing .bd-fresh-projects__card { display: flex; flex-direction: column; align-items: flex-start; border-style: solid; padding: clamp(1.25rem, 3vw, 2rem); }
-.bd-landing .bd-fresh-projects__card h3 { font-size: 1.5rem; margin-top: 1rem; }
-.bd-landing .bd-fresh-projects__card .bd-case-category { font-size: .75rem; line-height: 1.5; font-weight: 500; color: #62656D; margin: 0; }
-.bd-landing .bd-fresh-projects__card .bd-case-headline { font-size: 1.125rem; font-weight: 500; color: #151619; margin-block: .5rem; }
-.bd-landing .bd-fresh-projects__card .bd-case-highlight { font-size: .9375rem; line-height: 1.6; color: #f25623; background: #f5eee4; border-radius: 6px; padding: .5rem .75rem; margin-top: auto; margin-bottom: 0; }
+.bd-landing .bd-fresh-projects__card h3 { font-size: var(--text-card); margin-top: 1rem; }
+.bd-landing .bd-fresh-projects__card .bd-case-category { font-size: var(--text-small); line-height: 1.5; font-weight: 500; color: #62656D; margin: 0; }
+.bd-landing .bd-fresh-projects__card .bd-case-headline { font-size: var(--text-body); font-weight: 500; color: #151619; margin-block: .5rem; }
+.bd-landing .bd-fresh-projects__card .bd-case-highlight { font-size: var(--text-body); line-height: 1.6; color: #f25623; background: #f5eee4; border-radius: 6px; padding: .5rem .75rem; margin-top: auto; margin-bottom: 0; }
 .bd-landing .bd-fresh-projects__card { --case-accent: #f25623; --case-tint: #f5eee4; border-radius: 18px; min-width: 0; transition: border-color .25s ease, box-shadow .25s ease; }
 .bd-landing .bd-fresh-projects__card:nth-child(4n + 2) { --case-accent: #f25623; --case-tint: #EAF3F2; }
 .bd-landing .bd-fresh-projects__card:nth-child(4n + 3) { --case-accent: #f25623; --case-tint: #f5f0e6; }
@@ -99,11 +121,11 @@ body {
 .bd-landing .bd-fresh-projects__card:hover { border-color: var(--case-accent); box-shadow: 0 12px 32px #15161908; }
 .bd-landing .bd-case-topline { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 1.25rem; }
 .bd-landing .bd-case-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 13px; background: var(--case-tint); color: var(--case-accent); }
-.bd-landing .bd-case-number { font-size: .75rem; letter-spacing: .08em; color: #74777E; }
+.bd-landing .bd-case-number { font-size: var(--text-small); letter-spacing: .08em; color: #74777E; }
 .bd-landing .bd-fresh-projects__card h3 { margin-block: .625rem .75rem; letter-spacing: -.035em; }
 .bd-landing .bd-fresh-projects__card .bd-case-summary { margin: 0 0 1.5rem; color: #62656D; }
 .bd-landing .bd-case-result { width: 100%; margin-top: auto; padding-top: 1rem; border-top: 1px solid #E8E9E5; }
-.bd-landing .bd-case-result-label { display: block; margin-bottom: .4rem; font-size: .6875rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #62656D; }
+.bd-landing .bd-case-result-label { display: block; margin-bottom: .4rem; font-size: var(--text-small); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #62656D; }
 .bd-landing .bd-fresh-projects__card .bd-case-highlight { margin: 0; padding: 0; background: none; color: var(--case-accent); font-weight: 500; }
 @media (max-width: 699px) { .bd-landing .bd-fresh-projects--featured .bd-fresh-projects__grid { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .bd-landing .bd-fresh-projects__card { transition: none; } }
@@ -112,7 +134,7 @@ body {
 .bd-landing .bd-post-hero .bd-post-dark { padding-bottom: 0; }
 .bd-landing .bd-post-hero .bd-manifesto { height: 112svh; background: #151619; color: #FAF9F6; }
 .bd-landing .bd-post-hero .bd-manifesto-sticky { min-height: 100svh; padding-block: 6rem 3rem; }
-.bd-landing .bd-post-hero .bd-manifesto h2 { max-width: 19ch; font-size: clamp(2.75rem, 6vw, 6rem); line-height: 1.06; font-weight: 500; letter-spacing: -.045em; }
+.bd-landing .bd-post-hero .bd-manifesto h2 { max-width: 19ch; font-size: var(--text-section); line-height: 1.06; font-weight: 500; letter-spacing: -.045em; }
 .bd-landing .bd-post-hero .bd-manifesto .bd-scene-label { color: #f9b293; }
 .bd-landing .bd-site-loader-text .bd-pixel-wordmark { width: clamp(16rem, 42vw, 24rem); }
 .bd-landing .bd-fresh-cta { padding-block: clamp(3rem, 5vw, 4.5rem); }
@@ -131,13 +153,13 @@ body {
   .bd-landing .bd-fresh-process--compact .bd-fresh-process__rail { grid-template-columns: minmax(0,1fr); }
   .bd-landing .bd-post-hero .bd-manifesto { height: 105svh; }
   .bd-landing .bd-post-hero .bd-manifesto-sticky { min-height: 100svh; padding-block: 5.5rem 2.5rem; }
-  .bd-landing .bd-post-hero .bd-manifesto h2 { font-size: clamp(2.35rem, 10vw, 4rem); }
+  .bd-landing .bd-post-hero .bd-manifesto h2 { font-size: var(--text-section); }
   .bd-landing .bd-fresh-services__row { grid-template-columns: 2rem minmax(0,1fr) 2.25rem; gap: .4rem .75rem; padding: 1.25rem 0; }
-  .bd-landing .bd-fresh-services__title { font-size: 1.125rem; line-height: 1.35; }
+  .bd-landing .bd-fresh-services__title { font-size: var(--text-card); line-height: 1.35; }
   .bd-landing .bd-fresh-services__desc { grid-column: 2; grid-row: 2; line-height: 1.55; }
   .bd-landing .bd-fresh-services__arrow { grid-column: 3; grid-row: 1 / 3; width: 2.25rem; height: 2.25rem; }
 }
-.bd-landing .bd-case-link { display: inline-flex; align-items: center; gap: .625rem; min-height: 44px; margin-top: auto; color: #f25623; font-size: .9375rem; font-weight: 500; }
+.bd-landing .bd-case-link { display: inline-flex; align-items: center; gap: .625rem; min-height: 44px; margin-top: auto; color: #f25623; font-size: var(--text-body); font-weight: 500; }
 .bd-landing .bd-case-link:hover { text-decoration: underline; text-underline-offset: .25em; }
 .bd-landing .bd-case-link:focus-visible { outline: 2px solid #f25623; outline-offset: 4px; }
 @media (max-width: 767px) {
@@ -148,12 +170,12 @@ body {
   .bd-landing .bd-fresh-footer__word { padding-right: .75rem; }
   .bd-landing .bd-fresh-footer__word .bd-wordmark { width: auto; padding-inline: 0; font-size: 1.25rem; }
   .bd-landing .bd-hero-layout { padding-block: 6.5rem 3rem; gap: 3rem; }
-  .bd-landing .bd-hero-title { font-size: clamp(2.25rem, 9vw, 3rem); line-height: 1.15; max-width: 17ch; }
-  .bd-landing .bd-hero-subtitle { font-size: 1rem; }
-  .bd-landing .bd-post-hero h2 { font-size: clamp(1.875rem, 7vw, 2.25rem); line-height: 1.2; }
+  .bd-landing .bd-hero-title { font-size: var(--text-page); line-height: 1.15; max-width: 17ch; }
+  .bd-landing .bd-hero-subtitle { font-size: var(--text-body); }
+  .bd-landing .bd-post-hero h2 { font-size: var(--text-section); line-height: 1.2; }
   .bd-landing .bd-fresh-capability__grid { grid-template-columns: minmax(0,1fr); gap: 2.5rem; margin-top: 2rem; }
   .bd-landing .bd-fresh-capability__row { padding-block: 1rem; }
-  .bd-landing .bd-fresh-capability__row :is(strong,span) { font-size: 1rem; }
+  .bd-landing .bd-fresh-capability__row :is(strong,span) { font-size: var(--text-body); }
   .bd-landing .bd-page-chapter { grid-template-columns: minmax(0,1fr); gap: 2rem; }
   .bd-landing .bd-page-intro { grid-template-columns: minmax(0,1fr); }
   .bd-landing .bd-fresh-process__rail { grid-template-columns: minmax(0,1fr); }
@@ -163,15 +185,15 @@ body {
   .bd-landing .bd-page-hero { padding-block: 6.5rem 2rem; }
   .bd-landing .bd-page-hero > .content-shell { gap: 2rem; }
   .bd-landing .bd-page-intro { gap: 1rem; }
-  .bd-landing .bd-page-intro h1 { font-size: clamp(2rem, 8vw, 2.5rem); line-height: 1.2; }
-  .bd-landing .bd-page-display { font-size: clamp(1.625rem, 6.5vw, 2.5rem); }
+  .bd-landing .bd-page-intro h1 { font-size: var(--text-page); line-height: 1.2; }
+  .bd-landing .bd-page-display { font-size: var(--text-page); }
   .bd-landing .bd-page-index { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .bd-landing .bd-page-index > * { justify-content: flex-start; min-width: 0; padding: .875rem .75rem; font-size: .8125rem; border-right: 0; border-bottom: 1px solid var(--border); }
+  .bd-landing .bd-page-index > * { justify-content: flex-start; min-width: 0; padding: .875rem .75rem; font-size: var(--text-small); border-right: 0; border-bottom: 1px solid var(--border); }
   .bd-landing .bd-page-index > :last-child { border-bottom: 0; }
   .bd-landing .bd-chapter-heading { position: static; }
-  .bd-landing :is(.bd-chapter-heading h2,.bd-page-outro h2) { font-size: clamp(1.75rem, 7vw, 2.25rem); line-height: 1.22; }
+  .bd-landing :is(.bd-chapter-heading h2,.bd-page-outro h2) { font-size: var(--text-section); line-height: 1.22; }
   .bd-landing .bd-page-outro { gap: 1.5rem; }
-  .bd-landing .bd-chapter-row h3 { font-size: 1.125rem; line-height: 1.4; }
+  .bd-landing .bd-chapter-row h3 { font-size: var(--text-card); line-height: 1.4; }
 }
 .bd-landing .bd-page-index a span { color: #b83812; }
 .bd-landing .bd-page-index a:hover,

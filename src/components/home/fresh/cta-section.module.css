@@ -33,11 +33,29 @@
   text-align: left;
 }
 
+<<<<<<< HEAD
+=======
+.eyebrow {
+  margin: 0 0 1rem;
+  color: #f25623;
+  font-family: ui-monospace, monospace;
+  font-size: var(--text-small);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+>>>>>>> 327c2cda3e56bb7e9c5685fcf59d83d7ca323d3f
 .copy h2 {
   max-width: 11ch;
   margin: 0;
   color: #fffdf8;
+<<<<<<< HEAD
   font-size: clamp(2.9rem, 4.5vw, 4.9rem) !important;
+=======
+  font-size: var(--text-section) !important;
+>>>>>>> 327c2cda3e56bb7e9c5685fcf59d83d7ca323d3f
   font-weight: 500;
   line-height: 0.98 !important;
   letter-spacing: -0.05em !important;
@@ -48,7 +66,11 @@
   max-width: 34rem;
   margin: 1.15rem 0 0 !important;
   color: rgb(255 253 248 / 66%) !important;
+<<<<<<< HEAD
   font-size: 1rem !important;
+=======
+  font-size: var(--text-body) !important;
+>>>>>>> 327c2cda3e56bb7e9c5685fcf59d83d7ca323d3f
   line-height: 1.55 !important;
 }
 
@@ -68,7 +90,11 @@
   gap: 0.55rem;
   padding: 0.75rem 1.15rem;
   border-radius: 0.45rem;
+<<<<<<< HEAD
   font-size: 0.95rem;
+=======
+  font-size: var(--text-small);
+>>>>>>> 327c2cda3e56bb7e9c5685fcf59d83d7ca323d3f
   font-weight: 600;
   transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
 }
@@ -149,12 +175,20 @@
 
   .copy h2 {
     max-width: 13ch;
+<<<<<<< HEAD
     font-size: clamp(2.8rem, 12.8vw, 4.4rem) !important;
+=======
+    font-size: var(--text-section) !important;
+>>>>>>> 327c2cda3e56bb7e9c5685fcf59d83d7ca323d3f
   }
 
   .description {
     max-width: 30rem;
+<<<<<<< HEAD
     font-size: 1rem !important;
+=======
+    font-size: var(--text-body) !important;
+>>>>>>> 327c2cda3e56bb7e9c5685fcf59d83d7ca323d3f
   }
 
   .actions {

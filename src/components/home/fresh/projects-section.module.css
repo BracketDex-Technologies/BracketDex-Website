@@ -20,7 +20,7 @@
   max-width: 18ch;
   margin: 0;
   color: #171717;
-  font-size: clamp(2rem, 4.1vw, 4.25rem);
+  font-size: var(--text-section);
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.055em;
@@ -31,7 +31,7 @@
   max-width: 42rem;
   margin: 0.9rem 0 0;
   color: #56514a;
-  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  font-size: var(--text-body);
   line-height: 1.55;
 }
 
@@ -46,6 +46,7 @@
 }
 
 .card {
+  container-type: inline-size;
   display: flex;
   min-width: 0;
   min-height: 23rem;
@@ -80,7 +81,7 @@
 .cardTitle {
   margin: 0 !important;
   color: #171717;
-  font-size: clamp(1.15rem, 1.5vw, 1.4rem) !important;
+  font-size: var(--text-card) !important;
   font-weight: 600;
   line-height: 1.2 !important;
   letter-spacing: -0.035em !important;
@@ -120,7 +121,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: 4.2rem minmax(0, 1fr);
+  grid-template-columns: 7rem minmax(0, 1fr);
   gap: 0.75rem;
   align-items: start;
   min-height: 3.2rem;
@@ -130,21 +131,28 @@
 }
 
 .row > span {
+  min-width: 0;
   padding-top: 0.12rem;
   color: #756f66;
   font-family: ui-monospace, monospace;
-  font-size: 0.62rem;
+  font-size: var(--text-small);
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .card .row p {
+  min-width: 0;
   margin: 0;
   color: #171717;
-  font-size: 0.8rem;
-  line-height: 1.42;
+  font-size: var(--text-small);
+  line-height: 1.55;
+  text-align: start;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
 }
 
 .labels {
@@ -160,7 +168,7 @@
   padding: 0.28rem 0.48rem;
   color: #56514a;
   font-family: ui-monospace, monospace;
-  font-size: 0.62rem;
+  font-size: var(--text-small);
   line-height: 1.35;
   letter-spacing: 0.025em;
   border: 1px solid rgb(23 23 23 / 32%);
@@ -182,7 +190,7 @@
   justify-content: center;
   gap: 0.65rem;
   padding: 0.8rem 1.15rem;
-  font-size: 0.78rem;
+  font-size: var(--text-small);
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.06em;
@@ -229,7 +237,7 @@
 
   .header h2 {
     max-width: 13ch;
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: var(--text-section);
     line-height: 1.05;
   }
 
@@ -245,7 +253,8 @@
   }
 
   .row {
-    grid-template-columns: 3.8rem minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4rem;
   }
 
   .actions {
@@ -256,6 +265,13 @@
   .primaryAction,
   .secondaryAction {
     width: 100%;
+  }
+}
+
+@container (max-width: 20rem) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4rem;
   }
 }
 
@@ -284,4 +300,4 @@
 .filters button[aria-pressed="true"] { background: #171717; color: #fffdf8; border-color: #f25623; }
 .filters button:hover { border-color: #f25623; }
 .filters button:focus-visible { outline: 2px solid #f25623; outline-offset: 3px; }
-.resultCount { margin: 0 0 1.25rem; color: #56514a; font-size: .85rem; }
+.resultCount { margin: 0 0 1.25rem; color: #56514a; font-size: var(--text-small); }
