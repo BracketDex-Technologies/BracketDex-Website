@@ -1,5 +1,6 @@
 import { marketingContent } from "./marketing";
 import { caseStudyCards } from "./case-studies";
+import { contactDetails } from "@/lib/site";
 
 export type PageCard = {
   title: string;
@@ -260,36 +261,60 @@ export const pageContent = {
   privacy: {
     title: "Privacy Policy",
     description:
-      "A plain-language template explaining the information BracketDex collects through this website and how it is used.",
+      "How BracketDex Technologies handles information when you browse our website or contact us about a project.",
     eyebrow: "Privacy",
     primaryCta: "Contact Us",
     sections: [
       {
         label: "Scope",
-        title: "A practical privacy template",
+        title: "Your information and this website",
         description:
-          "This page is a template for review before launch. It should be updated if the website adds a CRM, email provider, payments, chat, advertising, or other data processor.",
+          "This Privacy Policy covers the BracketDex Technologies website and enquiries made through it. It explains what information the website processes, why it is used, and how to contact us with a privacy question. Last updated: 31 October 2026.",
       },
       {
         label: "What We Collect",
         title: "Information you choose to share",
         cards: [
-          { title: "Contact form", description: "Name, email address, optional company name, and project message are collected to prepare a project enquiry." },
-          { title: "Preferences", description: "A local browser preference records whether optional analytics consent was accepted or declined. The theme preference is also stored locally." },
-          { title: "Analytics", description: "Google Analytics is loaded only after consent and only when a real NEXT_PUBLIC_GA_MEASUREMENT_ID is configured." },
+          { title: "Project enquiries", description: "The contact form asks for your name, email address, optional company name, and a message about your requirements. Please avoid including passwords, payment details, or sensitive personal information in your message." },
+          { title: "How the form works", description: "Your form entries are sent to the website server for validation. If validation succeeds, the site opens a draft in your email application. You choose whether to send that email. The contact endpoint does not save the enquiry to a database or send it automatically." },
+          { title: "Technical information", description: "The contact endpoint temporarily holds an IP address and request timestamps in server memory to limit repeated submissions. Hosting and network providers may also process technical information needed to deliver and secure the website, such as IP addresses, requested pages, and browser details." },
         ],
       },
       {
         label: "Use",
         title: "Why we use this information",
         description:
-          "We use enquiry details to respond to project requests, prevent abusive form traffic, and improve the website when optional analytics has been accepted. We do not sell enquiry information.",
+          "Information you send by email helps us respond to your enquiry, understand your requirements, discuss a proposal, and maintain the correspondence needed for that conversation. The website also processes technical information to validate submissions and limit abusive traffic.",
       },
       {
-        label: "Review",
-        title: "Please confirm before publishing",
+        label: "Browser Storage",
+        title: "Cookies and analytics",
         description:
-          "This is not legal advice. Confirm the final policy, retention periods, data processors, business address, and applicable rights with your legal adviser before launch.",
+          "The website currently does not integrate advertising trackers or Google Analytics, and it does not store analytics consent or theme preferences in your browser. External services you choose to open from the website may use their own cookies and tracking technologies under their own policies.",
+      },
+      {
+        label: "External Services",
+        title: "Email and third-party links",
+        description:
+          "When you send an enquiry, your email provider and our email provider process the message to deliver and store the correspondence. The website also relies on hosting and network services to serve its pages. Links to other websites take you to services with their own privacy practices; review their policies before sharing information with them.",
+      },
+      {
+        label: "Retention",
+        title: "Storage and security",
+        description:
+          "Sent enquiries become email correspondence. How long a message needs to be kept depends on the enquiry, any resulting business relationship, and applicable record-keeping requirements. The contact endpoint keeps its rate-limit records in temporary server memory rather than a permanent enquiry database. No online service or email system can guarantee complete security; avoid sending confidential credentials through this form or by email.",
+      },
+      {
+        label: "Your Choices",
+        title: "Questions about your information",
+        description:
+          `You can choose not to submit the form or send the email draft. If you have already contacted us, email ${contactDetails.email} to ask about information you shared, request a correction, or request deletion of correspondence. We may need to confirm your identity and understand which messages your request concerns. The rights and exceptions that apply depend on applicable law.`,
+      },
+      {
+        label: "Contact and Updates",
+        title: "Contact BracketDex Technologies",
+        description:
+          `For privacy enquiries, email ${contactDetails.email} or write to BracketDex Technologies, ${contactDetails.location}. This policy may change when the website or its information-handling practices change. The updated policy and its revision date will appear on this page.`,
       },
     ],
   },
