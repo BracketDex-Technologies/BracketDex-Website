@@ -1,15 +1,15 @@
 .section { padding-block: clamp(4rem, 7vw, 6rem); border-top: 1px solid var(--bd-dark-border); background: var(--bd-dark); color: var(--bd-dark-text); }
 .inner { display: grid; width: min(100% - 2.5rem, 75rem); margin-inline: auto; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: center; gap: clamp(2.25rem, 5vw, 4.75rem); }
 .copy { min-width: 0; }
-.eyebrow { margin: 0 0 1rem; color: var(--bd-dark-orange); font: .7rem/1.5 ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; }
-.section .copy h2 { max-width: 12ch; margin: 0; font-family: var(--font-body), sans-serif; font-size: clamp(2.25rem, 4vw, 3.75rem); font-weight: 470; line-height: 1.1; letter-spacing: -.055em; }
-.description { max-width: 34rem; margin: 1.2rem 0 0; color: var(--bd-dark-muted); font-size: 1.12rem; line-height: 1.65; }
+.eyebrow { margin: 0 0 1rem; color: var(--bd-dark-orange); font: var(--text-small)/1.5 ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; }
+.section .copy h2 { max-width: 12ch; margin: 0; font-family: var(--font-body), sans-serif; font-size: var(--text-section); font-weight: 470; line-height: 1.1; letter-spacing: -.055em; }
+.description { max-width: 34rem; margin: 1.2rem 0 0; color: var(--bd-dark-muted); font-size: var(--text-body); line-height: 1.65; }
 .groups { display: grid; gap: 1rem; margin: 2rem 0 0; }
 .groups div { padding-top: .9rem; border-top: 1px solid var(--bd-dark-border); }
-.groups dt { margin-bottom: .25rem; color: var(--bd-dark-orange); font: .7rem ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
-.groups dd { margin: 0; color: var(--bd-dark-muted); font-size: 1rem; line-height: 1.5; }
+.groups dt { margin-bottom: .25rem; color: var(--bd-dark-orange); font: var(--text-small) ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+.groups dd { margin: 0; color: var(--bd-dark-muted); font-size: var(--text-body); line-height: 1.5; }
 
 @media (max-width: 900px) { .inner { grid-template-columns: 1fr; } }
-@media (max-width: 420px) { .section .copy h2 { font-size: 2.25rem; } }
+@media (max-width: 420px) { .section .copy h2 { font-size: var(--text-section); } }
 .section .eyebrow,
 .section .groups dt { color: #f25623; }
