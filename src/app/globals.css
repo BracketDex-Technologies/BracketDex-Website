@@ -95,6 +95,11 @@
   --shadow-lift: 0 22px 64px rgb(0 0 0 / 0.42);
 }
 
+/* Preserve the homepage's authored palette instead of browser auto-darkening. */
+html:has([data-home-hero="cinematic"]) {
+  color-scheme: only light;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
