@@ -3,12 +3,12 @@
   --text-small: 0.875rem;
   --text-body: 1rem;
   --text-card: 1.25rem;
-  --text-section: 2.5rem;
+  --text-section: 2rem;
   --text-page: 3.5rem;
 }
 @media (max-width: 767px) {
   :root {
-    --text-section: 1.875rem;
+    --text-section: 1.75rem;
     --text-page: 2.25rem;
   }
 }
