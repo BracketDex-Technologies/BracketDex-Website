@@ -40,12 +40,12 @@
 .sideLabel { position: absolute; top: 2.5rem; right: -0.8rem; padding-left: 0.75rem; border-left: 1px solid var(--fieldguide-line); font-size: var(--text-small); line-height: 1.5; writing-mode: vertical-rl; }
 
 .software { display: grid; grid-template-columns: minmax(0, 1.48fr) minmax(0, 1fr); gap: 7.2%; padding-bottom: clamp(1rem, 1.7vw, 1.6rem); border-bottom: 1px solid var(--fieldguide-line); }
-.softwareFigure { position: relative; align-self: start; padding-left: 22%; }
+.softwareFigure { display: grid; grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1fr); gap: 1rem; align-self: start; min-width: 0; }
 .stackArt { aspect-ratio: 0.88; overflow: hidden; }
 .stackImage { display: block; width: 116%; max-width: none; height: auto; transform: translate(-8%, -6%); }
-.layerLabels { position: absolute; inset: 15% auto 16% 0; display: flex; width: 21%; flex-direction: column; justify-content: space-between; }
+.layerLabels { display: flex; flex-direction: column; justify-content: space-evenly; gap: 1.5rem; padding-block: 1rem; }
 .layerLabels dt { font-family: var(--font-fieldguide-heading), Georgia, serif; font-size: var(--text-body); font-weight: 600; line-height: 1.2; }
-.layerLabels dd { margin-top: 0.3rem; color: var(--fieldguide-muted); font-size: var(--text-body); line-height: 1.35; }
+.layerLabels dd { margin-top: 0.3rem; color: var(--fieldguide-muted); font-size: var(--text-body); line-height: 1.5; overflow-wrap: anywhere; }
 .softwareCopy { display: flex; flex-direction: column; align-items: flex-start; padding-block: 0.35rem 0; }
 .kicker { display: flex; align-items: center; gap: 0.7rem; font-size: var(--text-small); line-height: 1.45; }
 .kicker::before { content: ""; width: 1.4rem; height: 1px; flex: 0 0 1.4rem; background: var(--fieldguide-orange); }
@@ -62,7 +62,7 @@
 .intelligence { display: grid; grid-template-columns: 36% minmax(0, 1fr); gap: 2%; padding-block: clamp(1.25rem, 2.45vw, 2.25rem); border-bottom: 1px solid var(--fieldguide-line); }
 .aiCopy { display: flex; flex-direction: column; align-items: flex-start; padding-right: 9%; border-right: 1px solid var(--fieldguide-line); }
 .aiCopy h2 { margin-top: clamp(1.4rem, 3vw, 2.5rem); font-size: var(--text-section); font-weight: 500; letter-spacing: -0.05em; line-height: 1; }
-.aiTitleLine { display: block; white-space: nowrap; }
+.aiTitleLine { display: block; }
 .aiDescription { margin-top: 1.4rem !important; font-size: var(--text-body); line-height: 1.4; }
 .aiCopy .action { margin-top: auto; padding-top: 1.6rem; }
 .aiFigure { align-self: center; }
@@ -87,12 +87,11 @@
 .supportingService .actionIcon { width: clamp(2rem, 3.5vw, 2.8rem); height: clamp(2rem, 3.5vw, 2.8rem); }
 .footer { font-family: var(--font-body), Arial, sans-serif; }
 
-@media (min-width: 701px) {
-  .intro h1 { white-space: nowrap; }
+@media (min-width: 901px) {
   .softwareFigure { transform: translateY(-0.8rem); }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .shell { width: calc(100% - 2.5rem); }
   .intro { padding-block: 1.5rem 2.25rem; }
   .intro h1 { padding-right: 0; font-size: var(--text-page); line-height: 1.02; }
@@ -101,10 +100,11 @@
   .chapterNav a { min-height: 40px; font-size: var(--text-body); }
   .chapterNav a:not(:last-child)::after { margin-left: 0.7rem; }
   .software { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-bottom: 2rem; }
-  .softwareFigure { width: min(100%, 29rem); margin-inline: auto !important; padding-left: 21%; }
-  .layerLabels { width: 22%; }
+  .softwareFigure { display: flex; flex-direction: column-reverse; gap: 1.25rem; width: min(100%, 29rem); margin-inline: auto !important; }
+  .layerLabels { display: grid; gap: 1rem; width: 100%; padding: 0; }
+  .layerLabels > div { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); align-items: baseline; gap: 0.75rem; }
   .layerLabels dt { font-size: var(--text-body); }
-  .layerLabels dd { font-size: var(--text-body); }
+  .layerLabels dd { margin: 0; font-size: var(--text-body); }
   .softwareCopy { padding-top: 0; }
   .kicker, .supportingService .kicker { font-size: var(--text-small); }
   .softwareCopy h2, .aiCopy h2 { max-width: 20ch; margin-top: 1.3rem; font-size: var(--text-section); }
