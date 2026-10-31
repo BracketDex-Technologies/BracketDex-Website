@@ -123,10 +123,10 @@ test("navbar keeps a compact desktop and mobile rhythm", () => {
 test("trust strip keeps a compact vertical rhythm", () => {
   const css = readFileSync(new URL("../src/components/home/fresh/trust-strip.module.css", import.meta.url), "utf8");
   assert.match(css, /padding-block:\s*clamp\(0\.5rem,\s*0\.8vw,\s*0\.7rem\)/);
-  assert.match(css, /font-size:\s*clamp\(0\.9rem,\s*1\.25vw,\s*1\.18rem\)/);
+  assert.match(css, /font-size:\s*var\(--text-body\)/);
   assert.match(css, /font-weight:\s*560/);
   assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*padding-block:\s*0\.55rem/);
-  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*font-size:\s*0\.86rem/);
+  assert.match(css, /@media \(max-width:\s*760px\)[\s\S]*font-size:\s*var\(--text-small\)/);
 });
 
 test("hero headline uses simple undistorted typography across breakpoints", () => {
@@ -137,7 +137,7 @@ test("hero headline uses simple undistorted typography across breakpoints", () =
 
   assert.match(css, /max-width:\s*68rem/);
   assert.match(css, /font-family:\s*var\(--font-hero-body\),\s*sans-serif/);
-  assert.match(css, /font-size:\s*clamp\(3rem,\s*4\.6vw,\s*5\.75rem\)/);
+  assert.match(css, /font-size:\s*var\(--text-page\)/);
   assert.match(css, /font-weight:\s*680/);
   assert.match(css, /letter-spacing:\s*-0\.045em/);
   assert.match(css, /line-height:\s*1\.02/);
@@ -145,7 +145,7 @@ test("hero headline uses simple undistorted typography across breakpoints", () =
   assert.match(css, /text-transform:\s*none/);
   assert.match(css, /\.titleLine:nth-child\(2\)[\s\S]*color:\s*rgb\(255 250 243 \/ 76%\)/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.titleLine\s*\{[\s\S]*white-space:\s*normal/);
-  assert.match(css, /font-size:\s*clamp\(2\.75rem,\s*7vw,\s*5\.25rem\)/);
+  assert.match(css, /font-size:\s*var\(--text-page\)/);
 });
 
 test("hero headline uses the approved AI message", async () => {
@@ -188,7 +188,7 @@ test("hero capability chip keeps compact proportions", () => {
 
   assert.match(rail, /min-height:\s*2rem/);
   assert.match(rail, /padding:\s*0\.4rem 0\.75rem/);
-  assert.match(rail, /font-size:\s*0\.62rem/);
+  assert.match(rail, /font-size:\s*var\(--text-small\)/);
   assert.match(rail, /letter-spacing:\s*0\.1em/);
   assert.match(divider, /margin-inline:\s*0\.45rem/);
   assert.match(css, /@media \(max-width:\s*767px\)[\s\S]*\.capabilityRail \{[\s\S]*min-height:\s*1\.9rem/);

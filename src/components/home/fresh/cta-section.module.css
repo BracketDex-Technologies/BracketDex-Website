@@ -37,7 +37,7 @@
   margin: 0 0 1rem;
   color: #f25623;
   font-family: ui-monospace, monospace;
-  font-size: 0.7rem;
+  font-size: var(--text-small);
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0.12em;
@@ -48,7 +48,7 @@
   max-width: 11ch;
   margin: 0;
   color: #fffdf8;
-  font-size: clamp(2.65rem, 4vw, 4.4rem) !important;
+  font-size: var(--text-section) !important;
   font-weight: 500;
   line-height: 0.98 !important;
   letter-spacing: -0.05em !important;
@@ -59,7 +59,7 @@
   max-width: 34rem;
   margin: 1.15rem 0 0 !important;
   color: rgb(255 253 248 / 66%) !important;
-  font-size: 0.9rem !important;
+  font-size: var(--text-body) !important;
   line-height: 1.55 !important;
 }
 
@@ -79,7 +79,7 @@
   gap: 0.55rem;
   padding: 0.65rem 1rem;
   border-radius: 0.45rem;
-  font-size: 0.85rem;
+  font-size: var(--text-small);
   font-weight: 600;
   transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
 }
@@ -160,12 +160,12 @@
 
   .copy h2 {
     max-width: 13ch;
-    font-size: clamp(2.55rem, 12vw, 4rem) !important;
+    font-size: var(--text-section) !important;
   }
 
   .description {
     max-width: 30rem;
-    font-size: 0.9rem !important;
+    font-size: var(--text-body) !important;
   }
 
   .actions {

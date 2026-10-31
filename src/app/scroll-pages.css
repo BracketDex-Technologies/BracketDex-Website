@@ -1,9 +1,9 @@
 .bd-scroll-progress { position: fixed; z-index: 90; top: 0; left: 0; width: 100%; height: 2px; background: #bef7da; transform: scaleX(0); transform-origin: left; pointer-events: none; }
 html.bd-progressive-text-active #main-content .bd-nav-surface .bd-nav-cta > span:last-child { opacity: 1; filter: none; }
-.bd-scene-label { font: .65rem/1.6 ui-monospace, monospace; letter-spacing: .18em; text-transform: uppercase; color: #f25623; }
+.bd-scene-label { font: var(--text-small)/1.6 ui-monospace, monospace; letter-spacing: .18em; text-transform: uppercase; color: #f25623; }
 .bd-manifesto { position: relative; height: 185svh; background: #111111; color: #f5f0e6; }
 .bd-manifesto-sticky { position: sticky; top: 0; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; padding-block: 7rem 3rem; text-align: center; }
-.bd-landing .bd-manifesto h2 { max-width: 19ch; font-size: clamp(3rem, 6.5vw, 7rem); line-height: 1.06; }
+.bd-landing .bd-manifesto h2 { max-width: 19ch; font-size: var(--text-section); line-height: 1.06; }
 [data-scroll-word] { display: inline-block; }
 /* The page choreography owns visibility here, rather than the legacy blur observer. */
 html.bd-progressive-text-active #main-content.bd-landing.bd-inner-page :is(h1,h2,h3,p,a,li,summary),
@@ -13,26 +13,26 @@ html.bd-progressive-text-active .bd-landing .bd-post-hero .bd-manifesto :is(h2,p
 .bd-page-hero > .content-shell { display: flex; flex-direction: column; min-height: calc(100svh - 13rem); justify-content: space-between; gap: 5rem; }
 .bd-page-intro { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); column-gap: 5rem; align-items: end; }
 .bd-page-intro .bd-scene-label { grid-column: 1 / -1; margin-bottom: 2rem; }
-.bd-page-intro h1 { margin: 0; max-width: 20ch; font-size: clamp(2.7rem, 4.5vw, 5rem); line-height: 1.04; }
-.bd-page-intro > p:last-child { color: #f9b293; max-width: 30rem; line-height: 1.8; font-size: .95rem; margin: 0; }
+.bd-page-intro h1 { margin: 0; max-width: 20ch; font-size: var(--text-page); line-height: 1.04; }
+.bd-page-intro > p:last-child { color: #f9b293; max-width: 30rem; line-height: 1.8; font-size: var(--text-body); margin: 0; }
 .bd-page-display { color: #f5f0e6; display: flex; justify-content: space-between; width: 100%; line-height: .85; font-family: var(--font-alliance), sans-serif; letter-spacing: -.07em; overflow: clip; padding-block: .12em .06em; perspective: 800px; }
 .bd-page-display span { display: inline-block; }
 .bd-page-index { display: flex; flex-wrap: wrap; border: 1px solid #29231e; border-radius: 12px; }
-.bd-page-index > * { flex: 1 1 10rem; display: flex; align-items: center; justify-content: center; gap: 1rem; min-height: 4.5rem; padding: 1rem; font-size: .78rem; border-right: 1px solid #29231e; transition: background .25s; }
+.bd-page-index > * { flex: 1 1 10rem; display: flex; align-items: center; justify-content: center; gap: 1rem; min-height: 4.5rem; padding: 1rem; font-size: var(--text-small); border-right: 1px solid #29231e; transition: background .25s; }
 .bd-page-index a:hover { background: #29231e; }
-.bd-page-index a span { color: #f9b293; font: .65rem monospace; }
+.bd-page-index a span { color: #f9b293; font: var(--text-small) monospace; }
 .bd-page-chapter { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; gap: 6rem; padding-block: 7rem; border-bottom: 1px solid #29231e; scroll-margin-top: 6rem; }
 .bd-chapter-heading { position: sticky; top: 8rem; }
-.bd-chapter-heading h2 { margin: 1.5rem 0; font-size: clamp(2.5rem, 4vw, 4.5rem); line-height: 1.05; }
-.bd-chapter-heading > p:not(.bd-scene-label) { max-width: 28rem; color: #f9b293; line-height: 1.8; font-size: .93rem; }
+.bd-chapter-heading h2 { margin: 1.5rem 0; font-size: var(--text-section); line-height: 1.05; }
+.bd-chapter-heading > p:not(.bd-scene-label) { max-width: 28rem; color: #f9b293; line-height: 1.8; font-size: var(--text-small); }
 .bd-chapter-heading a { display: inline-block; margin-top: 1.5rem; color: #bef7da; }
 .bd-chapter-row { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 1rem; padding: 2.5rem .75rem; border-top: 1px solid #29231e; }
-.bd-chapter-row h3 { margin: 0; font-family: var(--font-editorial), sans-serif; font-weight: 200; font-size: clamp(1.6rem, 2.5vw, 2.4rem); line-height: 1.2; }
-.bd-chapter-row p { color: #f9b293; line-height: 1.8; margin-top: .8rem; font-size: .9rem; }
+.bd-chapter-row h3 { margin: 0; font-family: var(--font-editorial), sans-serif; font-weight: 200; font-size: var(--text-card); line-height: 1.2; }
+.bd-chapter-row p { color: #f9b293; line-height: 1.8; margin-top: .8rem; font-size: var(--text-body); }
 .bd-chapter-row > span:last-child { color: #f9b293; }
 .bd-chapter-row:hover { background: #111111; }
 .bd-page-outro { text-align: center; padding-block: 8rem; }
-.bd-page-outro h2 { max-width: 16ch; margin: 2rem auto; font-size: clamp(3rem, 6vw, 6rem); line-height: 1.04; }
+.bd-page-outro h2 { max-width: 16ch; margin: 2rem auto; font-size: var(--text-section); line-height: 1.04; }
 .bd-landing .bd-fresh-footer__word { overflow: clip; }
 .bd-inner-page .bd-nav-link[aria-current="page"] { text-decoration: underline; text-underline-offset: .6rem; }
 @media (max-width: 800px) {
@@ -40,12 +40,12 @@ html.bd-progressive-text-active .bd-landing .bd-post-hero .bd-manifesto :is(h2,p
   .bd-page-hero > .content-shell { min-height: calc(85svh - 10rem); gap: 3.5rem; }
   .bd-page-intro { grid-template-columns: 1fr; gap: 1.5rem; }
   .bd-page-intro .bd-scene-label { margin-bottom: 0; }
-  .bd-page-index > * { flex-basis: 45%; min-height: 4rem; font-size: .72rem; }
+  .bd-page-index > * { flex-basis: 45%; min-height: 4rem; font-size: var(--text-small); }
   .bd-page-chapter { grid-template-columns: 1fr; gap: 2rem; padding-block: 4rem; }
   .bd-chapter-heading { position: static; }
   .bd-manifesto { height: 145svh; }
   .bd-manifesto-sticky { min-height: 100svh; }
-  .bd-landing .bd-manifesto h2 { font-size: clamp(2.6rem, 10vw, 4.8rem); }
+  .bd-landing .bd-manifesto h2 { font-size: var(--text-section); }
   .bd-chapter-row { padding-inline: 0; }
   .bd-landing .bd-mobile-panel { max-height: calc(100svh - 6rem); overflow-y: auto; }
 }

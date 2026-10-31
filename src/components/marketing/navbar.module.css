@@ -103,7 +103,7 @@
   justify-content: center;
   color: inherit;
   font-family: var(--font-hero-body), sans-serif;
-  font-size: clamp(0.9rem, 1vw, 1.08rem);
+  font-size: var(--text-body);
   font-weight: 510;
   line-height: 1;
   white-space: nowrap;
@@ -184,7 +184,7 @@
 
 .mobileToggleLabel {
   font-family: var(--font-hero-body), sans-serif;
-  font-size: 0.9rem;
+  font-size: var(--text-body);
   font-weight: 560;
 }
 
@@ -234,7 +234,7 @@
   border-bottom: 1px solid rgb(23 23 23 / 14%);
   color: var(--nav-charcoal);
   font-family: var(--font-hero-body), sans-serif;
-  font-size: 1.05rem;
+  font-size: var(--text-body);
   font-weight: 520;
   transition: color 180ms ease, padding-left 180ms ease;
 }

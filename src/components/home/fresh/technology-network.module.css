@@ -9,9 +9,9 @@
 }
 .inner { width: min(100% - 2.5rem, 86rem); margin-inline: auto; }
 .heading { text-align: center; }
-.section .heading p { margin: 0 0 1rem; color: #f98761; font-size: .75rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
-.section .heading h2 { margin: 0; color: #f5f0e6; font-family: var(--font-body), sans-serif; font-weight: 500; font-size: clamp(2.3rem, 4.2vw, 4rem); letter-spacing: -.05em; line-height: 1.08; }
-.subheading { margin-top: 1rem; font-size: clamp(1rem, 1.5vw, 1.3rem); color: #beb5aa; }
+.section .heading p { margin: 0 0 1rem; color: #f98761; font-size: var(--text-small); font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
+.section .heading h2 { margin: 0; color: #f5f0e6; font-family: var(--font-body), sans-serif; font-weight: 500; font-size: var(--text-section); letter-spacing: -.05em; line-height: 1.08; }
+.subheading { margin-top: 1rem; font-size: var(--text-body); color: #beb5aa; }
 .subheading span { color: #f98761; }
 .diagram { position: relative; height: 690px; margin-top: 3rem; isolation: isolate; }
 .connections { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
@@ -23,7 +23,7 @@
 .nodes { margin: 0; padding: 0; list-style: none; }
 /* Keep structural placement independent of the legacy text-reveal transform. */
 .node { position: absolute; top: var(--node-y); left: var(--node-x); translate: -50% -50%; width: 290px; z-index: 3; text-align: center; }
-.section .node h3 { margin: 0; color: #f5f0e6; font-family: var(--font-body), sans-serif; font-size: 1.1rem; font-weight: 550; letter-spacing: -.025em; line-height: 1.2; }
+.section .node h3 { margin: 0; color: #f5f0e6; font-family: var(--font-body), sans-serif; font-size: var(--text-card); font-weight: 550; letter-spacing: -.025em; line-height: 1.2; }
 .icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 1.35rem; margin-top: 1rem; }
 .icon { position: relative; display: inline-grid; place-items: center; width: var(--tech-icon-size); height: var(--tech-icon-size); padding: 8px; border: 0; border-radius: 50%; background: transparent; color: #f98761; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .icon:active { cursor: grabbing; }
@@ -33,7 +33,7 @@
 .icon:focus-visible { outline: 2px solid #f25623; outline-offset: 5px; }
 .icon img { display: block; width: var(--tech-mark-size); height: var(--tech-mark-size); object-fit: contain; pointer-events: none; }
 .icon img.lightMark { background: #f5f0e6; border-radius: 50%; padding: 5px; }
-.tooltip { position: absolute; top: 100%; left: 50%; translate: -50% 0; padding: .35rem .6rem; border: 1px solid #68513e; border-radius: .35rem; background: #171717; color: #f5f0e6; font-size: .75rem; line-height: 1.3; white-space: nowrap; visibility: hidden; opacity: 0; pointer-events: auto; transition: opacity .15s; }
+.tooltip { position: absolute; top: 100%; left: 50%; translate: -50% 0; padding: .35rem .6rem; border: 1px solid #68513e; border-radius: .35rem; background: #171717; color: #f5f0e6; font-size: var(--text-small); line-height: 1.3; white-space: nowrap; visibility: hidden; opacity: 0; pointer-events: auto; transition: opacity .15s; }
 .tooltip[data-open="true"] { visibility: visible; opacity: 1; }
 /* Offset side clusters so parallel connections get distinct, readable lanes. */
 .node:nth-child(4) .icon:nth-child(odd),
@@ -55,7 +55,7 @@
   .node:nth-child(4) { order: 2; }
   .node:nth-child(7) { grid-column: 1 / -1; width: calc(50% - .5rem); justify-self: center; }
   .wordmark { width: min(84vw, 27rem); }
-  .section .node h3 { font-size: 1.05rem; }
+  .section .node h3 { font-size: var(--text-card); }
   .icons { gap: .55rem .75rem; }
   .icon { padding: 6px; }
   .node:nth-child(4) .icon:nth-child(n),
