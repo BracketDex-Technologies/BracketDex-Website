@@ -33,22 +33,11 @@
   text-align: left;
 }
 
-.eyebrow {
-  margin: 0 0 1rem;
-  color: #f25623;
-  font-family: ui-monospace, monospace;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .copy h2 {
   max-width: 11ch;
   margin: 0;
   color: #fffdf8;
-  font-size: clamp(2.65rem, 4vw, 4.4rem) !important;
+  font-size: clamp(2.9rem, 4.5vw, 4.9rem) !important;
   font-weight: 500;
   line-height: 0.98 !important;
   letter-spacing: -0.05em !important;
@@ -59,7 +48,7 @@
   max-width: 34rem;
   margin: 1.15rem 0 0 !important;
   color: rgb(255 253 248 / 66%) !important;
-  font-size: 0.9rem !important;
+  font-size: 1rem !important;
   line-height: 1.55 !important;
 }
 
@@ -73,13 +62,13 @@
 .primaryAction,
 .secondaryAction {
   display: inline-flex;
-  min-height: 2.75rem;
+  min-height: 3rem;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  padding: 0.65rem 1rem;
+  padding: 0.75rem 1.15rem;
   border-radius: 0.45rem;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
 }
@@ -160,12 +149,12 @@
 
   .copy h2 {
     max-width: 13ch;
-    font-size: clamp(2.55rem, 12vw, 4rem) !important;
+    font-size: clamp(2.8rem, 12.8vw, 4.4rem) !important;
   }
 
   .description {
     max-width: 30rem;
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
   }
 
   .actions {

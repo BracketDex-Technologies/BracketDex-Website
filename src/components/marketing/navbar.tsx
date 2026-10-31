@@ -40,16 +40,137 @@ export function Navbar({
   const headerRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDetailsElement>(null);
   const sentinelRef = useRef<HTMLSpanElement>(null);
+  const closeMenuRef = useRef<(restoreFocus?: boolean, animate?: boolean) => void>(() => {});
 
   useEffect(() => {
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && menuRef.current?.open) {
-        menuRef.current.open = false;
-        menuRef.current.querySelector("summary")?.focus();
+    const menu = menuRef.current;
+    const summary = menu?.querySelector("summary");
+    const panel = menu?.querySelector<HTMLElement>("[data-mobile-panel]");
+    if (!menu || !summary || !panel) return;
+
+    const mobile = window.matchMedia("(max-width: 1070px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let animation: Animation | null = null;
+    let closing = false;
+    let locked = false;
+    let previousBodyOverflow = "";
+    let previousRootOverflow = "";
+
+    const releaseMenu = () => {
+      closing = false;
+      menu.removeAttribute("role");
+      menu.removeAttribute("aria-modal");
+      menu.removeAttribute("aria-label");
+      summary.setAttribute("aria-label", "Open navigation");
+      if (locked) {
+        document.body.style.overflow = previousBodyOverflow;
+        document.documentElement.style.overflow = previousRootOverflow;
+        locked = false;
       }
     };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
+
+    const finishClose = (restoreFocus: boolean) => {
+      menu.open = false;
+      animation?.cancel();
+      animation = null;
+      releaseMenu();
+      if (restoreFocus && mobile.matches) summary.focus({ preventScroll: true });
+    };
+
+    const closeMenu = (restoreFocus = true, animate = true) => {
+      if (!menu.open || closing) return;
+      closing = true;
+      const opacity = window.getComputedStyle(panel).opacity;
+      animation?.cancel();
+      if (!animate || reducedMotion.matches || typeof panel.animate !== "function") {
+        finishClose(restoreFocus);
+        return;
+      }
+      animation = panel.animate([{ opacity }, { opacity: 0 }], { duration: 220, easing: "ease", fill: "forwards" });
+      animation.onfinish = () => finishClose(restoreFocus);
+    };
+    closeMenuRef.current = closeMenu;
+
+    const activateMenu = () => {
+      if (!mobile.matches) {
+        finishClose(false);
+        return;
+      }
+      const opacity = closing ? window.getComputedStyle(panel).opacity : 0;
+      animation?.cancel();
+      closing = false;
+      menu.setAttribute("role", "dialog");
+      menu.setAttribute("aria-modal", "true");
+      menu.setAttribute("aria-label", "Site navigation");
+      summary.setAttribute("aria-label", "Close navigation");
+      if (!locked) {
+        previousBodyOverflow = document.body.style.overflow;
+        previousRootOverflow = document.documentElement.style.overflow;
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+        locked = true;
+      }
+      if (!reducedMotion.matches && typeof panel.animate === "function") {
+        animation = panel.animate([{ opacity }, { opacity: 1 }], { duration: 280, easing: "ease", fill: "both" });
+      }
+      panel.querySelector<HTMLAnchorElement>("a")?.focus({ preventScroll: true });
+    };
+
+    const onToggle = () => {
+      if (menu.open) activateMenu();
+      else {
+        animation?.cancel();
+        animation = null;
+        releaseMenu();
+      }
+    };
+    const onSummaryClick = (event: MouseEvent) => {
+      event.preventDefault();
+      if (closing) activateMenu();
+      else if (menu.open) closeMenu();
+      else menu.open = true;
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!menu.open) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu();
+      } else if (event.key === "Tab") {
+        const controls = [summary, ...panel.querySelectorAll<HTMLAnchorElement>("a[href]")];
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && (document.activeElement === first || !menu.contains(document.activeElement))) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || !menu.contains(document.activeElement))) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    const onFocusIn = (event: FocusEvent) => {
+      if (menu.open && !menu.contains(event.target as Node)) panel.querySelector<HTMLAnchorElement>("a")?.focus({ preventScroll: true });
+    };
+    const onBreakpointChange = () => {
+      if (!mobile.matches) finishClose(false);
+    };
+
+    summary.addEventListener("click", onSummaryClick);
+    menu.addEventListener("toggle", onToggle);
+    window.addEventListener("keydown", onKeyDown);
+    document.addEventListener("focusin", onFocusIn);
+    mobile.addEventListener("change", onBreakpointChange);
+    if (menu.open) activateMenu();
+    return () => {
+      summary.removeEventListener("click", onSummaryClick);
+      menu.removeEventListener("toggle", onToggle);
+      window.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("focusin", onFocusIn);
+      mobile.removeEventListener("change", onBreakpointChange);
+      animation?.cancel();
+      releaseMenu();
+      closeMenuRef.current = () => {};
+    };
   }, []);
 
   useEffect(() => {
@@ -119,7 +240,7 @@ export function Navbar({
     };
   }, [transparentOnHero]);
 
-  const closeMenu = () => { if (menuRef.current) menuRef.current.open = false; };
+  const closeMenu = () => closeMenuRef.current(false, false);
 
   return (
     <>
@@ -131,7 +252,7 @@ export function Navbar({
         ref={headerRef}
       >
         <nav aria-label="Primary navigation" className={styles.inner}>
-          <Link aria-label={`${brandName} home`} className={styles.wordmark} href="/">
+          <Link aria-label={`${brandName} home`} className={styles.wordmark} href="/" onClick={closeMenu}>
             <Image
               alt=""
               aria-hidden="true"
@@ -168,11 +289,11 @@ export function Navbar({
             <span aria-hidden="true" className={styles.ctaArrow}>↗</span>
           </Link>
           <details className={styles.mobileMenu} data-mobile-menu ref={menuRef}>
-            <summary className={styles.mobileToggle}>
-              <span className={styles.mobileToggleLabel}>Menu</span>
+            <summary aria-label="Open navigation" className={styles.mobileToggle}>
               <span aria-hidden="true" className={styles.menuBars}><span /><span /></span>
             </summary>
-            <div className={styles.mobilePanel}>
+            <div className={styles.mobilePanel} data-mobile-panel data-lenis-prevent>
+              <div className={styles.mobileLinks}>
               {routes.map((item) => (
                 <Link
                   aria-current={activeHref === item.href ? "page" : undefined}
@@ -188,6 +309,7 @@ export function Navbar({
                 {ctaLabel}
                 <span aria-hidden="true" className={styles.ctaArrow}>↗</span>
               </Link>
+              </div>
             </div>
           </details>
         </nav>
