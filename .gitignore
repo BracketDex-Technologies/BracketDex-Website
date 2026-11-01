@@ -3,6 +3,8 @@ node_modules/
 
 # next
 .next/
+.next-launch-check/
+.next-consent-check/
 .next-verify/
 .next-minimal-verify/
 out/

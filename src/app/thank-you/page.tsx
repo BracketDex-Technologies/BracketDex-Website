@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Thank you | BracketDex Technologies",
-  description: "Your BracketDex project enquiry is ready for the next step.",
+  title: "Thank you",
+  description: "Your enquiry has been sent to BracketDex Technologies. Our team will review your requirements and get back to you.",
   robots: { index: false, follow: false },
 };
 

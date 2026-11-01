@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { AnalyticsConsent } from "@/components/marketing/analytics-consent";
 import { Instrument_Sans, Syne } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -46,6 +47,7 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
   metadataBase: new URL(siteConfig.url),
   title: {
     default: "BracketDex Technologies | Engineering Solutions For Growing Businesses",
@@ -91,6 +93,7 @@ export default function RootLayout({
       </head>
       <body className={`${pontano.variable} ${stint.variable} ${instrumentSans.variable} ${syne.variable}`}>
         <SiteLoader />
+        <AnalyticsConsent />
         <div id="site-content">
           <SmoothScroll root lerp={0.15} wheelMultiplier={1}>
             <a className="skip-link" href="#main-content">

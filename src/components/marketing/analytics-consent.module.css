@@ -1,0 +1,7 @@
+.banner { position: fixed; z-index: 10000; bottom: 1rem; left: 1rem; right: 1rem; max-width: 42rem; padding: 1.25rem; background: #fffdf7; color: #252521; border: 1px solid #767570; box-shadow: 0 4px 24px #0002; font: 1rem/1.5 Arial, sans-serif; }
+.banner p { margin: 0 0 1rem; }
+.banner a { text-decoration: underline; }
+.banner div { display: flex; flex-wrap: wrap; gap: .75rem; }
+.banner button, .settings { min-height: 44px; padding: .6rem 1rem; border: 1px solid #252521; background: #fffdf7; color: #252521; cursor: pointer; font-size: 1rem; }
+.settings { position: fixed; z-index: 9999; bottom: 1rem; left: 1rem; }
+.banner button:focus-visible, .settings:focus-visible { outline: 3px solid #b94820; outline-offset: 3px; }
