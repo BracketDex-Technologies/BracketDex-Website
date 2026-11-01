@@ -27,7 +27,7 @@ export function SiteLoader() {
     let cancelled = false;
     let timeline: gsap.core.Timeline | undefined;
     let animationFrame = 0;
-    let failSafe: number | undefined;
+    const failSafe: { id?: number } = {};
     let land: (() => void) | undefined;
     let resize: (() => void) | undefined;
     const onPreferenceChange = () => { if (reduce.matches) finish(); };
@@ -40,7 +40,7 @@ export function SiteLoader() {
       land?.();
       cancelled = true;
       window.cancelAnimationFrame(animationFrame);
-      window.clearTimeout(failSafe);
+      window.clearTimeout(failSafe.id);
       timeline?.kill();
       window.removeEventListener("bd-site-loader-timeout", finish);
       reduce.removeEventListener("change", onPreferenceChange);
@@ -56,7 +56,7 @@ export function SiteLoader() {
 
     html.classList.add("bd-site-loader-active");
     if (content) content.inert = true;
-    failSafe = window.setTimeout(finish, 5500);
+    failSafe.id = window.setTimeout(finish, 5500);
     window.addEventListener("bd-site-loader-timeout", finish);
     reduce.addEventListener("change", onPreferenceChange);
 
@@ -135,7 +135,7 @@ export function SiteLoader() {
       cancelled = true;
       window.cancelAnimationFrame(animationFrame);
       timeline?.kill();
-      window.clearTimeout(failSafe);
+      window.clearTimeout(failSafe.id);
       window.removeEventListener("bd-site-loader-timeout", finish);
       if (resize) window.removeEventListener("resize", resize);
       reduce.removeEventListener("change", onPreferenceChange);

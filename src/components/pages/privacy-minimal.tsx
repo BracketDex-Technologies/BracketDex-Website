@@ -5,7 +5,7 @@ import styles from "./minimal-pages.module.css";
 const sections = [
   ["Information we process", "Our contact form sends your name, email, optional company name, and message to our email delivery provider, Web3Forms, so we can receive your enquiry. Technical details, including your IP address, may be processed to deliver the site and prevent abuse."],
   ["How we use it", "We use enquiries to respond to your questions and discuss your project. The form validates your entries without saving them to an enquiry database. Messages you send are kept as email correspondence for the enquiry, any resulting work, and applicable record-keeping needs."],
-  ["Cookies and external services", "This website currently has no advertising trackers or Google Analytics integration. Hosting and email providers process information to operate their services. External websites have their own privacy policies."],
+  ["Cookies and external services", "When configured, optional Google Analytics loads only after you accept analytics cookies. It helps us understand page visits, including visits to our enquiry confirmation page. Your choice is saved in your browser; use Cookie settings to change it. Hosting, Web3Forms, and email providers process information to operate their services. External websites have their own privacy policies."],
   ["Your choices", "You can ask about information you have shared or request a correction or deletion. We may need to verify your identity; applicable legal requirements may affect what we can delete. Please avoid sending passwords or sensitive information."],
 ];
 
@@ -13,7 +13,7 @@ export function PrivacyMinimalPage() {
   return <MinimalMarketingShell page="privacy">
     <article className={styles.privacy} aria-labelledby="privacy-title">
       <header>
-        <p className={styles.eyebrow}>Last updated: 31 October 2026</p>
+        <p className={styles.eyebrow}>Last updated: 1 November 2026</p>
         <h1 id="privacy-title">Privacy Policy.</h1>
         <p className={styles.privacyLead}>How BracketDex Technologies handles information shared through this website.</p>
       </header>
