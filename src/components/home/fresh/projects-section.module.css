@@ -182,6 +182,11 @@
   margin-top: clamp(2rem, 4vw, 3rem);
 }
 
+.projectEnquiry { display: inline-flex; align-items: center; align-self: flex-start; gap: .4rem; min-height: 44px; margin-top: .75rem; font-size: var(--text-small); line-height: 1.5; text-decoration: underline; text-underline-offset: .2em; }
+.projectEnquiry:hover { color: #b94820; }
+.projectEnquiry:focus-visible { outline: 2px solid #b94820; outline-offset: 3px; }
+.emptyResults { padding: 2rem 0; font-size: var(--text-body); line-height: 1.6; }
+
 .primaryAction,
 .secondaryAction {
   display: inline-flex;

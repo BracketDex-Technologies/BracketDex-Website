@@ -28,6 +28,9 @@
   background: var(--hero-charcoal);
 }
 
+.motionToggle { position: absolute; z-index: 3; bottom: 1rem; right: 1.25rem; display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: .6rem .9rem; border: 1px solid #f4efe680; border-radius: 2rem; background: #171717d9; color: #f4efe6; font: inherit; font-size: .875rem; cursor: pointer; }
+.motionToggle:focus-visible { outline: 2px solid #f4efe6; outline-offset: 4px; }
+
 .poster {
   display: block;
 }

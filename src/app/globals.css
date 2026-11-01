@@ -95,9 +95,27 @@
   --shadow-lift: 0 22px 64px rgb(0 0 0 / 0.42);
 }
 
-/* Preserve the homepage's authored palette instead of browser auto-darkening. */
-html:has([data-home-hero="cinematic"]) {
+/* Keep browser controls aligned with the marketing site's authored palette. */
+html:has(main.bd-landing) {
   color-scheme: only light;
+}
+
+/* Browsers give autofilled fields their own background and text colors.
+   Paint the cream surface over that fill without removing the focus outline. */
+.bd-inner-page :is(input, textarea, select) {
+  color-scheme: only light;
+  caret-color: #252521;
+}
+.bd-inner-page :is(input, textarea):autofill {
+  background-color: #fffdf7 !important;
+  color: #252521 !important;
+  -webkit-text-fill-color: #252521 !important;
+  box-shadow: inset 0 0 0 1000px #fffdf7 !important;
+}
+.bd-inner-page :is(input, textarea):-webkit-autofill {
+  -webkit-text-fill-color: #252521 !important;
+  -webkit-box-shadow: inset 0 0 0 1000px #fffdf7 !important;
+  caret-color: #252521;
 }
 
 @theme inline {
