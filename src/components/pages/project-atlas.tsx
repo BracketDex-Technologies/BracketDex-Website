@@ -6,7 +6,8 @@ import { ArrowRight, ArrowUpRight, BookOpen, ChartNoAxesColumnIncreasing, House,
 import { useState } from "react";
 import { ProjectsSection } from "@/components/home/fresh/projects-section";
 import { caseStudies } from "@/content/case-studies";
-import { projectMatchesCategory, type ProjectCategory } from "@/content/project-categories";
+import { type ProjectCategory } from "@/content/project-categories";
+import { matchesProjectSearch } from "@/content/project-search";
 import styles from "./projects-atlas.module.css";
 
 const contexts = [
@@ -19,7 +20,8 @@ const contexts = [
 
 export function ProjectAtlas() {
   const [category, setCategory] = useState<ProjectCategory>("All");
-  const visibleCount = caseStudies.filter((study) => projectMatchesCategory(study.category, category, study.name)).length;
+  const [query, setQuery] = useState("");
+  const visibleCount = caseStudies.filter((study) => matchesProjectSearch(study, category, query)).length;
 
   return <>
     <section aria-labelledby="atlas-title" className={`${styles.editorial} ${styles.intro}`}>
@@ -37,6 +39,11 @@ export function ProjectAtlas() {
             <span className={styles.contextLabel}>{lines.map((line) => <span key={line}>{line}</span>)}</span>
           </button>)}
         </nav>
+        <div className={styles.searchBar}>
+          <label htmlFor="project-search">Find a project</label>
+          <input id="project-search" type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search by name, industry or challenge" aria-controls="portfolio" />
+          {(query || category !== "All") && <button type="button" onClick={() => { setQuery(""); setCategory("All"); }}>Clear filters</button>}
+        </div>
         <div className={styles.toolbar}>
           <p role="status">{category === "All" ? "All sectors" : category} · {visibleCount} {visibleCount === 1 ? "project" : "projects"}</p>
           <span aria-hidden="true" className={styles.rule} />
@@ -50,7 +57,7 @@ export function ProjectAtlas() {
         </div>
       </div>
     </section>
-    <div className={styles.collection}><ProjectsSection all atlas filterCategory={category} /></div>
+    <div className={styles.collection}><ProjectsSection all atlas filterCategory={category} searchQuery={query} /></div>
     <section aria-labelledby="project-brief-title" className={`${styles.editorial} ${styles.closing}`}>
       <div className={styles.closingTitle}><span aria-hidden="true" /><h2 id="project-brief-title">Your context may be different.</h2><span aria-hidden="true" /></div>
       <Link href="/contact?topic=project-brief">Share a project brief<ArrowUpRight aria-hidden="true" size={17} strokeWidth={1.2} /></Link>

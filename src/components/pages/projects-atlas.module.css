@@ -23,6 +23,12 @@
 .toolbar > p { flex: 0 1 auto; font-size: var(--text-body); line-height: 1.45; }
 .rule { height: 1px; flex: 1 1 3rem; background: var(--atlas-line); }
 .selectWrap { position: relative; flex: 0 0 auto; }
+.searchBar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; margin-top: 2rem; }
+.searchBar label { font-size: var(--text-body); }
+.searchBar input { flex: 1 1 18rem; min-width: 0; min-height: 48px; padding: .7rem 1rem; border: 1px solid #767570; border-radius: 0; background: transparent; color: inherit; font: inherit; font-size: var(--text-body); }
+.searchBar input::placeholder { color: #625d55; opacity: 1; }
+.searchBar button { min-height: 44px; padding: .5rem .75rem; border: 1px solid #767570; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.searchBar :is(input, button):focus-visible { outline: 2px solid #b94820; outline-offset: 4px; }
 .selectWrap select { width: clamp(10rem, 18vw, 16rem); min-height: 44px; appearance: none; padding: 0.65rem 2.7rem 0.65rem 1rem; border: 1px solid #53514d; border-radius: 0; background: transparent; color: inherit; font: inherit; font-size: var(--text-body); cursor: pointer; text-overflow: ellipsis; }
 .selectWrap select option { background: var(--atlas-paper); color: var(--atlas-ink); }
 .selectWrap select:focus-visible { outline: 2px solid #b94820; outline-offset: 4px; }
@@ -48,9 +54,9 @@
   .contextIcon { width: 1.65rem; height: 1.65rem; }
   .contextLabel { font-size: var(--text-card); }
   .toolbar { flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; margin-block: 1.4rem; }
-  .toolbar > p { max-width: 45%; font-size: var(--text-body); }
+  .toolbar > p { max-width: 100%; width: 100%; font-size: var(--text-body); }
   .rule { display: none; }
-  .selectWrap { max-width: 52%; }
+  .selectWrap { width: 100%; max-width: 100%; }
   .selectWrap select { width: 100%; max-width: 100%; font-size: var(--text-body); padding-left: 0.7rem; }
   .page .collection :global(.content-shell) { width: calc(100% - 2.5rem); }
   .closing { width: calc(100% - 2.5rem); padding-block: 1.75rem; }

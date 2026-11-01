@@ -1,7 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { caseStudies } from "@/content/case-studies";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -12,10 +14,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
 const contactFormSchema = z.object({
-  name: z.string().trim().min(2, "Enter your name."),
-  email: z.string().trim().email("Enter a valid email address."),
-  company: z.string().trim().optional(),
-  message: z.string().trim().min(10, "Share a short project or business challenge."),
+  name: z.string().trim().min(2, "Enter your name.").max(120, "Use 120 characters or fewer."),
+  email: z.string().trim().email("Enter a valid email address.").max(254),
+  company: z.string().trim().max(160, "Use 160 characters or fewer.").optional(),
+  message: z.string().trim().min(10, "Share a short project or business challenge.").max(5000, "Use 5,000 characters or fewer."),
   website: z.string().max(0).optional(),
 });
 
@@ -31,6 +33,8 @@ export function ContactForm({ className }: ContactFormProps = {}) {
     formState: { errors, isSubmitting },
     handleSubmit,
     register,
+    getValues,
+    setValue,
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -40,6 +44,20 @@ export function ContactForm({ className }: ContactFormProps = {}) {
       name: "",
     },
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const topics: Record<string, string> = {
+      "software-development": "custom software development", "ai-solutions": "AI solutions",
+      "business-automation": "business automation", "cloud-devops": "cloud and DevOps",
+      "digital-growth": "digital growth", "project-brief": "a new project",
+      "define-change": "improving a business workflow", "repeated-approvals": "simplifying repeated approvals",
+    };
+    const key = params.get("service") || params.get("topic") || params.get("scenario") || "";
+    const project = caseStudies.find(study => study.name === params.get("project"));
+    const opening = project ? `I'd like to discuss a project similar to ${project.name}.` : topics[key] ? `I'd like to discuss ${topics[key]}.` : "";
+    if (opening && !getValues("message")) setValue("message", `${opening}\n\n`);
+  }, [getValues, setValue]);
 
   async function onSubmit(values: ContactFormValues) {
     setStatus(null);
@@ -57,7 +75,7 @@ export function ContactForm({ className }: ContactFormProps = {}) {
 
   return (
     <form
-      aria-describedby="contact-form-description"
+      aria-describedby="contact-form-description contact-privacy-note"
       className={cn("rounded-xl border border-border bg-card p-6 shadow-soft", className)}
       id="contact-form"
       noValidate
@@ -84,9 +102,10 @@ export function ContactForm({ className }: ContactFormProps = {}) {
         </Field>
         <Field data-invalid={Boolean(errors.message)}>
           <FieldLabel htmlFor="message">Message</FieldLabel>
-          <Textarea aria-describedby={errors.message ? "message-error" : undefined} aria-invalid={Boolean(errors.message)} id="message" rows={5} {...register("message")} />
+          <Textarea aria-describedby={errors.message ? "message-error" : undefined} aria-invalid={Boolean(errors.message)} id="message" rows={5} placeholder="What would you like to build or improve? Share your goals, current challenge, and any timeline." {...register("message")} />
           <FieldError errors={[errors.message]} id="message-error" />
         </Field>
+        <p className="col-span-full text-sm leading-6" id="contact-privacy-note">We use your details to respond to your enquiry. Please avoid sharing passwords or sensitive information. <Link className="underline underline-offset-4" href="/privacy">Read our privacy policy</Link>.</p>
         <Button aria-disabled={isSubmitting || undefined} disabled={isSubmitting} type="submit">
           {isSubmitting ? "Sending…" : "Send Enquiry"}
         </Button>

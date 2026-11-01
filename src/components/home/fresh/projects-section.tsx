@@ -6,13 +6,14 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import styles from "./projects-section.module.css";
 import { caseStudyDetails } from "@/content/case-study-details";
-import { projectCategories as categories, projectMatchesCategory, type ProjectCategory } from "@/content/project-categories";
+import { matchesProjectSearch } from "@/content/project-search";
+import { projectCategories as categories, type ProjectCategory } from "@/content/project-categories";
 
-export function ProjectsSection({ all = false, atlas = false, filterCategory }: { all?: boolean; atlas?: boolean; filterCategory?: ProjectCategory }) {
+export function ProjectsSection({ all = false, atlas = false, filterCategory, searchQuery = "" }: { all?: boolean; atlas?: boolean; filterCategory?: ProjectCategory; searchQuery?: string }) {
   const studies = all ? caseStudies : featuredCaseStudies;
   const [localCategory, setCategory] = useState<ProjectCategory>("All");
   const category = filterCategory ?? localCategory;
-  const visibleStudies = studies.filter((study) => projectMatchesCategory(study.category, category, study.name));
+  const visibleStudies = studies.filter((study) => matchesProjectSearch(study, category, searchQuery));
   return (
     <section
       aria-labelledby={all ? "portfolio-title" : "fresh-projects-title"}
@@ -60,10 +61,12 @@ export function ProjectsSection({ all = false, atlas = false, filterCategory }: 
               <ul aria-label={`${study.name} categories`} className={styles.labels}>
                 {labels.map((label) => <li key={label}>{label}</li>)}
               </ul>
+              {all && <Link className={styles.projectEnquiry} href={`/contact?project=${encodeURIComponent(study.name)}`}>Discuss a similar project<span className="sr-only"> to {study.name}</span><ArrowUpRight aria-hidden="true" size={16} /></Link>}
             </li>
             );
           })}
         </ul>
+        {visibleStudies.length === 0 && <p className={styles.emptyResults}>No projects match these filters. Try a different search or clear the filters above.</p>}
 
         {!all ? (
           <div className={styles.actions}>
