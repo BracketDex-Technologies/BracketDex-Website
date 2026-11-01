@@ -31,6 +31,10 @@ export function SiteLoader() {
     let land: (() => void) | undefined;
     let resize: (() => void) | undefined;
     const onPreferenceChange = () => { if (reduce.matches) finish(); };
+    const removeMotionListener = () => {
+      if (reduce.removeEventListener) reduce.removeEventListener("change", onPreferenceChange);
+      else reduce.removeListener(onPreferenceChange);
+    };
 
     const release = () => {
       html.classList.remove("bd-site-loader-active");
@@ -43,7 +47,7 @@ export function SiteLoader() {
       window.clearTimeout(failSafe.id);
       timeline?.kill();
       window.removeEventListener("bd-site-loader-timeout", finish);
-      reduce.removeEventListener("change", onPreferenceChange);
+      removeMotionListener();
       if (resize) window.removeEventListener("resize", resize);
       html.dataset.siteLoader = "done";
       release();
@@ -58,13 +62,20 @@ export function SiteLoader() {
     if (content) content.inert = true;
     failSafe.id = window.setTimeout(finish, 5500);
     window.addEventListener("bd-site-loader-timeout", finish);
-    reduce.addEventListener("change", onPreferenceChange);
+    if (reduce.addEventListener) reduce.addEventListener("change", onPreferenceChange);
+    else reduce.addListener(onPreferenceChange);
 
     const start = async () => {
       const font = window.getComputedStyle(mark).fontFamily;
-      const loaded = await document.fonts.load(`100px ${font}`, "{BracketDex}");
+      // Cached fonts may return an empty list on older Safari. Slow or missing
+      // Font Loading APIs must not cancel the animation or hold up the page.
+      if (document.fonts?.load) {
+        await Promise.race([
+          document.fonts.load(`100px ${font}`, "{BracketDex}").catch(() => []),
+          new Promise(resolve => window.setTimeout(resolve, 700)),
+        ]);
+      }
       if (cancelled || html.dataset.siteLoader !== "pending") return;
-      if (!loaded.length) { finish(); return; }
 
       const image = Array.from(navbar.querySelectorAll("img")).find((item) => item.getBoundingClientRect().width > 0);
       const open = glyphs.querySelector<SVGGElement>("[data-loader-open]")!;
@@ -121,7 +132,7 @@ export function SiteLoader() {
       // Keep the intro within its wall-clock budget even when a frame is dropped.
       const started = performance.now();
       const elapsed = (started - Number(html.dataset.siteLoaderStarted)) / 1000;
-      const budget = Math.min(4.8, Math.max(0.1, 5.75 - elapsed));
+      const budget = Math.min(4.8, Math.max(1.8, 5.75 - elapsed));
       const tick = (now: number) => {
         if (cancelled) return;
         timeline?.time(Math.min((now - started) / (budget * 1000), 1) * 4.8);
@@ -138,7 +149,7 @@ export function SiteLoader() {
       window.clearTimeout(failSafe.id);
       window.removeEventListener("bd-site-loader-timeout", finish);
       if (resize) window.removeEventListener("resize", resize);
-      reduce.removeEventListener("change", onPreferenceChange);
+      removeMotionListener();
       release();
     };
   }, []);
