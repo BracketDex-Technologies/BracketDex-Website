@@ -61,10 +61,25 @@ export function ContactForm({ className }: ContactFormProps = {}) {
 
   async function onSubmit(values: ContactFormValues) {
     setStatus(null);
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim();
+    if (!accessKey) {
+      setStatus("Enquiry delivery is unavailable. Please email us directly.");
+      return;
+    }
     try {
       const validation = await fetch("/api/contact", { body: JSON.stringify(values), headers: { "Content-Type": "application/json" }, method: "POST" });
       if (!validation.ok) {
         setStatus((await validation.json().catch(() => null))?.error ?? "Please try again in a few minutes.");
+        return;
+      }
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ access_key: accessKey, subject: "New BracketDex enquiry", from_name: "BracketDex website", name: values.name, email: values.email, company: values.company || "Not provided", message: values.message }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || result?.success !== true) {
+        setStatus("We could not send your enquiry. Please try again or email us directly.");
         return;
       }
       window.location.href = "/thank-you";

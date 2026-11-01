@@ -3,7 +3,7 @@ import { MinimalMarketingShell } from "./minimal-marketing-shell";
 import styles from "./minimal-pages.module.css";
 
 const sections = [
-  ["Information we process", "Our contact form sends your name, email, optional company name, and message to our email delivery provider, Web3Forms, so we can receive your enquiry. Technical details, including your IP address, may be processed to deliver the site and prevent abuse."],
+  ["Information we process", "Our contact form validates your name, email, optional company name, and message on the website server, then submits those details from your browser to our email delivery provider, Web3Forms, so we can receive your enquiry. Technical details, including your IP address, may be processed to deliver the site and prevent abuse."],
   ["How we use it", "We use enquiries to respond to your questions and discuss your project. The form validates your entries without saving them to an enquiry database. Messages you send are kept as email correspondence for the enquiry, any resulting work, and applicable record-keeping needs."],
   ["Cookies and external services", "When configured, optional Google Analytics loads only after you accept analytics cookies. It helps us understand page visits, including visits to our enquiry confirmation page. Your choice is saved in your browser; use Cookie settings to change it. Hosting, Web3Forms, and email providers process information to operate their services. External websites have their own privacy policies."],
   ["Your choices", "You can ask about information you have shared or request a correction or deletion. We may need to verify your identity; applicable legal requirements may affect what we can delete. Please avoid sending passwords or sensitive information."],
