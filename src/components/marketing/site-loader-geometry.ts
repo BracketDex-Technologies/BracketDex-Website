@@ -1,15 +1,17 @@
 type LoaderFrame = {
+  viewportLeft?: number;
+  viewportTop?: number;
   viewportWidth: number;
   viewportHeight: number;
   width: number;
-  height: number;
+  height?: number;
   target: { left: number; top: number; width: number; height: number };
 };
 
 export function getLoaderPlacement(frame: LoaderFrame, travel: number, settle: number) {
-  const { viewportWidth, viewportHeight, width, height, target } = frame;
-  const startX = (viewportWidth - width) / 2;
-  const startY = (viewportHeight - height) / 2;
+  const { viewportLeft = 0, viewportTop = 0, viewportWidth, viewportHeight, width, height = width * 103.5 / 572.25, target } = frame;
+  const startX = viewportLeft + (viewportWidth - width) / 2;
+  const startY = viewportTop + (viewportHeight - height) / 2;
   const scale = target.width / width;
   return {
     x: startX * (1 - travel) + target.left * travel + 6 * settle * travel,

@@ -24,6 +24,7 @@ export function SiteLoader() {
     const content = document.getElementById("site-content");
     const navbar = document.querySelector<HTMLElement>("[data-navbar-wordmark]");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const viewport = window.visualViewport;
     let cancelled = false;
     let timeline: gsap.core.Timeline | undefined;
     let animationFrame = 0;
@@ -34,6 +35,12 @@ export function SiteLoader() {
     const removeMotionListener = () => {
       if (reduce.removeEventListener) reduce.removeEventListener("change", onPreferenceChange);
       else reduce.removeListener(onPreferenceChange);
+    };
+    const removeResizeListeners = () => {
+      if (!resize) return;
+      window.removeEventListener("resize", resize);
+      viewport?.removeEventListener("resize", resize);
+      viewport?.removeEventListener("scroll", resize);
     };
 
     const release = () => {
@@ -48,7 +55,7 @@ export function SiteLoader() {
       timeline?.kill();
       window.removeEventListener("bd-site-loader-timeout", finish);
       removeMotionListener();
-      if (resize) window.removeEventListener("resize", resize);
+      removeResizeListeners();
       html.dataset.siteLoader = "done";
       release();
     };
@@ -87,12 +94,15 @@ export function SiteLoader() {
       const motion = { travel: 0, settle: 1, typed: 0 };
       const measure = () => {
         const size = window.getComputedStyle(mark);
+        const overlay = root.getBoundingClientRect();
+        const target = image.getBoundingClientRect();
         return {
-          viewportWidth: window.innerWidth,
-          viewportHeight: window.innerHeight,
+          viewportLeft: (viewport?.offsetLeft ?? overlay.left) - overlay.left,
+          viewportTop: (viewport?.offsetTop ?? overlay.top) - overlay.top,
+          viewportWidth: viewport?.width ?? overlay.width,
+          viewportHeight: viewport?.height ?? overlay.height,
           width: parseFloat(size.width),
-          height: parseFloat(size.height),
-          target: image.getBoundingClientRect(),
+          target: { left: target.left - overlay.left, top: target.top - overlay.top, width: target.width, height: target.height },
         };
       };
       let frame = measure();
@@ -111,6 +121,8 @@ export function SiteLoader() {
       };
       resize = () => { frame = measure(); renderPlacement(); };
       window.addEventListener("resize", resize);
+      viewport?.addEventListener("resize", resize);
+      viewport?.addEventListener("scroll", resize);
       renderPlacement();
       gsap.set([open, close], { opacity: 0 });
       gsap.set(letters, { opacity: 0 });
@@ -148,7 +160,7 @@ export function SiteLoader() {
       timeline?.kill();
       window.clearTimeout(failSafe.id);
       window.removeEventListener("bd-site-loader-timeout", finish);
-      if (resize) window.removeEventListener("resize", resize);
+      removeResizeListeners();
       removeMotionListener();
       release();
     };
@@ -157,7 +169,7 @@ export function SiteLoader() {
   return (
     <div className="bd-site-loader" ref={rootRef} role="status" aria-label="Loading BracketDex Technologies" data-lenis-prevent>
       <div className="bd-site-loader-backdrop" aria-hidden="true" />
-      <svg className={`bd-site-loader-mark ${logoFont.className}`} ref={markRef} viewBox="0 0 572.25 103.5" aria-hidden="true">
+      <svg className={`bd-site-loader-mark ${logoFont.className}`} ref={markRef} width={572.25} height={103.5} viewBox="0 0 572.25 103.5" aria-hidden="true">
         <g ref={glyphsRef} style={{ transform: "translate(8px, 83px)" }}>
           <g data-loader-open><text>{"{"}</text></g>
           <g data-loader-word>{LETTERS.map((letter, index) => <text x={LETTER_X[index]} key={index}>{letter}</text>)}</g>

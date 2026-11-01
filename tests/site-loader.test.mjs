@@ -38,6 +38,31 @@ test("loader stays centered before docking, including after viewport resize", as
   }
 });
 
+test("mobile loader centers in the visible viewport without relying on computed SVG height", async () => {
+  const { getLoaderPlacement } = await loaderModule("geometry");
+  const logo = readFileSync(new URL("../public/media/brand/bracketdex-logo-regular-dark.svg", import.meta.url), "utf8");
+  const [, logoWidth, logoHeight] = logo.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
+  const target = { left: 20, top: 12, width: 158.4, height: 158.4 * Number(logoHeight) / Number(logoWidth) };
+
+  for (const viewport of [
+    { viewportLeft: 0, viewportTop: 0, viewportWidth: 390, viewportHeight: 664 },
+    { viewportLeft: 12, viewportTop: 58, viewportWidth: 366, viewportHeight: 600 },
+    { viewportLeft: 0, viewportTop: 120, viewportWidth: 390, viewportHeight: 430 },
+    { viewportLeft: 0, viewportTop: 0, viewportWidth: 844, viewportHeight: 390 },
+  ]) {
+    const width = Math.min(viewport.viewportWidth * 0.78, 440);
+    const height = width * Number(logoHeight) / Number(logoWidth);
+    const frame = { ...viewport, width, target };
+    const centered = getLoaderPlacement(frame, 0, 1);
+    assert.ok(Math.abs(centered.x + width / 2 - (viewport.viewportLeft + viewport.viewportWidth / 2)) < 0.00001);
+    assert.ok(Math.abs(centered.y + height / 2 - (viewport.viewportTop + viewport.viewportHeight / 2)) < 0.00001);
+    const docked = getLoaderPlacement(frame, 1, 0);
+    assert.equal(docked.x, target.left);
+    assert.equal(docked.y, target.top);
+    assert.ok(Math.abs(height * docked.scale - target.height) < 0.00001);
+  }
+});
+
 function runBootstrap(script, session, blocked = false) {
   const classes = new Set();
   const root = { dataset: {}, classList: { add: (name) => classes.add(name), remove: (name) => classes.delete(name) } };
