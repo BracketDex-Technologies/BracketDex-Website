@@ -2,7 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ArrowUpRight, Pause, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -37,7 +37,6 @@ export function HomeHero({ hero }: HomeHeroProps) {
   const shouldReduceMotion = useReducedMotion();
   const [videoVariant, setVideoVariant] = useState<VideoVariant | null>(null);
   const [videoPlaying, setVideoPlaying] = useState(false);
-  const [videoPaused, setVideoPaused] = useState(false);
 
   useGSAP(
     () => {
@@ -75,13 +74,18 @@ export function HomeHero({ hero }: HomeHeroProps) {
     };
 
     syncVideoVariant();
-    mobileQuery.addEventListener("change", syncVideoVariant);
-    reducedMotionQuery.addEventListener("change", syncVideoVariant);
+    const queries = [mobileQuery, reducedMotionQuery];
+    queries.forEach(query => {
+      if (query.addEventListener) query.addEventListener("change", syncVideoVariant);
+      else query.addListener(syncVideoVariant);
+    });
     connection?.addEventListener("change", syncVideoVariant);
 
     return () => {
-      mobileQuery.removeEventListener("change", syncVideoVariant);
-      reducedMotionQuery.removeEventListener("change", syncVideoVariant);
+      queries.forEach(query => {
+        if (query.removeEventListener) query.removeEventListener("change", syncVideoVariant);
+        else query.removeListener(syncVideoVariant);
+      });
       connection?.removeEventListener("change", syncVideoVariant);
     };
   }, []);
@@ -92,7 +96,6 @@ export function HomeHero({ hero }: HomeHeroProps) {
     if (!video || !heroElement) return;
 
     const playVideo = () => {
-      if (videoPaused) { video.pause(); return; }
       void video.play().catch(() => setVideoPlaying(false));
     };
 
@@ -111,7 +114,7 @@ export function HomeHero({ hero }: HomeHeroProps) {
 
     observer.observe(heroElement);
     return () => observer.disconnect();
-  }, [videoVariant, videoPaused]);
+  }, [videoVariant]);
 
   const activeMedia = videoVariant ? HERO_MEDIA[videoVariant] : null;
 
@@ -140,7 +143,7 @@ export function HomeHero({ hero }: HomeHeroProps) {
         </picture>
         {activeMedia ? (
           <video
-            autoPlay={!videoPaused}
+            autoPlay
             className={`${styles.video} ${videoPlaying ? styles.videoPlaying : ""}`}
             key={videoVariant}
             loop
@@ -159,10 +162,6 @@ export function HomeHero({ hero }: HomeHeroProps) {
         ) : null}
       </div>
       <div aria-hidden="true" className={styles.scrim} />
-      {activeMedia && <button type="button" className={styles.motionToggle} aria-label={videoPaused ? "Play background video" : "Pause background video"} onClick={() => setVideoPaused(paused => !paused)}>
-        {videoPaused ? <Play aria-hidden="true" size={16} /> : <Pause aria-hidden="true" size={16} />}
-        {videoPaused ? "Play motion" : "Pause motion"}
-      </button>}
 
       <div className={styles.inner}>
         <div className={styles.copy}>

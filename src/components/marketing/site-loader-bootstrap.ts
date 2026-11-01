@@ -4,7 +4,7 @@ export const SITE_LOADER_BOOTSTRAP = `(() => {
     if (sessionStorage.getItem(key) === 'true') return;
     sessionStorage.setItem(key, 'true');
   } catch {
-    return;
+    // Private browsing may disable storage; still allow this visit's intro.
   }
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const root = document.documentElement;
@@ -15,6 +15,7 @@ export const SITE_LOADER_BOOTSTRAP = `(() => {
     window.dispatchEvent(new Event('bd-site-loader-timeout'));
     root.dataset.siteLoader = 'done';
     root.classList.remove('bd-site-loader-active');
-    document.getElementById('site-content')?.removeAttribute('inert');
-  }, 6000);
+    const content = document.getElementById('site-content');
+    if (content) content.removeAttribute('inert');
+  }, 10000);
 })();`;

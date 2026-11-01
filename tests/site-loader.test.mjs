@@ -71,9 +71,10 @@ test("loader plays on first visit and skips reloads and other pages in the sessi
   assert.equal(runBootstrap(SITE_LOADER_BOOTSTRAP, new Map()).root.dataset.siteLoader, "pending");
 });
 
-test("blocked session storage leaves the site immediately available", async () => {
+test("blocked session storage still plays the intro with a release timeout", async () => {
   const { SITE_LOADER_BOOTSTRAP } = await loaderModule("bootstrap");
   const result = runBootstrap(SITE_LOADER_BOOTSTRAP, new Map(), true);
-  assert.equal(result.classes.has("bd-site-loader-active"), false);
-  assert.equal(result.timers.length, 0);
+  assert.equal(result.classes.has("bd-site-loader-active"), true);
+  assert.equal(result.root.dataset.siteLoader, "pending");
+  assert.equal(result.timers.length, 1);
 });
