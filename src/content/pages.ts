@@ -276,7 +276,7 @@ export const pageContent = {
         title: "Information you choose to share",
         cards: [
           { title: "Project enquiries", description: "The contact form asks for your name, email address, optional company name, and a message about your requirements. Please avoid including passwords, payment details, or sensitive personal information in your message." },
-          { title: "How the form works", description: "Your form entries are sent to the website server for validation. If validation succeeds, the site opens a draft in your email application. You choose whether to send that email. The contact endpoint does not save the enquiry to a database or send it automatically." },
+          { title: "How the form works", description: "Your form entries are sent to the website server for validation. If validation succeeds, the browser submits the enquiry to Web3Forms for delivery to our team. The contact endpoint does not save enquiries to a database." },
           { title: "Technical information", description: "The contact endpoint temporarily holds an IP address and request timestamps in server memory to limit repeated submissions. Hosting and network providers may also process technical information needed to deliver and secure the website, such as IP addresses, requested pages, and browser details." },
         ],
       },
