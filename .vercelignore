@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+.next-launch-check/
+.next-consent-check/
+.next-verify/
+.next-minimal-verify/
+out/
+
+# Version control
+.git/
+.github/
+
+# Editor/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dev.log
+
+# Environment
+.env
+.env*.local
+
+# Package lock (not needed at deploy)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Documentation / planning (not needed for production)
+docs/
+scripts/
+.superpowers/
+.agents/
+.claude/
+.codex/
+
+# Gitignore references
+.gitignore
+
+# TypeScript build info
+*.tsbuildinfo
